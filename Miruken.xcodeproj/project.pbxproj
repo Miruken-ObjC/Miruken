@@ -16,6 +16,7 @@
 		14FD8A6A18A7CB18008077CF /* libMiruken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5218A7CB18008077CF /* libMiruken.a */; };
 		14FD8A7018A7CB18008077CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14FD8A6E18A7CB18008077CF /* InfoPlist.strings */; };
 		14FD8A7218A7CB18008077CF /* MirukenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7118A7CB18008077CF /* MirukenTests.m */; };
+		EB1E2B388199486D8C25AAF8 /* libPods-Miruken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C07D65B5617417FA5C12730 /* libPods-Miruken.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C07D65B5617417FA5C12730 /* libPods-Miruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Miruken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 		14FD8A6D18A7CB18008077CF /* MirukenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MirukenTests-Info.plist"; sourceTree = "<group>"; };
 		14FD8A6F18A7CB18008077CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		14FD8A7118A7CB18008077CF /* MirukenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirukenTests.m; sourceTree = "<group>"; };
+		483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miruken.xcconfig"; path = "Pods/Pods-Miruken.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +64,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */,
+				EB1E2B388199486D8C25AAF8 /* libPods-Miruken.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +89,7 @@
 				14FD8A6B18A7CB18008077CF /* MirukenTests */,
 				14FD8A5418A7CB18008077CF /* Frameworks */,
 				14FD8A5318A7CB18008077CF /* Products */,
+				483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +108,7 @@
 				14FD8A5518A7CB18008077CF /* Foundation.framework */,
 				14FD8A6318A7CB18008077CF /* XCTest.framework */,
 				14FD8A6618A7CB18008077CF /* UIKit.framework */,
+				0C07D65B5617417FA5C12730 /* libPods-Miruken.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -150,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 14FD8A7518A7CB18008077CF /* Build configuration list for PBXNativeTarget "Miruken" */;
 			buildPhases = (
+				04AE3E594B7447FA88101F80 /* Check Pods Manifest.lock */,
 				14FD8A4E18A7CB18008077CF /* Sources */,
 				14FD8A4F18A7CB18008077CF /* Frameworks */,
 				14FD8A5018A7CB18008077CF /* CopyFiles */,
+				66A06385642248E189FEA159 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -218,6 +226,39 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		04AE3E594B7447FA88101F80 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		66A06385642248E189FEA159 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-Miruken-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		14FD8A4E18A7CB18008077CF /* Sources */ = {
@@ -330,11 +371,12 @@
 		};
 		14FD8A7618A7CB18008077CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Miruken.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Miruken/Miruken-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -342,11 +384,12 @@
 		};
 		14FD8A7718A7CB18008077CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Miruken.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Miruken/Miruken-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -409,6 +452,7 @@
 				14FD8A7718A7CB18008077CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		14FD8A7818A7CB18008077CF /* Build configuration list for PBXNativeTarget "MirukenTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +461,7 @@
 				14FD8A7A18A7CB18008077CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
