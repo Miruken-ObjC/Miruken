@@ -16,6 +16,28 @@
 		14FD8A6A18A7CB18008077CF /* libMiruken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5218A7CB18008077CF /* libMiruken.a */; };
 		14FD8A7018A7CB18008077CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14FD8A6E18A7CB18008077CF /* InfoPlist.strings */; };
 		14FD8A7218A7CB18008077CF /* MirukenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7118A7CB18008077CF /* MirukenTests.m */; };
+		14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7D18A7DBF7008077CF /* MKAction.m */; };
+		14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */; };
+		14FD8AA818A7DBF7008077CF /* MKAsyncObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */; };
+		14FD8AA918A7DBF7008077CF /* MKAsyncProxyResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8318A7DBF7008077CF /* MKAsyncProxyResult.m */; };
+		14FD8AAA18A7DBF7008077CF /* MKAsyncResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */; };
+		14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */; };
+		14FD8AAD18A7DBF7008077CF /* MKDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8C18A7DBF7008077CF /* MKDeferred.m */; };
+		14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8E18A7DBF7008077CF /* MKDelayedDelegate.m */; };
+		14FD8AAF18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9018A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m */; };
+		14FD8AB018A7DBF7008077CF /* MKMainThreadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9218A7DBF7008077CF /* MKMainThreadDelegate.m */; };
+		14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9418A7DBF7008077CF /* MKNewThreadDelegate.m */; };
+		14FD8AB218A7DBF7008077CF /* MKOperationProxyResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9618A7DBF7008077CF /* MKOperationProxyResult.m */; };
+		14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9818A7DBF7008077CF /* MKOperationQueueDelegate.m */; };
+		14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9A18A7DBF7008077CF /* MKOperationResult.m */; };
+		14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */; };
+		14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */; };
+		14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */; };
+		14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */; };
+		14FD8AB918A7DBF7008077CF /* NSObject+Promise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA518A7DBF7008077CF /* NSObject+Promise.m */; };
+		14FD8AC018A7E213008077CF /* NSInvocation+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8ABF18A7E213008077CF /* NSInvocation+Objects.m */; };
+		14FD8AD318A7E494008077CF /* MKBufferedPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AD218A7E494008077CF /* MKBufferedPromiseTests.m */; };
+		14FD8AD518A7E615008077CF /* MKDeferredTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AD418A7E615008077CF /* MKDeferredTests.m */; };
 		EB1E2B388199486D8C25AAF8 /* libPods-Miruken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C07D65B5617417FA5C12730 /* libPods-Miruken.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +77,51 @@
 		14FD8A6D18A7CB18008077CF /* MirukenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MirukenTests-Info.plist"; sourceTree = "<group>"; };
 		14FD8A6F18A7CB18008077CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		14FD8A7118A7CB18008077CF /* MirukenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirukenTests.m; sourceTree = "<group>"; };
+		14FD8A7C18A7DBF7008077CF /* MKAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAction.h; sourceTree = "<group>"; };
+		14FD8A7D18A7DBF7008077CF /* MKAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAction.m; sourceTree = "<group>"; };
+		14FD8A7E18A7DBF7008077CF /* MKAsyncDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncDelegate.h; sourceTree = "<group>"; };
+		14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncDelegate.m; sourceTree = "<group>"; };
+		14FD8A8018A7DBF7008077CF /* MKAsyncObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncObject.h; sourceTree = "<group>"; };
+		14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncObject.m; sourceTree = "<group>"; };
+		14FD8A8218A7DBF7008077CF /* MKAsyncProxyResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncProxyResult.h; sourceTree = "<group>"; };
+		14FD8A8318A7DBF7008077CF /* MKAsyncProxyResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncProxyResult.m; sourceTree = "<group>"; };
+		14FD8A8418A7DBF7008077CF /* MKAsyncResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncResult.h; sourceTree = "<group>"; };
+		14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncResult.m; sourceTree = "<group>"; };
+		14FD8A8618A7DBF7008077CF /* MKBufferedPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBufferedPromise.h; sourceTree = "<group>"; };
+		14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBufferedPromise.m; sourceTree = "<group>"; };
+		14FD8A8918A7DBF7008077CF /* MKConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKConcurrency.h; sourceTree = "<group>"; };
+		14FD8A8B18A7DBF7008077CF /* MKDeferred.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDeferred.h; sourceTree = "<group>"; };
+		14FD8A8C18A7DBF7008077CF /* MKDeferred.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDeferred.m; sourceTree = "<group>"; };
+		14FD8A8D18A7DBF7008077CF /* MKDelayedDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDelayedDelegate.h; sourceTree = "<group>"; };
+		14FD8A8E18A7DBF7008077CF /* MKDelayedDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDelayedDelegate.m; sourceTree = "<group>"; };
+		14FD8A8F18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGrandCentralDispatchDelegate.h; sourceTree = "<group>"; };
+		14FD8A9018A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGrandCentralDispatchDelegate.m; sourceTree = "<group>"; };
+		14FD8A9118A7DBF7008077CF /* MKMainThreadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMainThreadDelegate.h; sourceTree = "<group>"; };
+		14FD8A9218A7DBF7008077CF /* MKMainThreadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMainThreadDelegate.m; sourceTree = "<group>"; };
+		14FD8A9318A7DBF7008077CF /* MKNewThreadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNewThreadDelegate.h; sourceTree = "<group>"; };
+		14FD8A9418A7DBF7008077CF /* MKNewThreadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNewThreadDelegate.m; sourceTree = "<group>"; };
+		14FD8A9518A7DBF7008077CF /* MKOperationProxyResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOperationProxyResult.h; sourceTree = "<group>"; };
+		14FD8A9618A7DBF7008077CF /* MKOperationProxyResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOperationProxyResult.m; sourceTree = "<group>"; };
+		14FD8A9718A7DBF7008077CF /* MKOperationQueueDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOperationQueueDelegate.h; sourceTree = "<group>"; };
+		14FD8A9818A7DBF7008077CF /* MKOperationQueueDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOperationQueueDelegate.m; sourceTree = "<group>"; };
+		14FD8A9918A7DBF7008077CF /* MKOperationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOperationResult.h; sourceTree = "<group>"; };
+		14FD8A9A18A7DBF7008077CF /* MKOperationResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOperationResult.m; sourceTree = "<group>"; };
+		14FD8A9B18A7DBF7008077CF /* MKPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPromise.h; sourceTree = "<group>"; };
+		14FD8A9C18A7DBF7008077CF /* MKScheduledPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKScheduledPromise.h; sourceTree = "<group>"; };
+		14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKScheduledPromise.m; sourceTree = "<group>"; };
+		14FD8A9E18A7DBF7008077CF /* MKSynchronousResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSynchronousResult.h; sourceTree = "<group>"; };
+		14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSynchronousResult.m; sourceTree = "<group>"; };
+		14FD8AA018A7DBF7008077CF /* MKThreadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKThreadDelegate.h; sourceTree = "<group>"; };
+		14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKThreadDelegate.m; sourceTree = "<group>"; };
+		14FD8AA218A7DBF7008077CF /* NSObject+Concurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Concurrency.h"; sourceTree = "<group>"; };
+		14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Concurrency.m"; sourceTree = "<group>"; };
+		14FD8AA418A7DBF7008077CF /* NSObject+Promise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Promise.h"; sourceTree = "<group>"; };
+		14FD8AA518A7DBF7008077CF /* NSObject+Promise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Promise.m"; sourceTree = "<group>"; };
+		14FD8ABE18A7E213008077CF /* NSInvocation+Objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Objects.h"; sourceTree = "<group>"; };
+		14FD8ABF18A7E213008077CF /* NSInvocation+Objects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Objects.m"; sourceTree = "<group>"; };
+		14FD8AC118A7E2F7008077CF /* Concurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concurrency.h; sourceTree = "<group>"; };
+		14FD8AD218A7E494008077CF /* MKBufferedPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBufferedPromiseTests.m; sourceTree = "<group>"; };
+		14FD8AD418A7E615008077CF /* MKDeferredTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDeferredTests.m; sourceTree = "<group>"; };
 		483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miruken.xcconfig"; path = "Pods/Pods-Miruken.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,6 +185,8 @@
 			children = (
 				14FD8A5A18A7CB18008077CF /* Miruken.h */,
 				14FD8A5C18A7CB18008077CF /* Miruken.m */,
+				14FD8ABD18A7E1CF008077CF /* Core */,
+				14FD8A7B18A7DBF7008077CF /* Concurrency */,
 				14FD8A5818A7CB18008077CF /* Supporting Files */,
 			);
 			path = Miruken;
@@ -134,6 +203,7 @@
 		14FD8A6B18A7CB18008077CF /* MirukenTests */ = {
 			isa = PBXGroup;
 			children = (
+				14FD8AD118A7E476008077CF /* Concurrency */,
 				14FD8A7118A7CB18008077CF /* MirukenTests.m */,
 				14FD8A6C18A7CB18008077CF /* Supporting Files */,
 			);
@@ -147,6 +217,72 @@
 				14FD8A6E18A7CB18008077CF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		14FD8A7B18A7DBF7008077CF /* Concurrency */ = {
+			isa = PBXGroup;
+			children = (
+				14FD8AC118A7E2F7008077CF /* Concurrency.h */,
+				14FD8A7C18A7DBF7008077CF /* MKAction.h */,
+				14FD8A7D18A7DBF7008077CF /* MKAction.m */,
+				14FD8A7E18A7DBF7008077CF /* MKAsyncDelegate.h */,
+				14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */,
+				14FD8A8018A7DBF7008077CF /* MKAsyncObject.h */,
+				14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */,
+				14FD8A8218A7DBF7008077CF /* MKAsyncProxyResult.h */,
+				14FD8A8318A7DBF7008077CF /* MKAsyncProxyResult.m */,
+				14FD8A8418A7DBF7008077CF /* MKAsyncResult.h */,
+				14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */,
+				14FD8A8618A7DBF7008077CF /* MKBufferedPromise.h */,
+				14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */,
+				14FD8A8918A7DBF7008077CF /* MKConcurrency.h */,
+				14FD8A8B18A7DBF7008077CF /* MKDeferred.h */,
+				14FD8A8C18A7DBF7008077CF /* MKDeferred.m */,
+				14FD8A8D18A7DBF7008077CF /* MKDelayedDelegate.h */,
+				14FD8A8E18A7DBF7008077CF /* MKDelayedDelegate.m */,
+				14FD8A8F18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.h */,
+				14FD8A9018A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m */,
+				14FD8A9118A7DBF7008077CF /* MKMainThreadDelegate.h */,
+				14FD8A9218A7DBF7008077CF /* MKMainThreadDelegate.m */,
+				14FD8A9318A7DBF7008077CF /* MKNewThreadDelegate.h */,
+				14FD8A9418A7DBF7008077CF /* MKNewThreadDelegate.m */,
+				14FD8A9518A7DBF7008077CF /* MKOperationProxyResult.h */,
+				14FD8A9618A7DBF7008077CF /* MKOperationProxyResult.m */,
+				14FD8A9718A7DBF7008077CF /* MKOperationQueueDelegate.h */,
+				14FD8A9818A7DBF7008077CF /* MKOperationQueueDelegate.m */,
+				14FD8A9918A7DBF7008077CF /* MKOperationResult.h */,
+				14FD8A9A18A7DBF7008077CF /* MKOperationResult.m */,
+				14FD8A9B18A7DBF7008077CF /* MKPromise.h */,
+				14FD8A9C18A7DBF7008077CF /* MKScheduledPromise.h */,
+				14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */,
+				14FD8A9E18A7DBF7008077CF /* MKSynchronousResult.h */,
+				14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */,
+				14FD8AA018A7DBF7008077CF /* MKThreadDelegate.h */,
+				14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */,
+				14FD8AA218A7DBF7008077CF /* NSObject+Concurrency.h */,
+				14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */,
+				14FD8AA418A7DBF7008077CF /* NSObject+Promise.h */,
+				14FD8AA518A7DBF7008077CF /* NSObject+Promise.m */,
+			);
+			path = Concurrency;
+			sourceTree = "<group>";
+		};
+		14FD8ABD18A7E1CF008077CF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				14FD8ABE18A7E213008077CF /* NSInvocation+Objects.h */,
+				14FD8ABF18A7E213008077CF /* NSInvocation+Objects.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		14FD8AD118A7E476008077CF /* Concurrency */ = {
+			isa = PBXGroup;
+			children = (
+				14FD8AD218A7E494008077CF /* MKBufferedPromiseTests.m */,
+				14FD8AD418A7E615008077CF /* MKDeferredTests.m */,
+			);
+			path = Concurrency;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,7 +401,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FD8AA918A7DBF7008077CF /* MKAsyncProxyResult.m in Sources */,
+				14FD8AA818A7DBF7008077CF /* MKAsyncObject.m in Sources */,
+				14FD8AB918A7DBF7008077CF /* NSObject+Promise.m in Sources */,
+				14FD8AAF18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m in Sources */,
+				14FD8AAD18A7DBF7008077CF /* MKDeferred.m in Sources */,
+				14FD8AAA18A7DBF7008077CF /* MKAsyncResult.m in Sources */,
+				14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */,
+				14FD8AB218A7DBF7008077CF /* MKOperationProxyResult.m in Sources */,
+				14FD8AB018A7DBF7008077CF /* MKMainThreadDelegate.m in Sources */,
+				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
+				14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */,
+				14FD8AC018A7E213008077CF /* NSInvocation+Objects.m in Sources */,
+				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
+				14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */,
 				14FD8A5D18A7CB18008077CF /* Miruken.m in Sources */,
+				14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */,
+				14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */,
+				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
+				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,
+				14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */,
+				14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +429,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14FD8AD318A7E494008077CF /* MKBufferedPromiseTests.m in Sources */,
 				14FD8A7218A7CB18008077CF /* MirukenTests.m in Sources */,
+				14FD8AD518A7E615008077CF /* MKDeferredTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +569,13 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MirukenTests/MirukenTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -428,6 +593,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Miruken/Miruken-Prefix.pch";
 				INFOPLIST_FILE = "MirukenTests/MirukenTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
 			};
