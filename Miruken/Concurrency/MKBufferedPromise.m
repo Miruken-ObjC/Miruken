@@ -3,7 +3,7 @@
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/8/13.
-//  Copyright (c) 2013 ZixCorp. All rights reserved.
+//  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
 #import "MKBufferedPromise.h"

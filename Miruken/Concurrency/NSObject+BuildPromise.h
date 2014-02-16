@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "MKPromise.h"
 
-@interface NSObject (NSObject_Promise)
+@interface NSObject (NSObject_BuildPromise)
+
+- (BOOL)isPromise;
 
 - (id<MKPromise>)makePromise;
 

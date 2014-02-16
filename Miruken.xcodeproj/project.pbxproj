@@ -7,6 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */; };
+		1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */; };
+		1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */; };
+		1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m */; };
+		1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994218B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m */; };
+		1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994418B02DCD002BCBF6 /* MKCallbackHandler.m */; };
+		1462997218B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994618B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m */; };
+		1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994818B02DCD002BCBF6 /* MKCallbackHandlerFilter.m */; };
+		1462997418B02DCD002BCBF6 /* MKCascadeCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994B18B02DCD002BCBF6 /* MKCascadeCallbackHandler.m */; };
+		1462997518B02DCD002BCBF6 /* MKCompositeCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994D18B02DCD002BCBF6 /* MKCompositeCallbackHandler.m */; };
+		1462997618B02DCD002BCBF6 /* MKConditionCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994F18B02DCD002BCBF6 /* MKConditionCallbackHandler.m */; };
+		1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995118B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m */; };
+		1462997818B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995318B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m */; };
+		1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995518B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m */; };
+		1462997A18B02DCD002BCBF6 /* MKHandleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995818B02DCD002BCBF6 /* MKHandleMethod.m */; };
+		1462997B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m */; };
+		1462997C18B02DCD002BCBF6 /* NSObject+Callbacks.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995D18B02DCD002BCBF6 /* NSObject+Callbacks.m */; };
+		1462997D18B02DCD002BCBF6 /* NSObject+NotHandled.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462995F18B02DCD002BCBF6 /* NSObject+NotHandled.m */; };
+		1462997E18B02DCD002BCBF6 /* MKObjectCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462996118B02DCD002BCBF6 /* MKObjectCallbackHandler.m */; };
+		1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462996318B02DCD002BCBF6 /* MKObjectCallbackReceiver.m */; };
+		1462998018B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462996518B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m */; };
+		1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462996718B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m */; };
+		1462998218B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462996918B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m */; };
+		1462998518B02EA8002BCBF6 /* MKDynamicCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462998418B02EA8002BCBF6 /* MKDynamicCallbackHandler.m */; };
+		1462998818B02EEA002BCBF6 /* MKReadWriteLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462998718B02EEA002BCBF6 /* MKReadWriteLock.m */; };
+		1462998B18B03093002BCBF6 /* MKMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462998A18B03093002BCBF6 /* MKMixin.m */; };
+		1462998F18B031CA002BCBF6 /* MKCallbackErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462998E18B031CA002BCBF6 /* MKCallbackErrors.m */; };
+		14982CF518B10E430065EE40 /* NSObject+ResolvePromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982CF418B10E430065EE40 /* NSObject+ResolvePromise.m */; };
+		14982D0818B112A20065EE40 /* ApplicationCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982CFA18B112A20065EE40 /* ApplicationCallbackHandler.m */; };
+		14982D0918B112A20065EE40 /* Configuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982CFC18B112A20065EE40 /* Configuration.m */; };
+		14982D0A18B112A20065EE40 /* ConfigurationCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982CFE18B112A20065EE40 /* ConfigurationCallbackHandler.m */; };
+		14982D0B18B112A20065EE40 /* ConfigurationTagCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D0018B112A20065EE40 /* ConfigurationTagCallbackHandler.m */; };
+		14982D0C18B112A20065EE40 /* GetResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D0218B112A20065EE40 /* GetResource.m */; };
+		14982D0D18B112A20065EE40 /* ResourcesCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D0418B112A20065EE40 /* ResourcesCallbackHandler.m */; };
+		14982D0E18B112A20065EE40 /* ResourceUsage.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D0618B112A20065EE40 /* ResourceUsage.m */; };
+		14982D1018B115DF0065EE40 /* MKCallbackHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D0F18B115DF0065EE40 /* MKCallbackHandlerTests.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A5D18A7CB18008077CF /* Miruken.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A5C18A7CB18008077CF /* Miruken.m */; };
@@ -34,7 +70,7 @@
 		14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */; };
 		14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */; };
 		14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */; };
-		14FD8AB918A7DBF7008077CF /* NSObject+Promise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA518A7DBF7008077CF /* NSObject+Promise.m */; };
+		14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA518A7DBF7008077CF /* NSObject+BuldPromise.m */; };
 		14FD8AD318A7E494008077CF /* MKBufferedPromiseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AD218A7E494008077CF /* MKBufferedPromiseTests.m */; };
 		14FD8AD518A7E615008077CF /* MKDeferredTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AD418A7E615008077CF /* MKDeferredTests.m */; };
 		14FD8AD818A7E867008077CF /* NSInvocation+Objects.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */; };
@@ -68,6 +104,82 @@
 
 /* Begin PBXFileReference section */
 		0C07D65B5617417FA5C12730 /* libPods-Miruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Miruken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1462993518B02DCD002BCBF6 /* MKCallbackHandler+Builders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Builders.h"; sourceTree = "<group>"; };
+		1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Builders.m"; sourceTree = "<group>"; };
+		1462993718B02DCD002BCBF6 /* MKCallbackHandler+Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Buffer.h"; sourceTree = "<group>"; };
+		1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Buffer.m"; sourceTree = "<group>"; };
+		1462993918B02DCD002BCBF6 /* MKCallbackHandler+Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Invocation.h"; sourceTree = "<group>"; };
+		1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Invocation.m"; sourceTree = "<group>"; };
+		1462993D18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Resolvers.h"; sourceTree = "<group>"; };
+		1462993E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Resolvers.m"; sourceTree = "<group>"; };
+		1462994118B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Subscripting.h"; sourceTree = "<group>"; };
+		1462994218B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Subscripting.m"; sourceTree = "<group>"; };
+		1462994318B02DCD002BCBF6 /* MKCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandler.h; sourceTree = "<group>"; };
+		1462994418B02DCD002BCBF6 /* MKCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandler.m; sourceTree = "<group>"; };
+		1462994518B02DCD002BCBF6 /* MKCallbackHandlerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandlerDecorator.h; sourceTree = "<group>"; };
+		1462994618B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandlerDecorator.m; sourceTree = "<group>"; };
+		1462994718B02DCD002BCBF6 /* MKCallbackHandlerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandlerFilter.h; sourceTree = "<group>"; };
+		1462994818B02DCD002BCBF6 /* MKCallbackHandlerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandlerFilter.m; sourceTree = "<group>"; };
+		1462994918B02DCD002BCBF6 /* MKCallbackReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackReceiver.h; sourceTree = "<group>"; };
+		1462994A18B02DCD002BCBF6 /* MKCascadeCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCascadeCallbackHandler.h; sourceTree = "<group>"; };
+		1462994B18B02DCD002BCBF6 /* MKCascadeCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCascadeCallbackHandler.m; sourceTree = "<group>"; };
+		1462994C18B02DCD002BCBF6 /* MKCompositeCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCompositeCallbackHandler.h; sourceTree = "<group>"; };
+		1462994D18B02DCD002BCBF6 /* MKCompositeCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCompositeCallbackHandler.m; sourceTree = "<group>"; };
+		1462994E18B02DCD002BCBF6 /* MKConditionCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKConditionCallbackHandler.h; sourceTree = "<group>"; };
+		1462994F18B02DCD002BCBF6 /* MKConditionCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKConditionCallbackHandler.m; sourceTree = "<group>"; };
+		1462995018B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKDynamicCallbackHandler+CallbackReceiver.h"; sourceTree = "<group>"; };
+		1462995118B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKDynamicCallbackHandler+CallbackReceiver.m"; sourceTree = "<group>"; };
+		1462995218B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKDynamicCallbackHandler+HandleMethod.h"; sourceTree = "<group>"; };
+		1462995318B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKDynamicCallbackHandler+HandleMethod.m"; sourceTree = "<group>"; };
+		1462995418B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDynamicCallbackHandlerExtension.h; sourceTree = "<group>"; };
+		1462995518B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDynamicCallbackHandlerExtension.m; sourceTree = "<group>"; };
+		1462995618B02DCD002BCBF6 /* MKHandleGreedy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHandleGreedy.h; sourceTree = "<group>"; };
+		1462995718B02DCD002BCBF6 /* MKHandleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKHandleMethod.h; sourceTree = "<group>"; };
+		1462995818B02DCD002BCBF6 /* MKHandleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHandleMethod.m; sourceTree = "<group>"; };
+		1462995918B02DCD002BCBF6 /* MKInternalCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInternalCallback.h; sourceTree = "<group>"; };
+		1462995A18B02DCD002BCBF6 /* MKInvocationCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInvocationCallbackHandler.h; sourceTree = "<group>"; };
+		1462995B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInvocationCallbackHandler.m; sourceTree = "<group>"; };
+		1462995C18B02DCD002BCBF6 /* NSObject+Callbacks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Callbacks.h"; sourceTree = "<group>"; };
+		1462995D18B02DCD002BCBF6 /* NSObject+Callbacks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Callbacks.m"; sourceTree = "<group>"; };
+		1462995E18B02DCD002BCBF6 /* NSObject+NotHandled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+NotHandled.h"; sourceTree = "<group>"; };
+		1462995F18B02DCD002BCBF6 /* NSObject+NotHandled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+NotHandled.m"; sourceTree = "<group>"; };
+		1462996018B02DCD002BCBF6 /* MKObjectCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKObjectCallbackHandler.h; sourceTree = "<group>"; };
+		1462996118B02DCD002BCBF6 /* MKObjectCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKObjectCallbackHandler.m; sourceTree = "<group>"; };
+		1462996218B02DCD002BCBF6 /* MKObjectCallbackReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKObjectCallbackReceiver.h; sourceTree = "<group>"; };
+		1462996318B02DCD002BCBF6 /* MKObjectCallbackReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKObjectCallbackReceiver.m; sourceTree = "<group>"; };
+		1462996418B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOnDemandInCallbackHandler.h; sourceTree = "<group>"; };
+		1462996518B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOnDemandInCallbackHandler.m; sourceTree = "<group>"; };
+		1462996618B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKOnDemandOutCallbackHandler.h; sourceTree = "<group>"; };
+		1462996718B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKOnDemandOutCallbackHandler.m; sourceTree = "<group>"; };
+		1462996818B02DCD002BCBF6 /* MKProtocolCallbackReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKProtocolCallbackReceiver.h; sourceTree = "<group>"; };
+		1462996918B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKProtocolCallbackReceiver.m; sourceTree = "<group>"; };
+		1462998318B02EA8002BCBF6 /* MKDynamicCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDynamicCallbackHandler.h; sourceTree = "<group>"; };
+		1462998418B02EA8002BCBF6 /* MKDynamicCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDynamicCallbackHandler.m; sourceTree = "<group>"; };
+		1462998618B02EEA002BCBF6 /* MKReadWriteLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKReadWriteLock.h; sourceTree = "<group>"; };
+		1462998718B02EEA002BCBF6 /* MKReadWriteLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKReadWriteLock.m; sourceTree = "<group>"; };
+		1462998918B03074002BCBF6 /* MKMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMixin.h; sourceTree = "<group>"; };
+		1462998A18B03093002BCBF6 /* MKMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMixin.m; sourceTree = "<group>"; };
+		1462998C18B03118002BCBF6 /* MKDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDecorator.h; sourceTree = "<group>"; };
+		1462998D18B031CA002BCBF6 /* MKCallbackErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackErrors.h; sourceTree = "<group>"; };
+		1462998E18B031CA002BCBF6 /* MKCallbackErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackErrors.m; sourceTree = "<group>"; };
+		14982CF318B10E430065EE40 /* NSObject+ResolvePromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ResolvePromise.h"; sourceTree = "<group>"; };
+		14982CF418B10E430065EE40 /* NSObject+ResolvePromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ResolvePromise.m"; sourceTree = "<group>"; };
+		14982CF618B10F6B0065EE40 /* Callbacks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Callbacks.h; sourceTree = "<group>"; };
+		14982CF918B112A20065EE40 /* ApplicationCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationCallbackHandler.h; sourceTree = "<group>"; };
+		14982CFA18B112A20065EE40 /* ApplicationCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationCallbackHandler.m; sourceTree = "<group>"; };
+		14982CFB18B112A20065EE40 /* Configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Configuration.h; sourceTree = "<group>"; };
+		14982CFC18B112A20065EE40 /* Configuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Configuration.m; sourceTree = "<group>"; };
+		14982CFD18B112A20065EE40 /* ConfigurationCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationCallbackHandler.h; sourceTree = "<group>"; };
+		14982CFE18B112A20065EE40 /* ConfigurationCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationCallbackHandler.m; sourceTree = "<group>"; };
+		14982CFF18B112A20065EE40 /* ConfigurationTagCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationTagCallbackHandler.h; sourceTree = "<group>"; };
+		14982D0018B112A20065EE40 /* ConfigurationTagCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigurationTagCallbackHandler.m; sourceTree = "<group>"; };
+		14982D0118B112A20065EE40 /* GetResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetResource.h; sourceTree = "<group>"; };
+		14982D0218B112A20065EE40 /* GetResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetResource.m; sourceTree = "<group>"; };
+		14982D0318B112A20065EE40 /* ResourcesCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourcesCallbackHandler.h; sourceTree = "<group>"; };
+		14982D0418B112A20065EE40 /* ResourcesCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourcesCallbackHandler.m; sourceTree = "<group>"; };
+		14982D0518B112A20065EE40 /* ResourceUsage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResourceUsage.h; sourceTree = "<group>"; };
+		14982D0618B112A20065EE40 /* ResourceUsage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResourceUsage.m; sourceTree = "<group>"; };
+		14982D0F18B115DF0065EE40 /* MKCallbackHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandlerTests.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -117,8 +229,8 @@
 		14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKThreadDelegate.m; sourceTree = "<group>"; };
 		14FD8AA218A7DBF7008077CF /* NSObject+Concurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Concurrency.h"; sourceTree = "<group>"; };
 		14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Concurrency.m"; sourceTree = "<group>"; };
-		14FD8AA418A7DBF7008077CF /* NSObject+Promise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Promise.h"; sourceTree = "<group>"; };
-		14FD8AA518A7DBF7008077CF /* NSObject+Promise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Promise.m"; sourceTree = "<group>"; };
+		14FD8AA418A7DBF7008077CF /* NSObject+BuildPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BuildPromise.h"; sourceTree = "<group>"; };
+		14FD8AA518A7DBF7008077CF /* NSObject+BuldPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BuldPromise.m"; sourceTree = "<group>"; };
 		14FD8AC118A7E2F7008077CF /* Concurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Concurrency.h; sourceTree = "<group>"; };
 		14FD8AD218A7E494008077CF /* MKBufferedPromiseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBufferedPromiseTests.m; sourceTree = "<group>"; };
 		14FD8AD418A7E615008077CF /* MKDeferredTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDeferredTests.m; sourceTree = "<group>"; };
@@ -152,6 +264,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1462993418B02DCD002BCBF6 /* Callbacks */ = {
+			isa = PBXGroup;
+			children = (
+				14982CF618B10F6B0065EE40 /* Callbacks.h */,
+				1462994318B02DCD002BCBF6 /* MKCallbackHandler.h */,
+				1462994418B02DCD002BCBF6 /* MKCallbackHandler.m */,
+				1462993718B02DCD002BCBF6 /* MKCallbackHandler+Buffer.h */,
+				1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */,
+				1462993518B02DCD002BCBF6 /* MKCallbackHandler+Builders.h */,
+				1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */,
+				1462993918B02DCD002BCBF6 /* MKCallbackHandler+Invocation.h */,
+				1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */,
+				1462993D18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.h */,
+				1462993E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m */,
+				1462994118B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.h */,
+				1462994218B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m */,
+				1462994518B02DCD002BCBF6 /* MKCallbackHandlerDecorator.h */,
+				1462994618B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m */,
+				1462994718B02DCD002BCBF6 /* MKCallbackHandlerFilter.h */,
+				1462994818B02DCD002BCBF6 /* MKCallbackHandlerFilter.m */,
+				1462994918B02DCD002BCBF6 /* MKCallbackReceiver.h */,
+				1462994A18B02DCD002BCBF6 /* MKCascadeCallbackHandler.h */,
+				1462994B18B02DCD002BCBF6 /* MKCascadeCallbackHandler.m */,
+				1462994C18B02DCD002BCBF6 /* MKCompositeCallbackHandler.h */,
+				1462994D18B02DCD002BCBF6 /* MKCompositeCallbackHandler.m */,
+				1462994E18B02DCD002BCBF6 /* MKConditionCallbackHandler.h */,
+				1462994F18B02DCD002BCBF6 /* MKConditionCallbackHandler.m */,
+				1462998318B02EA8002BCBF6 /* MKDynamicCallbackHandler.h */,
+				1462998418B02EA8002BCBF6 /* MKDynamicCallbackHandler.m */,
+				1462995018B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.h */,
+				1462995118B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m */,
+				1462995218B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.h */,
+				1462995318B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m */,
+				1462995418B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.h */,
+				1462995518B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m */,
+				1462995618B02DCD002BCBF6 /* MKHandleGreedy.h */,
+				1462995718B02DCD002BCBF6 /* MKHandleMethod.h */,
+				1462995818B02DCD002BCBF6 /* MKHandleMethod.m */,
+				1462995918B02DCD002BCBF6 /* MKInternalCallback.h */,
+				1462995A18B02DCD002BCBF6 /* MKInvocationCallbackHandler.h */,
+				1462995B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m */,
+				1462996018B02DCD002BCBF6 /* MKObjectCallbackHandler.h */,
+				1462996118B02DCD002BCBF6 /* MKObjectCallbackHandler.m */,
+				1462996218B02DCD002BCBF6 /* MKObjectCallbackReceiver.h */,
+				1462996318B02DCD002BCBF6 /* MKObjectCallbackReceiver.m */,
+				1462996418B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.h */,
+				1462996518B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m */,
+				1462996618B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.h */,
+				1462996718B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m */,
+				1462996818B02DCD002BCBF6 /* MKProtocolCallbackReceiver.h */,
+				1462996918B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m */,
+				1462995C18B02DCD002BCBF6 /* NSObject+Callbacks.h */,
+				1462995D18B02DCD002BCBF6 /* NSObject+Callbacks.m */,
+				1462995E18B02DCD002BCBF6 /* NSObject+NotHandled.h */,
+				1462995F18B02DCD002BCBF6 /* NSObject+NotHandled.m */,
+				14982CF318B10E430065EE40 /* NSObject+ResolvePromise.h */,
+				14982CF418B10E430065EE40 /* NSObject+ResolvePromise.m */,
+				1462998D18B031CA002BCBF6 /* MKCallbackErrors.h */,
+				1462998E18B031CA002BCBF6 /* MKCallbackErrors.m */,
+			);
+			path = Callbacks;
+			sourceTree = "<group>";
+		};
+		14982CF218B10D3B0065EE40 /* Callbacks */ = {
+			isa = PBXGroup;
+			children = (
+				14982D0118B112A20065EE40 /* GetResource.h */,
+				14982D0218B112A20065EE40 /* GetResource.m */,
+				14982CFB18B112A20065EE40 /* Configuration.h */,
+				14982CFC18B112A20065EE40 /* Configuration.m */,
+				14982D0518B112A20065EE40 /* ResourceUsage.h */,
+				14982D0618B112A20065EE40 /* ResourceUsage.m */,
+				14982CF918B112A20065EE40 /* ApplicationCallbackHandler.h */,
+				14982CFA18B112A20065EE40 /* ApplicationCallbackHandler.m */,
+				14982CFD18B112A20065EE40 /* ConfigurationCallbackHandler.h */,
+				14982CFE18B112A20065EE40 /* ConfigurationCallbackHandler.m */,
+				14982CFF18B112A20065EE40 /* ConfigurationTagCallbackHandler.h */,
+				14982D0018B112A20065EE40 /* ConfigurationTagCallbackHandler.m */,
+				14982D0318B112A20065EE40 /* ResourcesCallbackHandler.h */,
+				14982D0418B112A20065EE40 /* ResourcesCallbackHandler.m */,
+				14982D0F18B115DF0065EE40 /* MKCallbackHandlerTests.m */,
+			);
+			path = Callbacks;
+			sourceTree = "<group>";
+		};
 		14FD8A4918A7CB18008077CF = {
 			isa = PBXGroup;
 			children = (
@@ -188,8 +385,8 @@
 			children = (
 				14FD8A5A18A7CB18008077CF /* Miruken.h */,
 				14FD8A5C18A7CB18008077CF /* Miruken.m */,
-				14FD8AD618A7E867008077CF /* NSInvocation+Objects.h */,
-				14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */,
+				14FD8ADC18A9B7CF008077CF /* Core */,
+				1462993418B02DCD002BCBF6 /* Callbacks */,
 				14FD8A7B18A7DBF7008077CF /* Concurrency */,
 				14FD8A5818A7CB18008077CF /* Supporting Files */,
 			);
@@ -207,6 +404,7 @@
 		14FD8A6B18A7CB18008077CF /* MirukenTests */ = {
 			isa = PBXGroup;
 			children = (
+				14982CF218B10D3B0065EE40 /* Callbacks */,
 				14FD8AD118A7E476008077CF /* Concurrency */,
 				14FD8A7118A7CB18008077CF /* MirukenTests.m */,
 				14FD8A6C18A7CB18008077CF /* Supporting Files */,
@@ -265,8 +463,8 @@
 				14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */,
 				14FD8AA218A7DBF7008077CF /* NSObject+Concurrency.h */,
 				14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */,
-				14FD8AA418A7DBF7008077CF /* NSObject+Promise.h */,
-				14FD8AA518A7DBF7008077CF /* NSObject+Promise.m */,
+				14FD8AA418A7DBF7008077CF /* NSObject+BuildPromise.h */,
+				14FD8AA518A7DBF7008077CF /* NSObject+BuldPromise.m */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -279,6 +477,20 @@
 				14FD8AD418A7E615008077CF /* MKDeferredTests.m */,
 			);
 			path = Concurrency;
+			sourceTree = "<group>";
+		};
+		14FD8ADC18A9B7CF008077CF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1462998918B03074002BCBF6 /* MKMixin.h */,
+				1462998A18B03093002BCBF6 /* MKMixin.m */,
+				1462998C18B03118002BCBF6 /* MKDecorator.h */,
+				1462998618B02EEA002BCBF6 /* MKReadWriteLock.h */,
+				1462998718B02EEA002BCBF6 /* MKReadWriteLock.m */,
+				14FD8AD618A7E867008077CF /* NSInvocation+Objects.h */,
+				14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */,
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,27 +609,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1462997A18B02DCD002BCBF6 /* MKHandleMethod.m in Sources */,
 				14FD8AA918A7DBF7008077CF /* MKAsyncProxyResult.m in Sources */,
+				1462998518B02EA8002BCBF6 /* MKDynamicCallbackHandler.m in Sources */,
+				1462997518B02DCD002BCBF6 /* MKCompositeCallbackHandler.m in Sources */,
 				14FD8AA818A7DBF7008077CF /* MKAsyncObject.m in Sources */,
-				14FD8AB918A7DBF7008077CF /* NSObject+Promise.m in Sources */,
+				1462998B18B03093002BCBF6 /* MKMixin.m in Sources */,
+				1462997D18B02DCD002BCBF6 /* NSObject+NotHandled.m in Sources */,
+				1462997418B02DCD002BCBF6 /* MKCascadeCallbackHandler.m in Sources */,
+				14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */,
+				1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */,
 				14FD8AAF18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m in Sources */,
 				14FD8AAD18A7DBF7008077CF /* MKDeferred.m in Sources */,
 				14FD8AAA18A7DBF7008077CF /* MKAsyncResult.m in Sources */,
+				1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */,
 				14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */,
 				14FD8AB218A7DBF7008077CF /* MKOperationProxyResult.m in Sources */,
+				1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */,
 				14FD8AB018A7DBF7008077CF /* MKMainThreadDelegate.m in Sources */,
+				1462997B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m in Sources */,
+				1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */,
+				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
 				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
 				14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */,
 				14FD8AD818A7E867008077CF /* NSInvocation+Objects.m in Sources */,
+				1462997818B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m in Sources */,
+				1462998818B02EEA002BCBF6 /* MKReadWriteLock.m in Sources */,
+				1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */,
+				1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */,
+				1462997218B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m in Sources */,
+				1462997C18B02DCD002BCBF6 /* NSObject+Callbacks.m in Sources */,
+				1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */,
 				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
+				1462998018B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m in Sources */,
+				1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */,
 				14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */,
 				14FD8A5D18A7CB18008077CF /* Miruken.m in Sources */,
 				14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */,
+				1462997618B02DCD002BCBF6 /* MKConditionCallbackHandler.m in Sources */,
 				14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */,
 				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
+				1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */,
+				14982CF518B10E430065EE40 /* NSObject+ResolvePromise.m in Sources */,
+				1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */,
+				1462998218B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m in Sources */,
 				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,
 				14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */,
+				1462997E18B02DCD002BCBF6 /* MKObjectCallbackHandler.m in Sources */,
 				14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */,
+				1462998F18B031CA002BCBF6 /* MKCallbackErrors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,11 +665,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14982D0E18B112A20065EE40 /* ResourceUsage.m in Sources */,
+				14982D0818B112A20065EE40 /* ApplicationCallbackHandler.m in Sources */,
 				14FD8AD318A7E494008077CF /* MKBufferedPromiseTests.m in Sources */,
+				14982D1018B115DF0065EE40 /* MKCallbackHandlerTests.m in Sources */,
+				14982D0918B112A20065EE40 /* Configuration.m in Sources */,
+				14982D0A18B112A20065EE40 /* ConfigurationCallbackHandler.m in Sources */,
 				14FD8AD918A7E867008077CF /* NSInvocation+Objects.m in Sources */,
+				14982D0B18B112A20065EE40 /* ConfigurationTagCallbackHandler.m in Sources */,
 				14FD8ADB18A7E88B008077CF /* MKConcurrencyTests.m in Sources */,
+				14982D0C18B112A20065EE40 /* GetResource.m in Sources */,
 				14FD8A7218A7CB18008077CF /* MirukenTests.m in Sources */,
 				14FD8AD518A7E615008077CF /* MKDeferredTests.m in Sources */,
+				14982D0D18B112A20065EE40 /* ResourcesCallbackHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,4 +15,4 @@
 #import "MKDeferred.h"
 #import "MKPromise.h"
 #import "NSObject+Concurrency.h"
-#import "NSObject+Promise.h"
+#import "NSObject+BuildPromise.h"

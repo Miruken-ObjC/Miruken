@@ -6,10 +6,15 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "NSObject+Promise.h"
+#import "NSObject+BuildPromise.h"
 #import "MKDeferred.h"
 
-@implementation NSObject (NSObject_Promise)
+@implementation NSObject (NSObject_BuildPromise)
+
+- (BOOL)isPromise
+{
+    return [self conformsToProtocol:@protocol(MKPromise)];
+}
 
 - (id<MKPromise>)makePromise
 {
