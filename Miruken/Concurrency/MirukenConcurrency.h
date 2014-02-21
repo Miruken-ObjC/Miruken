@@ -1,5 +1,5 @@
 //
-//  Concurrency.h
+//  MirukenConcurrency.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 2/9/14.

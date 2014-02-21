@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "Callbacks.h"
+#import "MirukenCallbacks.h"
 
 @interface ConfigurationTagCallbackHandler : MKDynamicCallbackHandler
 

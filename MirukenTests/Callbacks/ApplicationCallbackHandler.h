@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Callbacks.h"
+#import "MirukenCallbacks.h"
 
 @interface ApplicationCallbackHandler : MKDynamicCallbackHandler <UIApplicationDelegate>
 

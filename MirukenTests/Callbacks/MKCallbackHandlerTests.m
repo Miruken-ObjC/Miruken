@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Callbacks.h"
+#import "MirukenCallbacks.h"
 #import "Configuration.h"
 #import "ResourceUsage.h"
 #import "GetResource.h"

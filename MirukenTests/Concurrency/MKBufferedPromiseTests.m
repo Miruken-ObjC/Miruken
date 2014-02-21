@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "Concurrency.h"
+#import "MirukenConcurrency.h"
 
 @interface MKBufferedPromiseTests : XCTestCase
 
