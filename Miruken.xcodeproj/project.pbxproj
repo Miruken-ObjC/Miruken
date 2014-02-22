@@ -61,6 +61,24 @@
 		14982D4718B17C1F0065EE40 /* MKContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D4618B17C1F0065EE40 /* MKContextTests.m */; };
 		14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D4918B181980065EE40 /* MKCallbackHandler+Track.m */; };
 		14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D5318B8025C0065EE40 /* MKCallbackHandler+Context.m */; };
+		14982D6518B9245E0065EE40 /* MKActionSheetMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D5718B9245E0065EE40 /* MKActionSheetMixin.h */; };
+		14982D6618B9245E0065EE40 /* MKActionSheetMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D5818B9245E0065EE40 /* MKActionSheetMixin.m */; };
+		14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D5918B9245E0065EE40 /* MKAlertViewMixin.h */; };
+		14982D6818B9245E0065EE40 /* MKAlertViewMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D5A18B9245E0065EE40 /* MKAlertViewMixin.m */; };
+		14982D6918B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D5B18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h */; };
+		14982D6A18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D5C18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m */; };
+		14982D6B18B9245E0065EE40 /* MKPagingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D5D18B9245E0065EE40 /* MKPagingMixin.h */; };
+		14982D6C18B9245E0065EE40 /* MKPagingMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D5E18B9245E0065EE40 /* MKPagingMixin.m */; };
+		14982D6D18B9245E0065EE40 /* UINavigationController_RotationMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D5F18B9245E0065EE40 /* UINavigationController_RotationMixin.h */; };
+		14982D6E18B9245E0065EE40 /* UINavigationController_RotationMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D6018B9245E0065EE40 /* UINavigationController_RotationMixin.m */; };
+		14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D6118B9245E0065EE40 /* UIViewController_RotationMixin.h */; };
+		14982D7018B9245E0065EE40 /* UIViewController_RotationMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D6218B9245E0065EE40 /* UIViewController_RotationMixin.m */; };
+		14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D6318B9245E0065EE40 /* MKUserInteractionMixin.h */; };
+		14982D7218B9245E0065EE40 /* MKUserInteractionMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D6418B9245E0065EE40 /* MKUserInteractionMixin.m */; };
+		14982D7518B9252F0065EE40 /* UIScrollView+Motion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D7318B9252F0065EE40 /* UIScrollView+Motion.h */; };
+		14982D7618B9252F0065EE40 /* UIScrollView+Motion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D7418B9252F0065EE40 /* UIScrollView+Motion.m */; };
+		14982D7918B9257B0065EE40 /* UIWindow+Rotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982D7718B9257B0065EE40 /* UIWindow+Rotation.h */; };
+		14982D7A18B9257B0065EE40 /* UIWindow+Rotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982D7818B9257B0065EE40 /* UIWindow+Rotation.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -235,6 +253,24 @@
 		14982D5218B8025C0065EE40 /* MKCallbackHandler+Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Context.h"; sourceTree = "<group>"; };
 		14982D5318B8025C0065EE40 /* MKCallbackHandler+Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Context.m"; sourceTree = "<group>"; };
 		14982D5518B807070065EE40 /* MirukenCocoa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirukenCocoa.h; sourceTree = "<group>"; };
+		14982D5718B9245E0065EE40 /* MKActionSheetMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKActionSheetMixin.h; sourceTree = "<group>"; };
+		14982D5818B9245E0065EE40 /* MKActionSheetMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActionSheetMixin.m; sourceTree = "<group>"; };
+		14982D5918B9245E0065EE40 /* MKAlertViewMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAlertViewMixin.h; sourceTree = "<group>"; };
+		14982D5A18B9245E0065EE40 /* MKAlertViewMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAlertViewMixin.m; sourceTree = "<group>"; };
+		14982D5B18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKEndContextWhenAppResignsMixin.h; sourceTree = "<group>"; };
+		14982D5C18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKEndContextWhenAppResignsMixin.m; sourceTree = "<group>"; };
+		14982D5D18B9245E0065EE40 /* MKPagingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPagingMixin.h; sourceTree = "<group>"; };
+		14982D5E18B9245E0065EE40 /* MKPagingMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPagingMixin.m; sourceTree = "<group>"; };
+		14982D5F18B9245E0065EE40 /* UINavigationController_RotationMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationController_RotationMixin.h; sourceTree = "<group>"; };
+		14982D6018B9245E0065EE40 /* UINavigationController_RotationMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationController_RotationMixin.m; sourceTree = "<group>"; };
+		14982D6118B9245E0065EE40 /* UIViewController_RotationMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewController_RotationMixin.h; sourceTree = "<group>"; };
+		14982D6218B9245E0065EE40 /* UIViewController_RotationMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewController_RotationMixin.m; sourceTree = "<group>"; };
+		14982D6318B9245E0065EE40 /* MKUserInteractionMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKUserInteractionMixin.h; sourceTree = "<group>"; };
+		14982D6418B9245E0065EE40 /* MKUserInteractionMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKUserInteractionMixin.m; sourceTree = "<group>"; };
+		14982D7318B9252F0065EE40 /* UIScrollView+Motion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Motion.h"; sourceTree = "<group>"; };
+		14982D7418B9252F0065EE40 /* UIScrollView+Motion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Motion.m"; sourceTree = "<group>"; };
+		14982D7718B9257B0065EE40 /* UIWindow+Rotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+Rotation.h"; sourceTree = "<group>"; };
+		14982D7818B9257B0065EE40 /* UIWindow+Rotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+Rotation.m"; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -431,10 +467,28 @@
 			isa = PBXGroup;
 			children = (
 				14982D5518B807070065EE40 /* MirukenCocoa.h */,
+				14982D5D18B9245E0065EE40 /* MKPagingMixin.h */,
+				14982D5E18B9245E0065EE40 /* MKPagingMixin.m */,
+				14982D5918B9245E0065EE40 /* MKAlertViewMixin.h */,
+				14982D5A18B9245E0065EE40 /* MKAlertViewMixin.m */,
+				14982D5718B9245E0065EE40 /* MKActionSheetMixin.h */,
+				14982D5818B9245E0065EE40 /* MKActionSheetMixin.m */,
+				14982D6318B9245E0065EE40 /* MKUserInteractionMixin.h */,
+				14982D6418B9245E0065EE40 /* MKUserInteractionMixin.m */,
+				14982D5B18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h */,
+				14982D5C18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m */,
 				14982D3818B1763C0065EE40 /* UIViewController_ContextualMixin.h */,
 				14982D3918B1763C0065EE40 /* UIViewController_ContextualMixin.m */,
 				14982D3618B1763C0065EE40 /* UINavigationController_ContextualMixin.h */,
 				14982D3718B1763C0065EE40 /* UINavigationController_ContextualMixin.m */,
+				14982D6118B9245E0065EE40 /* UIViewController_RotationMixin.h */,
+				14982D6218B9245E0065EE40 /* UIViewController_RotationMixin.m */,
+				14982D5F18B9245E0065EE40 /* UINavigationController_RotationMixin.h */,
+				14982D6018B9245E0065EE40 /* UINavigationController_RotationMixin.m */,
+				14982D7318B9252F0065EE40 /* UIScrollView+Motion.h */,
+				14982D7418B9252F0065EE40 /* UIScrollView+Motion.m */,
+				14982D7718B9257B0065EE40 /* UIWindow+Rotation.h */,
+				14982D7818B9257B0065EE40 /* UIWindow+Rotation.m */,
 			);
 			path = Cocoa;
 			sourceTree = "<group>";
@@ -610,6 +664,25 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		14982D5618B80EBC0065EE40 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14982D6918B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h in Headers */,
+				14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */,
+				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
+				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
+				14982D7918B9257B0065EE40 /* UIWindow+Rotation.h in Headers */,
+				14982D7518B9252F0065EE40 /* UIScrollView+Motion.h in Headers */,
+				14982D6B18B9245E0065EE40 /* MKPagingMixin.h in Headers */,
+				14982D6D18B9245E0065EE40 /* UINavigationController_RotationMixin.h in Headers */,
+				14982D6518B9245E0065EE40 /* MKActionSheetMixin.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		14FD8A5118A7CB18008077CF /* Miruken */ = {
 			isa = PBXNativeTarget;
@@ -620,6 +693,7 @@
 				14FD8A4F18A7CB18008077CF /* Frameworks */,
 				14FD8A5018A7CB18008077CF /* CopyFiles */,
 				66A06385642248E189FEA159 /* Copy Pods Resources */,
+				14982D5618B80EBC0065EE40 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -733,7 +807,9 @@
 				1462998B18B03093002BCBF6 /* MKMixin.m in Sources */,
 				1462997D18B02DCD002BCBF6 /* NSObject+NotHandled.m in Sources */,
 				1462997418B02DCD002BCBF6 /* MKCascadeCallbackHandler.m in Sources */,
+				14982D6618B9245E0065EE40 /* MKActionSheetMixin.m in Sources */,
 				14982D2A18B16C8E0065EE40 /* MKContextualHelper.m in Sources */,
+				14982D6E18B9245E0065EE40 /* UINavigationController_RotationMixin.m in Sources */,
 				14982D2818B16C8E0065EE40 /* MKContextObserver.m in Sources */,
 				14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */,
 				1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */,
@@ -746,10 +822,12 @@
 				14982D2618B16C8E0065EE40 /* MKContext+Traversal.m in Sources */,
 				14FD8AB218A7DBF7008077CF /* MKOperationProxyResult.m in Sources */,
 				1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */,
+				14982D7018B9245E0065EE40 /* UIViewController_RotationMixin.m in Sources */,
 				14FD8AB018A7DBF7008077CF /* MKMainThreadDelegate.m in Sources */,
 				1462997B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m in Sources */,
 				14982D2918B16C8E0065EE40 /* MKContextual.m in Sources */,
 				1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */,
+				14982D7618B9252F0065EE40 /* UIScrollView+Motion.m in Sources */,
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,
 				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
 				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
@@ -757,8 +835,10 @@
 				14982D3418B175540065EE40 /* MKDirtyMixin.m in Sources */,
 				14FD8AD818A7E867008077CF /* NSInvocation+Objects.m in Sources */,
 				1462997818B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m in Sources */,
+				14982D6C18B9245E0065EE40 /* MKPagingMixin.m in Sources */,
 				14982D3B18B1763C0065EE40 /* UIViewController_ContextualMixin.m in Sources */,
 				1462998818B02EEA002BCBF6 /* MKReadWriteLock.m in Sources */,
+				14982D6818B9245E0065EE40 /* MKAlertViewMixin.m in Sources */,
 				14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */,
 				1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */,
 				1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */,
@@ -770,8 +850,10 @@
 				14982D3A18B1763C0065EE40 /* UINavigationController_ContextualMixin.m in Sources */,
 				1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */,
 				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
+				14982D7218B9245E0065EE40 /* MKUserInteractionMixin.m in Sources */,
 				1462998018B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m in Sources */,
 				1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */,
+				14982D7A18B9257B0065EE40 /* UIWindow+Rotation.m in Sources */,
 				14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */,
 				14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */,
 				1462997618B02DCD002BCBF6 /* MKConditionCallbackHandler.m in Sources */,
@@ -785,6 +867,7 @@
 				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,
 				14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */,
 				1462997E18B02DCD002BCBF6 /* MKObjectCallbackHandler.m in Sources */,
+				14982D6A18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m in Sources */,
 				14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */,
 				1462998F18B031CA002BCBF6 /* MKCallbackErrors.m in Sources */,
 			);
