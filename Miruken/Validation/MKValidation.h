@@ -2,11 +2,21 @@
 //  MKValidation.h
 //  Miruken
 //
-//  Created by Craig Neuwirt on 2/23/14.
-//  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
+//  Created by Craig Neuwirt on 2/4/13.
+//  Copyright (c) 2013 ZixCorp. All rights reserved.
 //
 
-#import "MKValidate.h"
 #import "MKValidationResult.h"
 #import "MKValidationErrors.h"
-#import "NSError+MKValidation.h"
+
+@protocol MKValidation
+
+@optional
+- (BOOL)validateObject:(id)object scope:(NSString *)scope;
+
+- (BOOL)validateObject:(id)object scope:(NSString *)scope
+                result:(MKValidationResult * __autoreleasing *)result;
+
+@end
+
+#define MKValidation(handler)  ((id<MKValidation>)(handler))

@@ -7,8 +7,8 @@
 //
 
 #import "MKDynamicCallbackHandler.h"
-#import "MKValidate.h"
+#import "MKValidation.h"
 
-@interface MKValidateCallbackHandler : MKDynamicCallbackHandler <MKValidate>
+@interface MKValidateCallbackHandler : MKDynamicCallbackHandler <MKValidation>
 
 @end

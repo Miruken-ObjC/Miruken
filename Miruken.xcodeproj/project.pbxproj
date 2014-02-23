@@ -102,7 +102,13 @@
 		14982DAF18BA33AC0065EE40 /* MKValidationErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982DA418BA33AC0065EE40 /* MKValidationErrors.m */; };
 		14982DB018BA33AC0065EE40 /* MKValidationExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DA518BA33AC0065EE40 /* MKValidationExtension.h */; };
 		14982DB118BA33AC0065EE40 /* MKValidationExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982DA618BA33AC0065EE40 /* MKValidationExtension.m */; };
-		14982DB218BA33AC0065EE40 /* MKValidate.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DA718BA33AC0065EE40 /* MKValidate.h */; };
+		14982DB218BA33AC0065EE40 /* MKValidation.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DA718BA33AC0065EE40 /* MKValidation.h */; };
+		14982DB618BA39340065EE40 /* MKLoading.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DB518BA39340065EE40 /* MKLoading.h */; };
+		14982DBC18BA39770065EE40 /* MKCallbackHandler+SideEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DB718BA39770065EE40 /* MKCallbackHandler+SideEffects.h */; };
+		14982DBD18BA39770065EE40 /* MKCallbackHandler+SideEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982DB818BA39770065EE40 /* MKCallbackHandler+SideEffects.m */; };
+		14982DBE18BA39770065EE40 /* MKSideEffectCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DB918BA39770065EE40 /* MKSideEffectCallbackHandler.h */; };
+		14982DBF18BA39770065EE40 /* MKSideEffectCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982DBA18BA39770065EE40 /* MKSideEffectCallbackHandler.m */; };
+		14982DC018BA39770065EE40 /* MKSideEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DBB18BA39770065EE40 /* MKSideEffects.h */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -308,7 +314,7 @@
 		14982D8A18B92BE70065EE40 /* MKWellKnownErrorResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKWellKnownErrorResults.m; sourceTree = "<group>"; };
 		14982D9618BA2D830065EE40 /* UIAlertView+Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+Block.h"; sourceTree = "<group>"; };
 		14982D9718BA2D830065EE40 /* UIAlertView+Block.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertView+Block.m"; sourceTree = "<group>"; };
-		14982D9B18BA32C70065EE40 /* MKError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKError.h; sourceTree = "<group>"; };
+		14982D9B18BA32C70065EE40 /* MirukenErrors.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirukenErrors.h; sourceTree = "<group>"; };
 		14982D9D18BA33AC0065EE40 /* NSError+MKValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+MKValidation.h"; sourceTree = "<group>"; };
 		14982D9E18BA33AC0065EE40 /* NSError+MKValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+MKValidation.m"; sourceTree = "<group>"; };
 		14982D9F18BA33AC0065EE40 /* MKValidationResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKValidationResult.h; sourceTree = "<group>"; };
@@ -319,8 +325,15 @@
 		14982DA418BA33AC0065EE40 /* MKValidationErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKValidationErrors.m; sourceTree = "<group>"; };
 		14982DA518BA33AC0065EE40 /* MKValidationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKValidationExtension.h; sourceTree = "<group>"; };
 		14982DA618BA33AC0065EE40 /* MKValidationExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKValidationExtension.m; sourceTree = "<group>"; };
-		14982DA718BA33AC0065EE40 /* MKValidate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKValidate.h; sourceTree = "<group>"; };
-		14982DB318BA37B30065EE40 /* MKValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKValidation.h; sourceTree = "<group>"; };
+		14982DA718BA33AC0065EE40 /* MKValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKValidation.h; sourceTree = "<group>"; };
+		14982DB318BA37B30065EE40 /* MirukenValidation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirukenValidation.h; sourceTree = "<group>"; };
+		14982DB518BA39340065EE40 /* MKLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKLoading.h; sourceTree = "<group>"; };
+		14982DB718BA39770065EE40 /* MKCallbackHandler+SideEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+SideEffects.h"; sourceTree = "<group>"; };
+		14982DB818BA39770065EE40 /* MKCallbackHandler+SideEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+SideEffects.m"; sourceTree = "<group>"; };
+		14982DB918BA39770065EE40 /* MKSideEffectCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSideEffectCallbackHandler.h; sourceTree = "<group>"; };
+		14982DBA18BA39770065EE40 /* MKSideEffectCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSideEffectCallbackHandler.m; sourceTree = "<group>"; };
+		14982DBB18BA39770065EE40 /* MKSideEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSideEffects.h; sourceTree = "<group>"; };
+		14982DC118BA3D0E0065EE40 /* MirukenSideEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirukenSideEffects.h; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -562,7 +575,7 @@
 		14982D7F18B92ACD0065EE40 /* Error */ = {
 			isa = PBXGroup;
 			children = (
-				14982D9B18BA32C70065EE40 /* MKError.h */,
+				14982D9B18BA32C70065EE40 /* MirukenErrors.h */,
 				14982D8618B92BE70065EE40 /* MKErrors.h */,
 				14982D8918B92BE70065EE40 /* MKWellKnownErrorResults.h */,
 				14982D8A18B92BE70065EE40 /* MKWellKnownErrorResults.m */,
@@ -579,8 +592,8 @@
 		14982D9C18BA336D0065EE40 /* Validation */ = {
 			isa = PBXGroup;
 			children = (
-				14982DB318BA37B30065EE40 /* MKValidation.h */,
-				14982DA718BA33AC0065EE40 /* MKValidate.h */,
+				14982DB318BA37B30065EE40 /* MirukenValidation.h */,
+				14982DA718BA33AC0065EE40 /* MKValidation.h */,
 				14982D9F18BA33AC0065EE40 /* MKValidationResult.h */,
 				14982DA018BA33AC0065EE40 /* MKValidationResult.m */,
 				14982DA118BA33AC0065EE40 /* MKValidateCallbackHandler.h */,
@@ -593,6 +606,19 @@
 				14982D9E18BA33AC0065EE40 /* NSError+MKValidation.m */,
 			);
 			path = Validation;
+			sourceTree = "<group>";
+		};
+		14982DB418BA38CC0065EE40 /* SideEffects */ = {
+			isa = PBXGroup;
+			children = (
+				14982DC118BA3D0E0065EE40 /* MirukenSideEffects.h */,
+				14982DBB18BA39770065EE40 /* MKSideEffects.h */,
+				14982DB918BA39770065EE40 /* MKSideEffectCallbackHandler.h */,
+				14982DBA18BA39770065EE40 /* MKSideEffectCallbackHandler.m */,
+				14982DB718BA39770065EE40 /* MKCallbackHandler+SideEffects.h */,
+				14982DB818BA39770065EE40 /* MKCallbackHandler+SideEffects.m */,
+			);
+			path = SideEffects;
 			sourceTree = "<group>";
 		};
 		14FD8A4918A7CB18008077CF = {
@@ -637,6 +663,7 @@
 				14FD8A7B18A7DBF7008077CF /* Concurrency */,
 				14982D7F18B92ACD0065EE40 /* Error */,
 				14982D9C18BA336D0065EE40 /* Validation */,
+				14982DB418BA38CC0065EE40 /* SideEffects */,
 				14FD8A5818A7CB18008077CF /* Supporting Files */,
 			);
 			path = Miruken;
@@ -737,6 +764,7 @@
 				14982D3218B175540065EE40 /* MKDirtyMixin.h */,
 				14982D3318B175540065EE40 /* MKDirtyMixin.m */,
 				1462998C18B03118002BCBF6 /* MKDecorator.h */,
+				14982DB518BA39340065EE40 /* MKLoading.h */,
 				14982D1118B11D100065EE40 /* MKTraversal.h */,
 				14982D1218B11D100065EE40 /* MKTraversal.m */,
 				14982D1318B11D100065EE40 /* MKTraversing.h */,
@@ -762,15 +790,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				14982D6918B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h in Headers */,
+				14982DBC18BA39770065EE40 /* MKCallbackHandler+SideEffects.h in Headers */,
 				14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */,
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
+				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
 				14982D8F18B92BE70065EE40 /* MKErrorCallbackHandler.h in Headers */,
+				14982DC018BA39770065EE40 /* MKSideEffects.h in Headers */,
 				14982D9818BA2D830065EE40 /* UIAlertView+Block.h in Headers */,
 				14982D7918B9257B0065EE40 /* UIWindow+Rotation.h in Headers */,
+				14982DBE18BA39770065EE40 /* MKSideEffectCallbackHandler.h in Headers */,
 				14982D7E18B92A370065EE40 /* MKViewRegion.h in Headers */,
 				14982D9118B92BE70065EE40 /* MKErrors.h in Headers */,
 				14982D8D18B92BE70065EE40 /* MKEndContextOnError.h in Headers */,
@@ -783,7 +815,7 @@
 				14982DAA18BA33AC0065EE40 /* MKValidationResult.h in Headers */,
 				14982DA818BA33AC0065EE40 /* NSError+MKValidation.h in Headers */,
 				14982DAC18BA33AC0065EE40 /* MKValidateCallbackHandler.h in Headers */,
-				14982DB218BA33AC0065EE40 /* MKValidate.h in Headers */,
+				14982DB218BA33AC0065EE40 /* MKValidation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -939,6 +971,7 @@
 				14982D2918B16C8E0065EE40 /* MKContextual.m in Sources */,
 				1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */,
 				14982D8E18B92BE70065EE40 /* MKEndContextOnError.m in Sources */,
+				14982DBF18BA39770065EE40 /* MKSideEffectCallbackHandler.m in Sources */,
 				14982D7618B9252F0065EE40 /* UIScrollView+Motion.m in Sources */,
 				14982DB118BA33AC0065EE40 /* MKValidationExtension.m in Sources */,
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,
@@ -973,6 +1006,7 @@
 				14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */,
 				1462997618B02DCD002BCBF6 /* MKConditionCallbackHandler.m in Sources */,
 				14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */,
+				14982DBD18BA39770065EE40 /* MKCallbackHandler+SideEffects.m in Sources */,
 				14982D2718B16C8E0065EE40 /* MKContext.m in Sources */,
 				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
 				1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */,

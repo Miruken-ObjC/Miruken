@@ -1,5 +1,5 @@
 //
-//  MKError.h
+//  MirukenErrors.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 2/23/14.
