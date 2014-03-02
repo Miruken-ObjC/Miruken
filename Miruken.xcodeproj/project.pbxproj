@@ -109,6 +109,14 @@
 		14982DBE18BA39770065EE40 /* MKSideEffectCallbackHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DB918BA39770065EE40 /* MKSideEffectCallbackHandler.h */; };
 		14982DBF18BA39770065EE40 /* MKSideEffectCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982DBA18BA39770065EE40 /* MKSideEffectCallbackHandler.m */; };
 		14982DC018BA39770065EE40 /* MKSideEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DBB18BA39770065EE40 /* MKSideEffects.h */; };
+		14982DFF18C38EDC0065EE40 /* UIStoryboard+Naming.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982DFD18C38EDC0065EE40 /* UIStoryboard+Naming.h */; };
+		14982E0018C38EDC0065EE40 /* UIStoryboard+Naming.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982DFE18C38EDC0065EE40 /* UIStoryboard+Naming.m */; };
+		14982E0318C394390065EE40 /* UIWebView+Extra.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0118C394390065EE40 /* UIWebView+Extra.h */; };
+		14982E0418C394390065EE40 /* UIWebView+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0218C394390065EE40 /* UIWebView+Extra.m */; };
+		14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0518C394BF0065EE40 /* MKInhibitInputAccessoryView.h */; };
+		14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */; };
+		14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0918C395750065EE40 /* UICollectionView_Issues.h */; };
+		14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0A18C395750065EE40 /* UICollectionView_Issues.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -334,6 +342,14 @@
 		14982DBA18BA39770065EE40 /* MKSideEffectCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSideEffectCallbackHandler.m; sourceTree = "<group>"; };
 		14982DBB18BA39770065EE40 /* MKSideEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSideEffects.h; sourceTree = "<group>"; };
 		14982DC118BA3D0E0065EE40 /* MirukenSideEffects.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirukenSideEffects.h; sourceTree = "<group>"; };
+		14982DFD18C38EDC0065EE40 /* UIStoryboard+Naming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+Naming.h"; sourceTree = "<group>"; };
+		14982DFE18C38EDC0065EE40 /* UIStoryboard+Naming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+Naming.m"; sourceTree = "<group>"; };
+		14982E0118C394390065EE40 /* UIWebView+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+Extra.h"; sourceTree = "<group>"; };
+		14982E0218C394390065EE40 /* UIWebView+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+Extra.m"; sourceTree = "<group>"; };
+		14982E0518C394BF0065EE40 /* MKInhibitInputAccessoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKInhibitInputAccessoryView.h; sourceTree = "<group>"; };
+		14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInhibitInputAccessoryView.m; sourceTree = "<group>"; };
+		14982E0918C395750065EE40 /* UICollectionView_Issues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionView_Issues.h; sourceTree = "<group>"; };
+		14982E0A18C395750065EE40 /* UICollectionView_Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionView_Issues.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -550,6 +566,14 @@
 				14982D6218B9245E0065EE40 /* UIViewController_RotationMixin.m */,
 				14982D5F18B9245E0065EE40 /* UINavigationController_RotationMixin.h */,
 				14982D6018B9245E0065EE40 /* UINavigationController_RotationMixin.m */,
+				14982E0518C394BF0065EE40 /* MKInhibitInputAccessoryView.h */,
+				14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */,
+				14982E0918C395750065EE40 /* UICollectionView_Issues.h */,
+				14982E0A18C395750065EE40 /* UICollectionView_Issues.m */,
+				14982E0118C394390065EE40 /* UIWebView+Extra.h */,
+				14982E0218C394390065EE40 /* UIWebView+Extra.m */,
+				14982DFD18C38EDC0065EE40 /* UIStoryboard+Naming.h */,
+				14982DFE18C38EDC0065EE40 /* UIStoryboard+Naming.m */,
 				14982D9618BA2D830065EE40 /* UIAlertView+Block.h */,
 				14982D9718BA2D830065EE40 /* UIAlertView+Block.m */,
 				14982D7318B9252F0065EE40 /* UIScrollView+Motion.h */,
@@ -794,6 +818,7 @@
 				14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */,
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
+				14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
@@ -810,8 +835,11 @@
 				14982D6B18B9245E0065EE40 /* MKPagingMixin.h in Headers */,
 				14982D6D18B9245E0065EE40 /* UINavigationController_RotationMixin.h in Headers */,
 				14982D6518B9245E0065EE40 /* MKActionSheetMixin.h in Headers */,
+				14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */,
+				14982E0318C394390065EE40 /* UIWebView+Extra.h in Headers */,
 				14982DB018BA33AC0065EE40 /* MKValidationExtension.h in Headers */,
 				14982D7D18B92A370065EE40 /* MKMasterDetail.h in Headers */,
+				14982DFF18C38EDC0065EE40 /* UIStoryboard+Naming.h in Headers */,
 				14982DAA18BA33AC0065EE40 /* MKValidationResult.h in Headers */,
 				14982DA818BA33AC0065EE40 /* NSError+MKValidation.h in Headers */,
 				14982DAC18BA33AC0065EE40 /* MKValidateCallbackHandler.h in Headers */,
@@ -989,13 +1017,16 @@
 				14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */,
 				1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */,
 				1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */,
+				14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */,
 				1462997218B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m in Sources */,
 				14982D3018B16F160065EE40 /* MKTraversingMixin.m in Sources */,
 				14982D1718B11DEC0065EE40 /* MKCollectionExtensions.m in Sources */,
 				1462997C18B02DCD002BCBF6 /* NSObject+Callbacks.m in Sources */,
 				14982D2518B16C8E0065EE40 /* MKContext+Subscribe.m in Sources */,
 				14982D3A18B1763C0065EE40 /* UINavigationController_ContextualMixin.m in Sources */,
+				14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */,
 				1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */,
+				14982E0018C38EDC0065EE40 /* UIStoryboard+Naming.m in Sources */,
 				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
 				14982D7218B9245E0065EE40 /* MKUserInteractionMixin.m in Sources */,
 				1462998018B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m in Sources */,
@@ -1008,6 +1039,7 @@
 				14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */,
 				14982DBD18BA39770065EE40 /* MKCallbackHandler+SideEffects.m in Sources */,
 				14982D2718B16C8E0065EE40 /* MKContext.m in Sources */,
+				14982E0418C394390065EE40 /* UIWebView+Extra.m in Sources */,
 				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
 				1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */,
 				14982DAB18BA33AC0065EE40 /* MKValidationResult.m in Sources */,
