@@ -8,6 +8,8 @@
 
 #import "MKCallbackHandler+Context.h"
 #import "MKCallbackHandler+Resolvers.h"
+#import "MKCallbackHandler+Invocation.h"
+#import "MKContext+Traversal.h"
 
 @implementation MKCallbackHandler (MKCallbackHandler_Context)
 
@@ -19,6 +21,15 @@
     MKContext *context = nil;
     [self tryGetClass:MKContext.class into:&context];
     return context;
+}
+
+- (id)forNotification
+{
+    MKCallbackHandler *composer = self;
+    MKContext *context = composer.context;
+    if (context)
+        composer = [context descendantOrSelf];
+    return [composer notify];
 }
 
 @end

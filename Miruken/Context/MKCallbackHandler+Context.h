@@ -13,4 +13,6 @@
 
 - (MKContext *)context;
 
+- (id)forNotification;
+
 @end
