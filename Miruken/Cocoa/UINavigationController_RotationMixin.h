@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
   This class is a mix-in that deferrs rotation decisions to the top controller.
   [UINavigationController mixinFrom:UINavigationController_RotationMixin.class];
  */
 
-@interface UINavigationController_RotationMixin : NSObject
+@interface UINavigationController_RotationMixin : UINavigationController
 
 @end

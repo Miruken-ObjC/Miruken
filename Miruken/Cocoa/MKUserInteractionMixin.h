@@ -25,7 +25,7 @@
     e.g. MKUserIneractionMixin mixInto:MyApplication.class]
  */
 
-@interface MKUserInteractionMixin : NSObject
+@interface MKUserInteractionMixin : UIApplication
 
 + (void)mixInto:(Class)class;
 

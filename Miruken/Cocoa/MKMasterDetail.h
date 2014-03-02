@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MKPromise.h"
 
 @protocol MKMasterDetail <NSObject>
 
 @optional
-- (id<Promise>)selectedDetail:(Class)detailClass;
+- (id<MKPromise>)selectedDetail:(Class)detailClass;
 
-- (id<Promise>)selectedDetails:(Class)detailClass;
+- (id<MKPromise>)selectedDetails:(Class)detailClass;
 
 - (void)selectDetail:(id)selectedDetail;
 
@@ -23,13 +23,13 @@
 
 - (BOOL)hasNextDetail:(Class)detailClass;
 
-- (id<Promise>)previousDetail:(Class)detailClass;
+- (id<MKPromise>)previousDetail:(Class)detailClass;
 
-- (id<Promise>)nextDetail:(Class)detailClass;
+- (id<MKPromise>)nextDetail:(Class)detailClass;
 
-- (id<Promise>)addDetail:(id)detail;
+- (id<MKPromise>)addDetail:(id)detail;
 
-- (id<Promise>)removeDetail:(id)detail delete:(BOOL)delete;
+- (id<MKPromise>)removeDetail:(id)detail delete:(BOOL)delete;
 
 @end
 

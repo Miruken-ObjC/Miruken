@@ -20,7 +20,9 @@
 
 - (UIViewController *)_firstViewController
 {
-    return ((UINavigationController *)self).viewControllers[0];
+    return self.viewControllers.count > 0
+         ? self.viewControllers[0]
+         : nil;
 }
 
 - (BOOL)shouldAutorotate

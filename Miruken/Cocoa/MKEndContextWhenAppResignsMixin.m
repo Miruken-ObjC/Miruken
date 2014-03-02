@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MKEndContextWhenAppResignsMixin.h"
-#import "MKContextual.h"
 #import "MKMixin.h"
 
-@interface MKEndContextWhenAppResignsMixin() <MKContextual, UIApplicationDelegate>
+@interface MKEndContextWhenAppResignsMixin() <UIApplicationDelegate>
 @end
 
 @implementation MKEndContextWhenAppResignsMixin

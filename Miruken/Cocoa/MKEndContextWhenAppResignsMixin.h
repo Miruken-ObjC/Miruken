@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MKContextual.h"
 
 /**
   This class is an opaque mix-in that ends the current context when
@@ -14,7 +14,7 @@
   e.g. MKEndContextWhenAppResignsMixin mixInto:MyModel.class]
  */
 
-@interface MKEndContextWhenAppResignsMixin : NSObject
+@interface MKEndContextWhenAppResignsMixin : NSObject <MKContextual>
 
 + (void)mixInto:(Class)class;
 

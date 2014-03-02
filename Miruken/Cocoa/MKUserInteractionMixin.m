@@ -25,9 +25,8 @@
 
 - (void)swizzleUserInteraction_sendEvent:(UIEvent *)event
 {
-    UIApplication *application = (UIApplication *)self;
-    if ([application.delegate respondsToSelector:@selector(eventDetected:)] == NO ||
-        [(id)application.delegate eventDetected:event])
+    if ([self.delegate respondsToSelector:@selector(eventDetected:)] == NO ||
+        [(id)self.delegate eventDetected:event])
     {
         [self swizzleUserInteraction_sendEvent:event];
     }

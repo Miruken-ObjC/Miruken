@@ -45,7 +45,7 @@
 {
     __block MKEndContextOnError *end = [[MKEndContextOnError allocInContext:self] init];
     [end.context subscribeDidEnd:^(id<MKContext> context) {
-        end = nil;  // keeps refresh alive until context ends
+        end = nil;  // keeps alive until context ends
     }];
     return end.context;
 }
