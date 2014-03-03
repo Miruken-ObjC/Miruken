@@ -36,6 +36,9 @@
  */
 
 @interface MKContextualMixin : NSObject
+
++ (void)mixInto:(Class)class;
+
 @end
 
 /**

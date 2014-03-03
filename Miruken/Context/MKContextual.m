@@ -20,6 +20,11 @@
 
 @implementation MKContextualMixin
 
++ (void)mixInto:(Class)class
+{
+    [class mixinFrom:self];
+}
+
 - (MKContext *)context
 {
     return objc_getAssociatedObject(self, @selector(context));
@@ -147,8 +152,8 @@
     
     @throw [NSException
             exceptionWithName:@"ContextNotAccepted"
-                       reason:@"The object does not accept a Context.  "
-                               "Did you forget to conform to the Contextual protocol?"
+                       reason:@"The object does not accept an MKContext.  "
+                               "Did you forget to conform to the MKContextual protocol?"
                      userInfo:nil];
 }
 
