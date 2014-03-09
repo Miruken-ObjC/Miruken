@@ -9,7 +9,7 @@
 #import "MKErrors.h"
 #import "MKContextual.h"
 
-@interface MKEndContextOnError : NSObject <MKErrors, MKContextual>
+@interface MKEndContextOnError : MKContextual <MKErrors>
 @end
 
 @interface MKContext (MKContext_EndContextOnError)

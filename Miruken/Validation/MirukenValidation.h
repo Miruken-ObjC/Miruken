@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKValidate.h"
+#import "MKValidation.h"
 #import "MKValidationResult.h"
 #import "MKValidationErrors.h"
 #import "NSError+MKValidation.h"

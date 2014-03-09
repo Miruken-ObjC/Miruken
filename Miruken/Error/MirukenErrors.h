@@ -7,6 +7,7 @@
 //
 
 #import "MKErrors.h"
+#import "MKErrorCallbackHandler.h"
 #import "MKCallbackHandler+Recoverable.h"
 #import "MKEndContextOnError.h"
 #import "MKWellKnownErrorResults.h"

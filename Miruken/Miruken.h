@@ -19,5 +19,5 @@
 #import "MirukenConcurrency.h"
 #import "MirukenContext.h"
 #import "MirukenCocoa.h"
-#import "MKErrors.h"
-#import "MKValidation.h"
+#import "MirukenErrors.h"
+#import "MirukenValidation.h"

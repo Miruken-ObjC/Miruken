@@ -30,6 +30,9 @@
 
 @end
 
+@interface MKContextual : NSObject <MKContextual>
+@end
+
 /**
   This class is an opaque mix-in that adds contextual behavior to any class.  e.g.
     [UIViewController  mixinFrom:MKContextualMixin.class];

@@ -9,6 +9,7 @@
 #import "MKContext.h"
 #import "MKContextual.h"
 #import "MKContextObserver.h"
+#import "MKContextualHelper.h"
 #import "MKContext+Subscribe.h"
 #import "MKContext+Traversal.h"
 #import "MKCallbackHandler+Context.h"

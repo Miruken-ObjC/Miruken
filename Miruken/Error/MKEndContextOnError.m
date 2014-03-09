@@ -10,15 +10,8 @@
 #import "MKContext+Subscribe.h"
 #import "UIAlertView+Block.h"
 #import "MKDeferred.h"
-#import "MKMixin.h"
 
 @implementation MKEndContextOnError
-
-+ (void)initialize
-{
-    if (self == MKEndContextOnError.class)
-        [MKEndContextOnError mixinFrom:MKContextualMixin.class];
-}
 
 - (id<MKPromise>)reportError:(NSError *)error message:(NSString *)message
                        title:(NSString *)title context:(void *)context

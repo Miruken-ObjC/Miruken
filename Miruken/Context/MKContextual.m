@@ -13,6 +13,18 @@
 #import "MKMixin.h"
 #import <objc/runtime.h>
 
+#pragma mark - MKContextual
+
+@implementation MKContextual
+
++ (void)initialize
+{
+    if (self == MKContextual.class)
+        [self mixinFrom:MKContextualMixin.class];
+}
+
+@end
+
 #pragma mark - ContextualMixin methods
 
 @interface MKContextualMixin () <MKContextual>

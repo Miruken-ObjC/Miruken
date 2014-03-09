@@ -63,7 +63,7 @@ NSString * const ComposerKey            = @"HandleMethodComposer";
 @implementation MKHandleMethod
 {
     MKHandleMethodBlock  _didInvoke;
-    BOOL               _handled;
+    BOOL                 _handled;
 }
 
 + (instancetype)withInvocation:(NSInvocation *)invocation

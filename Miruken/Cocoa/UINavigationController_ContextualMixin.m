@@ -99,7 +99,8 @@
     
     if (childContext)
     {
-        BOOL navBarHidden = self.navigationBarHidden;
+        BOOL toolbarHidden = self.toolbarHidden;
+        BOOL navBarHidden  = self.navigationBarHidden;
 
         @weakify(self, viewController);
         [childContext subscribe:[MKContextObserver contextDidEnd:^(MKContext *context)
@@ -113,6 +114,7 @@
                 return;
             
             [self setNavigationBarHidden:navBarHidden animated:YES];
+            [self setToolbarHidden:toolbarHidden animated:YES];
             
             if ([self.viewControllers containsObject:viewController])
             {
