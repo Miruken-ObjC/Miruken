@@ -9,6 +9,7 @@
 #import "MKViewRegion.h"
 #import "MKMasterDetail.h"
 #import "MKPagingMixin.h"
+#import "MKDefaultViewRegion.h"
 #import "MKAlertViewMixin.h"
 #import "MKActionSheetMixin.h"
 #import "MKUserInteractionMixin.h"

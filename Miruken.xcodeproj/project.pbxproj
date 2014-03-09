@@ -117,6 +117,8 @@
 		14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */; };
 		14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0918C395750065EE40 /* UICollectionView_Issues.h */; };
 		14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0A18C395750065EE40 /* UICollectionView_Issues.m */; };
+		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
+		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -350,6 +352,8 @@
 		14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInhibitInputAccessoryView.m; sourceTree = "<group>"; };
 		14982E0918C395750065EE40 /* UICollectionView_Issues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionView_Issues.h; sourceTree = "<group>"; };
 		14982E0A18C395750065EE40 /* UICollectionView_Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionView_Issues.m; sourceTree = "<group>"; };
+		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
+		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -548,6 +552,8 @@
 				14982D5518B807070065EE40 /* MirukenCocoa.h */,
 				14982D7C18B92A370065EE40 /* MKViewRegion.h */,
 				14982D7B18B92A370065EE40 /* MKMasterDetail.h */,
+				14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */,
+				14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */,
 				14982D5D18B9245E0065EE40 /* MKPagingMixin.h */,
 				14982D5E18B9245E0065EE40 /* MKPagingMixin.m */,
 				14982D5918B9245E0065EE40 /* MKAlertViewMixin.h */,
@@ -820,6 +826,7 @@
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
 				14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
+				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
@@ -1005,6 +1012,7 @@
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,
 				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
 				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
+				14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */,
 				14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */,
 				14982D3418B175540065EE40 /* MKDirtyMixin.m in Sources */,
 				14FD8AD818A7E867008077CF /* NSInvocation+Objects.m in Sources */,
