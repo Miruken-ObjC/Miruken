@@ -8,6 +8,8 @@
 
 #import "MKViewRegion.h"
 #import "MKMasterDetail.h"
+#import "MKActiveTableViewCell.h"
+#import "MKActiveCollectionViewCell.h"
 #import "MKPagingMixin.h"
 #import "MKDefaultViewRegion.h"
 #import "MKAlertViewMixin.h"

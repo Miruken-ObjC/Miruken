@@ -13,6 +13,16 @@
 static int             kDirtyMixinContext;
 static NSString *const kIsDirtyProperty = @"isDirty";
 
+@implementation MKDirtyChecking
+
++ (void)initialize
+{
+    if (self == MKDirtyChecking.class)
+        [MKDirtyMixin mixInto:self];
+}
+
+@end
+
 @implementation MKDirtyMixin
 
 + (void)mixInto:(Class)class

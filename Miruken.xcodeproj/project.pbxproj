@@ -119,6 +119,12 @@
 		14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0A18C395750065EE40 /* UICollectionView_Issues.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
+		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
+		14E9DCED18D355D40045760D /* MKDirtyObjectTrackingMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCEB18D355D40045760D /* MKDirtyObjectTrackingMixin.m */; };
+		14E9DCF218D3593E0045760D /* MKActiveCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEE18D3593E0045760D /* MKActiveCollectionViewCell.h */; };
+		14E9DCF318D3593E0045760D /* MKActiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */; };
+		14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */; };
+		14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -126,7 +132,6 @@
 		14FD8A6718A7CB18008077CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6618A7CB18008077CF /* UIKit.framework */; };
 		14FD8A6A18A7CB18008077CF /* libMiruken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5218A7CB18008077CF /* libMiruken.a */; };
 		14FD8A7018A7CB18008077CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14FD8A6E18A7CB18008077CF /* InfoPlist.strings */; };
-		14FD8A7218A7CB18008077CF /* MirukenTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7118A7CB18008077CF /* MirukenTests.m */; };
 		14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7D18A7DBF7008077CF /* MKAction.m */; };
 		14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */; };
 		14FD8AA818A7DBF7008077CF /* MKAsyncObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */; };
@@ -354,6 +359,12 @@
 		14982E0A18C395750065EE40 /* UICollectionView_Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionView_Issues.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
+		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
+		14E9DCEB18D355D40045760D /* MKDirtyObjectTrackingMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDirtyObjectTrackingMixin.m; sourceTree = "<group>"; };
+		14E9DCEE18D3593E0045760D /* MKActiveCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKActiveCollectionViewCell.h; sourceTree = "<group>"; };
+		14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveCollectionViewCell.m; sourceTree = "<group>"; };
+		14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKActiveTableViewCell.h; sourceTree = "<group>"; };
+		14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveTableViewCell.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -363,7 +374,6 @@
 		14FD8A6618A7CB18008077CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		14FD8A6D18A7CB18008077CF /* MirukenTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MirukenTests-Info.plist"; sourceTree = "<group>"; };
 		14FD8A6F18A7CB18008077CF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		14FD8A7118A7CB18008077CF /* MirukenTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirukenTests.m; sourceTree = "<group>"; };
 		14FD8A7C18A7DBF7008077CF /* MKAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAction.h; sourceTree = "<group>"; };
 		14FD8A7D18A7DBF7008077CF /* MKAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAction.m; sourceTree = "<group>"; };
 		14FD8A7E18A7DBF7008077CF /* MKAsyncDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncDelegate.h; sourceTree = "<group>"; };
@@ -552,6 +562,10 @@
 				14982D5518B807070065EE40 /* MirukenCocoa.h */,
 				14982D7C18B92A370065EE40 /* MKViewRegion.h */,
 				14982D7B18B92A370065EE40 /* MKMasterDetail.h */,
+				14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */,
+				14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */,
+				14E9DCEE18D3593E0045760D /* MKActiveCollectionViewCell.h */,
+				14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */,
 				14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */,
 				14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */,
 				14982D5D18B9245E0065EE40 /* MKPagingMixin.h */,
@@ -713,7 +727,6 @@
 				14982D3C18B17B3B0065EE40 /* Context */,
 				14982CF218B10D3B0065EE40 /* Callbacks */,
 				14FD8AD118A7E476008077CF /* Concurrency */,
-				14FD8A7118A7CB18008077CF /* MirukenTests.m */,
 				14FD8A6C18A7CB18008077CF /* Supporting Files */,
 			);
 			path = MirukenTests;
@@ -793,6 +806,8 @@
 				1462998A18B03093002BCBF6 /* MKMixin.m */,
 				14982D3218B175540065EE40 /* MKDirtyMixin.h */,
 				14982D3318B175540065EE40 /* MKDirtyMixin.m */,
+				14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */,
+				14E9DCEB18D355D40045760D /* MKDirtyObjectTrackingMixin.m */,
 				1462998C18B03118002BCBF6 /* MKDecorator.h */,
 				14982DB518BA39340065EE40 /* MKLoading.h */,
 				14982D1118B11D100065EE40 /* MKTraversal.h */,
@@ -825,6 +840,7 @@
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
 				14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */,
+				14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
@@ -833,6 +849,7 @@
 				14982D8F18B92BE70065EE40 /* MKErrorCallbackHandler.h in Headers */,
 				14982DC018BA39770065EE40 /* MKSideEffects.h in Headers */,
 				14982D9818BA2D830065EE40 /* UIAlertView+Block.h in Headers */,
+				14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */,
 				14982D7918B9257B0065EE40 /* UIWindow+Rotation.h in Headers */,
 				14982DBE18BA39770065EE40 /* MKSideEffectCallbackHandler.h in Headers */,
 				14982D7E18B92A370065EE40 /* MKViewRegion.h in Headers */,
@@ -851,6 +868,7 @@
 				14982DA818BA33AC0065EE40 /* NSError+MKValidation.h in Headers */,
 				14982DAC18BA33AC0065EE40 /* MKValidateCallbackHandler.h in Headers */,
 				14982DB218BA33AC0065EE40 /* MKValidation.h in Headers */,
+				14E9DCF218D3593E0045760D /* MKActiveCollectionViewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,12 +1007,14 @@
 				14982D2818B16C8E0065EE40 /* MKContextObserver.m in Sources */,
 				14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */,
 				1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */,
+				14E9DCED18D355D40045760D /* MKDirtyObjectTrackingMixin.m in Sources */,
 				14FD8AAF18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m in Sources */,
 				14FD8AAD18A7DBF7008077CF /* MKDeferred.m in Sources */,
 				14FD8AAA18A7DBF7008077CF /* MKAsyncResult.m in Sources */,
 				1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */,
 				14982D9018B92BE70065EE40 /* MKErrorCallbackHandler.m in Sources */,
 				14982D2D18B16DF20065EE40 /* MKWeakCell.m in Sources */,
+				14E9DCF318D3593E0045760D /* MKActiveCollectionViewCell.m in Sources */,
 				14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */,
 				14982D2618B16C8E0065EE40 /* MKContext+Traversal.m in Sources */,
 				14FD8AB218A7DBF7008077CF /* MKOperationProxyResult.m in Sources */,
@@ -1020,6 +1040,7 @@
 				14982D6C18B9245E0065EE40 /* MKPagingMixin.m in Sources */,
 				14982D3B18B1763C0065EE40 /* UIViewController_ContextualMixin.m in Sources */,
 				14982DAD18BA33AC0065EE40 /* MKValidateCallbackHandler.m in Sources */,
+				14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */,
 				1462998818B02EEA002BCBF6 /* MKReadWriteLock.m in Sources */,
 				14982D6818B9245E0065EE40 /* MKAlertViewMixin.m in Sources */,
 				14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */,
@@ -1078,7 +1099,6 @@
 				14982D0B18B112A20065EE40 /* ConfigurationTagCallbackHandler.m in Sources */,
 				14FD8ADB18A7E88B008077CF /* MKConcurrencyTests.m in Sources */,
 				14982D0C18B112A20065EE40 /* GetResource.m in Sources */,
-				14FD8A7218A7CB18008077CF /* MirukenTests.m in Sources */,
 				14FD8AD518A7E615008077CF /* MKDeferredTests.m in Sources */,
 				14982D4718B17C1F0065EE40 /* MKContextTests.m in Sources */,
 				14982D4418B17B3B0065EE40 /* SomeContextualObject.m in Sources */,

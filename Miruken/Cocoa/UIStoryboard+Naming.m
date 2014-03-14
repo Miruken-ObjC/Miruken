@@ -22,10 +22,14 @@
                        ? [baseName stringByAppendingString:@"_iPad"]
                        : [baseName stringByAppendingString:@"_iPhone"];
     
-    UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:fullName bundle:bundle];
-    if (storyBoard == nil)
-        storyBoard = [UIStoryboard storyboardWithName:baseName bundle:bundle];
-    return storyBoard;
+    @try {
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:fullName bundle:bundle];
+        if (storyBoard)
+            return storyBoard;
+    }
+    @catch (NSException *exception) {
+        return [UIStoryboard storyboardWithName:baseName bundle:bundle];
+    }
 }
 
 @end

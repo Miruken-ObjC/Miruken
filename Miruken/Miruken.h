@@ -8,6 +8,7 @@
 
 #import "MKMixin.h"
 #import "MKDirtyMixin.h"
+#import "MKDirtyObjectTrackingMixin.h"
 #import "MKTraversal.h"
 #import "MKTraversing.h"
 #import "MKTraversingMixin.h"

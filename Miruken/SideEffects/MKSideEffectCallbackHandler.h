@@ -3,7 +3,7 @@
 //  Miruken
 //
 //  Created by Craig Neuwirt on 10/1/12.
-//  Copyright (c) 2012 ZixCorp. All rights reserved.
+//  Copyright (c) 2012 Craig Neuwirt. All rights reserved.
 //
 
 #import "MKDynamicCallbackHandler.h"

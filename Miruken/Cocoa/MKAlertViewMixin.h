@@ -3,7 +3,7 @@
 //  Miruken
 //
 //  Created by Craig Neuwirt on 1/27/14.
-//  Copyright (c) 2014 ZixCorp. All rights reserved.
+//  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

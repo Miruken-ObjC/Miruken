@@ -21,6 +21,9 @@
 
 @end
 
+@interface MKDirtyChecking : NSObject <MKDirtyChecking>
+@end
+
 /**
   This class is an opaque mix-in that adds dirty checking support.
     e.g. MKDirtyMixin mixInto:MyModel.class]
