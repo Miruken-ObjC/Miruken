@@ -69,6 +69,12 @@ static NSString *const kIsDirtyProperty = @"isDirty";
     return ^{};
 }
 
+- (void)trackObjects:(id<NSFastEnumeration>)objects
+{
+    for (NSObject *object in objects)
+        [self trackObject:object];
+}
+
 - (void)untrackObject:(NSObject *)object
 {
     if (object == nil)
@@ -83,6 +89,12 @@ static NSString *const kIsDirtyProperty = @"isDirty";
             [object removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyTrackingContext];
             [trackings removeObjectAtIndex:idx];
         }
+}
+
+- (void)untrackObjects:(id<NSFastEnumeration>)objects
+{
+    for (NSObject *object in objects)
+        [self untrackObject:object];
 }
 
 - (void)untrackAllObjects

@@ -17,7 +17,11 @@ typedef void (^MKDirtyUntrackObject)();
 @optional
 - (MKDirtyUntrackObject)trackObject:(NSObject *)object;
 
+- (void)trackObjects:(id<NSFastEnumeration>)objects;
+
 - (void)untrackObject:(NSObject *)object;
+
+- (void)untrackObjects:(id<NSFastEnumeration>)objects;
 
 - (void)objectBecameDirty:(NSObject *)object;
 
