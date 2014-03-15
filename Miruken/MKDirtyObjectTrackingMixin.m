@@ -22,9 +22,9 @@ static NSString *const kIsDirtyProperty = @"isDirty";
     [class mixinFrom:self];
 }
 
-- (NSMutableArray *)DirtyObjectTracking_trackings
+- (NSMutableArray *)MKDirtyObjectTracking_trackings
 {
-    return objc_getAssociatedObject(self, @selector(DirtyObjectTracking_trackings));
+    return objc_getAssociatedObject(self, @selector(MKDirtyObjectTracking_trackings));
 }
 
 #pragma mark - DirtyTracking
@@ -43,11 +43,11 @@ static NSString *const kIsDirtyProperty = @"isDirty";
     
     if ([self respondsToSelector:@selector(objectBecameDirty:)])
     {
-        NSMutableArray *trackings = [self DirtyObjectTracking_trackings];
+        NSMutableArray *trackings = [self MKDirtyObjectTracking_trackings];
         if (trackings == nil)
         {
             trackings = [NSMutableArray new];
-            objc_setAssociatedObject(self, @selector(DirtyObjectTracking_trackings), trackings,
+            objc_setAssociatedObject(self, @selector(MKDirtyObjectTracking_trackings), trackings,
                                      OBJC_ASSOCIATION_RETAIN);
         }
         else
@@ -76,7 +76,7 @@ static NSString *const kIsDirtyProperty = @"isDirty";
                                        reason:@"object cannot be nil"
                                      userInfo:nil];
 
-    NSMutableArray *trackings = [self DirtyObjectTracking_trackings];
+    NSMutableArray *trackings = [self MKDirtyObjectTracking_trackings];
     for (NSInteger idx = 0; idx < trackings.count; ++idx)
         if (trackings[idx] == object)
         {
@@ -87,7 +87,7 @@ static NSString *const kIsDirtyProperty = @"isDirty";
 
 - (void)untrackAllObjects
 {
-    NSMutableArray *trackings = [self DirtyObjectTracking_trackings];
+    NSMutableArray *trackings = [self MKDirtyObjectTracking_trackings];
     for (NSObject *tracking in trackings)
         [tracking removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyTrackingContext];
     [trackings removeAllObjects];

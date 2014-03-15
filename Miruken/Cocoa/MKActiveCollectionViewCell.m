@@ -18,6 +18,7 @@
 
 - (void)prepareForReuse
 {
+    [super prepareForReuse];
     [self untrackAllObjects];
 }
 

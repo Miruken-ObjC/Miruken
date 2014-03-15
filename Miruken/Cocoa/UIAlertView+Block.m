@@ -35,6 +35,8 @@
     
     alertView.delegate = delegate;
     delegate.block     = ^(NSInteger buttonIndex) {
+        if (block)
+            block(buttonIndex);
         alertView.delegate = nil;
         
 #pragma clang diagnostic push

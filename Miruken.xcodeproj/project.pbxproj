@@ -125,6 +125,8 @@
 		14E9DCF318D3593E0045760D /* MKActiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */; };
 		14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */; };
 		14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */; };
+		14E9DCF818D3E9FE0045760D /* DirtyMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF718D3E9FE0045760D /* DirtyMixinTests.m */; };
+		14E9DCFC18D3EF470045760D /* DirtyObjectTrackingMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCFB18D3EF470045760D /* DirtyObjectTrackingMixinTests.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -365,6 +367,8 @@
 		14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveCollectionViewCell.m; sourceTree = "<group>"; };
 		14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKActiveTableViewCell.h; sourceTree = "<group>"; };
 		14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveTableViewCell.m; sourceTree = "<group>"; };
+		14E9DCF718D3E9FE0045760D /* DirtyMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirtyMixinTests.m; sourceTree = "<group>"; };
+		14E9DCFB18D3EF470045760D /* DirtyObjectTrackingMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirtyObjectTrackingMixinTests.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -665,6 +669,15 @@
 			path = SideEffects;
 			sourceTree = "<group>";
 		};
+		14E9DCF618D3E9E40045760D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				14E9DCF718D3E9FE0045760D /* DirtyMixinTests.m */,
+				14E9DCFB18D3EF470045760D /* DirtyObjectTrackingMixinTests.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		14FD8A4918A7CB18008077CF = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +737,7 @@
 		14FD8A6B18A7CB18008077CF /* MirukenTests */ = {
 			isa = PBXGroup;
 			children = (
+				14E9DCF618D3E9E40045760D /* Core */,
 				14982D3C18B17B3B0065EE40 /* Context */,
 				14982CF218B10D3B0065EE40 /* Callbacks */,
 				14FD8AD118A7E476008077CF /* Concurrency */,
@@ -1088,6 +1102,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E9DCFC18D3EF470045760D /* DirtyObjectTrackingMixinTests.m in Sources */,
+				14E9DCF818D3E9FE0045760D /* DirtyMixinTests.m in Sources */,
 				14982D0E18B112A20065EE40 /* ResourceUsage.m in Sources */,
 				14982D0818B112A20065EE40 /* ApplicationCallbackHandler.m in Sources */,
 				14982D4518B17B3B0065EE40 /* SomeViewController.m in Sources */,

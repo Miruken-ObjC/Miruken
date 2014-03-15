@@ -67,7 +67,7 @@
     
     _alertView = [[UIAlertView alloc] initWithTitle:title
                                              message:message
-                                           delegate:self
+                                           delegate:nil
                                    cancelButtonTitle:@"Continue"
                                    otherButtonTitles:nil];
                   
