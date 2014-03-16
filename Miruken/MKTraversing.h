@@ -34,6 +34,8 @@ typedef void (^MKVisitor)(id<MKTraversing> node, BOOL *stop);
 @protocol MKTraversing
 
 @optional
+- (BOOL)canTraverseAxis:(MKTraversingAxes)axis;
+
 - (void)traverse:(MKVisitor)visitor;  // default is TraversingAxisChild
 
 - (void)traverse:(MKVisitor)visitor axis:(MKTraversingAxes)axis;

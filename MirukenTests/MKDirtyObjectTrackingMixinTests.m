@@ -1,5 +1,5 @@
 //
-//  DirtyObjectTrackingMixinTests.m
+//  MKDirtyObjectTrackingMixinTests.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/14/14.
@@ -23,18 +23,18 @@
 @implementation Car
 @end
 
-@interface DirtyObjectTrackingMixinTests : XCTestCase <MKDirtyObjectTracking>
+@interface MKDirtyObjectTrackingMixinTests : XCTestCase <MKDirtyObjectTracking>
 
 @end
 
-@implementation DirtyObjectTrackingMixinTests
+@implementation MKDirtyObjectTrackingMixinTests
 {
     Car *_dirtyCar;
 }
 
 + (void)initialize
 {
-    if (self == DirtyObjectTrackingMixinTests.class)
+    if (self == MKDirtyObjectTrackingMixinTests.class)
         [MKDirtyObjectTrackingMixin mixInto:self];
 }
 

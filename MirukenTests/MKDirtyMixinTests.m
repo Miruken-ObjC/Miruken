@@ -1,5 +1,5 @@
 //
-//  DirtyMixinTests.m
+//  MKDirtyMixinTests.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/14/14.
@@ -33,11 +33,11 @@
 
 @end
 
-@interface DirtyMixinTests : XCTestCase
+@interface MKDirtyMixinTests : XCTestCase
 
 @end
 
-@implementation DirtyMixinTests
+@implementation MKDirtyMixinTests
 {
     BOOL _isDirty;
 }

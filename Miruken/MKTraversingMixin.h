@@ -22,6 +22,9 @@
 
 @end
 
+@interface MKTraversing : NSObject <MKTraversingDelegate>
+@end
+
 /**
   This class is an opaque mix-in that adds traversal support.
   It can only be mixed into classes conforming to the MKTraversingDelegate protocol.

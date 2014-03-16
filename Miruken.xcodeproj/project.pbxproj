@@ -117,6 +117,7 @@
 		14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */; };
 		14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0918C395750065EE40 /* UICollectionView_Issues.h */; };
 		14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0A18C395750065EE40 /* UICollectionView_Issues.m */; };
+		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -125,8 +126,8 @@
 		14E9DCF318D3593E0045760D /* MKActiveCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */; };
 		14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */; };
 		14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */; };
-		14E9DCF818D3E9FE0045760D /* DirtyMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF718D3E9FE0045760D /* DirtyMixinTests.m */; };
-		14E9DCFC18D3EF470045760D /* DirtyObjectTrackingMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCFB18D3EF470045760D /* DirtyObjectTrackingMixinTests.m */; };
+		14E9DCF818D3E9FE0045760D /* MKDirtyMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF718D3E9FE0045760D /* MKDirtyMixinTests.m */; };
+		14E9DCFC18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCFB18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -359,6 +360,7 @@
 		14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInhibitInputAccessoryView.m; sourceTree = "<group>"; };
 		14982E0918C395750065EE40 /* UICollectionView_Issues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionView_Issues.h; sourceTree = "<group>"; };
 		14982E0A18C395750065EE40 /* UICollectionView_Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionView_Issues.m; sourceTree = "<group>"; };
+		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -367,8 +369,8 @@
 		14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveCollectionViewCell.m; sourceTree = "<group>"; };
 		14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKActiveTableViewCell.h; sourceTree = "<group>"; };
 		14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveTableViewCell.m; sourceTree = "<group>"; };
-		14E9DCF718D3E9FE0045760D /* DirtyMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirtyMixinTests.m; sourceTree = "<group>"; };
-		14E9DCFB18D3EF470045760D /* DirtyObjectTrackingMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirtyObjectTrackingMixinTests.m; sourceTree = "<group>"; };
+		14E9DCF718D3E9FE0045760D /* MKDirtyMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDirtyMixinTests.m; sourceTree = "<group>"; };
+		14E9DCFB18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDirtyObjectTrackingMixinTests.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -672,8 +674,9 @@
 		14E9DCF618D3E9E40045760D /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				14E9DCF718D3E9FE0045760D /* DirtyMixinTests.m */,
-				14E9DCFB18D3EF470045760D /* DirtyObjectTrackingMixinTests.m */,
+				14AB66A918D5F608005DA41E /* MKTraversingTests.m */,
+				14E9DCF718D3E9FE0045760D /* MKDirtyMixinTests.m */,
+				14E9DCFB18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1102,8 +1105,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14E9DCFC18D3EF470045760D /* DirtyObjectTrackingMixinTests.m in Sources */,
-				14E9DCF818D3E9FE0045760D /* DirtyMixinTests.m in Sources */,
+				14E9DCFC18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m in Sources */,
+				14E9DCF818D3E9FE0045760D /* MKDirtyMixinTests.m in Sources */,
 				14982D0E18B112A20065EE40 /* ResourceUsage.m in Sources */,
 				14982D0818B112A20065EE40 /* ApplicationCallbackHandler.m in Sources */,
 				14982D4518B17B3B0065EE40 /* SomeViewController.m in Sources */,
@@ -1116,6 +1119,7 @@
 				14FD8ADB18A7E88B008077CF /* MKConcurrencyTests.m in Sources */,
 				14982D0C18B112A20065EE40 /* GetResource.m in Sources */,
 				14FD8AD518A7E615008077CF /* MKDeferredTests.m in Sources */,
+				14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */,
 				14982D4718B17C1F0065EE40 /* MKContextTests.m in Sources */,
 				14982D4418B17B3B0065EE40 /* SomeContextualObject.m in Sources */,
 				14982D0D18B112A20065EE40 /* ResourcesCallbackHandler.m in Sources */,

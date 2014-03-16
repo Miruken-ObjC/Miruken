@@ -9,6 +9,16 @@
 #import "MKTraversingMixin.h"
 #import "MKMixin.h"
 
+@implementation MKTraversing
+
++ (void)initialize
+{
+    if (self == MKTraversing.class)
+        [MKTraversingMixin mixInto:self];
+}
+
+@end
+
 @implementation MKTraversingMixin
 
 + (void)mixInto:(Class)class
@@ -22,6 +32,11 @@
     [class mixinFrom:self];
 }
 
+- (BOOL)canTraverseAxis:(MKTraversingAxes)axis
+{
+    return [self validateAxis:axis require:NO];
+}
+
 - (void)traverse:(MKVisitor)visitor
 {
     [self traverse:visitor axis:MKTraversingAxisChild];
@@ -29,6 +44,8 @@
 
 - (void)traverse:(MKVisitor)visitor axis:(MKTraversingAxes)axis
 {
+    [self validateAxis:axis require:YES];
+    
     switch (axis)
     {
         case MKTraversingAxisSelf:
@@ -152,6 +169,75 @@
         if (stop == NO)
             visitor(parent, &stop);
     }
+}
+
+#pragma mark - MKTraversingAxis validation
+
+NSString * const FormatAxisName[9] = {
+    [MKTraversingAxisSelf]                = @"MKTraversingAxisSelf",
+    [MKTraversingAxisRoot]                = @"MKTraversingAxisRoot",
+    [MKTraversingAxisChild]               = @"MKTraversingAxisChild",
+    [MKTraversingAxisAncestor]            = @"MKTraversingAxisAncestor",
+    [MKTraversingAxisDescendant]          = @"MKTraversingAxisDescendant",
+    [MKTraversingAxisChildOrSelf]         = @"MKTraversingAxisChildOrSelf",
+    [MKTraversingAxisAncestorOrSelf]      = @"MKTraversingAxisAncestorOrSelf",
+    [MKTraversingAxisDescendantOrSelf]    = @"MKTraversingAxisDescendantOrSelf",
+    [MKTraversingAxisParentSiblingOrSelf] = @"MKTraversingAxisParentSiblingOrSelf"
+};
+
+- (BOOL)validateAxis:(MKTraversingAxes)axis require:(BOOL)require
+{
+    BOOL parentRequired   = NO;
+    BOOL childrenRequired = NO;
+    
+    switch (axis)
+    {
+        case MKTraversingAxisSelf:
+            break;
+            
+        case MKTraversingAxisRoot:
+        case MKTraversingAxisAncestor:
+        case MKTraversingAxisAncestorOrSelf:
+            parentRequired = YES;
+            break;
+            
+        case MKTraversingAxisChild:
+        case MKTraversingAxisChildOrSelf:
+        case MKTraversingAxisDescendant:
+        case MKTraversingAxisDescendantOrSelf:
+            childrenRequired = YES;
+            break;
+
+        case MKTraversingAxisParentSiblingOrSelf:
+            parentRequired   = YES;
+            childrenRequired = YES;
+            break;
+    }
+
+    if (parentRequired && [self respondsToSelector:@selector(parent)] == NO)
+    {
+        if (require)
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                    reason:[NSString stringWithFormat:@"Traversing axis %@ requires the target class "
+                                                       "respond to the parent selector",
+                                                        FormatAxisName[axis]]
+                   userInfo:nil];
+        return NO;
+    }
+
+    if (childrenRequired && [self respondsToSelector:@selector(children)] == NO)
+    {
+        if (require)
+            @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                    reason:[NSString stringWithFormat:@"Traversing axis %@ requires the target class "
+                                                        "respond to the children selector",
+                                                   FormatAxisName[axis]]
+
+                  userInfo:nil];
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

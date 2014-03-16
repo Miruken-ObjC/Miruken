@@ -27,6 +27,10 @@ typedef void (^MKDirtyUntrackObject)();
 
 - (void)untrackAllObjects;
 
+- (void)didBeginTrackingObject:(NSObject *)object;
+
+- (void)didEndTrackingObject:(NSObject *)object;
+
 @end
 
 /**

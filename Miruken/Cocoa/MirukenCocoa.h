@@ -20,6 +20,7 @@
 #import "UINavigationController_ContextualMixin.h"
 #import "UIViewController_RotationMixin.h"
 #import "UINavigationController_RotationMixin.h"
+#import "UIAlertView+Block.h"
 #import "UIScrollView+Motion.h"
 #import "UIStoryboard+Naming.h"
 #import "UIWindow+Rotation.h"

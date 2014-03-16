@@ -60,6 +60,9 @@ static NSString *const kIsDirtyProperty = @"isDirty";
         [object addObserver:self forKeyPath:kIsDirtyProperty options:0 context:&kDirtyTrackingContext];
         [trackings addObject:object];
         
+        if ([self respondsToSelector:@selector(didBeginTrackingObject:)])
+            [self didBeginTrackingObject:object];
+        
         @weakify(self);
         return ^{
             @strongify(self);
@@ -88,6 +91,9 @@ static NSString *const kIsDirtyProperty = @"isDirty";
         {
             [object removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyTrackingContext];
             [trackings removeObjectAtIndex:idx];
+            
+            if ([self respondsToSelector:@selector(didEndTrackingObject:)])
+                [self didEndTrackingObject:object];
         }
 }
 
@@ -99,9 +105,14 @@ static NSString *const kIsDirtyProperty = @"isDirty";
 
 - (void)untrackAllObjects
 {
+    BOOL notifyEnd            = [self respondsToSelector:@selector(didEndTrackingObject:)];
     NSMutableArray *trackings = [self MKDirtyObjectTracking_trackings];
     for (NSObject *tracking in trackings)
+    {
         [tracking removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyTrackingContext];
+        if (notifyEnd)
+            [self didEndTrackingObject:tracking];
+    }
     [trackings removeAllObjects];
 }
 
