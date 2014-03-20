@@ -7,6 +7,7 @@
 //
 
 #import "MKActiveCollectionViewCell.h"
+#import "MKMixingIn.h"
 
 @implementation MKActiveCollectionViewCell
 

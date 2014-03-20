@@ -33,6 +33,4 @@
 
 @interface MKTraversingMixin : NSObject <MKTraversingDelegate>
 
-+ (void)mixInto:(Class)class;
-
 @end

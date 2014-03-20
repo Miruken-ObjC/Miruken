@@ -7,7 +7,6 @@
 //
 
 #import "MKPagingMixin.h"
-#import "MKMixin.h"
 #import "UIScrollView+Motion.h"
 #import <objc/runtime.h>
 
@@ -25,15 +24,13 @@ typedef NS_ENUM(NSUInteger, MKPagingMixinState) {
 
 @implementation MKPagingMixin
 
-+ (void)mixInto:(Class)class
++ (void)verifyCanMixIntoClass:(Class)targetClass
 {
-    if ([class conformsToProtocol:@protocol(UIScrollViewDelegate)] == NO)
+    if ([targetClass conformsToProtocol:@protocol(UIScrollViewDelegate)] == NO)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"The MKPagingMixin requires the target class "
                                                "to conform to the UIScrollViewDelegate protocol."
                                      userInfo:nil];
-
-    [class mixinFrom:self];
 }
 
 - (MKPagingMixinState)scrollState

@@ -31,6 +31,4 @@
 
 @interface MKDirtyMixin : NSObject <MKDirtyChecking>
 
-+ (void)mixInto:(Class)class;
-
 @end

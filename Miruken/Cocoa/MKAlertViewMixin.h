@@ -27,6 +27,4 @@
 
 @interface MKAlertViewMixin : NSObject
 
-+ (void)mixInto:(Class)class;
-
 @end

@@ -7,22 +7,19 @@
 //
 
 #import "MKAlertViewMixin.h"
-#import "MKMixin.h"
 
 @interface MKAlertViewMixin() <MKAlertViewDelegate, UIApplicationDelegate>
 @end
 
 @implementation MKAlertViewMixin
 
-+ (void)mixInto:(Class)class
++ (void)verifyCanMixIntoClass:(Class)targetClass
 {
-    if ([class conformsToProtocol:@protocol(UIAlertViewDelegate)] == NO)
+    if ([targetClass conformsToProtocol:@protocol(UIAlertViewDelegate)] == NO)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"The MKAlertViewMixin requires the target class "
                                                "to conform to the UIAlertViewDelegate protocol."
                                      userInfo:nil];
-    
-    [class mixinFrom:self];
 }
 
 #pragma mark - UIApplicationDelegate

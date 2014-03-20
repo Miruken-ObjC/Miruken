@@ -7,7 +7,7 @@
 //
 
 #import "MKTraversingMixin.h"
-#import "MKMixin.h"
+#import "MKMixingIn.h"
 
 @implementation MKTraversing
 
@@ -21,15 +21,13 @@
 
 @implementation MKTraversingMixin
 
-+ (void)mixInto:(Class)class
++ (void)verifyCanMixIntoClass:(Class)targetClass
 {
-    if ([class conformsToProtocol:@protocol(MKTraversingDelegate)] == NO)
+    if ([targetClass conformsToProtocol:@protocol(MKTraversingDelegate)] == NO)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"The TraversingMixin requires the target class "
                                                 "to conform to the TraversingDelegate protocol."
                                      userInfo:nil];
-    
-    [class mixinFrom:self];
 }
 
 - (BOOL)canTraverseAxis:(MKTraversingAxes)axis

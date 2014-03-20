@@ -12,6 +12,7 @@
 #import "MKDeferred.h"
 #import "UIAlertView+Block.h"
 #import "MKAlertViewMixin.h"
+#import "MKMixingIn.h"
 
 @interface MKErrorCallbackHandler() <MKAlertViewDelegate>
 @end

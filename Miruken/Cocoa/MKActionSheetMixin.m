@@ -7,22 +7,19 @@
 //
 
 #import "MKActionSheetMixin.h"
-#import "MKMixin.h"
 
 @interface MKActionSheetMixin() <MKActionSheetDelegate, UIApplicationDelegate>
 @end
 
 @implementation MKActionSheetMixin
 
-+ (void)mixInto:(Class)class
++ (void)verifyCanMixIntoClass:(Class)targetClass
 {
-    if ([class conformsToProtocol:@protocol(UIActionSheetDelegate)] == NO)
+    if ([targetClass conformsToProtocol:@protocol(UIActionSheetDelegate)] == NO)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"The MKActionSheetMixin requires the target class "
                                                 "to conform to the UIActionSheetDelegate protocol."
                                      userInfo:nil];
-    
-    [class mixinFrom:self];
 }
 
 #pragma mark - UIApplicationDelegate

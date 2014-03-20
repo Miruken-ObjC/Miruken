@@ -7,7 +7,7 @@
 //
 
 #import "MKDirtyMixin.h"
-#import "MKMixin.h"
+#import "MKMixingIn.h"
 #import <objc/runtime.h>
 
 static int             kDirtyMixinContext;
@@ -24,11 +24,6 @@ static NSString *const kIsDirtyProperty = @"isDirty";
 @end
 
 @implementation MKDirtyMixin
-
-+ (void)mixInto:(Class)class
-{
-    [class mixinFrom:self];
-}
 
 #pragma mark - DirtyChecking
 

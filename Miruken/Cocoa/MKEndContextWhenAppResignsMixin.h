@@ -16,6 +16,4 @@
 
 @interface MKEndContextWhenAppResignsMixin : NSObject <MKContextual>
 
-+ (void)mixInto:(Class)class;
-
 @end

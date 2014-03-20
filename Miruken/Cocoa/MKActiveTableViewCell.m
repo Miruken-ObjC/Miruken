@@ -7,6 +7,7 @@
 //
 
 #import "MKActiveTableViewCell.h"
+#import "MKMixingIn.h"
 
 @implementation MKActiveTableViewCell
 

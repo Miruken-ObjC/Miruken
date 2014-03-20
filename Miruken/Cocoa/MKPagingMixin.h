@@ -38,6 +38,4 @@ typedef NS_ENUM(NSUInteger, MKPagingDirection) {
 
 @interface MKPagingMixin : NSObject <UIScrollViewDelegate>
 
-+ (void)mixInto:(Class)class;
-
 @end

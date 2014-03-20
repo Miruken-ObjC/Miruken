@@ -27,6 +27,4 @@
 
 @interface MKUserInteractionMixin : UIApplication
 
-+ (void)mixInto:(Class)class;
-
 @end

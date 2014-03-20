@@ -27,6 +27,4 @@
 
 @interface MKActionSheetMixin : NSObject
 
-+ (void)mixInto:(Class)class;
-
 @end

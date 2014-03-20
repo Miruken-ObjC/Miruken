@@ -8,7 +8,6 @@
 
 #import "MKDirtyObjectTrackingMixin.h"
 #import "MKDirtyMixin.h"
-#import "MKMixin.h"
 #import "EXTScope.h"
 #import <objc/runtime.h>
 
@@ -16,11 +15,6 @@ static int             kDirtyTrackingContext;
 static NSString *const kIsDirtyProperty = @"isDirty";
 
 @implementation MKDirtyObjectTrackingMixin
-
-+ (void)mixInto:(Class)class
-{
-    [class mixinFrom:self];
-}
 
 - (NSMutableArray *)MKDirtyObjectTracking_trackings
 {

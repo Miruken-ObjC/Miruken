@@ -10,7 +10,7 @@
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextualHelper.h"
 #import "MKHandleMethod.h"
-#import "MKMixin.h"
+#import "MKMixingIn.h"
 #import <objc/runtime.h>
 
 #pragma mark - MKContextual
@@ -20,7 +20,7 @@
 + (void)initialize
 {
     if (self == MKContextual.class)
-        [self mixinFrom:MKContextualMixin.class];
+        [MKContextualMixin mixInto:self];
 }
 
 @end
@@ -31,11 +31,6 @@
 @end
 
 @implementation MKContextualMixin
-
-+ (void)mixInto:(Class)class
-{
-    [class mixinFrom:self];
-}
 
 - (MKContext *)context
 {
@@ -52,28 +47,24 @@
         
         // Allow callbacks to be processed by the host if not already a CallbackHandler
         
-        MKCallbackHandler *handler;
+        id<MKCallbackHandler> handler;
         
         if (context)
         {
             if ([self conformsToProtocol:@protocol(MKCallbackHandler)])
-                handler = (MKCallbackHandler *)self;
-            else
             {
-                MKDynamicCallbackHandler *dynHandler = self.dynamicHandler;
-                if (dynHandler == nil)
-                {
-                    dynHandler = [MKDynamicCallbackHandler delegateTo:self];
-                    self.dynamicHandler = dynHandler;
-                    handler    = dynHandler;
-                }
+                handler = (id<MKCallbackHandler>)self;
+            }
+            else if ((handler = self.dynamicHandler) == nil)
+            {
+                handler = self.dynamicHandler = [MKDynamicCallbackHandler delegateTo:self];
             }
             [context addHandler:handler];
         }
         else
         {
             handler = [self conformsToProtocol:@protocol(MKCallbackHandler)]
-                    ? (MKCallbackHandler *)self : self.dynamicHandler;
+                    ? (id<MKCallbackHandler>)self : self.dynamicHandler;
             
             if (handler)
                 [currentContext removeHandler:handler];

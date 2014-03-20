@@ -8,22 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "MKEndContextWhenAppResignsMixin.h"
-#import "MKMixin.h"
 
 @interface MKEndContextWhenAppResignsMixin() <UIApplicationDelegate>
 @end
 
 @implementation MKEndContextWhenAppResignsMixin
 
-+ (void)mixInto:(Class)class
++ (void)verifyCanMixIntoClass:(Class)targetClass
 {
-    if ([class conformsToProtocol:@protocol(MKContextual)] == NO)
+    if ([targetClass conformsToProtocol:@protocol(MKContextual)] == NO)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"The MKEndContextWhenAppResignsMixin requires the target "
                                                "class to conform to the Contextual protocol."
                                      userInfo:nil];
-    
-    [class mixinFrom:self];
 }
 
 #pragma mark - UIApplicationDelegate

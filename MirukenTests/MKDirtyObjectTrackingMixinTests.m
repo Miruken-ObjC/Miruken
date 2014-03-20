@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "MKDirtyObjectTrackingMixin.h"
 #import "MKDirtyMixin.h"
+#import "MKMixingIn.h"
 
 #pragma mark - Car model
 

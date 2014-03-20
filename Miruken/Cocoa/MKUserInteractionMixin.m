@@ -8,19 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "MKUserInteractionMixin.h"
-#import "MKMixin.h"
 
 @implementation MKUserInteractionMixin
 
-+ (void)mixInto:(Class)class
++ (void)verifyCanMixIntoClass:(Class)targetClass
 {
-    if ([class isSubclassOfClass:UIApplication.class] == NO)
+    if ([targetClass isSubclassOfClass:UIApplication.class] == NO)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"The MKUserIneractionMixin requires the target class "
                                                "to be a subclass of UIApplication."
                                      userInfo:nil];
-    
-    [class mixinFrom:self];
 }
 
 - (void)swizzleUserInteraction_sendEvent:(UIEvent *)event

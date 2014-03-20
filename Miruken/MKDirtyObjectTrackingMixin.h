@@ -39,6 +39,4 @@ typedef void (^MKDirtyUntrackObject)();
  */
 @interface MKDirtyObjectTrackingMixin : NSObject <MKDirtyObjectTracking>
 
-+ (void)mixInto:(Class)class;
-
 @end
