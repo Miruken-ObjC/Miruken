@@ -22,7 +22,7 @@
 
 #pragma mark - MKViewRegion
 
-- (void)presentViewController:(UIViewController *)viewController
+- (void)presentViewControllerModally:(UIViewController *)viewController
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];
@@ -42,7 +42,7 @@
     }
 }
 
-- (void)presentNextViewController:(UIViewController *)viewController
+- (void)presentViewController:(UIViewController *)viewController
 {
     MKCallbackHandler *composer = self.composer;
     UIViewController  *owner    = [composer getClass:UIViewController.class orDefault:nil];
@@ -51,7 +51,7 @@
     if (navigationController)
         [navigationController pushViewController:viewController animated:YES];
     else
-        [self presentViewController:viewController];
+        [self presentViewControllerModally:viewController];
 }
 
 @end

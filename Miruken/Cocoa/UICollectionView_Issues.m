@@ -7,7 +7,7 @@
 //
 
 #import "UICollectionView_Issues.h"
-#import "MKMixin.h"
+#import "MKMixingIn.h"
 
 @interface UICollectionView_IssuesMixin : NSObject
 @end
@@ -44,7 +44,7 @@
 
 + (void)fixLargeCellIssue
 {
-    [UICollectionView mixinFrom:UICollectionView_IssuesMixin.class];
+    [UICollectionView_IssuesMixin mixInto:self];
 }
 
 @end

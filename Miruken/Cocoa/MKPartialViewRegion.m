@@ -1,19 +1,19 @@
 //
-//  MKPartialRegion.m
+//  MKPartialViewRegion.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/20/14.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKPartialRegion.h"
+#import "MKPartialViewRegion.h"
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextual.h"
 #import "MKContext+Subscribe.h"
 #import "NSObject+NotHandled.h"
 #import "EXTScope.h"
 
-@implementation MKPartialRegion
+@implementation MKPartialViewRegion
 {
     MKContext        *_context;
     __weak UIView    *_partialView;
@@ -45,7 +45,7 @@
 
 #pragma mark - MKViewRegion
 
-- (void)presentNextViewController:(UIViewController *)viewControllerToPresent
+- (void)presentViewController:(UIViewController *)viewControllerToPresent
 {
     if (self.composer == _context)
     {

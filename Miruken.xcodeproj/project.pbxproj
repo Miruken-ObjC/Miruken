@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		142FE8C118DBA62200569636 /* MKMixingIn.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8BF18DBA62200569636 /* MKMixingIn.h */; };
 		142FE8C218DBA62200569636 /* MKMixingIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8C018DBA62200569636 /* MKMixingIn.m */; };
-		142FE8C518DBA98200569636 /* MKPartialRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8C318DBA98200569636 /* MKPartialRegion.h */; };
-		142FE8C618DBA98200569636 /* MKPartialRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8C418DBA98200569636 /* MKPartialRegion.m */; };
+		142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8C318DBA98200569636 /* MKPartialViewRegion.h */; };
+		142FE8C618DBA98200569636 /* MKPartialViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8C418DBA98200569636 /* MKPartialViewRegion.m */; };
+		142FE8CA18DE2E4500569636 /* MirukenCocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8C818DE2E4500569636 /* MirukenCocoa.m */; };
 		1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */; };
 		1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */; };
 		1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */; };
@@ -193,8 +194,9 @@
 		0C07D65B5617417FA5C12730 /* libPods-Miruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Miruken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		142FE8BF18DBA62200569636 /* MKMixingIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMixingIn.h; sourceTree = "<group>"; };
 		142FE8C018DBA62200569636 /* MKMixingIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMixingIn.m; sourceTree = "<group>"; };
-		142FE8C318DBA98200569636 /* MKPartialRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPartialRegion.h; sourceTree = "<group>"; };
-		142FE8C418DBA98200569636 /* MKPartialRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPartialRegion.m; sourceTree = "<group>"; };
+		142FE8C318DBA98200569636 /* MKPartialViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPartialViewRegion.h; sourceTree = "<group>"; };
+		142FE8C418DBA98200569636 /* MKPartialViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPartialViewRegion.m; sourceTree = "<group>"; };
+		142FE8C818DE2E4500569636 /* MirukenCocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MirukenCocoa.m; sourceTree = "<group>"; };
 		1462993518B02DCD002BCBF6 /* MKCallbackHandler+Builders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Builders.h"; sourceTree = "<group>"; };
 		1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Builders.m"; sourceTree = "<group>"; };
 		1462993718B02DCD002BCBF6 /* MKCallbackHandler+Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Buffer.h"; sourceTree = "<group>"; };
@@ -574,16 +576,17 @@
 			isa = PBXGroup;
 			children = (
 				14982D5518B807070065EE40 /* MirukenCocoa.h */,
-				14982D7C18B92A370065EE40 /* MKViewRegion.h */,
+				142FE8C818DE2E4500569636 /* MirukenCocoa.m */,
 				14982D7B18B92A370065EE40 /* MKMasterDetail.h */,
-				142FE8C318DBA98200569636 /* MKPartialRegion.h */,
-				142FE8C418DBA98200569636 /* MKPartialRegion.m */,
+				14982D7C18B92A370065EE40 /* MKViewRegion.h */,
+				14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */,
+				14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */,
+				142FE8C318DBA98200569636 /* MKPartialViewRegion.h */,
+				142FE8C418DBA98200569636 /* MKPartialViewRegion.m */,
 				14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */,
 				14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */,
 				14E9DCEE18D3593E0045760D /* MKActiveCollectionViewCell.h */,
 				14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */,
-				14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */,
-				14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */,
 				14982D5D18B9245E0065EE40 /* MKPagingMixin.h */,
 				14982D5E18B9245E0065EE40 /* MKPagingMixin.m */,
 				14982D5918B9245E0065EE40 /* MKAlertViewMixin.h */,
@@ -871,7 +874,7 @@
 				14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */,
 				14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
-				142FE8C518DBA98200569636 /* MKPartialRegion.h in Headers */,
+				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
@@ -1057,7 +1060,7 @@
 				14982D2918B16C8E0065EE40 /* MKContextual.m in Sources */,
 				1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */,
 				14982D8E18B92BE70065EE40 /* MKEndContextOnError.m in Sources */,
-				142FE8C618DBA98200569636 /* MKPartialRegion.m in Sources */,
+				142FE8C618DBA98200569636 /* MKPartialViewRegion.m in Sources */,
 				14982DBF18BA39770065EE40 /* MKSideEffectCallbackHandler.m in Sources */,
 				14982D7618B9252F0065EE40 /* UIScrollView+Motion.m in Sources */,
 				14982DB118BA33AC0065EE40 /* MKValidationExtension.m in Sources */,
@@ -1074,6 +1077,7 @@
 				14982DAD18BA33AC0065EE40 /* MKValidateCallbackHandler.m in Sources */,
 				14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */,
 				1462998818B02EEA002BCBF6 /* MKReadWriteLock.m in Sources */,
+				142FE8CA18DE2E4500569636 /* MirukenCocoa.m in Sources */,
 				14982D6818B9245E0065EE40 /* MKAlertViewMixin.m in Sources */,
 				14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */,
 				1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */,

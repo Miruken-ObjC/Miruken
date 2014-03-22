@@ -1,5 +1,5 @@
 //
-//  MKPartialRegion.h
+//  MKPartialViewRegion.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/20/14.
@@ -10,7 +10,7 @@
 #import "MKViewRegion.h"
 #import "MKContext.h"
 
-@interface MKPartialRegion : UIView <MKViewRegion>
+@interface MKPartialViewRegion : UIView <MKViewRegion>
 
 - (MKContext *)context;
 

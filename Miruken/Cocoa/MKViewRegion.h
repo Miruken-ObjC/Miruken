@@ -16,9 +16,9 @@
 @protocol MKViewRegion <NSObject>
 
 @optional
-- (void)presentViewController:(UIViewController *)viewControllerToPresent;
+- (void)presentViewControllerModally:(UIViewController *)viewControllerToPresent;
 
-- (void)presentNextViewController:(UIViewController *)viewControllerToPresent;
+- (void)presentViewController:(UIViewController *)viewControllerToPresent;
 
 @end
 
