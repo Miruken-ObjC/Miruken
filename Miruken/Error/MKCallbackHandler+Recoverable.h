@@ -8,7 +8,7 @@
 
 #import "MKCallbackHandler.h"
 
-@interface MKCallbackHandler (MKCallbackHandler_Recoverable)
+@interface MKCallbackHandler (Recoverable)
 
 - (instancetype)recoverable;
 

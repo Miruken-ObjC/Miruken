@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, MKCallbackHandlerCallOptions) {
     MKCallbackHandlerCallOptionsBestEffort = 1 << 1
 };
 
-@interface MKCallbackHandler (MKCallbackHandler_Invovation)
+@interface MKCallbackHandler (Invovation)
 
 - (instancetype)broadcast;
 

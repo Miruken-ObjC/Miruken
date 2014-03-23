@@ -8,7 +8,7 @@
 
 #import "MKValidateCallbackHandler.h"
 #import "MKValidationExtension.h"
-#import "MKContextual.h"
+#import "NSObject+Context.h"
 
 @implementation MKValidateCallbackHandler
 

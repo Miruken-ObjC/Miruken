@@ -15,7 +15,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
-@implementation MKCallbackHandler (MKCallbackHandler_SideEffects)
+@implementation MKCallbackHandler (SideEffects)
 
 - (instancetype)timer:(void(^)(double duration))done
 {

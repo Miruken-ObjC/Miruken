@@ -11,6 +11,7 @@
 #import "MKContextual.h"
 #import "MKContext+Subscribe.h"
 #import "NSObject+NotHandled.h"
+#import "NSObject+Context.h"
 #import "EXTScope.h"
 
 @implementation MKPartialViewRegion

@@ -6,12 +6,9 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MKPromise.h"
 
-@interface NSObject (ResolvePromise)
-
-- (BOOL)isPromise;
+@interface NSObject (NSObject_ResolvePromise)
 
 - (id<MKPromise>)effectivePromise;
 

@@ -6,8 +6,13 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "MKDefaultViewRegion.h"
-#import "MirukenContext.h"
+#import "MKContextualHelper.h"
+#import "MKContext+Subscribe.h"
+#import "MKCallbackHandler+Resolvers.h"
+#import "MKPresentationPolicy.h"
+#import "NSObject+Context.h"
 
 @implementation MKDefaultViewRegion
 {
@@ -21,6 +26,28 @@
 }
 
 #pragma mark - MKViewRegion
+
+- (void)presentViewController:(UIViewController *)viewController
+{
+    MKCallbackHandler    *composer           = self.composer;
+    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
+    if ([composer handle:presentationPolicy greedy:YES])
+        [presentationPolicy applyToViewController:viewController];
+    
+    if (presentationPolicy.modal == NO)
+    {
+        UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
+        UINavigationController *navigationController = owner.navigationController;
+        
+        if (navigationController)
+        {
+            [navigationController pushViewController:viewController animated:YES];
+            return;
+        }
+    }
+    
+    [self presentViewControllerModally:viewController];
+}
 
 - (void)presentViewControllerModally:(UIViewController *)viewController
 {
@@ -40,18 +67,6 @@
                     _window.rootViewController = nil;
             }];
     }
-}
-
-- (void)presentViewController:(UIViewController *)viewController
-{
-    MKCallbackHandler *composer = self.composer;
-    UIViewController  *owner    = [composer getClass:UIViewController.class orDefault:nil];
-    UINavigationController *navigationController = owner.navigationController;
-    
-    if (navigationController)
-        [navigationController pushViewController:viewController animated:YES];
-    else
-        [self presentViewControllerModally:viewController];
 }
 
 @end

@@ -15,7 +15,7 @@
 #import "MKObjectCallbackReceiver.h"
 #import "MKProtocolCallbackReceiver.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Builders)
+@implementation MKCallbackHandler (Builders)
 
 - (instancetype)when:(MKCallbackPredicate)condition
 {

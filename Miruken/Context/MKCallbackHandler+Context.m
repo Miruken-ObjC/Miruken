@@ -11,7 +11,7 @@
 #import "MKCallbackHandler+Invocation.h"
 #import "MKContext+Traversal.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Context)
+@implementation MKCallbackHandler (Context)
 
 - (MKContext *)context
 {

@@ -11,7 +11,7 @@
 #import "NSObject+ResolvePromise.h"
 #import "MKErrors.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Recoverable)
+@implementation MKCallbackHandler (Recoverable)
 
 - (instancetype)recoverable
 {

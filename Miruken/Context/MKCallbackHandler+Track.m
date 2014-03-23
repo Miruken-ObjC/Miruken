@@ -14,7 +14,7 @@
 #import "MKCallbackHandlerFilter.h"
 #import "NSObject+ResolvePromise.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Track)
+@implementation MKCallbackHandler (Track)
 
 - (instancetype)trackPromise
 {

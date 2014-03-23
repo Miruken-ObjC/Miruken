@@ -13,7 +13,7 @@
   MKCallbackHandler category for resolving callbacks using more intuitive verbage.
   */
 
-@interface MKCallbackHandler (MKCallbackHandler_Resolvers)
+@interface MKCallbackHandler (Resolvers)
 
 - (id)getClass:(Class)aClass orDefault:(id)theDefault;
 

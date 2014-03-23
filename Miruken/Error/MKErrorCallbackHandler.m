@@ -8,11 +8,11 @@
 //
 
 #import "MKErrorCallbackHandler.h"
-#import "MKContextual.h"
 #import "MKDeferred.h"
 #import "UIAlertView+Block.h"
 #import "MKAlertViewMixin.h"
 #import "MKMixingIn.h"
+#import "NSObject+Context.h"
 
 @interface MKErrorCallbackHandler() <MKAlertViewDelegate>
 @end

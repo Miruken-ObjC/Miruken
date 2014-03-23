@@ -8,6 +8,7 @@
 
 #import "NSObject+ResolvePromise.h"
 #import "MKHandleMethod.h"
+#import "NSObject+BuildPromise.h"
 #import "NSInvocation+Objects.h"
 
 @implementation NSObject (NSObject_ResolvePromise)

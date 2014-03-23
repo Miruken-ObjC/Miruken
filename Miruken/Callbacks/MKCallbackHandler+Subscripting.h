@@ -12,7 +12,7 @@
   MKCallbackHandler category for supporting indexed subscripting.
  */
 
-@interface MKCallbackHandler (MKCallbackHandler_Subscripting)
+@interface MKCallbackHandler (Subscripting)
 
 - (id)objectForKeyedSubscript:(id)classOrProtocolKey;
 

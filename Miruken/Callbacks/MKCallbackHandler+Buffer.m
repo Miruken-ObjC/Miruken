@@ -12,7 +12,7 @@
 #import "NSObject+BuildPromise.h"
 #import "MKHandleMethod.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Buffer)
+@implementation MKCallbackHandler (Buffer)
 
 - (instancetype)bufferPromise
 {

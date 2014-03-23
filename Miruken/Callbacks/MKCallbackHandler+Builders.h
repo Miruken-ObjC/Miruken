@@ -12,7 +12,7 @@
   MKCallbackHandler category for constructing callback handlers using more intuitive verbage.
   */
 
-@interface MKCallbackHandler (MKCallbackHandler_Builders)
+@interface MKCallbackHandler (Builders)
 
 - (instancetype)when:(MKCallbackPredicate)condition;
 

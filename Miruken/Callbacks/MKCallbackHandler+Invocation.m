@@ -9,7 +9,7 @@
 #import "MKCallbackHandler+Invocation.h"
 #import "MKInvocationCallbackHandler.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Invovation)
+@implementation MKCallbackHandler (Invovation)
 
 - (instancetype)broadcast
 {

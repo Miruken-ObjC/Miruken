@@ -41,21 +41,3 @@
 @interface MKContextualMixin : NSObject
 
 @end
-
-/**
-  This category provides object context support.
- */
- 
-@interface NSObject (NSObject_Context)
-
-+ (instancetype)allocInContext:(id)context;
-
-+ (instancetype)allocInChildContext:(id)context;
-
-+ (instancetype)newInContext:(id)context;
-
-+ (instancetype)newInChildContext:(id)context;
-
-- (MKCallbackHandler *)composer;
-
-@end

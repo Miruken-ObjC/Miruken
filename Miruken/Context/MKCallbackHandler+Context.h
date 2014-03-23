@@ -9,7 +9,7 @@
 #import "MKCallbackHandler.h"
 #import "MKContext.h"
 
-@interface MKCallbackHandler (MKCallbackHandler_Context)
+@interface MKCallbackHandler (Context)
 
 - (MKContext *)context;
 

@@ -9,7 +9,7 @@
 #import "MKCallbackHandler.h"
 #import "MKBufferedPromise.h"
 
-@interface MKCallbackHandler (MKCallbackHandler_Buffer)
+@interface MKCallbackHandler (Buffer)
 
 - (instancetype)bufferPromise;
 

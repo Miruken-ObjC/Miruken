@@ -8,7 +8,7 @@
 
 #import "MKCallbackHandler.h"
 
-@interface MKCallbackHandler (MKCallbackHandler_Track)
+@interface MKCallbackHandler (Track)
 
 - (instancetype)trackPromise;
 

@@ -11,7 +11,7 @@
 #import "MKProtocolCallbackReceiver.h"
 #import "MKCallbackErrors.h"
 
-@implementation MKCallbackHandler (MKCallbackHandler_Resolvers)
+@implementation MKCallbackHandler (Resolvers)
 
 #pragma mark - Callback class support
 
@@ -19,10 +19,10 @@
 {
     if (theDefault != nil && [theDefault isKindOfClass:aClass] == NO)
     {
-        @throw [NSException 
-                exceptionWithName:NSInvalidArgumentException
-                reason:[NSString stringWithFormat:@"The default value is not a kind of class %@", aClass]
-                userInfo:nil];         
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:[NSString stringWithFormat:
+                                               @"The default value is not a kind of class %@", aClass]
+                                     userInfo:nil];
     }
     MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forClass:aClass];
     BOOL handled                       = [self handle:receiver];

@@ -7,9 +7,10 @@
 //
 
 #import "MKEndContextOnError.h"
+#import "MKDeferred.h"
 #import "MKContext+Subscribe.h"
 #import "UIAlertView+Block.h"
-#import "MKDeferred.h"
+#import "NSObject+Context.h"
 
 @implementation MKEndContextOnError
 

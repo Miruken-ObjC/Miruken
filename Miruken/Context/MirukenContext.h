@@ -14,4 +14,5 @@
 #import "MKContext+Traversal.h"
 #import "MKCallbackHandler+Context.h"
 #import "MKCallbackHandler+Track.h"
+#import "NSObject+Context.h"
 #import "MirukenCallbacks.h"

@@ -12,7 +12,7 @@
 
 static id kProtocolClass;
 
-@implementation MKCallbackHandler (MKCallbackHandler_Subscripting)
+@implementation MKCallbackHandler (Subscripting)
 
 + (void)load
 {

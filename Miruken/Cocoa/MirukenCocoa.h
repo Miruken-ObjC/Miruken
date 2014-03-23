@@ -8,10 +8,12 @@
 
 #import "MKViewRegion.h"
 #import "MKMasterDetail.h"
+#import "MKViewRegion.h"
+#import "MKDefaultViewRegion.h"
+#import "MKPartialViewRegion.h"
 #import "MKActiveTableViewCell.h"
 #import "MKActiveCollectionViewCell.h"
 #import "MKPagingMixin.h"
-#import "MKDefaultViewRegion.h"
 #import "MKAlertViewMixin.h"
 #import "MKActionSheetMixin.h"
 #import "MKUserInteractionMixin.h"

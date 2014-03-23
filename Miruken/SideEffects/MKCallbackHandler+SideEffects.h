@@ -18,7 +18,7 @@
 typedef BOOL (^MKSideEffectBeforeAction)(id callback, id<MKCallbackHandler> composer);
 typedef void (^MKSideEffectAfterAction)(id callback, id<MKCallbackHandler> composer);
 
-@interface MKCallbackHandler (MKCallbackHandler_SideEffects)
+@interface MKCallbackHandler (SideEffects)
 
 - (instancetype)timer:(void(^)(double duration))done;
 
