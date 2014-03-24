@@ -7,6 +7,7 @@
 //
 
 #import "MKPresentationPolicy.h"
+#import "MKFlipHorizontalTransition.h"
 
 @implementation MKPresentationPolicy
 {
@@ -77,7 +78,16 @@
 - (void)applyToViewController:(UIViewController *)viewController
 {
     if (_specified.modalTransitionStyle)
-        viewController.modalTransitionStyle = _modalTransitionStyle;
+    {
+        if (_modalTransitionStyle == UIModalTransitionStyleFlipHorizontal &&
+            _specified.transitionDelegate == NO)
+        {
+            _transitionDelegate = [MKFlipHorizontalTransition new];
+            viewController.transitioningDelegate = _transitionDelegate;
+        }
+        else
+            viewController.modalTransitionStyle = _modalTransitionStyle;
+    }
     
     if (_specified.modalPresentationStyle)
         viewController.modalPresentationStyle = _modalPresentationStyle;
