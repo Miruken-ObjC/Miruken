@@ -17,6 +17,7 @@
         unsigned int modalPresentationStyle:1;
         unsigned int definesPresentationContext:1;
         unsigned int providesPresentationContextTransitionStyle:1;
+        unsigned int transitionDelegate:1;
     } _specified;
 }
 
@@ -28,6 +29,7 @@
     copy->_modalPresentationStyle                     = _modalPresentationStyle;
     copy->_definesPresentationContext                 = _definesPresentationContext;
     copy->_providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
+    copy->_transitionDelegate                         = _transitionDelegate;
     copy->_specified                                  = _specified;
     return copy;
 }
@@ -66,6 +68,12 @@
     _specified.providesPresentationContextTransitionStyle = YES;
 }
 
+- (void)setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)transitionDelegate
+{
+    _transitionDelegate           = transitionDelegate;
+    _specified.transitionDelegate = YES;
+}
+
 - (void)applyToViewController:(UIViewController *)viewController
 {
     if (_specified.modalTransitionStyle)
@@ -80,6 +88,13 @@
     if (_specified.providesPresentationContextTransitionStyle)
         viewController.providesPresentationContextTransitionStyle =
             _providesPresentationContextTransitionStyle;
+    
+    if (_specified.transitionDelegate)
+        viewController.transitioningDelegate = _transitionDelegate;
+    
+    if (_specified.modal && _specified.modalPresentationStyle == NO &&
+        _specified.modalTransitionStyle == NO && viewController.transitioningDelegate)
+        viewController.modalPresentationStyle = UIModalPresentationCustom;
 }
 
 - (void)mergeIntoPolicy:(MKPresentationPolicy *)otherPolicy
@@ -99,6 +114,9 @@
     if (_specified.providesPresentationContextTransitionStyle &&
         (otherPolicy->_specified.providesPresentationContextTransitionStyle == NO))
         otherPolicy.providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
+    
+    if (_specified.transitionDelegate && (otherPolicy->_specified.transitionDelegate == NO))
+        otherPolicy.transitionDelegate = _transitionDelegate;
 }
 
 @end

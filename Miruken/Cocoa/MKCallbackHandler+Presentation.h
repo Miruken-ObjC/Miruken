@@ -9,14 +9,26 @@
 #import "MKCallbackHandler.h"
 #import "MKPresentationPolicy.h"
 
-typedef BOOL (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
+typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 @interface MKCallbackHandler (Presentation)
 
-- (instancetype)modal:(BOOL)modal;
+- (instancetype)presentModal;
+
+- (instancetype)presentFullScreen;
+
+- (instancetype)presentPageSheet;
+
+- (instancetype)presentFormSheet;
+
+- (instancetype)presentCurrent;
+
+- (instancetype)definesPresentationContext;
+
+- (instancetype)providesPresentationContextTransition;
+
+- (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;
 
 - (instancetype)usePresentationPolicy:(MKPresentationPolicy *)policy;
-
-- (instancetype)presentationPolicy:(MKConfigurePresentationPolicy)configurePolicy;
 
 @end
