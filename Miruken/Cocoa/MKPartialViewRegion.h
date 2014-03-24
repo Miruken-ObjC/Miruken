@@ -14,6 +14,6 @@
 
 - (MKContext *)context;
 
-- (UIViewController *)partialViewController;
+- (UIViewController *)controller;
 
 @end

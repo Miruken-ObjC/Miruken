@@ -18,7 +18,7 @@
 {
     MKContext        *_context;
     __weak UIView    *_partialView;
-    UIViewController *_particalViewController;
+    UIViewController *_controller;
 }
 
 - (MKContext *)context
@@ -39,9 +39,9 @@
     return _context;
 }
 
-- (id)partialViewController
+- (id)controller
 {
-    return _particalViewController;
+    return _controller;
 }
 
 #pragma mark - MKViewRegion
@@ -61,8 +61,8 @@
 - (void)addPartialController:(UIViewController *)partialController
 {
     UIViewController *owningController = [self owningViewController];
-    _particalViewController            = partialController;
-    [_particalViewController willMoveToParentViewController:owningController];
+    _controller                        = partialController;
+    [_controller willMoveToParentViewController:owningController];
     [owningController        addChildViewController:partialController];
     [partialController       didMoveToParentViewController:owningController];
     [self addSubview:_partialView      = partialController.view];
@@ -70,14 +70,14 @@
 
 - (void)removePartialController
 {
-    if (_particalViewController)
+    if (_controller)
     {
-        [_particalViewController willMoveToParentViewController:nil];
-        [_particalViewController removeFromParentViewController];
-        [_partialView            removeFromSuperview];
-        [_particalViewController didMoveToParentViewController:nil];
-        _particalViewController = nil;
-        _partialView            = nil;
+        [_controller  willMoveToParentViewController:nil];
+        [_controller  removeFromParentViewController];
+        [_partialView removeFromSuperview];
+        [_controller  didMoveToParentViewController:nil];
+        _controller   = nil;
+        _partialView  = nil;
     }
 }
 
@@ -95,7 +95,11 @@
     [super layoutSubviews];
     
     if (_partialView)
-        _partialView.frame = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
+    {
+        CGRect partialFrame = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
+        if (CGRectEqualToRect(_partialView.frame, partialFrame) == NO)
+            _partialView.frame = partialFrame;
+    }
 }
 
 - (void)dealloc
