@@ -27,6 +27,14 @@ typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 - (instancetype)providesPresentationContextTransition;
 
+- (instancetype)transitionCoverVertical;
+
+- (instancetype)transitionFlipHorizontal;
+
+- (instancetype)transitionCrossDissolve;
+
+- (instancetype)transitionPartialCurl;
+
 - (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;
 
 - (instancetype)usePresentationPolicy:(MKPresentationPolicy *)policy;

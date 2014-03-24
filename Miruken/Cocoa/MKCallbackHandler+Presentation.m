@@ -12,6 +12,8 @@
 
 @implementation MKCallbackHandler (Presentation)
 
+#pragma mark - Presentation
+
 - (instancetype)presentModal
 {
     MKPresentationPolicy *modalPolicy = [MKPresentationPolicy new];
@@ -57,6 +59,35 @@
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     presentationPolicy.providesPresentationContextTransitionStyle = YES;
+    return [self usePresentationPolicy:presentationPolicy];
+}
+
+#pragma mark - Transition
+
+- (instancetype)transitionCoverVertical
+{
+     return [self transitionStyle:UIModalTransitionStyleCoverVertical];
+}
+
+- (instancetype)transitionFlipHorizontal
+{
+    return [self transitionStyle:UIModalTransitionStyleFlipHorizontal];
+}
+
+- (instancetype)transitionCrossDissolve
+{
+    return [self transitionStyle:UIModalTransitionStyleCrossDissolve];
+}
+
+- (instancetype)transitionPartialCurl
+{
+    return [self transitionStyle:UIModalTransitionStylePartialCurl];
+}
+
+- (instancetype)transitionStyle:(UIModalTransitionStyle)transitionStyle
+{
+    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
+    presentationPolicy.modalTransitionStyle  = transitionStyle;
     return [self usePresentationPolicy:presentationPolicy];
 }
 
