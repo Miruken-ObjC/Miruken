@@ -12,7 +12,7 @@
 
 @implementation MKCallbackHandler (Presentation)
 
-#pragma mark - Presentation
+#pragma mark - Modal presentations
 
 - (instancetype)presentModal
 {
@@ -23,28 +23,108 @@
 
 - (instancetype)presentFullScreen
 {
-    return [self presentStyle:UIModalPresentationFullScreen];
+    return [self presentationStyle:UIModalPresentationFullScreen];
 }
 
 - (instancetype)presentPageSheet
 {
-    return [self presentStyle:UIModalPresentationPageSheet];
+    return [self presentationStyle:UIModalPresentationPageSheet];
 }
 
 - (instancetype)presentFormSheet
 {
-    return [self presentStyle:UIModalPresentationFormSheet];
+    return [self presentationStyle:UIModalPresentationFormSheet];
 }
 
 - (instancetype)presentCurrent
 {
-    return [self presentStyle:UIModalPresentationCurrentContext];
+    return [self presentationStyle:UIModalPresentationCurrentContext];
 }
 
-- (instancetype)presentStyle:(UIModalPresentationStyle)presentationStyle
+- (instancetype)presentationStyle:(UIModalPresentationStyle)presentationStyle
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     presentationPolicy.modalPresentationStyle = presentationStyle;
+    return [self usePresentationPolicy:presentationPolicy];
+}
+
+#pragma mark - Modal transitions
+
+- (instancetype)modalTransitionCoverVertical
+{
+    return [self modalTransitionStyle:UIModalTransitionStyleCoverVertical];
+}
+
+- (instancetype)modalTransitionFlipHorizontal
+{
+    return [self modalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+}
+
+- (instancetype)modalTransitionCrossDissolve
+{
+    return [self modalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+}
+
+- (instancetype)modalTransitionPartialCurl
+{
+    return [self modalTransitionStyle:UIModalTransitionStylePartialCurl];
+}
+
+- (instancetype)modalTransitionStyle:(UIModalTransitionStyle)transitionStyle
+{
+    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
+    presentationPolicy.modalTransitionStyle  = transitionStyle;
+    return [self usePresentationPolicy:presentationPolicy];
+}
+
+#pragma mark - Animation options
+
+- (instancetype)transitionFlipFromLeft
+{
+     return [self animationOptions:UIViewAnimationOptionTransitionFlipFromLeft];
+}
+
+- (instancetype)transitionFlipFromRight
+{
+     return [self animationOptions:UIViewAnimationOptionTransitionFlipFromRight];
+}
+
+- (instancetype)transitionCurlUp
+{
+     return [self animationOptions:UIViewAnimationOptionTransitionCurlUp];
+}
+
+- (instancetype)transitionCurlDown
+{
+     return [self animationOptions:UIViewAnimationOptionTransitionCurlDown];
+}
+
+- (instancetype)transitionCrossDissolve
+{
+     return [self animationOptions:UIViewAnimationOptionTransitionCrossDissolve];
+}
+
+- (instancetype)transitionFlipFromTop
+{
+     return [self animationOptions:UIViewAnimationOptionTransitionFlipFromTop];
+}
+
+- (instancetype)transitionFlipFromBottom
+{
+    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromBottom];
+}
+
+- (instancetype)animationOptions:(UIViewAnimationOptions)options
+{
+    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
+    presentationPolicy.animationOptions      = options;
+    return [self usePresentationPolicy:presentationPolicy];
+}
+
+- (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition
+{
+    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
+    presentationPolicy.transitionDelegate = transition;
     return [self usePresentationPolicy:presentationPolicy];
 }
 
@@ -59,42 +139,6 @@
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     presentationPolicy.providesPresentationContextTransitionStyle = YES;
-    return [self usePresentationPolicy:presentationPolicy];
-}
-
-#pragma mark - Transition
-
-- (instancetype)transitionCoverVertical
-{
-     return [self transitionStyle:UIModalTransitionStyleCoverVertical];
-}
-
-- (instancetype)transitionFlipHorizontal
-{
-    return [self transitionStyle:UIModalTransitionStyleFlipHorizontal];
-}
-
-- (instancetype)transitionCrossDissolve
-{
-    return [self transitionStyle:UIModalTransitionStyleCrossDissolve];
-}
-
-- (instancetype)transitionPartialCurl
-{
-    return [self transitionStyle:UIModalTransitionStylePartialCurl];
-}
-
-- (instancetype)transitionStyle:(UIModalTransitionStyle)transitionStyle
-{
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    presentationPolicy.modalTransitionStyle  = transitionStyle;
-    return [self usePresentationPolicy:presentationPolicy];
-}
-
-- (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition
-{
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    presentationPolicy.transitionDelegate = transition;
     return [self usePresentationPolicy:presentationPolicy];
 }
 

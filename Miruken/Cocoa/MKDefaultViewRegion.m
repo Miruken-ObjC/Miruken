@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "MKDefaultViewRegion.h"
 #import "MKContextualHelper.h"
+#import "MKPresentationPolicy.h"
 #import "MKContext+Subscribe.h"
 #import "MKCallbackHandler+Resolvers.h"
-#import "MKPresentationPolicy.h"
 #import "NSObject+Context.h"
 
 @implementation MKDefaultViewRegion
@@ -29,12 +29,16 @@
 
 - (void)presentViewController:(UIViewController *)viewController
 {
+    BOOL                  isModal            = NO;
     MKCallbackHandler    *composer           = self.composer;
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     if ([composer handle:presentationPolicy greedy:YES])
+    {
         [presentationPolicy applyToViewController:viewController];
+        isModal = presentationPolicy.isModal;
+    }
     
-    if (presentationPolicy.modal == NO)
+    if (presentationPolicy.isModal == NO)
     {
         UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
         UINavigationController *navigationController = owner.navigationController;

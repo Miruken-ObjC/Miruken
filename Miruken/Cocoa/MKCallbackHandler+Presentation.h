@@ -13,6 +13,8 @@ typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 @interface MKCallbackHandler (Presentation)
 
+#pragma mark - Modal presentations
+
 - (instancetype)presentModal;
 
 - (instancetype)presentFullScreen;
@@ -23,17 +25,41 @@ typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 - (instancetype)presentCurrent;
 
-- (instancetype)definesPresentationContext;
+- (instancetype)presentationStyle:(UIModalPresentationStyle)presentationStyle;
 
-- (instancetype)providesPresentationContextTransition;
+#pragma mark - Modal transitions
 
-- (instancetype)transitionCoverVertical;
+- (instancetype)modalTransitionCoverVertical;
 
-- (instancetype)transitionFlipHorizontal;
+- (instancetype)modalTransitionFlipHorizontal;
+
+- (instancetype)modalTransitionCrossDissolve;
+
+- (instancetype)modalTransitionPartialCurl;
+
+- (instancetype)modalTransitionStyle:(UIModalTransitionStyle)transitionStyle;
+
+#pragma mark - Animation options
+
+- (instancetype)transitionFlipFromLeft;
+
+- (instancetype)transitionFlipFromRight;
+
+- (instancetype)transitionCurlUp;
+
+- (instancetype)transitionCurlDown;
 
 - (instancetype)transitionCrossDissolve;
 
-- (instancetype)transitionPartialCurl;
+- (instancetype)transitionFlipFromTop;
+
+- (instancetype)transitionFlipFromBottom;
+
+- (instancetype)animationOptions:(UIViewAnimationOptions)options;
+
+- (instancetype)definesPresentationContext;
+
+- (instancetype)providesPresentationContextTransition;
 
 - (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;
 

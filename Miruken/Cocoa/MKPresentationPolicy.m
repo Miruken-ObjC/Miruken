@@ -8,6 +8,7 @@
 
 #import "MKPresentationPolicy.h"
 #import "MKFlipHorizontalTransition.h"
+#import "MKViewAnimationTransition.h"
 
 @implementation MKPresentationPolicy
 {
@@ -18,6 +19,7 @@
         unsigned int modalPresentationStyle:1;
         unsigned int definesPresentationContext:1;
         unsigned int providesPresentationContextTransitionStyle:1;
+        unsigned int animationOptions:1;
         unsigned int transitionDelegate:1;
     } _specified;
 }
@@ -30,6 +32,7 @@
     copy->_modalPresentationStyle                     = _modalPresentationStyle;
     copy->_definesPresentationContext                 = _definesPresentationContext;
     copy->_providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
+    copy->_animationOptions                           = _animationOptions;
     copy->_transitionDelegate                         = _transitionDelegate;
     copy->_specified                                  = _specified;
     return copy;
@@ -57,16 +60,20 @@
 
 - (void)setDefinesPresentationContext:(BOOL)definesPresentationContext
 {
-    self.modal                            = YES;
     _definesPresentationContext           = definesPresentationContext;
     _specified.definesPresentationContext = YES;
 }
 
 - (void)setProvidesPresentationContextTransitionStyle:(BOOL)providesPresentationContextTransitionStyle
 {
-    self.modal                                            = YES;
     _providesPresentationContextTransitionStyle           = providesPresentationContextTransitionStyle;
     _specified.providesPresentationContextTransitionStyle = YES;
+}
+
+- (void)setAnimationOptions:(UIViewAnimationOptions)animationOptions
+{
+    _animationOptions           = animationOptions;
+    _specified.animationOptions = YES;
 }
 
 - (void)setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)transitionDelegate
@@ -77,18 +84,6 @@
 
 - (void)applyToViewController:(UIViewController *)viewController
 {
-    if (_specified.modalTransitionStyle)
-    {
-        if (_modalTransitionStyle == UIModalTransitionStyleFlipHorizontal &&
-            _specified.transitionDelegate == NO)
-        {
-            _transitionDelegate = [MKFlipHorizontalTransition new];
-            viewController.transitioningDelegate = _transitionDelegate;
-        }
-        else
-            viewController.modalTransitionStyle = _modalTransitionStyle;
-    }
-    
     if (_specified.modalPresentationStyle)
         viewController.modalPresentationStyle = _modalPresentationStyle;
     
@@ -100,7 +95,27 @@
             _providesPresentationContextTransitionStyle;
     
     if (_specified.transitionDelegate)
+    {
         viewController.transitioningDelegate = _transitionDelegate;
+    }
+    else if (_specified.animationOptions)
+    {
+        _transitionDelegate = [MKViewAnimationTransition transitionWithOptions:_animationOptions];
+        viewController.transitioningDelegate = _transitionDelegate;
+    }
+    else if (_specified.modalTransitionStyle)
+    {
+        if (_modalTransitionStyle == UIModalTransitionStyleFlipHorizontal &&
+            _specified.transitionDelegate == NO)
+        {
+            _transitionDelegate = [MKFlipHorizontalTransition new];
+            viewController.transitioningDelegate = _transitionDelegate;
+        }
+        else
+        {
+            viewController.modalTransitionStyle = _modalTransitionStyle;
+        }
+    }
     
     if (_specified.modal && _specified.modalPresentationStyle == NO &&
         _specified.modalTransitionStyle == NO && viewController.transitioningDelegate)
@@ -124,6 +139,9 @@
     if (_specified.providesPresentationContextTransitionStyle &&
         (otherPolicy->_specified.providesPresentationContextTransitionStyle == NO))
         otherPolicy.providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
+    
+    if (_specified.animationOptions && (otherPolicy->_specified.animationOptions == NO))
+        otherPolicy.animationOptions = _animationOptions;
     
     if (_specified.transitionDelegate && (otherPolicy->_specified.transitionDelegate == NO))
         otherPolicy.transitionDelegate = _transitionDelegate;

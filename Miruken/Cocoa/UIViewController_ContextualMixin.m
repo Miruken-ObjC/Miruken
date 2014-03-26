@@ -72,6 +72,14 @@
     
     [self swizzleContextual_prepareForSegue:segue sender:sender];
 }
+
+- (void)swizzleContextual_dealloc
+{
+    // This delegate often involves circularities so we clear it to be safe.
+    
+    self.transitioningDelegate = nil;
+}
+
 @end
 
 #pragma mark - UIViewController_Contextual methods

@@ -279,6 +279,9 @@
 {
     if (_state == MKContextStateActive)
     {
+        // Children are maintained in a weak list so keep alive until end has finished
+        MKContext *keepAlive = self;
+        
         _state = MKContextStateEnding;
         [self notifyWillEnd:YES];
         if (_parent)
@@ -291,7 +294,8 @@
         }
         [self notifyWillEnd:NO];
         _retainedSubscriptions = nil;
-        _subscriptions = nil;
+        _subscriptions         = nil;
+        keepAlive              = nil;
     }
 }
 

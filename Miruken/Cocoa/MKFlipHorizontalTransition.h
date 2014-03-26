@@ -10,4 +10,5 @@
 
 @interface MKFlipHorizontalTransition : NSObject
     <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
+
 @end

@@ -10,11 +10,12 @@
 
 @interface MKPresentationPolicy : NSObject <NSCopying>
 
-@property (assign, nonatomic) BOOL                     modal;
+@property (assign, nonatomic, getter = isModal) BOOL   modal;
 @property (assign, nonatomic) UIModalTransitionStyle   modalTransitionStyle;
 @property (assign, nonatomic) UIModalPresentationStyle modalPresentationStyle;
 @property (assign, nonatomic) BOOL                     definesPresentationContext;
 @property (assign, nonatomic) BOOL                     providesPresentationContextTransitionStyle;
+@property (assign, nonatomic) UIViewAnimationOptions   animationOptions;
 @property (strong, nonatomic) id<UIViewControllerTransitioningDelegate> transitionDelegate;
 
 - (void)applyToViewController:(UIViewController *)viewController;

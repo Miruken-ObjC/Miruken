@@ -9,8 +9,10 @@
 #import "MKPartialViewRegion.h"
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextual.h"
+#import "MKPresentationPolicy.h"
 #import "MKContext+Subscribe.h"
 #import "NSObject+NotHandled.h"
+#import "MKCallbackHandler+Resolvers.h"
 #import "NSObject+Context.h"
 #import "EXTScope.h"
 
@@ -46,13 +48,35 @@
 
 #pragma mark - MKViewRegion
 
-- (void)presentViewController:(UIViewController *)viewControllerToPresent
+- (void)presentViewController:(UIViewController *)viewController
 {
-    if (self.composer == _context)
+    BOOL                  isModal            = NO;
+    MKCallbackHandler    *composer           = self.composer;
+    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
+    if ([composer handle:presentationPolicy greedy:YES])
     {
+        [presentationPolicy applyToViewController:viewController];
+        isModal = presentationPolicy.isModal;
+    }
+    
+    if (isModal == NO)
+    {
+        if (presentationPolicy.definesPresentationContext == NO)
+        {
+            UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
+            UINavigationController *navigationController = owner.navigationController;
+            
+            if (navigationController)
+            {
+                [navigationController pushViewController:viewController animated:YES];
+                return;
+            }
+        }
+
         [self removePartialController];
-        if (viewControllerToPresent)
-            [self addPartialController:viewControllerToPresent];
+        
+        if (viewController)
+            [self addPartialController:viewController];
     }
     else
         [self notHandled];

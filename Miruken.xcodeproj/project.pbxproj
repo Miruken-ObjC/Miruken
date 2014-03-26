@@ -22,6 +22,8 @@
 		142FE8DE18DF318100569636 /* NSObject+Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8DC18DF318000569636 /* NSObject+Context.m */; };
 		142FE8E118DFB6E700569636 /* MKFlipHorizontalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8DF18DFB6E700569636 /* MKFlipHorizontalTransition.h */; };
 		142FE8E218DFB6E700569636 /* MKFlipHorizontalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E018DFB6E700569636 /* MKFlipHorizontalTransition.m */; };
+		142FE8E518E381EC00569636 /* MKViewAnimationTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E318E381EC00569636 /* MKViewAnimationTransition.h */; };
+		142FE8E618E381EC00569636 /* MKViewAnimationTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E418E381EC00569636 /* MKViewAnimationTransition.m */; };
 		1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */; };
 		1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */; };
 		1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */; };
@@ -217,6 +219,8 @@
 		142FE8DC18DF318000569636 /* NSObject+Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Context.m"; sourceTree = "<group>"; };
 		142FE8DF18DFB6E700569636 /* MKFlipHorizontalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFlipHorizontalTransition.h; sourceTree = "<group>"; };
 		142FE8E018DFB6E700569636 /* MKFlipHorizontalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFlipHorizontalTransition.m; sourceTree = "<group>"; };
+		142FE8E318E381EC00569636 /* MKViewAnimationTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKViewAnimationTransition.h; sourceTree = "<group>"; };
+		142FE8E418E381EC00569636 /* MKViewAnimationTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKViewAnimationTransition.m; sourceTree = "<group>"; };
 		1462993518B02DCD002BCBF6 /* MKCallbackHandler+Builders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Builders.h"; sourceTree = "<group>"; };
 		1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Builders.m"; sourceTree = "<group>"; };
 		1462993718B02DCD002BCBF6 /* MKCallbackHandler+Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Buffer.h"; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 				142FE8D818DF21BB00569636 /* MKCallbackHandler+Presentation.m */,
 				142FE8DF18DFB6E700569636 /* MKFlipHorizontalTransition.h */,
 				142FE8E018DFB6E700569636 /* MKFlipHorizontalTransition.m */,
+				142FE8E318E381EC00569636 /* MKViewAnimationTransition.h */,
+				142FE8E418E381EC00569636 /* MKViewAnimationTransition.m */,
 			);
 			name = Presentation;
 			sourceTree = "<group>";
@@ -931,6 +937,7 @@
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
+				142FE8E518E381EC00569636 /* MKViewAnimationTransition.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
@@ -1128,6 +1135,7 @@
 				142FE8D518DE43F400569636 /* MKPresentationPolicyHandler.m in Sources */,
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,
 				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
+				142FE8E618E381EC00569636 /* MKViewAnimationTransition.m in Sources */,
 				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
 				14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */,
 				14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */,
