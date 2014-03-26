@@ -59,7 +59,7 @@
                       duration:[self transitionDuration:transitionContext]
                        options:_animationOptions
                     completion:^(BOOL finished) {
-                        [transitionContext completeTransition:YES];
+                        [transitionContext completeTransition:finished];
                     }];
 }
 
