@@ -9,6 +9,7 @@
 #import "MKPartialViewRegion.h"
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextual.h"
+#import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
 #import "MKContext+Subscribe.h"
 #import "NSObject+NotHandled.h"
@@ -69,7 +70,7 @@
     
     if (isModal == NO)
     {
-        if (presentationPolicy.definesPresentationContext == NO)
+        if (self.context != composer && presentationPolicy.definesPresentationContext == NO)
         {
             UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
             UINavigationController *navigationController = owner.navigationController;
@@ -81,7 +82,10 @@
             }
         }
 
-        if (viewController.transitioningDelegate && _controller && viewController)
+        [self removePartialController];
+        [self addPartialController:viewController];
+        
+        if (viewController && viewController.transitioningDelegate)
         {
             MKPartialTransitionContext *partialTransition =
                 [MKPartialTransitionContext partialRegion:self
@@ -96,11 +100,6 @@
             
             [transitionController animateTransition:partialTransition];
         }
-        else
-        {
-            [self removePartialController];
-            [self addPartialController:viewController];
-        }
     }
     else
         [self notHandled];
@@ -112,6 +111,7 @@
     {
         UIViewController *owningController = [self owningViewController];
         _controller                        = partialController;
+        [MKContextualHelper bindChildContextFrom:self.context toChild:_controller];
         [_controller       willMoveToParentViewController:owningController];
         [owningController  addChildViewController:partialController];
         [partialController didMoveToParentViewController:owningController];

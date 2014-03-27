@@ -140,9 +140,14 @@
         (otherPolicy->_specified.providesPresentationContextTransitionStyle == NO))
         otherPolicy.providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
     
-    if (_specified.animationOptions && (otherPolicy->_specified.animationOptions == NO))
-        otherPolicy.animationOptions = _animationOptions;
-    
+    if (_specified.animationOptions)
+    {
+        if (otherPolicy->_specified.animationOptions)
+            otherPolicy.animationOptions |= _animationOptions;
+        else
+            otherPolicy.animationOptions = _animationOptions;
+    }
+ 
     if (_specified.transitionDelegate && (otherPolicy->_specified.transitionDelegate == NO))
         otherPolicy.transitionDelegate = _transitionDelegate;
 }

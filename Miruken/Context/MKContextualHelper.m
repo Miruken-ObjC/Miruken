@@ -29,7 +29,7 @@
     
     @throw [NSException
             exceptionWithName:@"ContextNotAvailable"
-                       reason:@"The supplied object is not a context or Contextual object"
+                       reason:@"The supplied object is not a context or contextual object"
                      userInfo:nil];
 }
 
@@ -67,7 +67,7 @@
         return nil;
     
     MKContext *childContext = [child context];
-    if (childContext)
+    if (childContext && childContext.state == MKContextStateActive)
         return childContext;
     
     MKContext *context = [self resolveContext:parent];
