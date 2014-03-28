@@ -28,7 +28,6 @@
 @implementation MKPartialViewRegion
 {
     MKContext        *_context;
-    __weak UIView    *_partialView;
     UIViewController *_controller;
 }
 
@@ -38,13 +37,6 @@
     {
         UIViewController<MKContextual> *owningController = [self owningViewController];
         _context                                         = [owningController.context newChildContext];
-        
-        @weakify(self);
-        [_context subscribeDidEnd:^(id<MKContext> context) {
-            @strongify(self);
-            [self removePartialController];
-        }];
-        
         [_context addHandler:[MKDynamicCallbackHandler delegateTo:self]];
     }
     return _context;
@@ -81,41 +73,53 @@
                 return;
             }
         }
-
+        
+        UIViewController *fromController = _controller;
+        
         [self removePartialController];
         [self addPartialController:viewController];
         
-        if (viewController && viewController.transitioningDelegate)
+        if (_controller && _controller.transitioningDelegate)
         {
             MKPartialTransitionContext *partialTransition =
-                [MKPartialTransitionContext partialRegion:self
-                                       fromViewController:_controller
-                                         toViewController:viewController];
+            [MKPartialTransitionContext partialRegion:self
+                                   fromViewController:fromController
+                                     toViewController:_controller];
             
             id<UIViewControllerAnimatedTransitioning> transitionController =
-                [viewController.transitioningDelegate
-                    animationControllerForPresentedController:viewController
-                                         presentingController:_controller
-                                             sourceController:_controller];
+            [viewController.transitioningDelegate
+             animationControllerForPresentedController:_controller
+             presentingController:fromController
+             sourceController:fromController];
             
             [transitionController animateTransition:partialTransition];
         }
+        else
+            [self addSubview:_controller.view];
+        return;
     }
-    else
-        [self notHandled];
+    
+    [self notHandled];
 }
 
 - (void)addPartialController:(UIViewController *)partialController
 {
     if (partialController)
     {
-        UIViewController *owningController = [self owningViewController];
         _controller                        = partialController;
-        [MKContextualHelper bindChildContextFrom:self.context toChild:_controller];
+        UIViewController *owningController = [self owningViewController];
+        MKContext        *partialContext   = [MKContextualHelper bindChildContextFrom:self.context
+                                                                              toChild:_controller];
         [_controller       willMoveToParentViewController:owningController];
         [owningController  addChildViewController:partialController];
         [partialController didMoveToParentViewController:owningController];
-        [self addSubview:_partialView      = partialController.view];
+        [self fillPartialFrame];
+        
+        @weakify(self);
+        [partialContext subscribeDidEnd:^(id<MKContext> context) {
+            @strongify(self);
+            [self removePartialController];
+        }];
     }
 }
 
@@ -125,10 +129,9 @@
     {
         [_controller  willMoveToParentViewController:nil];
         [_controller  removeFromParentViewController];
-        [_partialView removeFromSuperview];
+        [_controller.view removeFromSuperview];
         [_controller  didMoveToParentViewController:nil];
         _controller   = nil;
-        _partialView  = nil;
     }
 }
 
@@ -141,16 +144,20 @@
     return nil;
 }
 
+- (void)fillPartialFrame
+{
+    if (_controller)
+    {
+        CGRect partialFrame = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
+        if (CGRectEqualToRect(_controller.view.frame, partialFrame) == NO)
+            _controller.view.frame = partialFrame;
+    }
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    if (_partialView)
-    {
-        CGRect partialFrame = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
-        if (CGRectEqualToRect(_partialView.frame, partialFrame) == NO)
-            _partialView.frame = partialFrame;
-    }
+    [self fillPartialFrame];
 }
 
 - (void)dealloc
@@ -220,8 +227,7 @@
 
 - (void)completeTransition:(BOOL)didComplete
 {
-    [_partialRegion removePartialController];
-    [_partialRegion addPartialController:_toViewController];
+    [_partialRegion addSubview:_toViewController.view];
 }
 
 - (UIViewController *)viewControllerForKey:(NSString *)key

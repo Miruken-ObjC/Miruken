@@ -29,15 +29,15 @@
     
     @throw [NSException
             exceptionWithName:@"ContextNotAvailable"
-                       reason:@"The supplied object is not a context or contextual object"
-                     userInfo:nil];
+            reason:@"The supplied object is not a context or contextual object"
+            userInfo:nil];
 }
 
 + (MKContext *)contextBoundTo:(id)contextual
 {
     return contextual && [contextual respondsToSelector:@selector(context)]
-        ? [contextual context]
-        : nil;
+    ? [contextual context]
+    : nil;
 }
 
 + (void)endContextBoundTo:(id)contextual
@@ -76,7 +76,7 @@
         childContext = [context newChildContext];
         [child setContext:childContext];
     }
-
+    
     return childContext;
 }
 

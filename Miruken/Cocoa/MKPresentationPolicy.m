@@ -92,7 +92,7 @@
     
     if (_specified.providesPresentationContextTransitionStyle)
         viewController.providesPresentationContextTransitionStyle =
-            _providesPresentationContextTransitionStyle;
+        _providesPresentationContextTransitionStyle;
     
     if (_specified.transitionDelegate)
     {
@@ -147,7 +147,7 @@
         else
             otherPolicy.animationOptions = _animationOptions;
     }
- 
+    
     if (_specified.transitionDelegate && (otherPolicy->_specified.transitionDelegate == NO))
         otherPolicy.transitionDelegate = _transitionDelegate;
 }

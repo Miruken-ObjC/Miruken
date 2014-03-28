@@ -23,15 +23,15 @@
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)
-        animationControllerForPresentedController:(UIViewController *)presented
-                             presentingController:(UIViewController *)presenting
-                                 sourceController:(UIViewController *)source
+animationControllerForPresentedController:(UIViewController *)presented
+presentingController:(UIViewController *)presenting
+sourceController:(UIViewController *)source
 {
     return self;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)
-    animationControllerForDismissedController:(UIViewController *)dismissed
+animationControllerForDismissedController:(UIViewController *)dismissed
 {
     return self;
 }
@@ -45,20 +45,16 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    UIView *containerView = [transitionContext containerView];
-    
+    UIView           *containerView      = [transitionContext containerView];
     UIViewController *fromViewController =
-        [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    if (fromViewController)
-        [containerView addSubview:fromViewController.view];
+    [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController   =
+    [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    UIViewController *toViewController =
-        [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    if (toViewController)
-        [containerView addSubview:toViewController.view];
-    
-    if (fromViewController)
+    if (fromViewController.view && toViewController.view)
     {
+        [containerView addSubview:fromViewController.view];
+        [containerView addSubview:toViewController.view];
         [UIView transitionFromView:fromViewController.view
                             toView:toViewController.view
                           duration:[self transitionDuration:transitionContext]
@@ -69,6 +65,7 @@
     }
     else
     {
+        [containerView addSubview:toViewController.view];
         [UIView transitionWithView:containerView
                           duration:[self transitionDuration:transitionContext]
                            options:_animationOptions animations:^{

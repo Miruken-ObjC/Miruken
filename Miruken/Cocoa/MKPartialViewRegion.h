@@ -14,6 +14,6 @@
 
 - (MKContext *)context;
 
-- (UIViewController *)controller;
+- (id)controller;
 
 @end
