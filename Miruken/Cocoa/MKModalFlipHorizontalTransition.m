@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKFlipHorizontalTransition.h"
+#import "MKModalFlipHorizontalTransition.h"
 
-@implementation MKFlipHorizontalTransition
+@implementation MKModalFlipHorizontalTransition
 
 #pragma mark - UIViewControllerTransitioningDelegate
 
@@ -37,17 +37,17 @@
 {
     UIView           *containerView      = [transitionContext containerView];
     UIViewController *fromViewController =
-        [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     [containerView addSubview:fromViewController.view];
     
     UIViewController *toViewController   =
-        [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     [containerView addSubview:toViewController.view];
     
     UIViewAnimationOptions animationOption
-        = [toViewController.presentedViewController isEqual:fromViewController]
-        ? UIViewAnimationOptionTransitionFlipFromLeft
-        : UIViewAnimationOptionTransitionFlipFromRight;
+    = [toViewController.presentedViewController isEqual:fromViewController]
+    ? UIViewAnimationOptionTransitionFlipFromLeft
+    : UIViewAnimationOptionTransitionFlipFromRight;
     
     [UIView transitionFromView:fromViewController.view
                         toView:toViewController.view

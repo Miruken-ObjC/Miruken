@@ -18,7 +18,7 @@
 @property (assign, nonatomic) UIViewAnimationOptions   animationOptions;
 @property (strong, nonatomic) id<UIViewControllerTransitioningDelegate> transitionDelegate;
 
-- (void)applyToViewController:(UIViewController *)viewController;
+- (void)applyPolicyToViewController:(UIViewController *)viewController;
 
 - (void)mergeIntoPolicy:(MKPresentationPolicy *)otherPolicy;
 

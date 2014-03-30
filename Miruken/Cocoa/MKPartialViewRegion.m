@@ -56,13 +56,13 @@
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     if ([composer handle:presentationPolicy greedy:YES])
     {
-        [presentationPolicy applyToViewController:viewController];
+        [presentationPolicy applyPolicyToViewController:viewController];
         isModal = presentationPolicy.isModal;
     }
     
     if (isModal == NO)
     {
-        if (self.context != composer && presentationPolicy.definesPresentationContext == NO)
+        if (self.context != composer)
         {
             UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
             UINavigationController *navigationController = owner.navigationController;
@@ -76,7 +76,7 @@
         
         UIViewController *fromController = _controller;
         
-        [self removePartialController];
+        [self removePartialControllerAnimated:NO];
         [self addPartialController:viewController];
         
         if (_controller && _controller.transitioningDelegate)
@@ -87,7 +87,7 @@
                                      toViewController:_controller];
             
             id<UIViewControllerAnimatedTransitioning> transitionController =
-            [viewController.transitioningDelegate
+            [_controller.transitioningDelegate
              animationControllerForPresentedController:_controller
              presentingController:fromController
              sourceController:fromController];
@@ -118,15 +118,26 @@
         @weakify(self);
         [partialContext subscribeDidEnd:^(id<MKContext> context) {
             @strongify(self);
-            [self removePartialController];
+            [self removePartialControllerAnimated:YES];
         }];
     }
 }
 
-- (void)removePartialController
+- (void)removePartialControllerAnimated:(BOOL)animated
 {
     if (_controller)
     {
+        if (animated && _controller.transitioningDelegate)
+        {
+            MKPartialTransitionContext *partialTransition =
+            [MKPartialTransitionContext partialRegion:self
+                                   fromViewController:_controller
+                                     toViewController:nil];
+            
+            id<UIViewControllerAnimatedTransitioning> transitionController =
+            [_controller.transitioningDelegate animationControllerForDismissedController:_controller];
+            [transitionController animateTransition:partialTransition];
+        }
         [_controller  willMoveToParentViewController:nil];
         [_controller  removeFromParentViewController];
         [_controller.view removeFromSuperview];
@@ -241,12 +252,16 @@
 
 - (CGRect)initialFrameForViewController:(UIViewController *)vc
 {
-    return CGRectZero;
+    return vc == _toViewController
+         ? CGRectZero
+         : _fromViewController.view.frame;
 }
 
 - (CGRect)finalFrameForViewController:(UIViewController *)vc
 {
-    return CGRectZero;
+    return vc == _toViewController
+         ? _toViewController.view.frame
+         : CGRectZero;
 }
 
 @end

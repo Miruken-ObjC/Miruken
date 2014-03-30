@@ -8,58 +8,15 @@
 
 #import "MKCallbackHandler.h"
 #import "MKPresentationPolicy.h"
+#import "MKModalPresentationScope.h"
 
 typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 @interface MKCallbackHandler (Presentation)
 
-#pragma mark - Modal presentations
-
-- (instancetype)presentModal;
-
-- (instancetype)presentFullScreen;
-
-- (instancetype)presentPageSheet;
-
-- (instancetype)presentFormSheet;
-
-- (instancetype)presentCurrent;
-
-- (instancetype)presentationStyle:(UIModalPresentationStyle)presentationStyle;
-
-#pragma mark - Modal transitions
-
-- (instancetype)modalTransitionCoverVertical;
-
-- (instancetype)modalTransitionFlipHorizontal;
-
-- (instancetype)modalTransitionCrossDissolve;
-
-- (instancetype)modalTransitionPartialCurl;
-
-- (instancetype)modalTransitionStyle:(UIModalTransitionStyle)transitionStyle;
-
-#pragma mark - Animation options
-
-- (instancetype)transitionFlipFromLeft;
-
-- (instancetype)transitionFlipFromRight;
-
-- (instancetype)transitionCurlUp;
-
-- (instancetype)transitionCurlDown;
-
-- (instancetype)transitionCrossDissolve;
-
-- (instancetype)transitionFlipFromTop;
-
-- (instancetype)transitionFlipFromBottom;
+- (MKModalPresentationScope *)modal;
 
 - (instancetype)animationOptions:(UIViewAnimationOptions)options;
-
-- (instancetype)definesPresentationContext;
-
-- (instancetype)providesPresentationContextTransition;
 
 - (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;
 

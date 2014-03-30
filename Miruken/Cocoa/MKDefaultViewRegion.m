@@ -34,7 +34,7 @@
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     if ([composer handle:presentationPolicy greedy:YES])
     {
-        [presentationPolicy applyToViewController:viewController];
+        [presentationPolicy applyPolicyToViewController:viewController];
         isModal = presentationPolicy.isModal;
     }
     

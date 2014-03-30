@@ -7,8 +7,8 @@
 //
 
 #import "MKPresentationPolicy.h"
-#import "MKFlipHorizontalTransition.h"
-#import "MKViewAnimationTransition.h"
+#import "MKModalFlipHorizontalTransition.h"
+#import "MKViewAnimationOptionsTransition.h"
 
 @implementation MKPresentationPolicy
 {
@@ -82,7 +82,7 @@
     _specified.transitionDelegate = YES;
 }
 
-- (void)applyToViewController:(UIViewController *)viewController
+- (void)applyPolicyToViewController:(UIViewController *)viewController
 {
     if (_specified.modalPresentationStyle)
         viewController.modalPresentationStyle = _modalPresentationStyle;
@@ -100,7 +100,7 @@
     }
     else if (_specified.animationOptions)
     {
-        _transitionDelegate = [MKViewAnimationTransition transitionWithOptions:_animationOptions];
+        _transitionDelegate = [MKViewAnimationOptionsTransition transitionWithOptions:_animationOptions];
         viewController.transitioningDelegate = _transitionDelegate;
     }
     else if (_specified.modalTransitionStyle)
@@ -108,7 +108,7 @@
         if (_modalTransitionStyle == UIModalTransitionStyleFlipHorizontal &&
             _specified.transitionDelegate == NO)
         {
-            _transitionDelegate = [MKFlipHorizontalTransition new];
+            _transitionDelegate = [MKModalFlipHorizontalTransition new];
             viewController.transitioningDelegate = _transitionDelegate;
         }
         else
@@ -140,13 +140,8 @@
         (otherPolicy->_specified.providesPresentationContextTransitionStyle == NO))
         otherPolicy.providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
     
-    if (_specified.animationOptions)
-    {
-        if (otherPolicy->_specified.animationOptions)
-            otherPolicy.animationOptions |= _animationOptions;
-        else
-            otherPolicy.animationOptions = _animationOptions;
-    }
+    if (_specified.animationOptions && (otherPolicy->_specified.animationOptions == NO))
+        otherPolicy.animationOptions = _animationOptions;
     
     if (_specified.transitionDelegate && (otherPolicy->_specified.transitionDelegate == NO))
         otherPolicy.transitionDelegate = _transitionDelegate;

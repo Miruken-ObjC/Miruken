@@ -78,6 +78,8 @@
     // This delegate often involves circularities so we clear it to be safe.
     
     self.transitioningDelegate = nil;
+    
+    [self swizzleContextual_dealloc];
 }
 
 @end
