@@ -9,12 +9,15 @@
 #import "MKCallbackHandler.h"
 #import "MKPresentationPolicy.h"
 #import "MKModalPresentationScope.h"
+#import "MKAnimatedTransitionScope.h"
 
 typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 @interface MKCallbackHandler (Presentation)
 
 - (MKModalPresentationScope *)modal;
+
+- (MKAnimatedTransitionScope *)transition;
 
 - (instancetype)animationOptions:(UIViewAnimationOptions)options;
 

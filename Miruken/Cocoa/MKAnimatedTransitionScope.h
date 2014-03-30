@@ -27,4 +27,8 @@
 
 - (instancetype)flipFromBottom;
 
+- (instancetype)duration:(NSTimeInterval)duration;
+
+- (instancetype)edgeInsets:(UIEdgeInsets)edgeInsets;
+
 @end

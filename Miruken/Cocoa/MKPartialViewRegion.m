@@ -29,6 +29,7 @@
 {
     MKContext        *_context;
     UIViewController *_controller;
+    NSArray          *_constraints;
 }
 
 - (MKContext *)context
@@ -51,16 +52,14 @@
 
 - (void)presentViewController:(UIViewController *)viewController
 {
-    BOOL                  isModal            = NO;
-    MKCallbackHandler    *composer           = self.composer;
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    if ([composer handle:presentationPolicy greedy:YES])
-    {
-        [presentationPolicy applyPolicyToViewController:viewController];
-        isModal = presentationPolicy.isModal;
-    }
+    MKCallbackHandler    *composer              = self.composer;
+    MKPresentationPolicy *presentationPolicy    = [MKPresentationPolicy new];
+    BOOL                  hasPresentationPolicy = NO;
     
-    if (isModal == NO)
+    if ((hasPresentationPolicy = [composer handle:presentationPolicy greedy:YES]))
+        [presentationPolicy applyPolicyToViewController:viewController];
+    
+    if (hasPresentationPolicy && presentationPolicy.isModal == NO)
     {
         if (self.context != composer)
         {
@@ -78,6 +77,7 @@
         
         [self removePartialControllerAnimated:NO];
         [self addPartialController:viewController];
+        [self applyConstraintsToView:_controller.view policy:presentationPolicy];
         
         if (_controller && _controller.transitioningDelegate)
         {
@@ -113,7 +113,6 @@
         [_controller       willMoveToParentViewController:owningController];
         [owningController  addChildViewController:partialController];
         [partialController didMoveToParentViewController:owningController];
-        [self fillPartialFrame];
         
         @weakify(self);
         [partialContext subscribeDidEnd:^(id<MKContext> context) {
@@ -144,6 +143,9 @@
         [_controller  didMoveToParentViewController:nil];
         _controller   = nil;
     }
+    
+    if (_constraints)
+        [self removeConstraints:_constraints];
 }
 
 - (UIViewController<MKContextual> *)owningViewController
@@ -155,20 +157,25 @@
     return nil;
 }
 
-- (void)fillPartialFrame
+- (NSArray *)applyConstraintsToView:(UIView *)view policy:(MKPresentationPolicy *)policy
 {
-    if (_controller)
-    {
-        CGRect partialFrame = CGRectMake(0.0, 0.0, self.frame.size.width, self.frame.size.height);
-        if (CGRectEqualToRect(_controller.view.frame, partialFrame) == NO)
-            _controller.view.frame = partialFrame;
-    }
-}
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    [self fillPartialFrame];
+    NSArray      *constraints;
+    UIEdgeInsets  edgeInsets = policy.edgeInsets;
+    NSDictionary *metrics    = @{ @"top"   : @(edgeInsets.top),
+                                  @"left"  : @(edgeInsets.left),
+                                  @"bottom": @(edgeInsets.bottom),
+                                  @"right" : @(edgeInsets.right)
+                                  };
+    NSDictionary *views      = NSDictionaryOfVariableBindings(view);
+    
+     constraints = @[
+        [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|"
+                                                options:0 metrics:metrics views:views],
+        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-bottom-|"
+                                                options:0 metrics:metrics views:views]
+        ];
+    [self addConstraints:constraints];
+    return constraints;
 }
 
 - (void)dealloc

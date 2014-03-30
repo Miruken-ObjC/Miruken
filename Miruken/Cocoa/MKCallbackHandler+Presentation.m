@@ -19,6 +19,11 @@
     return [MKModalPresentationScope for:self];
 }
 
+- (MKAnimatedTransitionScope *)transition
+{
+    return [MKAnimatedTransitionScope for:self];
+}
+
 - (instancetype)animationOptions:(UIViewAnimationOptions)options
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];

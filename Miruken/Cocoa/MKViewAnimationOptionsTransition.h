@@ -11,6 +11,9 @@
 @interface MKViewAnimationOptionsTransition : NSObject
  <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
 
+@property (assign, nonatomic) NSTimeInterval animationDuration;
+@property (assign, nonatomic) UIEdgeInsets   edgeInsets;
+
 + (instancetype)transitionWithOptions:(UIViewAnimationOptions)options;
 
 @end

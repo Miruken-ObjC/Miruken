@@ -6,20 +6,23 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
+#define kDefaultAnimationDuration              (0.7f)
 #define kViewAnimationOptionsTransitionsMask   (7 << 20)
 
 #import "MKViewAnimationOptionsTransition.h"
 
 @implementation MKViewAnimationOptionsTransition
 {
-    UIViewAnimationOptions _animationOptions;
-    BOOL                   _isPresenting;
+    BOOL                    _isPresenting;
+    UIViewAnimationOptions  _animationOptions;
 }
 
 + (instancetype)transitionWithOptions:(UIViewAnimationOptions)options
 {
     MKViewAnimationOptionsTransition *transition = [self new];
-    transition->_animationOptions                   = options;
+    transition->_animationOptions                = options;
+    transition->_animationDuration               = kDefaultAnimationDuration;
+    transition->_edgeInsets                      = UIEdgeInsetsZero;
     return transition;
 }
 
@@ -45,7 +48,7 @@
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
 {
-    return 0.7f;
+    return _animationDuration;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -70,16 +73,13 @@
     }
     else
     {
-        UIViewAnimationOptions animationOptions;
+        UIViewAnimationOptions animationOptions = _animationOptions;
         if (_isPresenting)
-        {
-            animationOptions = _animationOptions;
             [containerView addSubview:toViewController.view];
-        }
         else
             animationOptions = [self inferInverseAnimationOptions];
         
-        if ([self shouldPerformTransitionWithView])
+        if ([self shouldPerformTransitionWithOptions:animationOptions])
         {
             [UIView transitionWithView:containerView
                               duration:[self transitionDuration:transitionContext]
@@ -104,16 +104,20 @@
     {
         case UIViewAnimationOptionTransitionFlipFromTop:
             options |= UIViewAnimationOptionTransitionFlipFromBottom;
-      
+            break;
+            
         case UIViewAnimationOptionTransitionFlipFromBottom:
             options |= UIViewAnimationOptionTransitionFlipFromTop;
-
+            break;
+            
         case UIViewAnimationOptionTransitionFlipFromLeft:
             options |= UIViewAnimationOptionTransitionFlipFromRight;
-    
+            break;
+            
         case UIViewAnimationOptionTransitionFlipFromRight:
             options |= UIViewAnimationOptionTransitionFlipFromLeft;
-
+            break;
+            
         case UIViewAnimationOptionTransitionCurlDown:
             options |= UIViewAnimationOptionTransitionCurlUp;
             break;
@@ -126,9 +130,9 @@
     return options;
 }
 
-- (BOOL)shouldPerformTransitionWithView
+- (BOOL)shouldPerformTransitionWithOptions:(UIViewAnimationOptions)options
 {
-    UIViewAnimationOptions transition = (_animationOptions & kViewAnimationOptionsTransitionsMask);
+    UIViewAnimationOptions transition = (options & kViewAnimationOptionsTransitionsMask);
     
     return _isPresenting
          ? transition != UIViewAnimationOptionTransitionCurlUp

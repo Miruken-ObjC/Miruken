@@ -544,6 +544,7 @@
 		142FE8D618DF219000569636 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				142FE8F318E874E700569636 /* Transitions */,
 				142FE8CE18DE415300569636 /* MKPresentationPolicy.h */,
 				142FE8CF18DE415300569636 /* MKPresentationPolicy.m */,
 				142FE8E718E84C3F00569636 /* MKModalPresentationScope.h */,
@@ -554,12 +555,19 @@
 				142FE8EC18E84FED00569636 /* MKPresentationPolicyHandler.m */,
 				142FE8D718DF21BB00569636 /* MKCallbackHandler+Presentation.h */,
 				142FE8D818DF21BB00569636 /* MKCallbackHandler+Presentation.m */,
-				142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */,
-				142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */,
-				142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */,
-				142FE8E418E381EC00569636 /* MKViewAnimationOptionsTransition.m */,
 			);
 			name = Presentation;
+			sourceTree = "<group>";
+		};
+		142FE8F318E874E700569636 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */,
+				142FE8E418E381EC00569636 /* MKViewAnimationOptionsTransition.m */,
+				142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */,
+				142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */,
+			);
+			name = Transitions;
 			sourceTree = "<group>";
 		};
 		1462993418B02DCD002BCBF6 /* Callbacks */ = {

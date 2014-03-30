@@ -61,6 +61,22 @@
     return self;
 }
 
+- (instancetype)duration:(NSTimeInterval)duration
+{
+    if (_presentationPolicy == nil)
+        _presentationPolicy = [MKPresentationPolicy new];
+    _presentationPolicy.animationDuration = duration;
+    return self;
+}
+
+- (instancetype)edgeInsets:(UIEdgeInsets)edgeInsets
+{
+    if (_presentationPolicy == nil)
+        _presentationPolicy = [MKPresentationPolicy new];
+    _presentationPolicy.edgeInsets = edgeInsets;
+    return self;
+}
+
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
 {
     if (_presentationPolicy && [callback isKindOfClass:MKPresentationPolicy.class])
@@ -68,7 +84,7 @@
         [_presentationPolicy mergeIntoPolicy:callback];
         return YES;
     }
-    return [self.decoratee handle:callback greedy:greedy];
+    return [super handle:callback greedy:greedy composition:composer];
 }
 
 @end
