@@ -6,12 +6,9 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKCallbackHandlerDecorator.h"
-#import "MKPresentationPolicy.h"
+#import "MKPresentationScope.h"
 
-@interface MKModalPresentationScope : MKCallbackHandlerDecorator
-
-+ (instancetype)for:(MKCallbackHandler *)handler;
+@interface MKModalPresentationScope : MKPresentationScope
 
 - (instancetype)fullScreen;
 

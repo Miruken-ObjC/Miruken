@@ -55,9 +55,9 @@
 {
     UIView           *containerView      = [transitionContext containerView];
     UIViewController *fromViewController =
-        [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController   =
-        [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     if (fromViewController.view && toViewController.view)
     {
@@ -73,11 +73,10 @@
     }
     else
     {
-        UIViewAnimationOptions animationOptions = _animationOptions;
-        if (_isPresenting)
-            [containerView addSubview:toViewController.view];
-        else
-            animationOptions = [self inferInverseAnimationOptions];
+        UIViewAnimationOptions animationOptions
+                             = _isPresenting
+                             ? _animationOptions
+                             : [self inferInverseAnimationOptions];
         
         if ([self shouldPerformTransitionWithOptions:animationOptions])
         {

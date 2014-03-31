@@ -54,12 +54,12 @@
 {
     MKCallbackHandler    *composer              = self.composer;
     MKPresentationPolicy *presentationPolicy    = [MKPresentationPolicy new];
-    BOOL                  hasPresentationPolicy = NO;
+    BOOL                  hasPresentationPolicy;
     
     if ((hasPresentationPolicy = [composer handle:presentationPolicy greedy:YES]))
         [presentationPolicy applyPolicyToViewController:viewController];
     
-    if (hasPresentationPolicy && presentationPolicy.isModal == NO)
+    if (! (hasPresentationPolicy && presentationPolicy.isModal))
     {
         if (self.context != composer)
         {
@@ -76,15 +76,16 @@
         UIViewController *fromController = _controller;
         
         [self removePartialControllerAnimated:NO];
-        [self addPartialController:viewController];
-        [self applyConstraintsToView:_controller.view policy:presentationPolicy];
+        [self addPartialController:viewController presenationPolicy:
+         hasPresentationPolicy ? presentationPolicy : nil];
         
         if (_controller && _controller.transitioningDelegate)
         {
             MKPartialTransitionContext *partialTransition =
             [MKPartialTransitionContext partialRegion:self
                                    fromViewController:fromController
-                                     toViewController:_controller];
+                                     toViewController:_controller
+             ];
             
             id<UIViewControllerAnimatedTransitioning> transitionController =
             [_controller.transitioningDelegate
@@ -94,8 +95,7 @@
             
             [transitionController animateTransition:partialTransition];
         }
-        else
-            [self addSubview:_controller.view];
+        
         return;
     }
     
@@ -103,6 +103,7 @@
 }
 
 - (void)addPartialController:(UIViewController *)partialController
+           presenationPolicy:(MKPresentationPolicy *)presentationPolicy
 {
     if (partialController)
     {
@@ -113,6 +114,8 @@
         [_controller       willMoveToParentViewController:owningController];
         [owningController  addChildViewController:partialController];
         [partialController didMoveToParentViewController:owningController];
+        
+        [self addPartialView:_controller.view policy:presentationPolicy];
         
         @weakify(self);
         [partialContext subscribeDidEnd:^(id<MKContext> context) {
@@ -157,10 +160,10 @@
     return nil;
 }
 
-- (NSArray *)applyConstraintsToView:(UIView *)view policy:(MKPresentationPolicy *)policy
+- (NSArray *)addPartialView:(UIView *)view policy:(MKPresentationPolicy *)policy
 {
     NSArray      *constraints;
-    UIEdgeInsets  edgeInsets = policy.edgeInsets;
+    UIEdgeInsets  edgeInsets = policy ? policy.edgeInsets : UIEdgeInsetsZero;
     NSDictionary *metrics    = @{ @"top"   : @(edgeInsets.top),
                                   @"left"  : @(edgeInsets.left),
                                   @"bottom": @(edgeInsets.bottom),
@@ -168,12 +171,13 @@
                                   };
     NSDictionary *views      = NSDictionaryOfVariableBindings(view);
     
-     constraints = @[
-        [NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|"
-                                                options:0 metrics:metrics views:views],
-        [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-bottom-|"
-                                                options:0 metrics:metrics views:views]
-        ];
+    view.translatesAutoresizingMaskIntoConstraints = NO;
+    [self addSubview:view];
+    
+    constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|"
+                        options:0 metrics:metrics views:views] arrayByAddingObjectsFromArray:
+                   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-bottom-|"
+                        options:0 metrics:metrics views:views]];
     [self addConstraints:constraints];
     return constraints;
 }
@@ -190,9 +194,9 @@
 
 @implementation MKPartialTransitionContext
 {
-    __weak MKPartialViewRegion *_partialRegion;
-    __weak UIViewController    *_fromViewController;
-    __weak UIViewController    *_toViewController;
+    __weak MKPartialViewRegion  *_partialRegion;
+    __weak UIViewController     *_fromViewController;
+    __weak UIViewController     *_toViewController;
 }
 
 + (instancetype)partialRegion:(MKPartialViewRegion *)partialRegion
@@ -245,7 +249,6 @@
 
 - (void)completeTransition:(BOOL)didComplete
 {
-    [_partialRegion addSubview:_toViewController.view];
 }
 
 - (UIViewController *)viewControllerForKey:(NSString *)key

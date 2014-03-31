@@ -9,15 +9,12 @@
 #import "MKModalPresentationScope.h"
 
 @implementation MKModalPresentationScope
-{
-    MKPresentationPolicy *_presentationPolicy;
-}
 
 + (instancetype)for:(MKCallbackHandler *)handler
 {
-    MKModalPresentationScope *scope  = [[self alloc] initWithDecoratee:handler];
-    scope->_presentationPolicy       = [MKPresentationPolicy new];
-    scope->_presentationPolicy.modal = YES;
+    MKModalPresentationScope *scope = [super for:handler];
+    scope.presentationPolicy        = [MKPresentationPolicy new];
+    scope.presentationPolicy.modal  = YES;
     return scope;
 }
 
@@ -45,7 +42,7 @@
 
 - (instancetype)presentationStyle:(UIModalPresentationStyle)presentationStyle
 {
-    _presentationPolicy.modalPresentationStyle = presentationStyle;
+    self.presentationPolicy.modalPresentationStyle = presentationStyle;
     return self;
 }
 
@@ -73,30 +70,20 @@
 
 - (instancetype)transitionStyle:(UIModalTransitionStyle)transitionStyle
 {
-    _presentationPolicy.modalTransitionStyle = transitionStyle;
+    self.presentationPolicy.modalTransitionStyle = transitionStyle;
     return self;
 }
 
 - (instancetype)definesPresentationContext
 {
-    _presentationPolicy.definesPresentationContext = YES;
+    self.presentationPolicy.definesPresentationContext = YES;
     return self;
 }
 
 - (instancetype)providesPresentationContextTransition
 {
-    _presentationPolicy.providesPresentationContextTransitionStyle = YES;
+    self.presentationPolicy.providesPresentationContextTransitionStyle = YES;
     return self;
-}
-
-- (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
-{
-    if ([callback isKindOfClass:MKPresentationPolicy.class])
-    {
-        [_presentationPolicy mergeIntoPolicy:callback];
-        return YES;
-    }
-    return [super handle:callback greedy:greedy composition:composer];
 }
 
 @end

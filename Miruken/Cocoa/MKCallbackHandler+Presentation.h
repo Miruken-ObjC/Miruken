@@ -19,6 +19,8 @@ typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 - (MKAnimatedTransitionScope *)transition;
 
+- (instancetype)edgeInsets:(UIEdgeInsets)edgeInsets;
+
 - (instancetype)animationOptions:(UIViewAnimationOptions)options;
 
 - (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;

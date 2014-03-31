@@ -6,12 +6,9 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKCallbackHandlerDecorator.h"
-#import "MKPresentationPolicy.h"
+#import "MKPresentationScope.h"
 
-@interface MKAnimatedTransitionScope : MKCallbackHandlerDecorator
-
-+ (instancetype)for:(MKCallbackHandler *)handler;
+@interface MKAnimatedTransitionScope : MKPresentationScope
 
 - (instancetype)flipFromLeft;
 
@@ -28,7 +25,5 @@
 - (instancetype)flipFromBottom;
 
 - (instancetype)duration:(NSTimeInterval)duration;
-
-- (instancetype)edgeInsets:(UIEdgeInsets)edgeInsets;
 
 @end
