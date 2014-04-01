@@ -76,8 +76,7 @@
         UIViewController *fromController = _controller;
         
         [self removePartialControllerAnimated:NO];
-        [self addPartialController:viewController presenationPolicy:
-         hasPresentationPolicy ? presentationPolicy : nil];
+        [self addPartialController:viewController];
         
         if (_controller && _controller.transitioningDelegate)
         {
@@ -103,7 +102,6 @@
 }
 
 - (void)addPartialController:(UIViewController *)partialController
-           presenationPolicy:(MKPresentationPolicy *)presentationPolicy
 {
     if (partialController)
     {
@@ -115,7 +113,7 @@
         [owningController  addChildViewController:partialController];
         [partialController didMoveToParentViewController:owningController];
         
-        [self addPartialView:_controller.view policy:presentationPolicy];
+        [self addPartialView:_controller.view];
         
         @weakify(self);
         [partialContext subscribeDidEnd:^(id<MKContext> context) {
@@ -160,24 +158,18 @@
     return nil;
 }
 
-- (NSArray *)addPartialView:(UIView *)view policy:(MKPresentationPolicy *)policy
+- (NSArray *)addPartialView:(UIView *)view
 {
     NSArray      *constraints;
-    UIEdgeInsets  edgeInsets = policy ? policy.edgeInsets : UIEdgeInsetsZero;
-    NSDictionary *metrics    = @{ @"top"   : @(edgeInsets.top),
-                                  @"left"  : @(edgeInsets.left),
-                                  @"bottom": @(edgeInsets.bottom),
-                                  @"right" : @(edgeInsets.right)
-                                  };
-    NSDictionary *views      = NSDictionaryOfVariableBindings(view);
+    NSDictionary *views = NSDictionaryOfVariableBindings(view);
     
     view.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:view];
     
-    constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-left-[view]-right-|"
-                        options:0 metrics:metrics views:views] arrayByAddingObjectsFromArray:
-                   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-top-[view]-bottom-|"
-                        options:0 metrics:metrics views:views]];
+    constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"
+                        options:0 metrics:nil views:views] arrayByAddingObjectsFromArray:
+                   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|"
+                        options:0 metrics:nil views:views]];
     [self addConstraints:constraints];
     return constraints;
 }

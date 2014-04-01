@@ -12,9 +12,8 @@
 
 + (instancetype)for:(MKCallbackHandler *)handler
 {
-    MKModalPresentationScope *scope = [super for:handler];
-    scope.presentationPolicy        = [MKPresentationPolicy new];
-    scope.presentationPolicy.modal  = YES;
+    MKModalPresentationScope *scope         = [super for:handler];
+    [scope requirePresentationPolicy].modal = YES;
     return scope;
 }
 

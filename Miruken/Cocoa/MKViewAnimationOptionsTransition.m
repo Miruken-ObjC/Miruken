@@ -55,9 +55,9 @@
 {
     UIView           *containerView      = [transitionContext containerView];
     UIViewController *fromViewController =
-    [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+        [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController   =
-    [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+        [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     if (fromViewController.view && toViewController.view)
     {

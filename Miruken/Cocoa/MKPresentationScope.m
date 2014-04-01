@@ -31,7 +31,7 @@
         handled = YES;
     }
     return (handled && greedy == NO)
-        || [super handle:callback greedy:greedy composition:composer];
+        || (handled | [super handle:callback greedy:greedy composition:composer]);
 }
 
 @end

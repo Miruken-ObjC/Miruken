@@ -24,13 +24,6 @@
     return [MKAnimatedTransitionScope for:self];
 }
 
-- (instancetype)edgeInsets:(UIEdgeInsets)edgeInsets
-{
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    presentationPolicy.edgeInsets            = edgeInsets;
-    return [self usePresentationPolicy:presentationPolicy];;
-}
-
 - (instancetype)animationOptions:(UIViewAnimationOptions)options
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
