@@ -6,13 +6,9 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MKAnimatedTransition.h"
 
-@interface MKViewAnimationOptionsTransition : NSObject
- <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
-
-@property (assign, nonatomic) NSTimeInterval animationDuration;
-@property (assign, nonatomic) UIEdgeInsets   edgeInsets;
+@interface MKViewAnimationOptionsTransition : MKAnimatedTransition
 
 + (instancetype)transitionWithOptions:(UIViewAnimationOptions)options;
 

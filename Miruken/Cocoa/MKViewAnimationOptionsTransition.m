@@ -6,14 +6,12 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#define kDefaultAnimationDuration              (0.7f)
 #define kViewAnimationOptionsTransitionsMask   (7 << 20)
 
 #import "MKViewAnimationOptionsTransition.h"
 
 @implementation MKViewAnimationOptionsTransition
 {
-    BOOL                    _isPresenting;
     UIViewAnimationOptions  _animationOptions;
 }
 
@@ -21,50 +19,23 @@
 {
     MKViewAnimationOptionsTransition *transition = [self new];
     transition->_animationOptions                = options;
-    transition->_animationDuration               = kDefaultAnimationDuration;
-    transition->_edgeInsets                      = UIEdgeInsetsZero;
     return transition;
 }
 
-#pragma mark - UIViewControllerTransitioningDelegate
-
-- (id<UIViewControllerAnimatedTransitioning>)
-    animationControllerForPresentedController:(UIViewController *)presented
-                         presentingController:(UIViewController *)presenting
-                             sourceController:(UIViewController *)source
-{
-    _isPresenting = YES;
-    return self;
-}
-
-- (id <UIViewControllerAnimatedTransitioning>)
-    animationControllerForDismissedController:(UIViewController *)dismissed
-{
-    _isPresenting = NO;
-    return self;
-}
-
-#pragma mark - UIViewControllerAnimatedTransitioning
-
-- (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext
-{
-    return _animationDuration;
-}
-
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+       fromViewController:(UIViewController *)fromViewController
+         toViewController:(UIViewController *)toViewController
 {
-    UIView           *containerView      = [transitionContext containerView];
-    UIViewController *fromViewController =
-        [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController *toViewController   =
-        [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    
-    if (fromViewController.view && toViewController.view)
+    UIView *containerView = [transitionContext containerView];
+    UIView *fromView      = fromViewController.view;
+    UIView *toView        = toViewController.view;
+
+    if (fromView && toView)
     {
-        [containerView addSubview:fromViewController.view];
-        [containerView addSubview:toViewController.view];
-        [UIView transitionFromView:fromViewController.view
-                            toView:toViewController.view
+        [containerView addSubview:fromView];
+        [containerView addSubview:toView];
+        [UIView transitionFromView:fromView
+                            toView:toView
                           duration:[self transitionDuration:transitionContext]
                            options:_animationOptions
                         completion:^(BOOL finished) {
@@ -74,7 +45,7 @@
     else
     {
         UIViewAnimationOptions animationOptions
-                             = _isPresenting
+                             = self.isPresenting
                              ? _animationOptions
                              : [self inferInverseAnimationOptions];
         
@@ -83,10 +54,10 @@
             [UIView transitionWithView:containerView
                               duration:[self transitionDuration:transitionContext]
                                options:animationOptions animations:^{
-                                   if (_isPresenting)
-                                       [containerView addSubview:toViewController.view];
+                                   if (self.isPresenting)
+                                       [containerView addSubview:toView];
                                    else
-                                       [toViewController.view removeFromSuperview];
+                                       [toView removeFromSuperview];
                                } completion:^(BOOL finished) {
                                    [transitionContext completeTransition:finished];
                                }];
@@ -133,7 +104,7 @@
 {
     UIViewAnimationOptions transition = (options & kViewAnimationOptionsTransitionsMask);
     
-    return _isPresenting
+    return self.isPresenting
          ? transition != UIViewAnimationOptionTransitionCurlUp
          : transition != UIViewAnimationOptionTransitionCurlDown;
 }

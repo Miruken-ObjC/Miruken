@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "MKAnimatedTransition.h"
 
-@interface MKModalFlipHorizontalTransition : NSObject
-<UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
+@interface MKModalFlipHorizontalTransition : MKAnimatedTransition
 
 @end
