@@ -41,7 +41,25 @@
 
 - (instancetype)pushFromBottomRight;
 
-- (instancetype)pushFrom:(MKStartingPosition)position;
+- (instancetype)pushFromPosition:(MKStartingPosition)position;
+
+- (instancetype)moveInFromTop;
+
+- (instancetype)moveInFromBottom;
+
+- (instancetype)moveInFromLeft;
+
+- (instancetype)moveInFromRight;
+
+- (instancetype)moveInFromTopLeft;
+
+- (instancetype)moveInFromTopRight;
+
+- (instancetype)moveInFromBottomLeft;
+
+- (instancetype)moveInFromBottomRight;
+
+- (instancetype)moveInFromPosition:(MKStartingPosition)position;
 
 - (instancetype)animationOptions:(UIViewAnimationOptions)options;
 

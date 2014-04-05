@@ -30,8 +30,8 @@
 		142FE8F218E856A500569636 /* MKAnimatedTransitionScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8F018E856A500569636 /* MKAnimatedTransitionScope.m */; };
 		142FE8F618E8E9F600569636 /* MKPresentationScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8F418E8E9F600569636 /* MKPresentationScope.h */; };
 		142FE8F718E8E9F600569636 /* MKPresentationScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8F518E8E9F600569636 /* MKPresentationScope.m */; };
-		142FE8FB18ECC60200569636 /* MKAnimatedPushTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8F918ECC60200569636 /* MKAnimatedPushTransition.h */; };
-		142FE8FC18ECC60200569636 /* MKAnimatedPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */; };
+		142FE8FB18ECC60200569636 /* MKPushMoveInTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8F918ECC60200569636 /* MKPushMoveInTransition.h */; };
+		142FE8FC18ECC60200569636 /* MKPushMoveInTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8FA18ECC60200569636 /* MKPushMoveInTransition.m */; };
 		142FE8FF18ECC69400569636 /* MKAnimatedTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */; };
 		142FE90018ECC69400569636 /* MKAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */; };
 		142FE90318F0855300569636 /* MKTransitionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE90118F0855300569636 /* MKTransitionContext.h */; };
@@ -240,8 +240,8 @@
 		142FE8F418E8E9F600569636 /* MKPresentationScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPresentationScope.h; sourceTree = "<group>"; };
 		142FE8F518E8E9F600569636 /* MKPresentationScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPresentationScope.m; sourceTree = "<group>"; };
 		142FE8F818ECC43900569636 /* MKStartingPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKStartingPosition.h; sourceTree = "<group>"; };
-		142FE8F918ECC60200569636 /* MKAnimatedPushTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimatedPushTransition.h; sourceTree = "<group>"; };
-		142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedPushTransition.m; sourceTree = "<group>"; };
+		142FE8F918ECC60200569636 /* MKPushMoveInTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPushMoveInTransition.h; sourceTree = "<group>"; };
+		142FE8FA18ECC60200569636 /* MKPushMoveInTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPushMoveInTransition.m; sourceTree = "<group>"; };
 		142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimatedTransition.h; sourceTree = "<group>"; };
 		142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedTransition.m; sourceTree = "<group>"; };
 		142FE90118F0855300569636 /* MKTransitionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTransitionContext.h; sourceTree = "<group>"; };
@@ -586,8 +586,8 @@
 				142FE90218F0855300569636 /* MKTransitionContext.m */,
 				142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */,
 				142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */,
-				142FE8F918ECC60200569636 /* MKAnimatedPushTransition.h */,
-				142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */,
+				142FE8F918ECC60200569636 /* MKPushMoveInTransition.h */,
+				142FE8FA18ECC60200569636 /* MKPushMoveInTransition.m */,
 				142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */,
 				142FE8E418E381EC00569636 /* MKViewAnimationOptionsTransition.m */,
 				142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */,
@@ -983,7 +983,7 @@
 				14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
 				142FE8ED18E84FED00569636 /* MKPresentationPolicyHandler.h in Headers */,
-				142FE8FB18ECC60200569636 /* MKAnimatedPushTransition.h in Headers */,
+				142FE8FB18ECC60200569636 /* MKPushMoveInTransition.h in Headers */,
 				142FE8F118E856A500569636 /* MKAnimatedTransitionScope.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
@@ -1178,7 +1178,7 @@
 				14FD8AB018A7DBF7008077CF /* MKMainThreadDelegate.m in Sources */,
 				14982D9918BA2D830065EE40 /* UIAlertView+Block.m in Sources */,
 				1462997B18B02DCD002BCBF6 /* MKInvocationCallbackHandler.m in Sources */,
-				142FE8FC18ECC60200569636 /* MKAnimatedPushTransition.m in Sources */,
+				142FE8FC18ECC60200569636 /* MKPushMoveInTransition.m in Sources */,
 				14982D2918B16C8E0065EE40 /* MKContextual.m in Sources */,
 				1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */,
 				14982D8E18B92BE70065EE40 /* MKEndContextOnError.m in Sources */,

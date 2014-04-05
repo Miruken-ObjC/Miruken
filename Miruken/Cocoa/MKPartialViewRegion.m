@@ -78,8 +78,8 @@
         
         _transitioning = (_controller != nil);
         BOOL animated  = (viewController.transitioningDelegate != nil);
-        [self removePartialControllerAnimated:animated];
-        [self addPartialController:viewController animated:animated];
+        UIViewController *fromViewController = [self removePartialControllerAnimated:animated];
+        [self addPartialController:viewController fromViewController:fromViewController animated:animated];
         return;
     }
     
@@ -95,7 +95,9 @@
     return nil;
 }
 
-- (void)addPartialController:(UIViewController *)partialController animated:(BOOL)animated
+- (void)addPartialController:(UIViewController *)partialController
+          fromViewController:(UIViewController *)fromViewController
+                    animated:(BOOL)animated
 {
     if (partialController)
     {
@@ -119,11 +121,11 @@
         [self addSubview:partialView];
         
         if (animated)
-            [self animateFromViewController:_controller
+            [self animateFromViewController:fromViewController
                            toViewController:partialController
                                  presenting:YES];
         else
-            [self completeTransitionFromViewController:_controller
+            [self completeTransitionFromViewController:fromViewController
                                       toViewController:partialController
                                               animated:animated];
         
@@ -161,8 +163,10 @@
     [fromViewController.view removeFromSuperview];
 }
 
-- (void)removePartialControllerAnimated:(BOOL)animated
+- (UIViewController *)removePartialControllerAnimated:(BOOL)animated
 {
+    UIViewController *partialController = _controller;
+    
     if (_controller)
     {
         if (_constraints)
@@ -177,11 +181,12 @@
         if (animated && _transitioning == NO)
             [self animateFromViewController:_controller toViewController:nil presenting:NO];
         else if (_transitioning == NO)
-        {
             [_controller.view removeFromSuperview];
-            _controller = nil;
-        }
+
+        _controller = nil;
     }
+    
+    return partialController;
 }
 
 - (void)bindPartialViewToRegion:(UIView *)view

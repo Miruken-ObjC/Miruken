@@ -16,7 +16,7 @@
 #import "MKStartingPosition.h"
 #import "MKTransitionContext.h"
 #import "MKAnimatedTransition.h"
-#import "MKAnimatedPushTransition.h"
+#import "MKPushMoveInTransition.h"
 #import "MKViewAnimationOptionsTransition.h"
 #import "MKPagingMixin.h"
 #import "MKAlertViewMixin.h"

@@ -1,5 +1,5 @@
 //
-//  MKAnimatedPushTransition.h
+//  MKPushMoveInTransition.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 4/2/14.
@@ -9,8 +9,10 @@
 #import "MKAnimatedTransition.h"
 #import "MKStartingPosition.h"
 
-@interface MKAnimatedPushTransition : MKAnimatedTransition
+@interface MKPushMoveInTransition : MKAnimatedTransition
 
 + (instancetype)pushFromPosition:(MKStartingPosition)position;
+
++ (instancetype)moveInFromPosition:(MKStartingPosition)position;
 
 @end

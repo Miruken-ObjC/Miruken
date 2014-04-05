@@ -8,9 +8,11 @@
 
 #import "MKAnimatedTransitionScope.h"
 #import "MKViewAnimationOptionsTransition.h"
-#import "MKAnimatedPushTransition.h"
+#import "MKPushMoveInTransition.h"
 
 @implementation MKAnimatedTransitionScope
+
+#pragma mark - Flip
 
 - (instancetype)flipFromLeft
 {
@@ -21,6 +23,18 @@
 {
     return [self animationOptions:UIViewAnimationOptionTransitionFlipFromRight];
 }
+
+- (instancetype)flipFromTop
+{
+    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromTop];
+}
+
+- (instancetype)flipFromBottom
+{
+    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromBottom];
+}
+
+#pragma mark - Curl
 
 - (instancetype)curlUp
 {
@@ -37,60 +51,101 @@
     return [self animationOptions:UIViewAnimationOptionTransitionCrossDissolve];
 }
 
-- (instancetype)flipFromTop
-{
-    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromTop];
-}
-
-- (instancetype)flipFromBottom
-{
-    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromBottom];
-}
+#pragma mark - Push 
 
 - (instancetype)pushFromTop
 {
-    return [self pushFrom:MKStartingPositionTop];
+    return [self pushFromPosition:MKStartingPositionTop];
 }
 
 - (instancetype)pushFromBottom
 {
-    return [self pushFrom:MKStartingPositionBottom];
+    return [self pushFromPosition:MKStartingPositionBottom];
 }
 
 - (instancetype)pushFromLeft
 {
-    return [self pushFrom:MKStartingPositionLeft];
+    return [self pushFromPosition:MKStartingPositionLeft];
 }
 
 - (instancetype)pushFromRight
 {
-    return [self pushFrom:MKStartingPositionRight];
+    return [self pushFromPosition:MKStartingPositionRight];
 }
 
 - (instancetype)pushFromTopLeft
 {
-    return [self pushFrom:MKStartingPositionTopLeft];
+    return [self pushFromPosition:MKStartingPositionTopLeft];
 }
 
 - (instancetype)pushFromTopRight
 {
-    return [self pushFrom:MKStartingPositionTopRight];
+    return [self pushFromPosition:MKStartingPositionTopRight];
 }
 
 - (instancetype)pushFromBottomLeft
 {
-    return [self pushFrom:MKStartingPositionBottomLeft];
+    return [self pushFromPosition:MKStartingPositionBottomLeft];
 }
 
 - (instancetype)pushFromBottomRight
 {
-    return [self pushFrom:MKStartingPositionBottomRight];
+    return [self pushFromPosition:MKStartingPositionBottomRight];
 }
 
-- (instancetype)pushFrom:(MKStartingPosition)position
+- (instancetype)pushFromPosition:(MKStartingPosition)position
 {
     [self requirePresentationPolicy].transitionDelegate =
-        [MKAnimatedPushTransition pushFromPosition:position];
+        [MKPushMoveInTransition pushFromPosition:position];
+    return self;
+}
+
+#pragma mark - Move In
+
+- (instancetype)moveInFromTop
+{
+    return [self moveInFromPosition:MKStartingPositionTop];
+}
+
+- (instancetype)moveInFromBottom
+{
+    return [self moveInFromPosition:MKStartingPositionBottom];
+}
+
+- (instancetype)moveInFromLeft
+{
+    return [self moveInFromPosition:MKStartingPositionLeft];
+}
+
+- (instancetype)moveInFromRight
+{
+    return [self moveInFromPosition:MKStartingPositionRight];
+}
+
+- (instancetype)moveInFromTopLeft
+{
+    return [self moveInFromPosition:MKStartingPositionTopLeft];
+}
+
+- (instancetype)moveFromTopRight
+{
+    return [self moveInFromPosition:MKStartingPositionTopRight];
+}
+
+- (instancetype)moveInFromBottomLeft
+{
+    return [self moveInFromPosition:MKStartingPositionBottomLeft];
+}
+
+- (instancetype)moveInFromBottomRight
+{
+    return [self moveInFromPosition:MKStartingPositionBottomRight];
+}
+
+- (instancetype)moveInFromPosition:(MKStartingPosition)position
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKPushMoveInTransition moveInFromPosition:position];
     return self;
 }
 
