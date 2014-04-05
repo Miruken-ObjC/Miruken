@@ -21,7 +21,7 @@ typedef void (^AlwaysCallback)();
 
 typedef id   (^DoneFilter)(id result);
 typedef id   (^FailFilter)(id reason);
-typedef id   (^ProgressFilter)(id progress, BOOL queued);
+typedef id   (^ProgressFilter)(id progress, BOOL *queued);
 
 typedef NS_ENUM(NSUInteger, DeferredState) {
     DeferredStatePending = 0,

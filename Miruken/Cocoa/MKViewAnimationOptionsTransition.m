@@ -57,7 +57,7 @@
                                    if (self.isPresenting)
                                        [containerView addSubview:toView];
                                    else
-                                       [toView removeFromSuperview];
+                                       [fromView removeFromSuperview];
                                } completion:^(BOOL finished) {
                                    [transitionContext completeTransition:finished];
                                }];

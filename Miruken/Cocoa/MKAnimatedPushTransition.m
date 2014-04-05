@@ -30,7 +30,7 @@
     
     if (fromView)
     {
-        fromView.frame = containerView.frame;
+        fromView.frame = containerView.bounds;
         [containerView addSubview:fromView];
     }
     
@@ -74,6 +74,7 @@
             break;
     }
     
+    frame.size = containerView.frame.size;
     view.frame = frame;
 }
 

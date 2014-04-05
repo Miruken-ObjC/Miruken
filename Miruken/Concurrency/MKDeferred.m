@@ -854,8 +854,8 @@
           cancel:^{ [_pipe cancel]; }]
          progress:^(id progress, BOOL queued) {
              if (_progressFilter)
-                 progress = _progressFilter(progress, queued);
-             [_pipe notify:progress];
+                 progress = _progressFilter(progress, &queued);
+             [_pipe notify:progress queue:queued];
          }];
         
         [_pipe cancel:^{ [promise cancel]; }];

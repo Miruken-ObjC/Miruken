@@ -34,6 +34,8 @@
 		142FE8FC18ECC60200569636 /* MKAnimatedPushTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */; };
 		142FE8FF18ECC69400569636 /* MKAnimatedTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */; };
 		142FE90018ECC69400569636 /* MKAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */; };
+		142FE90318F0855300569636 /* MKTransitionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE90118F0855300569636 /* MKTransitionContext.h */; };
+		142FE90418F0855300569636 /* MKTransitionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE90218F0855300569636 /* MKTransitionContext.m */; };
 		1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */; };
 		1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */; };
 		1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */; };
@@ -242,6 +244,8 @@
 		142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedPushTransition.m; sourceTree = "<group>"; };
 		142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimatedTransition.h; sourceTree = "<group>"; };
 		142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedTransition.m; sourceTree = "<group>"; };
+		142FE90118F0855300569636 /* MKTransitionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTransitionContext.h; sourceTree = "<group>"; };
+		142FE90218F0855300569636 /* MKTransitionContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTransitionContext.m; sourceTree = "<group>"; };
 		1462993518B02DCD002BCBF6 /* MKCallbackHandler+Builders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Builders.h"; sourceTree = "<group>"; };
 		1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Builders.m"; sourceTree = "<group>"; };
 		1462993718B02DCD002BCBF6 /* MKCallbackHandler+Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Buffer.h"; sourceTree = "<group>"; };
@@ -578,6 +582,8 @@
 			isa = PBXGroup;
 			children = (
 				142FE8F818ECC43900569636 /* MKTransitionDirection.h */,
+				142FE90118F0855300569636 /* MKTransitionContext.h */,
+				142FE90218F0855300569636 /* MKTransitionContext.m */,
 				142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */,
 				142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */,
 				142FE8F918ECC60200569636 /* MKAnimatedPushTransition.h */,
@@ -972,6 +978,7 @@
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
 				142FE8D018DE415300569636 /* MKPresentationPolicy.h in Headers */,
+				142FE90318F0855300569636 /* MKTransitionContext.h in Headers */,
 				14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */,
 				14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
@@ -1201,6 +1208,7 @@
 				1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */,
 				14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */,
 				1462997218B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m in Sources */,
+				142FE90418F0855300569636 /* MKTransitionContext.m in Sources */,
 				14982D3018B16F160065EE40 /* MKTraversingMixin.m in Sources */,
 				14982D1718B11DEC0065EE40 /* MKCollectionExtensions.m in Sources */,
 				1462997C18B02DCD002BCBF6 /* NSObject+Callbacks.m in Sources */,
