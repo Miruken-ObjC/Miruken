@@ -19,7 +19,6 @@
         unsigned int modalPresentationStyle:1;
         unsigned int definesPresentationContext:1;
         unsigned int providesPresentationContextTransitionStyle:1;
-        unsigned int animationOptions:1;
         unsigned int animationDuration:1;
         unsigned int transitionDelegate:1;
     } _specified;
@@ -33,7 +32,6 @@
     copy->_modalPresentationStyle                     = _modalPresentationStyle;
     copy->_definesPresentationContext                 = _definesPresentationContext;
     copy->_providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
-    copy->_animationOptions                           = _animationOptions;
     copy->_animationDuration                          = _animationDuration;
     copy->_transitionDelegate                         = _transitionDelegate;
     copy->_specified                                  = _specified;
@@ -72,12 +70,6 @@
     _specified.providesPresentationContextTransitionStyle = YES;
 }
 
-- (void)setAnimationOptions:(UIViewAnimationOptions)animationOptions
-{
-    _animationOptions           = animationOptions;
-    _specified.animationOptions = YES;
-}
-
 - (void)setAnimationDuration:(NSTimeInterval)animationDuration
 {
     _animationDuration           = animationDuration;
@@ -104,15 +96,9 @@
     
     if (_specified.transitionDelegate)
     {
-        viewController.transitioningDelegate = _transitionDelegate;
-    }
-    else if (_specified.animationOptions)
-    {
-        MKViewAnimationOptionsTransition *transition
-            = [MKViewAnimationOptionsTransition transitionWithOptions:_animationOptions];
-        if (_specified.animationDuration)
-            transition.animationDuration = _animationDuration;
-        _transitionDelegate                  = transition;
+        if (_specified.animationDuration &&
+            [_transitionDelegate respondsToSelector:@selector(setAnimationDuration:)])
+            [(id)_transitionDelegate setAnimationDuration:_animationDuration];
         viewController.transitioningDelegate = _transitionDelegate;
     }
     else if (_specified.modalTransitionStyle)
@@ -151,10 +137,7 @@
     if (_specified.providesPresentationContextTransitionStyle &&
         (otherPolicy->_specified.providesPresentationContextTransitionStyle == NO))
         otherPolicy.providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
-    
-    if (_specified.animationOptions && (otherPolicy->_specified.animationOptions == NO))
-        otherPolicy.animationOptions = _animationOptions;
-
+ 
     if (_specified.animationDuration && (otherPolicy->_specified.animationDuration == NO))
         otherPolicy.animationDuration = _animationDuration;
 

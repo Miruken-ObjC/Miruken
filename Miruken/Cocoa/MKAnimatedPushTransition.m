@@ -10,13 +10,13 @@
 
 @implementation MKAnimatedPushTransition
 {
-    MKViewStartingPosition _position;
+    MKStartingPosition _startingPosition;
 }
 
-+ (instancetype)pushFromPosition:(MKViewStartingPosition)position;
++ (instancetype)pushFromPosition:(MKStartingPosition)position;
 {
     MKAnimatedPushTransition *push = [self new];
-    push->_position                = position;
+    push->_startingPosition        = position;
     return push;
 }
 
@@ -28,13 +28,17 @@
     UIView *fromView      = fromViewController.view;
     UIView *toView        = toViewController.view;
     
+    MKStartingPosition startingPosition = self.isPresenting == NO
+                                        ? _startingPosition
+                                        : [self inferInverseStartingPosition];
+    
     if (fromView)
     {
         fromView.frame = containerView.bounds;
         [containerView addSubview:fromView];
     }
     
-    [self setViewFrame:toView containerView:containerView inverse:YES];
+    [self setView:toView startingPosition:startingPosition inContainerView:containerView inverse:YES];
     [containerView addSubview:toView];
     [containerView bringSubviewToFront:toView];
     
@@ -42,7 +46,8 @@
                       duration:[self transitionDuration:transitionContext]
                        options:0 animations:^{
                            if (fromView)
-                               [self setViewFrame:fromView containerView:containerView inverse:NO];
+                               [self setView:fromView startingPosition:startingPosition
+                                    inContainerView:containerView inverse:NO];
                            toView.frame = containerView.frame;
                        } completion:^(BOOL finished) {
                            if (fromView)
@@ -51,44 +56,45 @@
                        }];
 }
 
-- (void)setViewFrame:(UIView *)view containerView:(UIView *)containerView inverse:(BOOL)inverse
+- (void)setView:(UIView *)view startingPosition:(MKStartingPosition)startingPosition
+    inContainerView:(UIView *)containerView inverse:(BOOL)inverse
 {
     CGRect    frame            = view.frame;
     NSInteger inverseMultipier = inverse ? -1 : 1;
     
-    switch (_position) {
-        case MKViewStartingPositionLeft:
+    switch (_startingPosition) {
+        case MKStartingPositionLeft:
             frame.origin.x = -containerView.frame.size.width * inverseMultipier;
             break;
             
-        case MKViewStartingPositionRight:
+        case MKStartingPositionRight:
             frame.origin.x = containerView.frame.size.width * inverseMultipier;
             break;
 
-        case MKViewStartingPositionBottom:
+        case MKStartingPositionBottom:
             frame.origin.y = -containerView.frame.size.height * inverseMultipier;
             break;
             
-        case MKViewStartingPositionBottomLeft:
+        case MKStartingPositionBottomLeft:
             frame.origin.x = -containerView.frame.size.width * inverseMultipier;
             frame.origin.y = -containerView.frame.size.height * inverseMultipier;
             break;
 
-        case MKViewStartingPositionBottomRight:
+        case MKStartingPositionBottomRight:
             frame.origin.x = containerView.frame.size.width * inverseMultipier;
             frame.origin.y = -containerView.frame.size.height * inverseMultipier;
             break;
             
-        case MKViewStartingPositionTop:
+        case MKStartingPositionTop:
             frame.origin.y = containerView.frame.size.height * inverseMultipier;
             break;
          
-        case MKViewStartingPositionTopLeft:
+        case MKStartingPositionTopLeft:
             frame.origin.x = -containerView.frame.size.width * inverseMultipier;
             frame.origin.y = containerView.frame.size.height * inverseMultipier;
             break;
 
-        case MKViewStartingPositionTopRight:
+        case MKStartingPositionTopRight:
             frame.origin.x = containerView.frame.size.width * inverseMultipier;
             frame.origin.y = containerView.frame.size.height * inverseMultipier;
             break;
@@ -96,6 +102,35 @@
     
     frame.size = containerView.frame.size;
     view.frame = frame;
+}
+
+- (MKStartingPosition)inferInverseStartingPosition
+{
+    switch (_startingPosition) {
+        case MKStartingPositionLeft:
+            return MKStartingPositionRight;
+            
+        case MKStartingPositionRight:
+            return MKStartingPositionLeft;
+            
+        case MKStartingPositionBottom:
+            return MKStartingPositionTop;
+            
+        case MKStartingPositionBottomLeft:
+            return MKStartingPositionTopRight;
+            
+        case MKStartingPositionBottomRight:
+            return MKStartingPositionTopLeft;
+            
+        case MKStartingPositionTop:
+            return MKStartingPositionBottom;
+            
+        case MKStartingPositionTopLeft:
+            return MKStartingPositionBottomRight;
+            
+        case MKStartingPositionTopRight:
+            return MKStartingPositionBottomLeft;
+    }
 }
 
 @end

@@ -15,7 +15,6 @@
 @property (assign, nonatomic) UIModalPresentationStyle modalPresentationStyle;
 @property (assign, nonatomic) BOOL                     definesPresentationContext;
 @property (assign, nonatomic) BOOL                     providesPresentationContextTransitionStyle;
-@property (assign, nonatomic) UIViewAnimationOptions   animationOptions;
 @property (assign, nonatomic) NSTimeInterval           animationDuration;
 @property (strong, nonatomic) id<UIViewControllerTransitioningDelegate> transitionDelegate;
 

@@ -7,6 +7,7 @@
 //
 
 #import "MKPresentationScope.h"
+#import "MKStartingPosition.h"
 
 @interface MKAnimatedTransitionScope : MKPresentationScope
 
@@ -23,6 +24,26 @@
 - (instancetype)flipFromTop;
 
 - (instancetype)flipFromBottom;
+
+- (instancetype)pushFromTop;
+
+- (instancetype)pushFromBottom;
+
+- (instancetype)pushFromLeft;
+
+- (instancetype)pushFromRight;
+
+- (instancetype)pushFromTopLeft;
+
+- (instancetype)pushFromTopRight;
+
+- (instancetype)pushFromBottomLeft;
+
+- (instancetype)pushFromBottomRight;
+
+- (instancetype)pushFrom:(MKStartingPosition)position;
+
+- (instancetype)animationOptions:(UIViewAnimationOptions)options;
 
 - (instancetype)duration:(NSTimeInterval)duration;
 

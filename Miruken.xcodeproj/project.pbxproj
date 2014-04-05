@@ -239,7 +239,7 @@
 		142FE8F018E856A500569636 /* MKAnimatedTransitionScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedTransitionScope.m; sourceTree = "<group>"; };
 		142FE8F418E8E9F600569636 /* MKPresentationScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPresentationScope.h; sourceTree = "<group>"; };
 		142FE8F518E8E9F600569636 /* MKPresentationScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPresentationScope.m; sourceTree = "<group>"; };
-		142FE8F818ECC43900569636 /* MKViewStartingPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKViewStartingPosition.h; sourceTree = "<group>"; };
+		142FE8F818ECC43900569636 /* MKStartingPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKStartingPosition.h; sourceTree = "<group>"; };
 		142FE8F918ECC60200569636 /* MKAnimatedPushTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimatedPushTransition.h; sourceTree = "<group>"; };
 		142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedPushTransition.m; sourceTree = "<group>"; };
 		142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimatedTransition.h; sourceTree = "<group>"; };
@@ -562,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				142FE8F318E874E700569636 /* Transitions */,
+				142FE8F818ECC43900569636 /* MKStartingPosition.h */,
 				142FE8CE18DE415300569636 /* MKPresentationPolicy.h */,
 				142FE8CF18DE415300569636 /* MKPresentationPolicy.m */,
 				142FE8F418E8E9F600569636 /* MKPresentationScope.h */,
@@ -585,7 +586,6 @@
 				142FE90218F0855300569636 /* MKTransitionContext.m */,
 				142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */,
 				142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */,
-				142FE8F818ECC43900569636 /* MKViewStartingPosition.h */,
 				142FE8F918ECC60200569636 /* MKAnimatedPushTransition.h */,
 				142FE8FA18ECC60200569636 /* MKAnimatedPushTransition.m */,
 				142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */,

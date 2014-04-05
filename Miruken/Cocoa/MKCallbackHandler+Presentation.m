@@ -24,20 +24,12 @@
     return [MKAnimatedTransitionScope for:self];
 }
 
-- (instancetype)animationOptions:(UIViewAnimationOptions)options
-{
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    presentationPolicy.animationOptions      = options;
-    return [self usePresentationPolicy:presentationPolicy];
-}
-
 - (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     presentationPolicy.transitionDelegate = transition;
     return [self usePresentationPolicy:presentationPolicy];
 }
-
 
 - (instancetype)usePresentationPolicy:(MKPresentationPolicy *)policy
 {

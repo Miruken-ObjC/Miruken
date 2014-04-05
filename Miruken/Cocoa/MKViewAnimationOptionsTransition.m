@@ -44,10 +44,9 @@
     }
     else
     {
-        UIViewAnimationOptions animationOptions
-                             = self.isPresenting
-                             ? _animationOptions
-                             : [self inferInverseAnimationOptions];
+        UIViewAnimationOptions animationOptions = self.isPresenting
+                                                ? _animationOptions
+                                                : [self inferInverseAnimationOptions];
         
         if ([self shouldPerformTransitionWithOptions:animationOptions])
         {

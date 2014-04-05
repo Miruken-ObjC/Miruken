@@ -19,8 +19,6 @@ typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 - (MKAnimatedTransitionScope *)transition;
 
-- (instancetype)animationOptions:(UIViewAnimationOptions)options;
-
 - (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;
 
 - (instancetype)usePresentationPolicy:(MKPresentationPolicy *)policy;

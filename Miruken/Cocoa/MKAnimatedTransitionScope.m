@@ -7,6 +7,8 @@
 //
 
 #import "MKAnimatedTransitionScope.h"
+#import "MKViewAnimationOptionsTransition.h"
+#import "MKAnimatedPushTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -45,9 +47,57 @@
     return [self animationOptions:UIViewAnimationOptionTransitionFlipFromBottom];
 }
 
+- (instancetype)pushFromTop
+{
+    return [self pushFrom:MKStartingPositionTop];
+}
+
+- (instancetype)pushFromBottom
+{
+    return [self pushFrom:MKStartingPositionBottom];
+}
+
+- (instancetype)pushFromLeft
+{
+    return [self pushFrom:MKStartingPositionLeft];
+}
+
+- (instancetype)pushFromRight
+{
+    return [self pushFrom:MKStartingPositionRight];
+}
+
+- (instancetype)pushFromTopLeft
+{
+    return [self pushFrom:MKStartingPositionTopLeft];
+}
+
+- (instancetype)pushFromTopRight
+{
+    return [self pushFrom:MKStartingPositionTopRight];
+}
+
+- (instancetype)pushFromBottomLeft
+{
+    return [self pushFrom:MKStartingPositionBottomLeft];
+}
+
+- (instancetype)pushFromBottomRight
+{
+    return [self pushFrom:MKStartingPositionBottomRight];
+}
+
+- (instancetype)pushFrom:(MKStartingPosition)position
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKAnimatedPushTransition pushFromPosition:position];
+    return self;
+}
+
 - (instancetype)animationOptions:(UIViewAnimationOptions)options
 {
-    [self requirePresentationPolicy].animationOptions = options;
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKViewAnimationOptionsTransition transitionWithOptions:options];
     return self;
 }
 
