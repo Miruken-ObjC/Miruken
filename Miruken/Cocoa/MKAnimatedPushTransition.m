@@ -10,13 +10,13 @@
 
 @implementation MKAnimatedPushTransition
 {
-    MKTransitionDirection _direction;
+    MKViewStartingPosition _position;
 }
 
-+ (instancetype)pushDirection:(MKTransitionDirection)direction
++ (instancetype)pushFromPosition:(MKViewStartingPosition)position;
 {
     MKAnimatedPushTransition *push = [self new];
-    push->_direction               = direction;
+    push->_position                = position;
     return push;
 }
 
@@ -34,7 +34,7 @@
         [containerView addSubview:fromView];
     }
     
-    [self setViewFrame:toView containerView:containerView end:NO];
+    [self setViewFrame:toView containerView:containerView inverse:YES];
     [containerView addSubview:toView];
     [containerView bringSubviewToFront:toView];
     
@@ -42,7 +42,7 @@
                       duration:[self transitionDuration:transitionContext]
                        options:0 animations:^{
                            if (fromView)
-                              [self setViewFrame:fromView containerView:containerView end:YES];
+                               [self setViewFrame:fromView containerView:containerView inverse:NO];
                            toView.frame = containerView.frame;
                        } completion:^(BOOL finished) {
                            if (fromView)
@@ -51,26 +51,46 @@
                        }];
 }
 
-- (void)setViewFrame:(UIView *)view containerView:(UIView *)containerView end:(BOOL)end
+- (void)setViewFrame:(UIView *)view containerView:(UIView *)containerView inverse:(BOOL)inverse
 {
-    CGRect    frame   = view.frame;
-    NSInteger inverse = end ? 1 : -1;
+    CGRect    frame            = view.frame;
+    NSInteger inverseMultipier = inverse ? -1 : 1;
     
-    switch (_direction) {
-        case MKTransitionDirectionUp:
-            frame.origin.y = -containerView.frame.size.height * inverse;
+    switch (_position) {
+        case MKViewStartingPositionLeft:
+            frame.origin.x = -containerView.frame.size.width * inverseMultipier;
             break;
             
-        case MKTransitionDirectionDown:
-            frame.origin.y = containerView.frame.size.height * inverse;
+        case MKViewStartingPositionRight:
+            frame.origin.x = containerView.frame.size.width * inverseMultipier;
+            break;
+
+        case MKViewStartingPositionBottom:
+            frame.origin.y = -containerView.frame.size.height * inverseMultipier;
             break;
             
-        case MKTransitionDirectionLeft:
-            frame.origin.x = -containerView.frame.size.width * inverse;
+        case MKViewStartingPositionBottomLeft:
+            frame.origin.x = -containerView.frame.size.width * inverseMultipier;
+            frame.origin.y = -containerView.frame.size.height * inverseMultipier;
+            break;
+
+        case MKViewStartingPositionBottomRight:
+            frame.origin.x = containerView.frame.size.width * inverseMultipier;
+            frame.origin.y = -containerView.frame.size.height * inverseMultipier;
             break;
             
-        case MKTransitionDirectionRight:
-            frame.origin.x = containerView.frame.size.width * inverse;
+        case MKViewStartingPositionTop:
+            frame.origin.y = containerView.frame.size.height * inverseMultipier;
+            break;
+         
+        case MKViewStartingPositionTopLeft:
+            frame.origin.x = -containerView.frame.size.width * inverseMultipier;
+            frame.origin.y = containerView.frame.size.height * inverseMultipier;
+            break;
+
+        case MKViewStartingPositionTopRight:
+            frame.origin.x = containerView.frame.size.width * inverseMultipier;
+            frame.origin.y = containerView.frame.size.height * inverseMultipier;
             break;
     }
     

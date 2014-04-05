@@ -7,10 +7,10 @@
 //
 
 #import "MKAnimatedTransition.h"
-#import "MKTransitionDirection.h"
+#import "MKViewStartingPosition.h"
 
 @interface MKAnimatedPushTransition : MKAnimatedTransition
 
-+ (instancetype)pushDirection:(MKTransitionDirection)direction;
++ (instancetype)pushFromPosition:(MKViewStartingPosition)position;
 
 @end
