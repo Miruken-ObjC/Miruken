@@ -149,6 +149,8 @@
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
+		14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */; };
+		14C54C5F18F1A8E3001C39D5 /* MKSlide3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5D18F1A8E3001C39D5 /* MKSlide3DTransition.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -424,6 +426,8 @@
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
+		14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSlide3DTransition.h; sourceTree = "<group>"; };
+		14C54C5D18F1A8E3001C39D5 /* MKSlide3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSlide3DTransition.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -596,6 +600,8 @@
 				142FE8E418E381EC00569636 /* MKAnimationOptionsTransition.m */,
 				142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */,
 				142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */,
+				14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */,
+				14C54C5D18F1A8E3001C39D5 /* MKSlide3DTransition.m */,
 				14C54C5818F1999F001C39D5 /* MKZoomTransition.h */,
 				14C54C5918F1999F001C39D5 /* MKZoomTransition.m */,
 			);
@@ -994,6 +1000,7 @@
 				142FE8F118E856A500569636 /* MKAnimatedTransitionScope.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
+				14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */,
 				142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
@@ -1223,6 +1230,7 @@
 				142FE8E218DFB6E700569636 /* MKModalFlipHorizontalTransition.m in Sources */,
 				14982D2518B16C8E0065EE40 /* MKContext+Subscribe.m in Sources */,
 				142FE8F718E8E9F600569636 /* MKPresentationScope.m in Sources */,
+				14C54C5F18F1A8E3001C39D5 /* MKSlide3DTransition.m in Sources */,
 				14982D3A18B1763C0065EE40 /* UINavigationController_ContextualMixin.m in Sources */,
 				14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */,
 				1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */,

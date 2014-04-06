@@ -10,6 +10,7 @@
 #import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
 #import "MKZoomTransition.h"
+#import "MKSlide3DTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -155,6 +156,12 @@
 - (instancetype)zoom
 {
     [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
+    return self;
+}
+
+- (instancetype)slide3d
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKSlide3DTransition new];
     return self;
 }
 

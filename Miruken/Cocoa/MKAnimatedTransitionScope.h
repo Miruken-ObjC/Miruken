@@ -73,6 +73,8 @@
 
 - (instancetype)zoom;
 
+- (instancetype)slide3d;
+
 - (instancetype)animate:(UIViewAnimationOptions)options;
 
 - (instancetype)duration:(NSTimeInterval)duration;
