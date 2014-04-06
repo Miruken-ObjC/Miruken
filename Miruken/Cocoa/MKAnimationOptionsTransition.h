@@ -1,5 +1,5 @@
 //
-//  MKViewAnimationOptionsTransition.h
+//  MKAnimationOptionsTransition.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/26/14.
@@ -8,7 +8,7 @@
 
 #import "MKAnimatedTransition.h"
 
-@interface MKViewAnimationOptionsTransition : MKAnimatedTransition
+@interface MKAnimationOptionsTransition : MKAnimatedTransition
 
 + (instancetype)transitionWithOptions:(UIViewAnimationOptions)options;
 

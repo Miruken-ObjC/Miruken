@@ -55,7 +55,7 @@
     [UIView transitionWithView:containerView
                       duration:[self transitionDuration:transitionContext]
                        options:0 animations:^{
-                           if (_push && fromView)
+                           if ((_push || self.isPresenting == NO) && fromView)
                                [self setView:fromView startingPosition:startingPosition
                                     inContainerView:containerView inverse:YES];
                            toView.frame = containerView.frame;

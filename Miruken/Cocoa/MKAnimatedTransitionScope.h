@@ -11,19 +11,17 @@
 
 @interface MKAnimatedTransitionScope : MKPresentationScope
 
+#pragma mark - flip
+
 - (instancetype)flipFromLeft;
 
 - (instancetype)flipFromRight;
 
-- (instancetype)curlUp;
-
-- (instancetype)curlDown;
-
-- (instancetype)crossDissolve;
-
 - (instancetype)flipFromTop;
 
 - (instancetype)flipFromBottom;
+
+#pragma mark - push
 
 - (instancetype)pushFromTop;
 
@@ -43,6 +41,8 @@
 
 - (instancetype)pushFromPosition:(MKStartingPosition)position;
 
+#pragma mark - move in
+
 - (instancetype)moveInFromTop;
 
 - (instancetype)moveInFromBottom;
@@ -61,7 +61,19 @@
 
 - (instancetype)moveInFromPosition:(MKStartingPosition)position;
 
-- (instancetype)animationOptions:(UIViewAnimationOptions)options;
+#pragma mark - curl
+
+- (instancetype)curlUp;
+
+- (instancetype)curlDown;
+
+#pragma mark - extra 
+
+- (instancetype)crossDissolve;
+
+- (instancetype)zoom;
+
+- (instancetype)animate:(UIViewAnimationOptions)options;
 
 - (instancetype)duration:(NSTimeInterval)duration;
 

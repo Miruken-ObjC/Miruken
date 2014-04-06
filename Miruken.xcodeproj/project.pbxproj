@@ -20,8 +20,8 @@
 		142FE8DE18DF318100569636 /* NSObject+Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8DC18DF318000569636 /* NSObject+Context.m */; };
 		142FE8E118DFB6E700569636 /* MKModalFlipHorizontalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */; };
 		142FE8E218DFB6E700569636 /* MKModalFlipHorizontalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */; };
-		142FE8E518E381EC00569636 /* MKViewAnimationOptionsTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */; };
-		142FE8E618E381EC00569636 /* MKViewAnimationOptionsTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E418E381EC00569636 /* MKViewAnimationOptionsTransition.m */; };
+		142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E318E381EC00569636 /* MKAnimationOptionsTransition.h */; };
+		142FE8E618E381EC00569636 /* MKAnimationOptionsTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E418E381EC00569636 /* MKAnimationOptionsTransition.m */; };
 		142FE8E918E84C3F00569636 /* MKModalPresentationScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E718E84C3F00569636 /* MKModalPresentationScope.h */; };
 		142FE8EA18E84C3F00569636 /* MKModalPresentationScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E818E84C3F00569636 /* MKModalPresentationScope.m */; };
 		142FE8ED18E84FED00569636 /* MKPresentationPolicyHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8EB18E84FED00569636 /* MKPresentationPolicyHandler.h */; };
@@ -147,6 +147,8 @@
 		14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0918C395750065EE40 /* UICollectionView_Issues.h */; };
 		14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0A18C395750065EE40 /* UICollectionView_Issues.m */; };
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
+		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
+		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -229,8 +231,8 @@
 		142FE8DC18DF318000569636 /* NSObject+Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Context.m"; sourceTree = "<group>"; };
 		142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModalFlipHorizontalTransition.h; sourceTree = "<group>"; };
 		142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModalFlipHorizontalTransition.m; sourceTree = "<group>"; };
-		142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKViewAnimationOptionsTransition.h; sourceTree = "<group>"; };
-		142FE8E418E381EC00569636 /* MKViewAnimationOptionsTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKViewAnimationOptionsTransition.m; sourceTree = "<group>"; };
+		142FE8E318E381EC00569636 /* MKAnimationOptionsTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimationOptionsTransition.h; sourceTree = "<group>"; };
+		142FE8E418E381EC00569636 /* MKAnimationOptionsTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimationOptionsTransition.m; sourceTree = "<group>"; };
 		142FE8E718E84C3F00569636 /* MKModalPresentationScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModalPresentationScope.h; sourceTree = "<group>"; };
 		142FE8E818E84C3F00569636 /* MKModalPresentationScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModalPresentationScope.m; sourceTree = "<group>"; };
 		142FE8EB18E84FED00569636 /* MKPresentationPolicyHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPresentationPolicyHandler.h; sourceTree = "<group>"; };
@@ -420,6 +422,8 @@
 		14982E0918C395750065EE40 /* UICollectionView_Issues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionView_Issues.h; sourceTree = "<group>"; };
 		14982E0A18C395750065EE40 /* UICollectionView_Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionView_Issues.m; sourceTree = "<group>"; };
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
+		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
+		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -588,10 +592,12 @@
 				142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */,
 				142FE8F918ECC60200569636 /* MKPushMoveInTransition.h */,
 				142FE8FA18ECC60200569636 /* MKPushMoveInTransition.m */,
-				142FE8E318E381EC00569636 /* MKViewAnimationOptionsTransition.h */,
-				142FE8E418E381EC00569636 /* MKViewAnimationOptionsTransition.m */,
+				142FE8E318E381EC00569636 /* MKAnimationOptionsTransition.h */,
+				142FE8E418E381EC00569636 /* MKAnimationOptionsTransition.m */,
 				142FE8DF18DFB6E700569636 /* MKModalFlipHorizontalTransition.h */,
 				142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */,
+				14C54C5818F1999F001C39D5 /* MKZoomTransition.h */,
+				14C54C5918F1999F001C39D5 /* MKZoomTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -974,6 +980,7 @@
 			files = (
 				14982D6918B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h in Headers */,
 				14982DBC18BA39770065EE40 /* MKCallbackHandler+SideEffects.h in Headers */,
+				14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */,
 				14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */,
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
@@ -987,7 +994,7 @@
 				142FE8F118E856A500569636 /* MKAnimatedTransitionScope.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
-				142FE8E518E381EC00569636 /* MKViewAnimationOptionsTransition.h in Headers */,
+				142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
@@ -1158,6 +1165,7 @@
 				14982D2A18B16C8E0065EE40 /* MKContextualHelper.m in Sources */,
 				142FE8D118DE415300569636 /* MKPresentationPolicy.m in Sources */,
 				14982D6E18B9245E0065EE40 /* UINavigationController_RotationMixin.m in Sources */,
+				14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */,
 				14982D2818B16C8E0065EE40 /* MKContextObserver.m in Sources */,
 				14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */,
 				1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */,
@@ -1189,7 +1197,7 @@
 				14982DB118BA33AC0065EE40 /* MKValidationExtension.m in Sources */,
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,
 				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
-				142FE8E618E381EC00569636 /* MKViewAnimationOptionsTransition.m in Sources */,
+				142FE8E618E381EC00569636 /* MKAnimationOptionsTransition.m in Sources */,
 				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
 				14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */,
 				14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */,

@@ -116,7 +116,6 @@
         [partialController didMoveToParentViewController:owningController];
         
         UIView *partialView = partialController.view;
-        [partialView removeConstraints:partialView.constraints];
         partialView.frame   = self.bounds;
         [self addSubview:partialView];
         
@@ -159,7 +158,7 @@
 {
     _transitioning = NO;
     if (toViewController)
-        [self bindPartialViewToRegion:toViewController.view];
+        [self anchorPartialViewToRegion:toViewController.view];
     [fromViewController.view removeFromSuperview];
 }
 
@@ -189,7 +188,7 @@
     return partialController;
 }
 
-- (void)bindPartialViewToRegion:(UIView *)view
+- (void)anchorPartialViewToRegion:(UIView *)view
 {
     NSDictionary *views = NSDictionaryOfVariableBindings(view);
     _constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"

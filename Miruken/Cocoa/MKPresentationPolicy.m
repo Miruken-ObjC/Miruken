@@ -8,7 +8,7 @@
 
 #import "MKPresentationPolicy.h"
 #import "MKModalFlipHorizontalTransition.h"
-#import "MKViewAnimationOptionsTransition.h"
+#import "MKAnimationOptionsTransition.h"
 
 @implementation MKPresentationPolicy
 {

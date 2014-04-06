@@ -7,51 +7,35 @@
 //
 
 #import "MKAnimatedTransitionScope.h"
-#import "MKViewAnimationOptionsTransition.h"
+#import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
+#import "MKZoomTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
-#pragma mark - Flip
+#pragma mark - flip
 
 - (instancetype)flipFromLeft
 {
-    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromLeft];
+    return [self animate:UIViewAnimationOptionTransitionFlipFromLeft];
 }
 
 - (instancetype)flipFromRight
 {
-    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromRight];
+    return [self animate:UIViewAnimationOptionTransitionFlipFromRight];
 }
 
 - (instancetype)flipFromTop
 {
-    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromTop];
+    return [self animate:UIViewAnimationOptionTransitionFlipFromTop];
 }
 
 - (instancetype)flipFromBottom
 {
-    return [self animationOptions:UIViewAnimationOptionTransitionFlipFromBottom];
+    return [self animate:UIViewAnimationOptionTransitionFlipFromBottom];
 }
 
-#pragma mark - Curl
-
-- (instancetype)curlUp
-{
-    return [self animationOptions:UIViewAnimationOptionTransitionCurlUp];
-}
-
-- (instancetype)curlDown
-{
-    return [self animationOptions:UIViewAnimationOptionTransitionCurlDown];
-}
-
-- (instancetype)crossDissolve
-{
-    return [self animationOptions:UIViewAnimationOptionTransitionCrossDissolve];
-}
-
-#pragma mark - Push 
+#pragma mark - push
 
 - (instancetype)pushFromTop
 {
@@ -100,7 +84,7 @@
     return self;
 }
 
-#pragma mark - Move In
+#pragma mark - move in
 
 - (instancetype)moveInFromTop
 {
@@ -127,7 +111,7 @@
     return [self moveInFromPosition:MKStartingPositionTopLeft];
 }
 
-- (instancetype)moveFromTopRight
+- (instancetype)moveInFromTopRight
 {
     return [self moveInFromPosition:MKStartingPositionTopRight];
 }
@@ -149,10 +133,35 @@
     return self;
 }
 
-- (instancetype)animationOptions:(UIViewAnimationOptions)options
+#pragma mark - curl
+
+- (instancetype)curlUp
+{
+    return [self animate:UIViewAnimationOptionTransitionCurlUp];
+}
+
+- (instancetype)curlDown
+{
+    return [self animate:UIViewAnimationOptionTransitionCurlDown];
+}
+
+#pragma mark - extra
+
+- (instancetype)crossDissolve
+{
+    return [self animate:UIViewAnimationOptionTransitionCrossDissolve];
+}
+
+- (instancetype)zoom
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
+    return self;
+}
+
+- (instancetype)animate:(UIViewAnimationOptions)options
 {
     [self requirePresentationPolicy].transitionDelegate =
-        [MKViewAnimationOptionsTransition transitionWithOptions:options];
+        [MKAnimationOptionsTransition transitionWithOptions:options];
     return self;
 }
 

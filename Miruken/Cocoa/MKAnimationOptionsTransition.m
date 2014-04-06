@@ -1,23 +1,23 @@
 //
-//  MKViewAnimationTransition.m
+//  MKAnimationOptionsTransition.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/26/14.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#define kViewAnimationOptionsTransitionsMask   (7 << 20)
+#define kViewAnimationOptionsTransitionsMask  (7 << 20)
 
-#import "MKViewAnimationOptionsTransition.h"
+#import "MKAnimationOptionsTransition.h"
 
-@implementation MKViewAnimationOptionsTransition
+@implementation MKAnimationOptionsTransition
 {
     UIViewAnimationOptions  _animationOptions;
 }
 
 + (instancetype)transitionWithOptions:(UIViewAnimationOptions)options
 {
-    MKViewAnimationOptionsTransition *transition = [self new];
+    MKAnimationOptionsTransition *transition = [self new];
     transition->_animationOptions                = options;
     return transition;
 }
