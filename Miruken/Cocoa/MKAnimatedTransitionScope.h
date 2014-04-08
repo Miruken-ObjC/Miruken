@@ -73,7 +73,9 @@
 
 - (instancetype)zoom;
 
-- (instancetype)slide3d;
+- (instancetype)slide3D;
+
+- (instancetype)shuffle3D;
 
 - (instancetype)animate:(UIViewAnimationOptions)options;
 

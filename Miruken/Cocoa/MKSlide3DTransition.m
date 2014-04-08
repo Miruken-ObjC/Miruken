@@ -7,6 +7,7 @@
 //
 //  Based on work by Tyler Tillage on 7/3/13.
 //  Copyright (c) 2013 CapTech. All rights reserved.
+//
 
 #import "MKSlide3DTransition.h"
 
@@ -33,8 +34,7 @@
         [containerView insertSubview:toView belowSubview:fromView];
     
     // 90 degrees away from the user
-    CATransform3D t = CATransform3DRotate(CATransform3DIdentity,
-                                           M_PI / 2.0, 0.0, 1.0, 0.0);
+    CATransform3D t = CATransform3DRotate(CATransform3DIdentity, M_PI / 2.0, 0.0, 1.0, 0.0);
     t.m34           = 1.0 / -2000;
     
     if (self.isPresenting)

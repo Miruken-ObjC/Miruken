@@ -19,6 +19,7 @@
 #import "MKPushMoveInTransition.h"
 #import "MKZoomTransition.h"
 #import "MKSlide3DTransition.h"
+#import "MKShuffle3DTransition.h"
 #import "MKAnimationOptionsTransition.h"
 #import "MKPagingMixin.h"
 #import "MKAlertViewMixin.h"

@@ -30,7 +30,7 @@
     UIView *fromView      = fromViewController.view;
     UIView *toView        = toViewController.view;
 
-    if (fromView && toView)
+    if (self.isPresenting && fromView && toView)
     {
         [containerView addSubview:fromView];
         [containerView addSubview:toView];
