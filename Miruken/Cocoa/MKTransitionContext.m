@@ -11,16 +11,17 @@
 @implementation MKTransitionContext
 {
     UIView *_containerView;
+    BOOL    _cancelled;
 }
 
 + (instancetype)transitionContainerView:(UIView *)containerView
                      fromViewController:(UIViewController *)fromViewController
                        toViewController:(UIViewController *)toViewController
 {
-    MKTransitionContext *transitionContext    = [self new];
-    transitionContext->_containerView         = containerView;
-    transitionContext->_fromViewController    = fromViewController;
-    transitionContext->_toViewController      = toViewController;
+    MKTransitionContext *transitionContext = [self new];
+    transitionContext->_containerView      = containerView;
+    transitionContext->_fromViewController = fromViewController;
+    transitionContext->_toViewController   = toViewController;
     return transitionContext;
 }
 
@@ -29,9 +30,16 @@
     return _containerView;
 }
 
+- (BOOL)isPresenting
+{
+    return _toViewController != nil;
+}
+
 - (BOOL)isAnimated
 {
-    return YES;
+    return _toViewController
+         ? _toViewController.transitioningDelegate != nil
+         : _fromViewController.transitioningDelegate != nil;
 }
 
 - (BOOL)isInteractive
@@ -39,9 +47,37 @@
     return NO;
 }
 
+- (void)animateTranstion
+{
+    id<UIViewControllerAnimatedTransitioning> transitionController = self.isPresenting
+        ? [_toViewController.transitioningDelegate
+           animationControllerForPresentedController:_toViewController
+           presentingController:_fromViewController
+           sourceController:_fromViewController]
+        : [_fromViewController.transitioningDelegate
+           animationControllerForDismissedController:_fromViewController];
+    
+    [transitionController animateTransition:self];
+}
+
+- (void)cancel
+{
+    if (_cancelled == NO)
+    {
+        _cancelled = YES;
+        if (self.isAnimated)
+        {
+            [CATransaction begin];
+            [_containerView.layer removeAllAnimations];
+            [CATransaction commit];
+        }
+        [self completeTransition:NO];
+    }
+}
+
 - (BOOL)transitionWasCancelled
 {
-    return NO;
+    return _cancelled;
 }
 
 - (UIModalPresentationStyle)presentationStyle

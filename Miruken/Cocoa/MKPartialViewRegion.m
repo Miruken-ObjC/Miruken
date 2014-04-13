@@ -23,10 +23,15 @@
 
 @implementation MKPartialViewRegion
 {
-    MKContext        *_context;
-    UIViewController *_controller;
-    NSArray          *_constraints;
-    BOOL              _transitioning;
+    MKContext                  *_context;
+    UIViewController           *_controller;
+    NSArray                    *_constraints;
+    MKPartialTransitionContext *_transition;
+}
+
+- (id)controller
+{
+    return _controller;
 }
 
 - (MKContext *)context
@@ -40,17 +45,21 @@
     return _context;
 }
 
-- (id)controller
-{
-    return _controller;
-}
-
 - (MKPresentationPolicy *)presentationPolicy
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     return [self.composer handle:presentationPolicy greedy:YES]
          ? presentationPolicy
          : nil;
+}
+
+- (UIViewController<MKContextual> *)owningViewController
+{
+    id nextResponder = self;
+    while ((nextResponder = [nextResponder nextResponder]))
+        if ([nextResponder isKindOfClass:UIViewController.class])
+            return nextResponder;
+    return nil;
 }
 
 #pragma mark - MKViewRegion
@@ -76,120 +85,100 @@
             }
         }
         
-        _transitioning = (_controller != nil);
-        BOOL animated  = (viewController.transitioningDelegate != nil);
-        UIViewController *fromViewController = [self removePartialControllerAnimated:animated];
-        [self addPartialController:viewController fromViewController:fromViewController animated:animated];
+        [_transition cancel];
+        _transition = [self transitionToViewController:viewController];
+        [self removePartialController];
+        [self addPartialController];
         return;
     }
     
     [self notHandled];
 }
 
-- (UIViewController<MKContextual> *)owningViewController
+- (MKPartialTransitionContext *)transitionToViewController:(UIViewController *)toViewController
 {
-    id nextResponder = self;
-    while ((nextResponder = [nextResponder nextResponder]))
-        if ([nextResponder isKindOfClass:UIViewController.class])
-            return nextResponder;
-    return nil;
+    return [MKPartialTransitionContext transitionContainerView:self
+                                            fromViewController:_controller
+                                              toViewController:toViewController];
 }
 
-- (void)addPartialController:(UIViewController *)partialController
-          fromViewController:(UIViewController *)fromViewController
-                    animated:(BOOL)animated
+- (void)addPartialController
 {
-    if (partialController)
+    UIViewController *toViewController = _transition.toViewController;
+    
+    if (toViewController)
     {
         @weakify(self);
-        UIViewController *owningController = [self owningViewController];
-        MKContext        *partialContext   = [MKContextualHelper bindChildContextFrom:self.context
-                                                                              toChild:partialController];
-        [partialContext subscribeDidEnd:^(id<MKContext> context) {
-            @strongify(self);
-            if (self->_transitioning == NO)
-                [self removePartialControllerAnimated:YES];
-        }];
+        __weak MKPartialTransitionContext *transition = _transition;
+        [[MKContextualHelper bindChildContextFrom:self.context toChild:toViewController]
+            subscribeDidEnd:^(id<MKContext> context) {
+                @strongify(self);
+                if (_transition == transition)
+                {
+                    [transition cancel];
+                    _transition = [self transitionToViewController:nil];
+                    [self removePartialController];
+                }
+            }];
 
-        [partialController willMoveToParentViewController:owningController];
-        [owningController  addChildViewController:partialController];
-        [partialController didMoveToParentViewController:owningController];
+        UIViewController *owningController = [self owningViewController];
+        [toViewController willMoveToParentViewController:owningController];
+        [owningController  addChildViewController:toViewController];
+        [toViewController didMoveToParentViewController:owningController];
         
-        UIView *partialView = partialController.view;
+        UIView *partialView = toViewController.view;
         partialView.frame   = self.bounds;
         [self addSubview:partialView];
         
-        if (animated)
-            [self animateFromViewController:fromViewController
-                           toViewController:partialController
-                                 presenting:YES];
+        if (_transition.isAnimated)
+            [_transition animateTranstion];
         else
-            [self completeTransitionFromViewController:fromViewController
-                                      toViewController:partialController
-                                              animated:animated];
+            [self completeTransition:YES];
         
-        _controller = partialController;
+        _controller = toViewController;
     }
 }
 
-- (void)animateFromViewController:(UIViewController *)fromViewController
-                 toViewController:(UIViewController *)toViewController
-                       presenting:(BOOL)presenting
+- (void)removePartialController
 {
-    MKPartialTransitionContext *partialTransition =
-        [MKPartialTransitionContext transitionContainerView:self
-                                         fromViewController:fromViewController
-                                           toViewController:toViewController];
+    UIViewController *fromViewController = _transition.fromViewController;
     
-    id<UIViewControllerAnimatedTransitioning> transitionController = presenting
-        ? [toViewController.transitioningDelegate
-           animationControllerForPresentedController:toViewController
-                                presentingController:fromViewController
-                                    sourceController:fromViewController]
-        : [fromViewController.transitioningDelegate
-           animationControllerForDismissedController:fromViewController];
-    
-    [transitionController animateTransition:partialTransition];
-}
-
-- (void)completeTransitionFromViewController:(UIViewController *)fromViewController
-                            toViewController:(UIViewController *)toViewController
-                                    animated:(BOOL)animated
-{
-    _transitioning = NO;
-    if (toViewController)
-        [self anchorPartialViewToRegion:toViewController.view];
-    [fromViewController.view removeFromSuperview];
-}
-
-- (UIViewController *)removePartialControllerAnimated:(BOOL)animated
-{
-    UIViewController *partialController = _controller;
-    
-    if (_controller)
+    if (fromViewController)
     {
         if (_constraints)
+        {
             [self removeConstraints:_constraints];
+            _constraints = nil;
+        }
 
-        animated = animated && _controller.transitioningDelegate;
+        [fromViewController willMoveToParentViewController:nil];
+        [fromViewController removeFromParentViewController];
+        [fromViewController didMoveToParentViewController:nil];
         
-        [_controller willMoveToParentViewController:nil];
-        [_controller removeFromParentViewController];
-        [_controller didMoveToParentViewController:nil];
+        if (_transition.isPresenting == NO)
+        {
+            if (_transition.isAnimated)
+                [_transition animateTranstion];
+            else
+                [_controller.view removeFromSuperview];
+        }
         
-        if (animated && _transitioning == NO)
-            [self animateFromViewController:_controller toViewController:nil presenting:NO];
-        else if (_transitioning == NO)
-            [_controller.view removeFromSuperview];
-
         _controller = nil;
     }
-    
-    return partialController;
+}
+
+- (void)completeTransition:(BOOL)didComplete
+{
+    if (_transition.toViewController && didComplete)
+        [self anchorPartialViewToRegion:_transition.toViewController.view];
+    [_transition.fromViewController.view removeFromSuperview];
+    _transition = nil;
 }
 
 - (void)anchorPartialViewToRegion:(UIView *)view
 {
+    if (view.superview == nil)
+        return;
     NSDictionary *views = NSDictionaryOfVariableBindings(view);
     _constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"
                                                             options:0 metrics:nil views:views]
@@ -213,10 +202,7 @@
 
 - (void)completeTransition:(BOOL)didComplete
 {
-    [(MKPartialViewRegion *)self.containerView
-        completeTransitionFromViewController:self.fromViewController
-                            toViewController:self.toViewController
-                                    animated:YES];
+    [(MKPartialViewRegion *)self.containerView completeTransition:didComplete];
 }
 
 @end

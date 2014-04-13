@@ -17,4 +17,10 @@
                      fromViewController:(UIViewController *)fromViewController
                        toViewController:(UIViewController *)toViewController;
 
+- (BOOL)isPresenting;
+
+- (void)animateTranstion;
+
+- (void)cancel;
+
 @end

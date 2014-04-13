@@ -30,6 +30,13 @@
     UIView *fromView      = fromViewController.view;
     UIView *toView        = toViewController.view;
     
+    if (fromView == nil || toView == nil)
+    {
+        [containerView addSubview:toView];
+        [transitionContext completeTransition:YES];
+        return;
+    }
+    
     // Take a snapshot of the 'from' view
     UIView *fromSnapshot  = [fromView snapshotViewAfterScreenUpdates:NO];
     fromSnapshot.frame    = fromView.frame;
@@ -63,25 +70,20 @@
         [UIView addKeyframeWithRelativeStartTime:0.20 relativeDuration:0.20 animations:^{
             if (self.isPresenting)
             {
-                fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform,
-                                                                      -width, 0.0, 0.0);
+                fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform, -width, 0.0, 0.0);
                 toView.layer.transform = CATransform3DTranslate(toView.layer.transform, width, 0.0, 0.0);
             }
             else
             {
-                fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform,
-                                                                      width, 0.0, 0.0);
-                toView.layer.transform = CATransform3DTranslate(toViewController.view.layer.transform,
-                                                                -width, 0.0, 0.0);
+                fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform, width, 0.0, 0.0);
+                toView.layer.transform = CATransform3DTranslate(toView.layer.transform, -width, 0.0, 0.0);
             }
         }];
         
         // Pull the 'to' view in front of the 'from' view
         [UIView addKeyframeWithRelativeStartTime:0.40 relativeDuration:0.20 animations:^{
-            fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform,
-                                                                  0.0, 0.0, -200);
-            toViewController.view.layer.transform = CATransform3DTranslate(toView.layer.transform,
-                                                                           0.0, 0.0, 500);
+            fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform, 0.0, 0.0, -200);
+            toView.layer.transform = CATransform3DTranslate(toView.layer.transform, 0.0, 0.0, 500);
         }];
         
         // Adjust the views horizontally to place them back on top of eachother
@@ -102,7 +104,7 @@
             toView.layer.transform       = toT;
         }];
         
-        //Move the 'to' view to its final position
+        // Move the 'to' view to its final position
         [UIView addKeyframeWithRelativeStartTime:0.80 relativeDuration:0.20 animations:^{
             toView.layer.transform = CATransform3DIdentity;
         }];

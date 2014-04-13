@@ -61,6 +61,8 @@
                                    [transitionContext completeTransition:finished];
                                }];
         }
+        else
+            [transitionContext completeTransition:YES];
     }
 }
 

@@ -51,9 +51,8 @@
     UIViewController *toViewController   =
         [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    return [self animateTransition:transitionContext
-                fromViewController:fromViewController
-                  toViewController:toViewController];
+    [self animateTransition:transitionContext fromViewController:fromViewController
+           toViewController:toViewController];
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
