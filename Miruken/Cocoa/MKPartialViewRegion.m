@@ -8,13 +8,12 @@
 
 #import "MKPartialViewRegion.h"
 #import "MKDynamicCallbackHandler.h"
-#import "MKContextual.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
 #import "MKTransitionContext.h"
+#import "MKCallbackHandler+Resolvers.h"
 #import "MKContext+Subscribe.h"
 #import "NSObject+NotHandled.h"
-#import "MKCallbackHandler+Resolvers.h"
 #import "NSObject+Context.h"
 #import "EXTScope.h"
 
@@ -86,7 +85,7 @@
         }
         
         [_transition cancel];
-        _transition = [self transitionToViewController:viewController];
+        _transition = [self partialTransitionTo:viewController];
         [self removePartialController];
         [self addPartialController];
         return;
@@ -95,7 +94,7 @@
     [self notHandled];
 }
 
-- (MKPartialTransitionContext *)transitionToViewController:(UIViewController *)toViewController
+- (MKPartialTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
 {
     return [MKPartialTransitionContext transitionContainerView:self
                                             fromViewController:_controller
@@ -116,7 +115,7 @@
                 if (_transition == transition)
                 {
                     [transition cancel];
-                    _transition = [self transitionToViewController:nil];
+                    _transition = [self partialTransitionTo:nil];
                     [self removePartialController];
                 }
             }];
@@ -130,11 +129,7 @@
         partialView.frame   = self.bounds;
         [self addSubview:partialView];
         
-        if (_transition.isAnimated)
-            [_transition animateTranstion];
-        else
-            [self completeTransition:YES];
-        
+        [_transition animateTranstion];
         _controller = toViewController;
     }
 }
@@ -156,12 +151,7 @@
         [fromViewController didMoveToParentViewController:nil];
         
         if (_transition.isPresenting == NO)
-        {
-            if (_transition.isAnimated)
-                [_transition animateTranstion];
-            else
-                [_controller.view removeFromSuperview];
-        }
+            [_transition animateTranstion];
         
         _controller = nil;
     }
@@ -169,7 +159,7 @@
 
 - (void)completeTransition:(BOOL)didComplete
 {
-    if (_transition.toViewController && didComplete)
+    if (didComplete)
         [self anchorPartialViewToRegion:_transition.toViewController.view];
     [_transition.fromViewController.view removeFromSuperview];
     _transition = nil;

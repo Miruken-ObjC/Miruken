@@ -73,6 +73,8 @@
 
 - (instancetype)zoom;
 
+- (instancetype)portal;
+
 - (instancetype)slide3D;
 
 - (instancetype)shuffle3D;

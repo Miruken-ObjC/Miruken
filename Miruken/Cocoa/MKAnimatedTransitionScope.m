@@ -9,9 +9,10 @@
 #import "MKAnimatedTransitionScope.h"
 #import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
-#import "MKZoomTransition.h"
-#import "MKSlide3DTransition.h"
 #import "MKShuffle3DTransition.h"
+#import "MKSlide3DTransition.h"
+#import "MKPortalTransition.h"
+#import "MKZoomTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -157,6 +158,12 @@
 - (instancetype)zoom
 {
     [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
+    return self;
+}
+
+- (instancetype)portal
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKPortalTransition new];
     return self;
 }
 
