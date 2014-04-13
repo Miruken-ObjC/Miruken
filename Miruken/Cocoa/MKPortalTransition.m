@@ -31,7 +31,16 @@
 - (void)presentAnimation:(id<UIViewControllerContextTransitioning>)transitionContext
                 fromView:(UIView *)fromView toView:(UIView *)toView
 {
-    UIView *containerView  = [transitionContext containerView];
+    UIView *containerView = [transitionContext containerView];
+
+    if (fromView == nil)
+    {
+        [containerView addSubview:toView];
+        [transitionContext completeTransition:YES];
+        return;
+    }
+    
+    [containerView bringSubviewToFront:fromView];
     
     // Add a reduced snapshot of the toView to the container
     UIView *toViewSnapshot = [toView resizableSnapshotViewFromRect:toView.frame
@@ -41,6 +50,7 @@
     toViewSnapshot.layer.transform = CATransform3DScale(scale, ZOOM_SCALE, ZOOM_SCALE, 1);
     [containerView addSubview:toViewSnapshot];
     [containerView sendSubviewToBack:toViewSnapshot];
+    toView.hidden                  = YES;
     
     // Create two-part snapshots of the from- view
     
@@ -54,8 +64,8 @@
     [containerView addSubview:leftHandView];
     
     // snapshot the right-hand side of the from- view
-    CGRect rightSnapshotRegion = CGRectMake(fromView.frame.size.width / 2, 0,
-                                            fromView.frame.size.width / 2, fromView.frame.size.height);
+    CGRect  rightSnapshotRegion = CGRectMake(fromView.frame.size.width / 2, 0,
+                                             fromView.frame.size.width / 2, fromView.frame.size.height);
     UIView *rightHandView      = [fromView resizableSnapshotViewFromRect:rightSnapshotRegion
                                                       afterScreenUpdates:NO
                                                            withCapInsets:UIEdgeInsetsZero];
@@ -66,39 +76,48 @@
     [fromView removeFromSuperview];
     
     // animate
-    NSTimeInterval duration    = [self transitionDuration:transitionContext];
-    
-    [UIView animateWithDuration:duration delay:0.0
+
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
-         // Open the portal doors of the from-view
-         leftHandView.frame    = CGRectOffset(leftHandView.frame, - leftHandView.frame.size.width, 0);
-         rightHandView.frame   = CGRectOffset(rightHandView.frame, rightHandView.frame.size.width, 0);
+        // Open the portal doors of the from-view
+        leftHandView.frame    = CGRectOffset(leftHandView.frame, - leftHandView.frame.size.width, 0);
+        rightHandView.frame   = CGRectOffset(rightHandView.frame, rightHandView.frame.size.width, 0);
          
-         // zoom in the to-view
-         toViewSnapshot.center = toView.center;
-         toViewSnapshot.frame  = toView.frame;
+        // zoom in the to-view
+        toViewSnapshot.center = toView.center;
+        toViewSnapshot.frame  = toView.frame;
     } completion:^(BOOL finished) {
-         // remove all the temporary views
-         if ([transitionContext transitionWasCancelled])
-         {
-             [containerView addSubview:fromView];
-             [self removeOtherViews:fromView];
-         }
-         else
-         {
-             // add the real to- view and remove the snapshots
-             [containerView addSubview:toView];
-             [self removeOtherViews:toView];
-         }
-         
-         // inform the context of completion
-         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
-     }];
+        if ([transitionContext transitionWasCancelled])
+        {
+            [containerView addSubview:fromView];
+            [toView removeFromSuperview];
+        }
+        else
+        {
+            toView.hidden = NO;
+            [containerView addSubview:toView];
+            [fromView removeFromSuperview];
+        }
+        
+        // remove the snapshots
+        [leftHandView removeFromSuperview];
+        [rightHandView removeFromSuperview];
+
+        // inform the context of completion
+        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+    }];
 }
 
 - (void)dismissAnimation:(id<UIViewControllerContextTransitioning>)transitionContext
                 fromView:(UIView *)fromView toView:(UIView *)toView
 {
+    if (toView == nil)
+    {
+        [fromView removeFromSuperview];
+        [transitionContext completeTransition:YES];
+        return;
+    }
+    
     UIView *containerView = [transitionContext containerView];
     
     // Add the from-view to the container
@@ -111,10 +130,10 @@
     // Create two-part snapshots of the to- view
     
     // snapshot the left-hand side of the to- view
-    CGRect leftSnapshotRegion = CGRectMake(0, 0, toView.frame.size.width / 2, toView.frame.size.height);
-    UIView *leftHandView      = [toView resizableSnapshotViewFromRect:leftSnapshotRegion
-                                                   afterScreenUpdates:YES
-                                                        withCapInsets:UIEdgeInsetsZero];
+    CGRect  leftSnapshotRegion = CGRectMake(0, 0, toView.frame.size.width / 2, toView.frame.size.height);
+    UIView *leftHandView       = [toView resizableSnapshotViewFromRect:leftSnapshotRegion
+                                                    afterScreenUpdates:YES
+                                                         withCapInsets:UIEdgeInsetsZero];
     leftHandView.frame   = leftSnapshotRegion;
     // reverse animation : start from beyond the edges of the screen
     leftHandView.frame = CGRectOffset(leftHandView.frame, - leftHandView.frame.size.width, 0);
@@ -132,10 +151,8 @@
     [containerView addSubview:rightHandView];
     
     // animate
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
     
-    
-    [UIView animateWithDuration:duration delay:0.0
+    [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
          // Close the portal doors of the to-view
          leftHandView.frame       = CGRectOffset(leftHandView.frame, leftHandView.frame.size.width, 0);
@@ -145,28 +162,21 @@
          CATransform3D scale      = CATransform3DIdentity;
          fromView.layer.transform = CATransform3DScale(scale, ZOOM_SCALE, ZOOM_SCALE, 1);
      } completion:^(BOOL finished) {
-         // remove all the temporary views
          if ([transitionContext transitionWasCancelled])
-             [self removeOtherViews:fromView];
+             [toView removeFromSuperview];
          else
          {
-             [self removeOtherViews:toView];
+             [fromView removeFromSuperview];
              toView.frame = containerView.bounds;
          }
          
+         // remove the snapshots
+         [leftHandView removeFromSuperview];
+         [rightHandView removeFromSuperview];
+
          // inform the context of completion
          [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
      }];
-}
-
-- (void)removeOtherViews:(UIView*)viewToKeep
-{
-    UIView *containerView = viewToKeep.superview;
-    for (UIView *view in containerView.subviews)
-    {
-        if (view != viewToKeep)
-            [view removeFromSuperview];
-    }
 }
 
 @end

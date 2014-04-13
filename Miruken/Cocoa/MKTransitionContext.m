@@ -60,7 +60,7 @@
     [transitionController animateTransition:self];
 }
 
-- (void)cancel
+- (void)cancelTransition
 {
     if (_cancelled == NO)
     {

@@ -21,6 +21,6 @@
 
 - (void)animateTranstion;
 
-- (void)cancel;
+- (void)cancelTransition;
 
 @end

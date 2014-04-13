@@ -84,7 +84,7 @@
             }
         }
         
-        [_transition cancel];
+        [_transition cancelTransition];
         _transition = [self partialTransitionTo:viewController];
         [self removePartialController];
         [self addPartialController];
@@ -114,7 +114,7 @@
                 @strongify(self);
                 if (_transition == transition)
                 {
-                    [transition cancel];
+                    [transition cancelTransition];
                     _transition = [self partialTransitionTo:nil];
                     [self removePartialController];
                 }
