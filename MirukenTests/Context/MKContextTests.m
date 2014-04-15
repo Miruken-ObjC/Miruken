@@ -380,10 +380,10 @@ BOOL deallocCalled;
     MKDeferred         *deferred       = [(id)[someController.context trackPromise] longRunningOperation];
     
     XCTAssertNotNil(deferred, @"Deferred was nil");
-    XCTAssertFalse(deferred.isCancelled, @"Deferred should not be cancelled");
+    XCTAssertFalse(deferred.state == MKPromiseStateCancelled, @"Deferred should not be cancelled");
     
     [childContext end];
-    //XCTAssertTrue(deferred.isCancelled, @"Deferred should be cancelled");
+    //XCTAssertTrue(deferred.state == MKPromiseStateCancelled, @"Deferred should be cancelled");
 }
 
 - (void)testCanTraverseContextGrapthInPreOrder

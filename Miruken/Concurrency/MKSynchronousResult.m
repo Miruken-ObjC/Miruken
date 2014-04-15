@@ -31,7 +31,7 @@
 
 - (BOOL)isComplete
 {
-    return _deferred.state != DeferredStatePending;
+    return _deferred.state != MKPromiseStatePending;
 }
 
 - (BOOL)isProxyResult
@@ -46,7 +46,7 @@
 
 - (void)complete
 {
-    if (_deferred.state == DeferredStatePending)
+    if (_deferred.state == MKPromiseStatePending)
     {
         [_invocation invoke];
         _invocation = nil;

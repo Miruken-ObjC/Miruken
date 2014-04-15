@@ -11,7 +11,7 @@
 @implementation MKTransitionContext
 {
     UIView *_containerView;
-    BOOL    _cancelled;
+    BOOL    _completed;
 }
 
 + (instancetype)transitionContainerView:(UIView *)containerView
@@ -60,24 +60,23 @@
     [transitionController animateTransition:self];
 }
 
-- (void)cancelTransition
+- (void)cancelAnimation
 {
-    if (_cancelled == NO)
+    if (_completed == NO)
     {
-        _cancelled = YES;
+        _completed = YES;
         if (self.isAnimated)
         {
             [CATransaction begin];
-            [_containerView.layer removeAllAnimations];
+            [self removeLayerAnimations:_containerView.layer];
             [CATransaction commit];
         }
-        [self completeTransition:NO];
     }
 }
 
 - (BOOL)transitionWasCancelled
 {
-    return _cancelled;
+    return NO;
 }
 
 - (UIModalPresentationStyle)presentationStyle
@@ -99,6 +98,7 @@
 
 - (void)completeTransition:(BOOL)didComplete
 {
+    _completed = YES;
 }
 
 - (UIViewController *)viewControllerForKey:(NSString *)key
@@ -118,6 +118,13 @@
 - (CGRect)finalFrameForViewController:(UIViewController *)vc
 {
     return vc == _toViewController ? _toViewController.view.frame : CGRectZero;
+}
+
+- (void)removeLayerAnimations:(CALayer *)layer
+{
+    [layer removeAllAnimations];
+    for (CALayer *subLayer in layer.sublayers)
+        [self removeLayerAnimations:subLayer];
 }
 
 @end

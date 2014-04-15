@@ -17,19 +17,19 @@
 
 @protocol MKBufferedPromise <MKPromise>
 
-- (instancetype)bufferDone:(DoneCallback)done;
+- (instancetype)bufferDone:(MKDoneCallback)done;
 
-- (instancetype)bufferFail:(FailCallback)fail;
+- (instancetype)bufferFail:(MKFailCallback)fail;
 
-- (instancetype)bufferError:(ErrorCallback)error;
+- (instancetype)bufferError:(MKErrorCallback)error;
 
-- (instancetype)bufferException:(ExceptionCallback)exception;
+- (instancetype)bufferException:(MKExceptionCallback)exception;
 
-- (instancetype)bufferCancel:(CancelCallback)cancel;
+- (instancetype)bufferCancel:(MKCancelCallback)cancel;
 
-- (instancetype)bufferProgress:(ProgressCallback)progress;
+- (instancetype)bufferProgress:(MKProgressCallback)progress;
 
-- (instancetype)bufferAlways:(AlwaysCallback)always;
+- (instancetype)bufferAlways:(MKAlwaysCallback)always;
 
 - (void)flush;
 

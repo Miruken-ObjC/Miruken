@@ -19,14 +19,14 @@
 - (void)testDeferredInitiallyPending
 {
     MKDeferred *deferred = [MKDeferred new];
-    XCTAssertEqual(DeferredStatePending, deferred.state, @"state should be pending");
+    XCTAssertEqual(MKPromiseStatePending, deferred.state, @"state should be pending");
 }
 
 - (void)testCanResolveDeferred
 {
     MKDeferred *deferred = [MKDeferred new];
     [deferred resolve];
-    XCTAssertEqual(DeferredStateResolved, deferred.state, @"state should be resolved");
+    XCTAssertEqual(MKPromiseStateResolved, deferred.state, @"state should be resolved");
 }
 
 - (void)testCanResolveDeferredOnlyOnce
@@ -41,7 +41,7 @@
 {
     MKDeferred *deferred = [MKDeferred new];
     [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
-    XCTAssertEqual(DeferredStateRejected, deferred.state, @"state should be rejected");
+    XCTAssertEqual(MKPromiseStateRejected, deferred.state, @"state should be rejected");
 }
 
 - (void)testCanRejectDeferredOnlyOnce
@@ -57,7 +57,7 @@
 {
     MKDeferred *deferred = [MKDeferred new];
     [deferred cancel];
-    XCTAssertEqual(DeferredStateCancelled, deferred.state, @"state should be cancelled");
+    XCTAssertEqual(MKPromiseStateCancelled, deferred.state, @"state should be cancelled");
 }
 
 - (void)testCanCancelMoreThanOnce
@@ -71,14 +71,14 @@
 {
     MKDeferred *deferred = [MKDeferred resolved];
     XCTAssertNoThrow([deferred cancel], @"Deferred cancel can be called if already resolved");
-    XCTAssertEqual(DeferredStateResolved, deferred.state, @"state should be resolved");
+    XCTAssertEqual(MKPromiseStateResolved, deferred.state, @"state should be resolved");
 }
 
 - (void)testCancelIgnoredIfAlreadyRejected
 {
     MKDeferred *deferred = [MKDeferred rejected:nil];
     XCTAssertNoThrow([deferred cancel], @"Deferred cancel can be called if already rejected");
-    XCTAssertEqual(DeferredStateRejected, deferred.state, @"state should be rejected");
+    XCTAssertEqual(MKPromiseStateRejected, deferred.state, @"state should be rejected");
 }
 
 - (void)testResolveIgnoredIfAlreadyCancelled
@@ -87,7 +87,7 @@
     MKDeferred   *deferred   = [[MKDeferred new] done:^(id result) { doneCalled = YES; }];
     [deferred cancel];
     XCTAssertNoThrow([deferred resolve:nil], @"Deferred resolve ignored if already cancelled");
-    XCTAssertEqual(DeferredStateCancelled, deferred.state, @"state should be cancelled");
+    XCTAssertEqual(MKPromiseStateCancelled, deferred.state, @"state should be cancelled");
     XCTAssertFalse(doneCalled, @"done callbacks should not be called");
 }
 
@@ -99,7 +99,7 @@
     }];
     [deferred cancel];
     XCTAssertNoThrow([deferred reject:nil], @"Deferred reject ignored if already cancelled");
-    XCTAssertEqual(DeferredStateCancelled, deferred.state, @"state should be cancelled");
+    XCTAssertEqual(MKPromiseStateCancelled, deferred.state, @"state should be cancelled");
     XCTAssertFalse(failCalled, @"fail callbacks should not be called");
 }
 
@@ -225,7 +225,7 @@
 - (void)testPromisePending
 {
     id<MKPromise> promise = [[MKDeferred new] promise];
-    XCTAssertEqual(DeferredStatePending, promise.state, @"state should be pending");
+    XCTAssertEqual(MKPromiseStatePending, promise.state, @"state should be pending");
 }
 
 - (void)testPromiseResolved
@@ -233,7 +233,7 @@
     MKDeferred  *deferred = [MKDeferred new];
     [deferred resolve];
     id<MKPromise> promise = [deferred promise];
-    XCTAssertEqual(DeferredStateResolved, promise.state, @"state should be resolved");
+    XCTAssertEqual(MKPromiseStateResolved, promise.state, @"state should be resolved");
 }
 
 - (void)testPromiseRejected
@@ -241,7 +241,7 @@
     MKDeferred *deferred = [MKDeferred new];
     [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
     id<MKPromise> promise  = [deferred promise];
-    XCTAssertEqual(DeferredStateRejected, promise.state, @"state should be rejected");
+    XCTAssertEqual(MKPromiseStateRejected, promise.state, @"state should be rejected");
 }
 
 - (void)testPromiseCancelled
@@ -249,7 +249,7 @@
     MKDeferred    *deferred = [MKDeferred new];
     [deferred cancel];
     id<MKPromise>  promise  = [deferred promise];
-    XCTAssertEqual(DeferredStateCancelled, promise.state, @"state should be cancelled");
+    XCTAssertEqual(MKPromiseStateCancelled, promise.state, @"state should be cancelled");
 }
 
 - (void)testWillCallDonePromiseWhenDeferredResolved
@@ -424,7 +424,7 @@
 {
     __block NSString *message;
     MKDeferred       *deferred = [MKDeferred new];
-    [[deferred pipe:nil failFilter:nil progressFilter:^(NSNumber *progress, BOOL queued) {
+    [[deferred pipe:nil failFilter:nil progressFilter:^(NSNumber *progress, BOOL *queued) {
         return [NSString stringWithFormat:@"Step %@ complete", progress];
     }] progress:^(NSString *progress, BOOL queued)
      {
@@ -531,52 +531,13 @@
     XCTAssertTrue(cancelled, @"Master deferred cancelled not called");
 }
 
-- (void)testCanAddAdditionalDoneCallbacksToPromise
-{
-    __block NSString *resolved = nil;
-    MKDeferred       *deferred = [MKDeferred new];
-    id<MKPromise>     promise  = [deferred promise];
-    [promise then:@[^(id result) { resolved = result; } ]
-             fail:@[^(id reason, BOOL *handled) {}]
-         progress:@[^(id progress) {}]
-     ];
-    [deferred resolve:@"Hello"];
-    XCTAssertEqualObjects(@"Hello", resolved, @"Then done callback not called");
-}
-
-- (void)testCanAddAdditionalFailCallbacksToPromise
-{
-    __block NSError *rejected = nil;
-    MKDeferred      *deferred = [MKDeferred new];
-    id<MKPromise>    promise  = [deferred promise];
-    [promise then:@[^(id result) {} ]
-             fail:@[^(NSError *error) { rejected = error; }]
-         progress:@[^(id progress) {}]
-     ];
-    [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
-    XCTAssertEqualObjects(@"Foo", rejected.domain, @"Then fail callback not called");
-}
-
-- (void)testCanAddAdditionalProgressCallbacksToPromise
-{
-    __block NSNumber *status = nil;
-    MKDeferred       *deferred = [MKDeferred new];
-    id<MKPromise>     promise  = [deferred promise];
-    [promise then:@[^(id result) {} ]
-             fail:@[^(NSError *error) {}]
-         progress:@[^(id progress) { status = progress; }]
-     ];
-    [deferred notify:@(7U)];
-    XCTAssertEqual(7U, [status unsignedIntegerValue], @"Then progress callback not called");
-}
-
 - (void)testCanPoxyDeferredOnNewThread
 {
     MKDeferred *deferred = [[[MKDeferred new] inNewThread]
-                            done:^(id result) {
-                                XCTAssertFalse([[NSThread currentThread] isMainThread], @"Should not be main thread");
-                            }];
-    XCTAssertFalse(deferred.isResolved, @"Deferred not resolved yet");
+        done:^(id result) {
+            XCTAssertFalse([[NSThread currentThread] isMainThread], @"Should not be main thread");
+        }];
+    XCTAssertFalse(deferred.state == MKPromiseStateResolved, @"Deferred not resolved yet");
     [deferred resolve:@"Hello"];
 }
 
@@ -614,84 +575,6 @@
          XCTAssertFalse([[NSThread currentThread] isMainThread], @"Always should not be main thread");
      }];
     [deferred cancel];
-}
-
-- (void)testCanProxyAdditionalDoneCallbacksForPromise
-{
-    NSCondition *condition = [NSCondition new];
-    
-    __block NSString *resolved = nil;
-    MKDeferred       *deferred = [MKDeferred new];
-    id<MKPromise>     promise  = [[deferred promise] inNewThread];
-    [promise then:@[^(id result) {
-        XCTAssertFalse([[NSThread currentThread] isMainThread], @"Done should not be main thread");
-        [condition lock];
-        resolved = result;
-        [condition signal];
-        [condition unlock];
-    }]
-             fail:@[^(id reason, BOOL *handled) {}]
-         progress:@[^(id progress) {}]
-     ];
-    [deferred resolve:@"Hello"];
-    
-    [condition lock];
-    [condition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
-    XCTAssertTrue([[NSThread currentThread] isMainThread], @"Should be main thread");
-    XCTAssertEqualObjects(@"Hello", resolved, @"Then done callback not called");
-    [condition unlock];
-}
-
-- (void)testCanProxyAdditionalFailCallbacksForPromise
-{
-    NSCondition *condition = [NSCondition new];
-    
-    __block NSError *rejected = nil;
-    MKDeferred      *deferred = [MKDeferred new];
-    id<MKPromise>     promise  = [[deferred promise] inNewThread];
-    [promise then:@[^(id result) {}]
-             fail:@[^(id reason, BOOL *handled) {
-        XCTAssertFalse([[NSThread currentThread] isMainThread], @"Fail should not be main thread");
-        [condition lock];
-        rejected = reason;
-        [condition signal];
-        [condition unlock];
-    }]
-         progress:@[^(id progress) {}]
-     ];
-    [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
-    
-    [condition lock];
-    [condition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
-    XCTAssertTrue([[NSThread currentThread] isMainThread], @"Should be main thread");
-    XCTAssertEqualObjects(@"Foo", rejected.domain, @"Then fail callback not called");
-    [condition unlock];
-}
-
-- (void)testCanProxyAdditionalProgressCallbacksForPromise
-{
-    NSCondition *condition = [NSCondition new];
-    
-    __block NSNumber *status = nil;
-    MKDeferred       *deferred = [MKDeferred new];
-    id<MKPromise>     promise  = [[deferred promise] inNewThread];
-    [promise then:@[^(id result) {}]
-             fail:@[^(id reason, BOOL *handled) {}]
-         progress:@[^(NSNumber *progress) {
-        XCTAssertFalse([[NSThread currentThread] isMainThread], @"Done should not be main thread");
-        [condition lock];
-        status = progress;
-        [condition signal];
-        [condition unlock];
-    }]
-     ];
-    [deferred notify:@(7U)];
-    
-    [condition lock];
-    [condition waitUntilDate:[NSDate dateWithTimeIntervalSinceNow:3]];
-    XCTAssertTrue([[NSThread currentThread] isMainThread], @"Should be main thread");
-    XCTAssertEqual(7U, [status unsignedIntegerValue], @"Then progress callback not called");
-    [condition unlock];
 }
 
 - (void)testCanProjectPromiseWhenResolvedOnNewThread

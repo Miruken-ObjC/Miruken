@@ -26,15 +26,15 @@
 
 - (id<MKPromise>)promise;
 
-- (instancetype)done:(DoneCallback)done;
+- (instancetype)done:(MKDoneCallback)done;
 
-- (instancetype)fail:(FailCallback)fail;
+- (instancetype)fail:(MKFailCallback)fail;
 
-- (instancetype)error:(ErrorCallback)error;
+- (instancetype)error:(MKErrorCallback)error;
 
-- (instancetype)exception:(ExceptionCallback)exception;
+- (instancetype)exception:(MKExceptionCallback)exception;
 
-- (instancetype)always:(AlwaysCallback)always;
+- (instancetype)always:(MKAlwaysCallback)always;
 
 - (instancetype)resolve;
 

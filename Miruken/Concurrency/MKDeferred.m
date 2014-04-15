@@ -35,97 +35,65 @@
     return self;
 }
 
-- (DeferredState)state
+- (MKPromiseState)state
 {
     return [_deferred state];
 }
 
-- (BOOL)isPending
-{
-    return [_deferred isPending];
-}
-
-- (BOOL)isResolved
-{
-    return [_deferred isResolved];
-}
-
-- (BOOL)isRejected
-{
-    return [_deferred isRejected];
-}
-
-- (BOOL)isCancelled
-{
-    return [_deferred isCancelled];
-}
-
-- (instancetype)done:(DoneCallback)done
+- (instancetype)done:(MKDoneCallback)done
 {
     [_deferred done:done];
     return self;
 }
 
-- (instancetype)fail:(FailCallback)fail
+- (instancetype)fail:(MKFailCallback)fail
 {
     [_deferred fail:fail];
     return self;
 }
 
-- (instancetype)error:(ErrorCallback)error
+- (instancetype)error:(MKErrorCallback)error
 {
     [_deferred error:error];
     return self;
 }
 
-- (instancetype)exception:(ExceptionCallback)exception
+- (instancetype)exception:(MKExceptionCallback)exception
 {
     [_deferred exception:exception];
     return self;
 }
 
-- (instancetype)cancel:(CancelCallback)cancel
+- (instancetype)cancel:(MKCancelCallback)cancel
 {
     [_deferred cancel:cancel];
     return self;
 }
 
-- (instancetype)always:(AlwaysCallback)always
+- (instancetype)always:(MKAlwaysCallback)always
 {
     [_deferred always:always];
     return self;
 }
 
-- (instancetype)progress:(ProgressCallback)progress
+- (instancetype)progress:(MKProgressCallback)progress
 {
     [_deferred progress:progress];
     return self;
 }
 
-- (instancetype)then:(NSArray *)done fail:(NSArray *)fail
-{
-    [_deferred then:done fail:fail];
-    return self;
-}
-
-- (instancetype)then:(NSArray *)done fail:(NSArray *)fail progress:(NSArray *)progress
-{
-    [_deferred then:done fail:fail progress:progress];
-    return self;
-}
-
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter
 {
     return [_deferred pipe:doneFilter];
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
     return [_deferred pipe:doneFilter failFilter:failFilter];
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
-     progressFilter:(ProgressFilter)progressFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+     progressFilter:(MKProgressFilter)progressFilter
 {
     return [_deferred pipe:doneFilter failFilter:failFilter progressFilter:progressFilter];
 }
@@ -161,8 +129,8 @@
 
 @interface MKPipe : NSObject <MKPromise>
 
-+ (instancetype)filteredPromise:(id<MKPromise>)promise doneFilter:(DoneFilter)doneFilter
-                     failFilter:(FailFilter)failFilter progressFilter:(ProgressFilter)progressFilter;
++ (instancetype)filteredPromise:(id<MKPromise>)promise doneFilter:(MKDoneFilter)doneFilter
+                     failFilter:(MKFailFilter)failFilter progressFilter:(MKProgressFilter)progressFilter;
 
 @end
 
@@ -189,7 +157,7 @@
 {
     if (self = [super init])
     {
-        _state = DeferredStatePending;
+        _state = MKPromiseStatePending;
         pthread_mutexattr_init(&_mutexAttr);
         pthread_mutexattr_settype(&_mutexAttr, PTHREAD_MUTEX_RECURSIVE);
         pthread_cond_init(&_conditionVariable, NULL);
@@ -213,37 +181,17 @@
     return [[MKDeferred new] reject:reason];
 }
 
-- (BOOL)isPending
-{
-    return _state == DeferredStatePending;
-}
-
-- (BOOL)isResolved
-{
-    return _state == DeferredStateResolved;
-}
-
-- (BOOL)isRejected
-{
-    return _state == DeferredStateRejected;
-}
-
-- (BOOL)isCancelled
-{
-    return _state == DeferredStateCancelled;
-}
-
 - (id<MKPromise>)promise
 {
     return [MKPromise deferredPromise:self];
 }
 
-- (instancetype)done:(DoneCallback)done
+- (instancetype)done:(MKDoneCallback)done
 {
     if (done == nil)
         return self;
     
-    if (_state == DeferredStateResolved)
+    if (_state == MKPromiseStateResolved)
     {
         done(_result);
         return self;
@@ -253,7 +201,7 @@
 
     @try
     {
-        if (_state == DeferredStatePending)
+        if (_state == MKPromiseStatePending)
         {
             if (_done == nil)
                 _done = [NSMutableArray arrayWithObject:done];
@@ -268,12 +216,12 @@
     }
 }
 
-- (instancetype)fail:(FailCallback)fail
+- (instancetype)fail:(MKFailCallback)fail
 {
     if (fail == nil)
         return self;
     
-    if (_state == DeferredStateRejected)
+    if (_state == MKPromiseStateRejected)
     {
         fail(_result, &_failureHandled);
         return self;
@@ -283,7 +231,7 @@
     
     @try
     {
-        if (_state == DeferredStatePending)
+        if (_state == MKPromiseStatePending)
         {
             if (_fail == nil)
                 _fail = [NSMutableArray arrayWithObject:fail];
@@ -298,7 +246,7 @@
     }
 }
 
-- (instancetype)error:(ErrorCallback)error
+- (instancetype)error:(MKErrorCallback)error
 {
     return [self fail:^(id reason, BOOL *handled) {
         if ([reason isKindOfClass:NSError.class])
@@ -306,7 +254,7 @@
     }];
 }
 
-- (instancetype)exception:(ExceptionCallback)exception
+- (instancetype)exception:(MKExceptionCallback)exception
 {
     return [self fail:^(id reason, BOOL *handled) {
         if ([reason isKindOfClass:NSException.class])
@@ -314,12 +262,12 @@
     }];
 }
 
-- (instancetype)cancel:(CancelCallback)cancel
+- (instancetype)cancel:(MKCancelCallback)cancel
 {
     if (cancel == nil)
         return self;
     
-    if (_state == DeferredStateCancelled)
+    if (_state == MKPromiseStateCancelled)
     {
         cancel();
         return self;
@@ -329,7 +277,7 @@
     
     @try
     {
-        if (_state == DeferredStatePending)
+        if (_state == MKPromiseStatePending)
         {
             if (_cancel == nil)
                 _cancel = [NSMutableArray arrayWithObject:cancel];
@@ -344,12 +292,12 @@
     }
 }
 
-- (instancetype)always:(AlwaysCallback)always
+- (instancetype)always:(MKAlwaysCallback)always
 {
     if (always == nil)
         return self;
     
-    if (_state != DeferredStatePending)
+    if (_state != MKPromiseStatePending)
     {
         always();
         return self;
@@ -371,7 +319,7 @@
     }
 }
 
-- (id<MKPromise>)progress:(ProgressCallback)progress
+- (id<MKPromise>)progress:(MKProgressCallback)progress
 {
     if (progress == nil)
         return self;
@@ -380,7 +328,7 @@
 
     @try
     {
-        if (_state == DeferredStatePending)
+        if (_state == MKPromiseStatePending)
         {
             if (_progress == nil)
                 _progress = [NSMutableArray arrayWithObject:progress];
@@ -391,69 +339,6 @@
         if (_notifications)
             for (id notification in _notifications)
                 progress(notification, YES);
-        
-        return self;
-    }
-    @finally
-    {
-        pthread_mutex_unlock(&_mutex);
-    }
-}
-
-- (id<MKPromise>)then:(NSArray *)done fail:(NSArray *)fail
-{
-    return [self then:done fail:fail progress:nil];
-}
-
-- (id<MKPromise>)then:(NSArray *)done fail:(NSArray *)fail progress:(NSArray *)progress
-{
-    if (_state == DeferredStateResolved)
-    {
-        if (done)
-        {
-            for (DoneCallback doneCB in done)
-                doneCB(_result);
-        }
-        return self;
-    }
-
-    if (_state == DeferredStateRejected)
-    {
-        if (fail)
-        {
-            for (FailCallback failCB in fail)
-                failCB(_result, &_failureHandled);
-        }
-        return self;
-    }
-    
-    pthread_mutex_lock(&_mutex);
-    
-    @try
-    {
-        if (done)
-        {
-            if (_done == nil)
-                _done = [NSMutableArray arrayWithArray:done];
-            else
-                [_done addObjectsFromArray:done];
-        }
-        
-        if (fail)
-        {
-            if (_fail == nil)
-                _fail = [NSMutableArray arrayWithArray:fail];
-            else
-                [_fail addObjectsFromArray:fail];
-        }
-        
-        if (progress)
-        {
-            if (_progress == nil)
-                _progress = [NSMutableArray arrayWithArray:progress];
-            else
-                [_progress addObjectsFromArray:progress];
-        }
         
         return self;
     }
@@ -481,24 +366,24 @@
     {
         // Ignore result if cancelled
         
-        if (_state == DeferredStateCancelled)
+        if (_state == MKPromiseStateCancelled)
             return self;
         
-        if (_state != DeferredStatePending)
+        if (_state != MKPromiseStatePending)
             @throw [NSException
                     exceptionWithName: NSInternalInconsistencyException
                     reason: @"Deferred can only be resolved in the pending state"
                     userInfo: nil];
         
-        _state  = DeferredStateResolved;
+        _state  = MKPromiseStateResolved;
         _result = result;
         
         if (_done)
-            for (DoneCallback done in _done)
+            for (MKDoneCallback done in _done)
                 done(_result);
         
         if (_always)
-            for (AlwaysCallback always in _always)
+            for (MKAlwaysCallback always in _always)
                 always();
         
         _done = _fail = _cancel = _always = _progress = nil;
@@ -524,28 +409,28 @@
     {
         // Ignore failure if cancelled
         
-        if (_state == DeferredStateCancelled)
+        if (_state == MKPromiseStateCancelled)
             return self;
         
-        if (_state != DeferredStatePending)
+        if (_state != MKPromiseStatePending)
             @throw [NSException
                     exceptionWithName: NSInternalInconsistencyException
                     reason: @"Deferred can only be rejected in the pending state"
                     userInfo: nil];
         
-        _state  = DeferredStateRejected;
+        _state  = MKPromiseStateRejected;
         _result = reason;
         
         if (_fail)
         {
             if (handled == NULL)
                 handled = &_failureHandled;
-            for (FailCallback fail in _fail)
+            for (MKFailCallback fail in _fail)
                 fail(_result, handled);
         }
         
         if (_always)
-            for (AlwaysCallback always in _always)
+            for (MKAlwaysCallback always in _always)
                 always();
         
         _done = _fail = _cancel = _always = _progress = nil;
@@ -565,17 +450,17 @@
     
     @try
     {
-        if (_state != DeferredStatePending)
+        if (_state != MKPromiseStatePending)
             return;
         
-        _state = DeferredStateCancelled;
+        _state = MKPromiseStateCancelled;
         
         if (_cancel)
-            for (CancelCallback cancel in _cancel)
+            for (MKCancelCallback cancel in _cancel)
                 cancel();
         
         if (_always)
-            for (AlwaysCallback always in _always)
+            for (MKAlwaysCallback always in _always)
                 always();
         
         _done = _fail = _cancel = _always = _progress = nil;
@@ -594,7 +479,7 @@
 
 - (instancetype)notify:(id)progress queue:(BOOL)queue
 {
-    if (_state != DeferredStatePending)
+    if (_state != MKPromiseStatePending)
         return self;
     
     pthread_mutex_lock(&_mutex);
@@ -609,7 +494,7 @@
     @try
     {
         if (_progress)
-            for (ProgressCallback notify in _progress)
+            for (MKProgressCallback notify in _progress)
                 notify(progress, NO);
         return self;
     }
@@ -637,18 +522,18 @@
     return self;
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter
 {
     return [MKPipe filteredPromise:self doneFilter:doneFilter failFilter:nil progressFilter:nil];
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
     return [MKPipe filteredPromise:self doneFilter:doneFilter failFilter:failFilter progressFilter:nil];
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
-     progressFilter:(ProgressFilter)progressFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+     progressFilter:(MKProgressFilter)progressFilter
 {
     return [MKPipe filteredPromise:self doneFilter:doneFilter failFilter:failFilter
                   progressFilter:progressFilter];
@@ -661,7 +546,7 @@
 
 - (BOOL)waitUntilDate:(NSDate *)date
 {
-    if (_state != DeferredStatePending)
+    if (_state != MKPromiseStatePending)
         return YES;
     
     double second, subsecond;
@@ -673,7 +558,7 @@
     
     @try
     {
-        while (_state == DeferredStatePending)
+        while (_state == MKPromiseStatePending)
         {
             if (pthread_cond_timedwait(&_conditionVariable, &_mutex, &time) == ETIMEDOUT)
                 return NO;
@@ -688,14 +573,14 @@
 
 - (void)wait
 {
-    if (_state != DeferredStatePending)
+    if (_state != MKPromiseStatePending)
         return;
     
     pthread_mutex_lock(&_mutex);
     
     @try
     {
-        while (_state == DeferredStatePending)
+        while (_state == MKPromiseStatePending)
             pthread_cond_wait(&_conditionVariable, &_mutex);        
     }
     @finally
@@ -757,7 +642,7 @@
                 fail:^(id reason, BOOL *handled) {
                     @synchronized(master)
                     {
-                        if (master.isPending)
+                        if (master.state == MKPromiseStatePending)
                         {
                             [master reject:reason handled:handled];
                             results = nil;
@@ -767,7 +652,7 @@
               cancel:^{
                   @synchronized(master)
                   {
-                      if (master.isPending)
+                      if (master.state == MKPromiseStatePending)
                       {
                           [master cancel];
                           results = nil;
@@ -800,20 +685,20 @@
 @implementation MKPipe
 {
     MKDeferred      *_pipe;
-    DoneFilter       _doneFilter;
-    FailFilter       _failFilter;
-    ProgressFilter   _progressFilter;
+    MKDoneFilter       _doneFilter;
+    MKFailFilter       _failFilter;
+    MKProgressFilter   _progressFilter;
 }
 
-+ (instancetype)filteredPromise:(id<MKPromise>)promise doneFilter:(DoneFilter)doneFilter
-                     failFilter:(FailFilter)failFilter progressFilter:(ProgressFilter)progressFilter
++ (instancetype)filteredPromise:(id<MKPromise>)promise doneFilter:(MKDoneFilter)doneFilter
+                     failFilter:(MKFailFilter)failFilter progressFilter:(MKProgressFilter)progressFilter
 {
     return [[MKPipe alloc] initWithPromise:promise doneFilter:doneFilter failFilter:failFilter
                           progressFilter:progressFilter];
 }
 
-- (id)initWithPromise:(id<MKPromise>)promise doneFilter:(DoneFilter)doneFilter
-           failFilter:(FailFilter)failFilter progressFilter:(ProgressFilter)progressFilter
+- (id)initWithPromise:(id<MKPromise>)promise doneFilter:(MKDoneFilter)doneFilter
+           failFilter:(MKFailFilter)failFilter progressFilter:(MKProgressFilter)progressFilter
 {
     if (self = [super init])
     {
@@ -827,28 +712,18 @@
                 if (_doneFilter)
                 {
                     result = _doneFilter(result);
-                    if ([result conformsToProtocol:@protocol(MKPromise)])
-                    {
-                        [[[[((id<MKPromise>)result)
-                            done:^(id pipedResult) {
-                                [_pipe resolve:pipedResult];
-                            }]
-                           fail:^(id reason, BOOL *handled) {
-                               [_pipe reject:reason handled:handled];
-                           }]
-                          cancel:^{ [_pipe cancel]; }]
-                         progress:^(id progress, BOOL queued) {
-                             [_pipe notify:progress queue:queued];
-                         }];
-                        [_pipe cancel:^{ [result cancel]; }];
+                    if ([self chainPromise:result])
                         return;
-                    }
                 }
                 [_pipe resolve:result];
             }]
            fail:^(id reason, BOOL *handled) {
                if (_failFilter)
+               {
                    reason = _failFilter(reason);
+                   if ([self chainPromise:reason])
+                       return;
+               }
                [_pipe reject:reason handled:handled];
            }]
           cancel:^{ [_pipe cancel]; }]
@@ -863,99 +738,87 @@
     return self;
 }
 
-- (DeferredState)state
+- (BOOL)chainPromise:(id)object
+{
+    if ([object conformsToProtocol:@protocol(MKPromise)] == NO)
+        return NO;
+    
+    [[[[((id<MKPromise>)object)
+        done:^(id pipedResult) {
+            [_pipe resolve:pipedResult];
+        }]
+       fail:^(id reason, BOOL *handled) {
+           [_pipe reject:reason handled:handled];
+       }]
+      cancel:^{ [_pipe cancel]; }]
+     progress:^(id progress, BOOL queued) {
+         [_pipe notify:progress queue:queued];
+     }];
+    [_pipe cancel:^{ [object cancel]; }];
+    return YES;
+}
+
+- (MKPromiseState)state
 {
     return [_pipe state];
 }
 
-- (BOOL)isPending
-{
-    return [_pipe isPending];
-}
-
-- (BOOL)isResolved
-{
-    return [_pipe isResolved];
-}
-
-- (BOOL)isRejected
-{
-    return [_pipe isRejected];
-}
-
-- (BOOL)isCancelled
-{
-    return [_pipe isCancelled];
-}
-
-- (id<MKPromise>)done:(DoneCallback)done
+- (id<MKPromise>)done:(MKDoneCallback)done
 {
     [_pipe done:done];
     return self;
 }
 
-- (id<MKPromise>)fail:(FailCallback)fail
+- (id<MKPromise>)fail:(MKFailCallback)fail
 {
     [_pipe fail:fail];
     return self;
 }
 
-- (id<MKPromise>)error:(ErrorCallback)error
+- (id<MKPromise>)error:(MKErrorCallback)error
 {
     [_pipe error:error];
     return self;
 }
 
-- (id<MKPromise>)exception:(ExceptionCallback)exception
+- (id<MKPromise>)exception:(MKExceptionCallback)exception
 {
     [_pipe exception:exception];
     return self;
 }
 
-- (id<MKPromise>)cancel:(CancelCallback)cancel
+- (id<MKPromise>)cancel:(MKCancelCallback)cancel
 {
     [_pipe cancel:cancel];
     return self;
 }
 
-- (id<MKPromise>)always:(AlwaysCallback)always
+- (id<MKPromise>)always:(MKAlwaysCallback)always
 {
     [_pipe always:always];
     return self;
 }
 
-- (id<MKPromise>)progress:(ProgressCallback)progress
+- (id<MKPromise>)progress:(MKProgressCallback)progress
 {
     [_pipe progress:progress];
     return self;
 }
 
-- (id<MKPromise>)then:(NSArray *)done fail:(NSArray *)fail
-{
-    [_pipe then:done fail:fail];
-    return self;
-}
-
-- (id<MKPromise>)then:(NSArray *)done fail:(NSArray *)fail progress:(NSArray *)progress
-{
-    [_pipe then:done fail:fail progress:progress];
-    return self;
-}
-
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:nil
                           progressFilter:nil];
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:failFilter
                           progressFilter:nil];
 }
 
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
-     progressFilter:(ProgressFilter)progressFilter
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+     progressFilter:(MKProgressFilter)progressFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:failFilter
                           progressFilter:progressFilter];

@@ -29,7 +29,7 @@
 
 - (BOOL)isComplete
 {
-    return _deferred.state != DeferredStatePending;
+    return _deferred.state != MKPromiseStatePending;
 }
 
 - (BOOL)isProxyResult
@@ -39,7 +39,7 @@
 
 - (void)complete
 {
-    if (_deferred.state != DeferredStatePending)
+    if (_deferred.state != MKPromiseStatePending)
         return;
 
     @try
@@ -79,7 +79,7 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
-    if (_deferred.state == DeferredStatePending)
+    if (_deferred.state == MKPromiseStatePending)
         [self result];
     return _result
          ? [_result methodSignatureForSelector:aSelector]
@@ -88,7 +88,7 @@
 
 - (void)forwardInvocation:(NSInvocation *)anInvocation
 {
-    if (_deferred.state == DeferredStatePending)
+    if (_deferred.state == MKPromiseStatePending)
         [self result];
     if (_result)
         [anInvocation invokeWithTarget:_result];

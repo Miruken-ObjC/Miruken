@@ -11,23 +11,23 @@
 
 @protocol MKBufferedPromise;
 
-typedef void (^DoneCallback)(id result);
-typedef void (^FailCallback)(id reason, BOOL *handled);
-typedef void (^ErrorCallback)(NSError *error, BOOL *handled);
-typedef void (^ExceptionCallback)(NSException *exception, BOOL *handled);
-typedef void (^ProgressCallback)(id progress, BOOL queued);
-typedef void (^CancelCallback)();
-typedef void (^AlwaysCallback)();
+typedef void (^MKDoneCallback)(id result);
+typedef void (^MKFailCallback)(id reason, BOOL *handled);
+typedef void (^MKErrorCallback)(NSError *error, BOOL *handled);
+typedef void (^MKExceptionCallback)(NSException *exception, BOOL *handled);
+typedef void (^MKProgressCallback)(id progress, BOOL queued);
+typedef void (^MKCancelCallback)();
+typedef void (^MKAlwaysCallback)();
 
-typedef id   (^DoneFilter)(id result);
-typedef id   (^FailFilter)(id reason);
-typedef id   (^ProgressFilter)(id progress, BOOL *queued);
+typedef id   (^MKDoneFilter)(id result);
+typedef id   (^MKFailFilter)(id reason);
+typedef id   (^MKProgressFilter)(id progress, BOOL *queued);
 
-typedef NS_ENUM(NSUInteger, DeferredState) {
-    DeferredStatePending = 0,
-    DeferredStateResolved,
-    DeferredStateRejected,
-    DeferredStateCancelled
+typedef NS_ENUM(NSUInteger, MKPromiseState) {
+    MKPromiseStatePending = 0,
+    MKPromiseStateResolved,
+    MKPromiseStateRejected,
+    MKPromiseStateCancelled
 };
 
 /**
@@ -39,40 +39,28 @@ typedef NS_ENUM(NSUInteger, DeferredState) {
 
 @protocol MKPromise <MKConcurrency>
 
-@property (readonly) DeferredState state;
+@property (readonly) MKPromiseState state;
 
-- (BOOL)isPending;
+- (instancetype)done:(MKDoneCallback)done;
 
-- (BOOL)isResolved;
+- (instancetype)fail:(MKFailCallback)fail;
 
-- (BOOL)isRejected;
+- (instancetype)error:(MKErrorCallback)error;
 
-- (BOOL)isCancelled;
+- (instancetype)exception:(MKExceptionCallback)exception;
 
-- (instancetype)done:(DoneCallback)done;
+- (instancetype)cancel:(MKCancelCallback)cancel;
 
-- (instancetype)fail:(FailCallback)fail;
+- (instancetype)always:(MKAlwaysCallback)always;
 
-- (instancetype)error:(ErrorCallback)error;
+- (instancetype)progress:(MKProgressCallback)progress;
 
-- (instancetype)exception:(ExceptionCallback)exception;
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter;
 
-- (instancetype)cancel:(CancelCallback)cancel;
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter;
 
-- (instancetype)always:(AlwaysCallback)always;
-
-- (instancetype)progress:(ProgressCallback)progress;
-
-- (instancetype)then:(NSArray *)done fail:(NSArray *)fail;
-
-- (instancetype)then:(NSArray *)done fail:(NSArray *)fail progress:(NSArray *)progress;
-
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter;
-
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter;
-
-- (id<MKPromise>)pipe:(DoneFilter)doneFilter failFilter:(FailFilter)failFilter
-     progressFilter:(ProgressFilter)progressFilter;
+- (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+     progressFilter:(MKProgressFilter)progressFilter;
 
 - (id<MKBufferedPromise>)buffer;
 

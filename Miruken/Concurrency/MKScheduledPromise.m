@@ -51,32 +51,12 @@
     return self;
 }
 
-- (DeferredState)state
+- (MKPromiseState)state
 {
     return [_promise state];
 }
 
-- (BOOL)isPending
-{
-    return [_promise isPending];
-}
-
-- (BOOL)isResolved
-{
-    return [_promise isResolved];
-}
-
-- (BOOL)isRejected
-{
-    return [_promise isRejected];
-}
-
-- (BOOL)isCancelled
-{
-    return [_promise isCancelled];
-}
-
-- (id)done:(DoneCallback)done
+- (id)done:(MKDoneCallback)done
 {
     [_promise done:^(id result) {
         [_scheduler do:^{ done(result); }];
@@ -84,7 +64,7 @@
     return self;
 }
 
-- (id)fail:(FailCallback)fail
+- (id)fail:(MKFailCallback)fail
 {
     [_promise fail:^(id reason, BOOL *handled) {
         [_scheduler do:^{ fail(reason, handled); }];
@@ -92,7 +72,7 @@
     return self;
 }
 
-- (id)error:(ErrorCallback)error
+- (id)error:(MKErrorCallback)error
 {
     [_promise error:^(NSError *err, BOOL *handled) {
         [_scheduler do:^{ error(err, handled); }];
@@ -100,7 +80,7 @@
     return self;
 }
 
-- (id)exception:(ExceptionCallback)exception
+- (id)exception:(MKExceptionCallback)exception
 {
     [_promise exception:^(NSException *ex, BOOL *handled) {
         [_scheduler do:^{ exception(ex, handled); }];
@@ -108,67 +88,25 @@
     return self;
 }
 
-- (id)cancel:(CancelCallback)cancel
+- (id)cancel:(MKCancelCallback)cancel
 {
     [_promise cancel:^{ [_scheduler do:cancel]; }];
     return self;
 }
 
-- (id)always:(AlwaysCallback)always
+- (id)always:(MKAlwaysCallback)always
 {
     [_promise always:^{ [_scheduler do:always]; }];
     return self;
 }
 
-- (id)progress:(ProgressCallback)progress
+- (id)progress:(MKProgressCallback)progress
 {
     [_promise progress:^(id info, BOOL queued) {
         [_scheduler do:^{ progress(info, queued); }];
     }];
     return self;
 }
-
-- (id)then:(NSArray *)done fail:(NSArray *)fail
-{
-    return [self then:done fail:fail progress:nil];
-}
-
-- (id)then:(NSArray *)done fail:(NSArray *)fail progress:(NSArray *)progress
-{
-    if (done)
-    {
-        done = [self mapArray:done map:^(id cb) {
-            return (id)^(id result) {
-                [_scheduler do:^{
-                    ((DoneCallback)cb)(result);
-                }];
-            };
-        }];
-    }
-    
-    if (fail)
-    {
-        fail = [self mapArray:fail map:^(id cb) {
-            return (id)^(id reason, BOOL *handled) {
-                [_scheduler do:^{ ((FailCallback)cb)(reason, handled); }];
-            };
-        }];
-    }
-    
-    if (progress)
-    {
-        progress = [self mapArray:progress map:^(id cb) {
-            return (id)^(id info, BOOL queued) {
-                [_scheduler do:^{ ((ProgressCallback)cb)(info, queued); }];
-            };
-        }];        
-    }
-    
-    [_promise then:done fail:fail progress:progress];
-    
-    return self;
-}
-
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
@@ -219,7 +157,7 @@
 
 @implementation ScheduledBufferedPromise
 
-- (id)bufferDone:(DoneCallback)done
+- (id)bufferDone:(MKDoneCallback)done
 {
     [(id<MKBufferedPromise>)_promise bufferDone:^(id result) {
         [_scheduler do:^{ done(result); }];
@@ -227,7 +165,7 @@
     return self;
 }
 
-- (id)bufferFail:(FailCallback)fail
+- (id)bufferFail:(MKFailCallback)fail
 {
     [(id<MKBufferedPromise>)_promise bufferFail:^(id reason, BOOL *handled) {
         [_scheduler do:^{ fail(reason, handled); }];
@@ -235,7 +173,7 @@
     return self;
 }
 
-- (id)bufferError:(ErrorCallback)error
+- (id)bufferError:(MKErrorCallback)error
 {
     [(id<MKBufferedPromise>)_promise bufferError:^(NSError *err, BOOL *handled) {
         [_scheduler do:^{ error(err, handled); }];
@@ -243,7 +181,7 @@
     return self;
 }
 
-- (id)bufferException:(ExceptionCallback)exception
+- (id)bufferException:(MKExceptionCallback)exception
 {
     [(id<MKBufferedPromise>)_promise bufferException:^(NSException *ex, BOOL *handled) {
         [_scheduler do:^{ exception(ex, handled); }];
@@ -251,19 +189,19 @@
     return self;
 }
 
-- (id)bufferCancel:(CancelCallback)cancel
+- (id)bufferCancel:(MKCancelCallback)cancel
 {
     [(id<MKBufferedPromise>)_promise bufferCancel:^{ [_scheduler do:cancel]; }];
     return self;
 }
 
-- (id)bufferAlways:(AlwaysCallback)always
+- (id)bufferAlways:(MKAlwaysCallback)always
 {
     [(id<MKBufferedPromise>)_promise bufferAlways:^{ [_scheduler do:always]; }];
     return self;
 }
 
-- (id)bufferProgress:(ProgressCallback)progress
+- (id)bufferProgress:(MKProgressCallback)progress
 {
     [(id<MKBufferedPromise>)_promise bufferProgress:^(id info, BOOL queued) {
         [_scheduler do:^{ progress(info, queued); }];

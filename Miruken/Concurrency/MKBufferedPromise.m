@@ -68,29 +68,9 @@
     return self;
 }
 
-- (DeferredState)state
+- (MKPromiseState)state
 {
     return [_promise state];
-}
-
-- (BOOL)isPending
-{
-    return [_promise isPending];
-}
-
-- (BOOL)isResolved
-{
-    return [_promise isResolved];
-}
-
-- (BOOL)isRejected
-{
-    return [_promise isRejected];
-}
-
-- (BOOL)isCancelled
-{
-    return [_promise isCancelled];
 }
 
 - (id<MKBufferedPromise>)buffer
@@ -112,35 +92,35 @@
 - (void)flushDone:(id)result
 {
     if (_done)
-        for (DoneCallback done in _done)
+        for (MKDoneCallback done in _done)
             done(result);
 }
 
 - (void)flushFail:(id)reason handled:(BOOL *)handled
 {
     if (_fail)
-        for (FailCallback fail in _fail)
+        for (MKFailCallback fail in _fail)
             fail(reason, handled);
 }
 
 - (void)flushCancel
 {
     if (_cancel)
-        for (CancelCallback cancel in _cancel)
+        for (MKCancelCallback cancel in _cancel)
             cancel();
 }
 
 - (void)flushProgress:(id)progress queued:(BOOL)queued
 {
     if (_progress)
-        for (ProgressCallback notify in _progress)
+        for (MKProgressCallback notify in _progress)
             notify(progress, queued);
 }
 
 - (void)flushAlways
 {
     if (_always)
-        for (AlwaysCallback always in _always)
+        for (MKAlwaysCallback always in _always)
             always();    
 }
 
@@ -154,7 +134,7 @@
 
 #pragma mark - BufferedPromise
 
-- (instancetype)bufferDone:(DoneCallback)done
+- (instancetype)bufferDone:(MKDoneCallback)done
 {
     if (_flushed)
         [_promise done:done];
@@ -165,7 +145,7 @@
     return self;
 }
 
-- (instancetype)bufferFail:(FailCallback)fail
+- (instancetype)bufferFail:(MKFailCallback)fail
 {
     if (_flushed)
         [_promise fail:fail];
@@ -176,7 +156,7 @@
     return self;
 }
 
-- (instancetype)bufferError:(ErrorCallback)error
+- (instancetype)bufferError:(MKErrorCallback)error
 {
     if (_flushed)
         [_promise error:error];
@@ -188,7 +168,7 @@
     return self;
 }
 
-- (instancetype)bufferException:(ExceptionCallback)exception
+- (instancetype)bufferException:(MKExceptionCallback)exception
 {
     if (_flushed)
         [_promise exception:exception];
@@ -200,7 +180,7 @@
     return self;
 }
 
-- (instancetype)bufferCancel:(CancelCallback)cancel
+- (instancetype)bufferCancel:(MKCancelCallback)cancel
 {
     if (_flushed)
         [_promise cancel:cancel];
@@ -211,7 +191,7 @@
     return self;
 }
 
-- (instancetype)bufferProgress:(ProgressCallback)progress
+- (instancetype)bufferProgress:(MKProgressCallback)progress
 {
     if (_flushed)
         [_promise progress:progress];
@@ -222,7 +202,7 @@
     return self;
 }
 
-- (instancetype)bufferAlways:(AlwaysCallback)always
+- (instancetype)bufferAlways:(MKAlwaysCallback)always
 {
     if (_flushed)
         [_promise always:always];
