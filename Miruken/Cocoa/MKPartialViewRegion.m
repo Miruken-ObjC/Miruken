@@ -15,6 +15,8 @@
 #import "MKContext+Subscribe.h"
 #import "NSObject+NotHandled.h"
 #import "NSObject+Context.h"
+#import "MKCocoaErrors.h"
+#import "MKDeferred.h"
 #import "EXTScope.h"
 
 @interface MKPartialTransitionContext : MKTransitionContext
@@ -63,7 +65,7 @@
 
 #pragma mark - MKViewRegion
 
-- (void)presentViewController:(UIViewController *)viewController
+- (id<MKPromise>)presentViewController:(UIViewController *)viewController
 {
     self.clipsToBounds                       = YES;
     MKCallbackHandler    *composer           = self.composer;
@@ -80,18 +82,24 @@
             if (navigationController)
             {
                 [navigationController pushViewController:viewController animated:YES];
-                return;
+                return [[MKDeferred resolved] promise];
             }
         }
         
-        [_transition cancelAnimation];
+        if (_transition)
+        {
+            return [[MKDeferred rejected:[NSError errorWithDomain:MKCocoaErrorDomain
+                                                            code:MKCocoaErrorTransitionInProgress
+                                                         userInfo:nil]] promise];
+        }
+        
         _transition = [self partialTransitionTo:viewController];
         [self removePartialController];
         [self addPartialController];
-        return;
+        return [_transition promise];
     }
     
-    [self notHandled];
+    return [self notHandled];
 }
 
 - (MKPartialTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
@@ -114,7 +122,6 @@
                 @strongify(self);
                 if (_transition == transition)
                 {
-                    [transition cancelAnimation];
                     _transition = [self partialTransitionTo:nil];
                     [self removePartialController];
                 }

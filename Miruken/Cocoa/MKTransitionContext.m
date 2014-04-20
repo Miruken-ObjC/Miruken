@@ -11,7 +11,6 @@
 @implementation MKTransitionContext
 {
     UIView *_containerView;
-    BOOL    _completed;
 }
 
 + (instancetype)transitionContainerView:(UIView *)containerView
@@ -49,6 +48,12 @@
 
 - (void)animateTranstion
 {
+    if (self.isAnimated == NO)
+    {
+        [self completeTransition:YES];
+        return;
+    }
+    
     id<UIViewControllerAnimatedTransitioning> transitionController = self.isPresenting
         ? [_toViewController.transitioningDelegate
            animationControllerForPresentedController:_toViewController
@@ -60,23 +65,9 @@
     [transitionController animateTransition:self];
 }
 
-- (void)cancelAnimation
-{
-    if (_completed == NO)
-    {
-        _completed = YES;
-        if (self.isAnimated)
-        {
-            [CATransaction begin];
-            [self removeLayerAnimations:_containerView.layer];
-            [CATransaction commit];
-        }
-    }
-}
-
 - (BOOL)transitionWasCancelled
 {
-    return NO;
+    return (self.state == MKPromiseStateCancelled);
 }
 
 - (UIModalPresentationStyle)presentationStyle
@@ -90,15 +81,19 @@
 
 - (void)finishInteractiveTransition
 {
+    [self completeTransition:YES];
 }
 
 - (void)cancelInteractiveTransition
 {
+    [self cancel];
+    [self completeTransition:YES];
 }
 
 - (void)completeTransition:(BOOL)didComplete
 {
-    _completed = YES;
+    if (self.state == MKPromiseStatePending)
+        [self resolve:[NSNumber numberWithBool:didComplete]];
 }
 
 - (UIViewController *)viewControllerForKey:(NSString *)key
@@ -118,13 +113,6 @@
 - (CGRect)finalFrameForViewController:(UIViewController *)vc
 {
     return vc == _toViewController ? _toViewController.view.frame : CGRectZero;
-}
-
-- (void)removeLayerAnimations:(CALayer *)layer
-{
-    [layer removeAllAnimations];
-    for (CALayer *subLayer in layer.sublayers)
-        [self removeLayerAnimations:subLayer];
 }
 
 @end

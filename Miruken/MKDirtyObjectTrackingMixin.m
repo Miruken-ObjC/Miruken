@@ -1,5 +1,5 @@
 //
-//  MKDirtyTrackingMixin.m
+//  MKDirtyObjectTrackingMixin.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/12/14.
@@ -11,7 +11,7 @@
 #import "EXTScope.h"
 #import <objc/runtime.h>
 
-static int             kDirtyTrackingContext;
+static int             kDirtyObjectTrackingContext;
 static NSString *const kIsDirtyProperty = @"isDirty";
 
 @implementation MKDirtyObjectTrackingMixin
@@ -51,7 +51,7 @@ static NSString *const kIsDirtyProperty = @"isDirty";
                     return nil;
         }
 
-        [object addObserver:self forKeyPath:kIsDirtyProperty options:0 context:&kDirtyTrackingContext];
+        [object addObserver:self forKeyPath:kIsDirtyProperty options:0 context:&kDirtyObjectTrackingContext];
         [trackings addObject:object];
         
         if ([self respondsToSelector:@selector(didBeginTrackingObject:)])
@@ -83,7 +83,7 @@ static NSString *const kIsDirtyProperty = @"isDirty";
     for (NSInteger idx = 0; idx < trackings.count; ++idx)
         if (trackings[idx] == object)
         {
-            [object removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyTrackingContext];
+            [object removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyObjectTrackingContext];
             [trackings removeObjectAtIndex:idx];
             
             if ([self respondsToSelector:@selector(didEndTrackingObject:)])
@@ -103,30 +103,30 @@ static NSString *const kIsDirtyProperty = @"isDirty";
     NSMutableArray *trackings = [self MKDirtyObjectTracking_trackings];
     for (NSObject *tracking in trackings)
     {
-        [tracking removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyTrackingContext];
+        [tracking removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyObjectTrackingContext];
         if (notifyEnd)
             [self didEndTrackingObject:tracking];
     }
     [trackings removeAllObjects];
 }
 
-- (void)swizzleDirtyTracking_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
-                                             change:(NSDictionary *)change context:(void *)context
+- (void)swizzleDirtyObjectTracking_observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                                                   change:(NSDictionary *)change context:(void *)context
 {
-    if (context == &kDirtyTrackingContext)
+    if (context == &kDirtyObjectTrackingContext)
     {
         if ([keyPath isEqualToString:kIsDirtyProperty])
             [self objectBecameDirty:object];
     }
     else
-        [self swizzleDirtyTracking_observeValueForKeyPath:keyPath ofObject:object
-                                                   change:change context:context];
+        [self swizzleDirtyObjectTracking_observeValueForKeyPath:keyPath ofObject:object
+                                                         change:change context:context];
 }
 
-- (void)swizzleDirtyTracking_dealloc
+- (void)swizzleDirtyObjectTracking_dealloc
 {
     [self untrackAllObjects];
-    [self swizzleDirtyTracking_dealloc];
+    [self swizzleDirtyObjectTracking_dealloc];
 }
 
 @end

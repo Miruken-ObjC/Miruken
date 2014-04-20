@@ -28,7 +28,8 @@
                       duration:[self transitionDuration:transitionContext]
                        options:animationOption
                     completion:^(BOOL finished) {
-                        [transitionContext completeTransition:finished];
+                        BOOL cancelled = [transitionContext transitionWasCancelled];
+                        [transitionContext completeTransition:!cancelled];
                     }];
 }
 

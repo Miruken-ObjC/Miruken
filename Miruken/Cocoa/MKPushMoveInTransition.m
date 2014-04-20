@@ -62,7 +62,8 @@
                        } completion:^(BOOL finished) {
                            if (fromView)
                                [fromView removeFromSuperview];
-                           [transitionContext completeTransition:finished];
+                           BOOL cancelled = [transitionContext transitionWasCancelled];
+                           [transitionContext completeTransition:!cancelled];
                        }];
 }
 

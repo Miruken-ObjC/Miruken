@@ -60,7 +60,8 @@
     } completion:^(BOOL finished) {
         fromView.layer.zPosition = 0.0;
         toView.layer.zPosition   = 0.0;
-        [transitionContext completeTransition:finished];
+        BOOL cancelled           = [transitionContext transitionWasCancelled];
+        [transitionContext completeTransition:!cancelled];
     }];
 }
 

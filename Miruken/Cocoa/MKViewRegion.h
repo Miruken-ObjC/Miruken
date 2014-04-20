@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKPromise.h"
 
 /**
   This protocol represents a region on the screen where a view controller can
@@ -16,7 +17,7 @@
 @protocol MKViewRegion <NSObject>
 
 @optional
-- (void)presentViewController:(UIViewController *)viewController;
+- (id<MKPromise>)presentViewController:(UIViewController *)viewController;
 
 @end
 

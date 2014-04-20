@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C10819042796009F110F /* MKCocoaErrors.h */; };
+		1405C10B19042796009F110F /* MKCocoaErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405C10919042796009F110F /* MKCocoaErrors.m */; };
 		142FE8C118DBA62200569636 /* MKMixingIn.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8BF18DBA62200569636 /* MKMixingIn.h */; };
 		142FE8C218DBA62200569636 /* MKMixingIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8C018DBA62200569636 /* MKMixingIn.m */; };
 		142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8C318DBA98200569636 /* MKPartialViewRegion.h */; };
@@ -224,6 +226,8 @@
 
 /* Begin PBXFileReference section */
 		0C07D65B5617417FA5C12730 /* libPods-Miruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Miruken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1405C10819042796009F110F /* MKCocoaErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCocoaErrors.h; sourceTree = "<group>"; };
+		1405C10919042796009F110F /* MKCocoaErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCocoaErrors.m; sourceTree = "<group>"; };
 		142FE8BF18DBA62200569636 /* MKMixingIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMixingIn.h; sourceTree = "<group>"; };
 		142FE8C018DBA62200569636 /* MKMixingIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMixingIn.m; sourceTree = "<group>"; };
 		142FE8C318DBA98200569636 /* MKPartialViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPartialViewRegion.h; sourceTree = "<group>"; };
@@ -749,6 +753,8 @@
 				14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */,
 				14E9DCEE18D3593E0045760D /* MKActiveCollectionViewCell.h */,
 				14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */,
+				1405C10819042796009F110F /* MKCocoaErrors.h */,
+				1405C10919042796009F110F /* MKCocoaErrors.m */,
 			);
 			path = Cocoa;
 			sourceTree = "<group>";
@@ -1015,6 +1021,7 @@
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
 				14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */,
 				142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */,
+				1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
@@ -1237,6 +1244,7 @@
 				14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */,
 				1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */,
 				1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */,
+				1405C10B19042796009F110F /* MKCocoaErrors.m in Sources */,
 				14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */,
 				1462997218B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m in Sources */,
 				142FE90418F0855300569636 /* MKTransitionContext.m in Sources */,

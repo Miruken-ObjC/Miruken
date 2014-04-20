@@ -8,7 +8,7 @@
 
 #import "MKCallbackHandler+Presentation.h"
 #import "MKPresentationPolicyHandler.h"
-#import "MKCascadeCallbackHandler.h"
+#import "MKCallbackHandler+Builders.h"
 
 @implementation MKCallbackHandler (Presentation)
 
@@ -33,9 +33,7 @@
 
 - (instancetype)usePresentationPolicy:(MKPresentationPolicy *)policy
 {
-    MKPresentationPolicyHandler *policyHandler =
-        [MKPresentationPolicyHandler handlerWithPresentationPolicy:policy];
-    return [MKCascadeCallbackHandler withHandler:policyHandler cascadeTo:self];
+    return [[MKPresentationPolicyHandler handlerWithPresentationPolicy:policy] then:self];
 }
 
 @end

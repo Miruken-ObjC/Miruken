@@ -36,7 +36,8 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             toView.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:^(BOOL finished) {
-            [transitionContext completeTransition:finished];
+            BOOL cancelled = [transitionContext transitionWasCancelled];
+            [transitionContext completeTransition:!cancelled];
         }];
     }
     else
@@ -47,7 +48,8 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             fromView.transform = CGAffineTransformMakeScale(0.0, 0.0);
         } completion:^(BOOL finished) {
-            [transitionContext completeTransition:finished];
+            BOOL cancelled = [transitionContext transitionWasCancelled];
+            [transitionContext completeTransition:!cancelled];
         }];
     }
 }

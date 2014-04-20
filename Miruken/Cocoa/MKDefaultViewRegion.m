@@ -13,6 +13,7 @@
 #import "MKContext+Subscribe.h"
 #import "MKCallbackHandler+Resolvers.h"
 #import "NSObject+Context.h"
+#import "MKDeferred.h"
 
 @implementation MKDefaultViewRegion
 {
@@ -27,7 +28,7 @@
 
 #pragma mark - MKViewRegion
 
-- (void)presentViewController:(UIViewController *)viewController
+- (id<MKPromise>)presentViewController:(UIViewController *)viewController
 {
     BOOL                  isModal            = NO;
     MKCallbackHandler    *composer           = self.composer;
@@ -46,14 +47,14 @@
         if (navigationController)
         {
             [navigationController pushViewController:viewController animated:YES];
-            return;
+            return [[MKDeferred resolved] promise];
         }
     }
     
-    [self presentViewControllerModally:viewController];
+    return [self presentViewControllerModally:viewController];
 }
 
-- (void)presentViewControllerModally:(UIViewController *)viewController
+- (id<MKPromise>)presentViewControllerModally:(UIViewController *)viewController
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];
@@ -71,6 +72,7 @@
                     _window.rootViewController = nil;
             }];
     }
+    return [[MKDeferred resolved] promise];
 }
 
 @end

@@ -36,7 +36,8 @@
     if (fromView == nil)
     {
         [containerView addSubview:toView];
-        [transitionContext completeTransition:YES];
+        BOOL cancelled = [transitionContext transitionWasCancelled];
+        [transitionContext completeTransition:!cancelled];
         return;
     }
     
@@ -87,7 +88,8 @@
         toViewSnapshot.center = toView.center;
         toViewSnapshot.frame  = toView.frame;
     } completion:^(BOOL finished) {
-        if ([transitionContext transitionWasCancelled])
+        BOOL cancelled = [transitionContext transitionWasCancelled];
+        if (cancelled)
         {
             [containerView addSubview:fromView];
             [toView removeFromSuperview];
@@ -100,11 +102,12 @@
         }
         
         // remove the snapshots
+        [toViewSnapshot removeFromSuperview];
         [leftHandView removeFromSuperview];
         [rightHandView removeFromSuperview];
 
         // inform the context of completion
-        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        [transitionContext completeTransition:!cancelled];
     }];
 }
 
@@ -114,7 +117,8 @@
     if (toView == nil)
     {
         [fromView removeFromSuperview];
-        [transitionContext completeTransition:YES];
+        BOOL cancelled = [transitionContext transitionWasCancelled];
+        [transitionContext completeTransition:!cancelled];
         return;
     }
     
@@ -124,7 +128,7 @@
     [containerView addSubview:fromView];
     
     // add the to- view and send offscreen (we need to do this in order to allow snapshotting)
-    toView.frame          = CGRectOffset(toView.frame, toView.frame.size.width, 0);
+    toView.frame = CGRectOffset(toView.frame, toView.frame.size.width, 0);
     [containerView addSubview:toView];
     
     // Create two-part snapshots of the to- view
@@ -140,12 +144,12 @@
     [containerView addSubview:leftHandView];
     
     // snapshot the right-hand side of the to- view
-    CGRect rightSnapshotRegion = CGRectMake(toView.frame.size.width / 2, 0, toView.frame.size.width / 2,
-                                            toView.frame.size.height);
-    UIView *rightHandView      = [toView resizableSnapshotViewFromRect:rightSnapshotRegion
-                                                    afterScreenUpdates:YES
-                                                         withCapInsets:UIEdgeInsetsZero];
-    rightHandView.frame = rightSnapshotRegion;
+    CGRect  rightSnapshotRegion = CGRectMake(toView.frame.size.width / 2, 0, toView.frame.size.width / 2,
+                                             toView.frame.size.height);
+    UIView *rightHandView       = [toView resizableSnapshotViewFromRect:rightSnapshotRegion
+                                                     afterScreenUpdates:YES
+                                                          withCapInsets:UIEdgeInsetsZero];
+    rightHandView.frame         = rightSnapshotRegion;
     // reverse animation : start from beyond the edges of the screen
     rightHandView.frame = CGRectOffset(rightHandView.frame, rightHandView.frame.size.width, 0);
     [containerView addSubview:rightHandView];
@@ -162,7 +166,8 @@
          CATransform3D scale      = CATransform3DIdentity;
          fromView.layer.transform = CATransform3DScale(scale, ZOOM_SCALE, ZOOM_SCALE, 1);
      } completion:^(BOOL finished) {
-         if ([transitionContext transitionWasCancelled])
+         BOOL cancelled = [transitionContext transitionWasCancelled];
+         if (cancelled)
              [toView removeFromSuperview];
          else
          {
@@ -175,7 +180,7 @@
          [rightHandView removeFromSuperview];
 
          // inform the context of completion
-         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+         [transitionContext completeTransition:!cancelled];
      }];
 }
 

@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKDeferred.h"
 
-@interface MKTransitionContext : NSObject <UIViewControllerContextTransitioning>
+@interface MKTransitionContext : MKDeferred <UIViewControllerContextTransitioning>
 
 @property (readonly, nonatomic) UIViewController *fromViewController;
 @property (readonly, nonatomic) UIViewController *toViewController;
@@ -20,7 +21,5 @@
 - (BOOL)isPresenting;
 
 - (void)animateTranstion;
-
-- (void)cancelAnimation;
 
 @end

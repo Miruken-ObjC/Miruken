@@ -39,7 +39,8 @@
                           duration:[self transitionDuration:transitionContext]
                            options:_animationOptions
                         completion:^(BOOL finished) {
-                            [transitionContext completeTransition:finished];
+                            BOOL cancelled = [transitionContext transitionWasCancelled];
+                            [transitionContext completeTransition:!cancelled];
                         }];
     }
     else
@@ -58,7 +59,8 @@
                                    else
                                        [fromView removeFromSuperview];
                                } completion:^(BOOL finished) {
-                                   [transitionContext completeTransition:finished];
+                                   BOOL cancelled = [transitionContext transitionWasCancelled];
+                                   [transitionContext completeTransition:!cancelled];
                                }];
         }
         else

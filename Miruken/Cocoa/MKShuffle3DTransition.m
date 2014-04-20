@@ -33,7 +33,8 @@
     if (fromView == nil || toView == nil)
     {
         [containerView addSubview:toView];
-        [transitionContext completeTransition:YES];
+        BOOL cancelled = [transitionContext transitionWasCancelled];
+        [transitionContext completeTransition:!cancelled];
         return;
     }
     
@@ -70,7 +71,8 @@
         [UIView addKeyframeWithRelativeStartTime:0.20 relativeDuration:0.20 animations:^{
             if (self.isPresenting)
             {
-                fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform, -width, 0.0, 0.0);
+                fromSnapshot.layer.transform = CATransform3DTranslate(fromSnapshot.layer.transform,
+                                                                      -width, 0.0, 0.0);
                 toView.layer.transform = CATransform3DTranslate(toView.layer.transform, width, 0.0, 0.0);
             }
             else
@@ -110,7 +112,8 @@
         }];
     } completion:^(BOOL finished) {
         [fromSnapshot removeFromSuperview];
-        [transitionContext completeTransition:YES];
+        BOOL cancelled = [transitionContext transitionWasCancelled];
+        [transitionContext completeTransition:!cancelled];
     }];
 }
 
