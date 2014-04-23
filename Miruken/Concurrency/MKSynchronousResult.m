@@ -46,12 +46,25 @@
 
 - (void)complete
 {
+    [self completeForRetry:NO];
+}
+
+- (void)retry
+{
+    [self completeForRetry:YES];
+}
+
+- (void)completeForRetry:(BOOL)canRetry{
     if (_deferred.state == MKPromiseStatePending)
     {
         [_invocation invoke];
-        _invocation = nil;
-        [_deferred resolve:nil];
-        _deferred   = nil;
+        if (canRetry)
+            [_deferred notify:nil];
+        else
+        {
+            _invocation = nil;
+            [_deferred resolve:nil];
+        }
     }
 }
 

@@ -37,7 +37,7 @@
         [transitionContext completeTransition:!cancelled];
         return;
     }
-    
+ 
     // Take a snapshot of the 'from' view
     UIView *fromSnapshot  = [fromView snapshotViewAfterScreenUpdates:NO];
     fromSnapshot.frame    = fromView.frame;
@@ -61,13 +61,13 @@
             fromT                        = CATransform3DTranslate(fromT, 0.0, 0.0, -590.0);
             fromSnapshot.layer.transform = fromT;
             
-            CATransform3D toT      = CATransform3DIdentity;
-            toT.m34                = 1.0 / -2000;
-            toT                    = CATransform3DTranslate(fromT, 0.0, 0.0, -600.0);
-            toView.layer.transform = toT;
+            CATransform3D toT            = CATransform3DIdentity;
+            toT.m34                      = 1.0 / -2000;
+            toT                          = CATransform3DTranslate(fromT, 0.0, 0.0, -600.0);
+            toView.layer.transform       = toT;
         }];
         
-        // Adjust the views horizontally to clear eachother
+        // Adjust the views horizontally to clear each other
         [UIView addKeyframeWithRelativeStartTime:0.20 relativeDuration:0.20 animations:^{
             if (self.isPresenting)
             {
@@ -88,19 +88,19 @@
             toView.layer.transform = CATransform3DTranslate(toView.layer.transform, 0.0, 0.0, 500);
         }];
         
-        // Adjust the views horizontally to place them back on top of eachother
+        // Adjust the views horizontally to place them back on top of each other
         [UIView addKeyframeWithRelativeStartTime:0.60 relativeDuration:0.20 animations:^{
             CATransform3D fromT = fromSnapshot.layer.transform;
             CATransform3D toT   = toView.layer.transform;
             if (self.isPresenting)
             {
                 fromT = CATransform3DTranslate(fromT, floorf(width), 0.0, 200.0);
-                toT   = CATransform3DTranslate(fromT, floorf(-(width * 0.03)), 0.0, 0.0);
+                toT   = CATransform3DTranslate(fromT, floorf(-(width * 0.03)) + 5.0, 0.0, 0.0);
             }
             else
             {
                 fromT = CATransform3DTranslate(fromT, floorf(-width), 0.0, 200.0);
-                toT   = CATransform3DTranslate(fromT, floorf(width * 0.03), 0.0, 0.0);
+                toT   = CATransform3DTranslate(fromT, floorf(width * 0.03) + 5.0 , 0.0, 0.0);
             }
             fromSnapshot.layer.transform = fromT;
             toView.layer.transform       = toT;

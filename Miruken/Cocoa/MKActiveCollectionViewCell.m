@@ -8,6 +8,7 @@
 
 #import "MKActiveCollectionViewCell.h"
 #import "MKMixingIn.h"
+#import "NSObject+Concurrency.h"
 
 @implementation MKActiveCollectionViewCell
 
@@ -15,6 +16,15 @@
 {
     if (self == MKActiveCollectionViewCell.class)
         [MKDirtyObjectTrackingMixin mixInto:self];
+}
+
+- (void)objectBecameDirty:(NSObject *)object
+{
+    [[self onMainThread] refreshCollectionViewCellFromObject:object];
+}
+
+- (void)refreshCollectionViewCellFromObject:(NSObject *)object
+{
 }
 
 - (void)prepareForReuse

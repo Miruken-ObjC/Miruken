@@ -11,4 +11,6 @@
 
 @interface MKActiveTableViewCell : UITableViewCell <MKDirtyObjectTracking>
 
+- (void)refreshTableViewCellFromObject:(NSObject *)object;
+
 @end

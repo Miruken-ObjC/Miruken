@@ -15,8 +15,8 @@
 
 + (instancetype)onThread:(NSThread *)thread
 {
-    MKThreadDelegate *threadDelegate = [MKThreadDelegate new];
-    threadDelegate->_thread        = thread;
+    MKThreadDelegate *threadDelegate = [self new];
+    threadDelegate->_thread          = thread;
     return threadDelegate;
 }
 

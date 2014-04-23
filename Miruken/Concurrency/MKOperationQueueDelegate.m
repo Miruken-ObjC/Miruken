@@ -19,8 +19,8 @@
 
 + (instancetype)withQueue:(NSOperationQueue *)queue
 {
-    MKOperationQueueDelegate *queueDelegate = [MKOperationQueueDelegate new];
-    queueDelegate->_queue = queue;
+    MKOperationQueueDelegate *queueDelegate = [self new];
+    queueDelegate->_queue                   = queue;
     return queueDelegate;
 }
 

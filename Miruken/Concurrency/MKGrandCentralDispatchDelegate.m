@@ -12,6 +12,7 @@
 {
     dispatch_queue_t _queue;
     NSTimeInterval   _delay;
+    BOOL             _barrier;
 }
 
 + (instancetype)dispatchMainQueue
@@ -38,8 +39,15 @@
 
 + (instancetype)dispatchQueue:(dispatch_queue_t)queue
 {
-    MKGrandCentralDispatchDelegate *gcdDelegate = [MKGrandCentralDispatchDelegate new];
+    MKGrandCentralDispatchDelegate *gcdDelegate = [self new];
     gcdDelegate->_queue = queue;
+    return gcdDelegate;
+}
+
++ (instancetype)barrierQueue:(dispatch_queue_t)queue
+{
+    MKGrandCentralDispatchDelegate *gcdDelegate = [self dispatchQueue:queue];
+    gcdDelegate->_barrier                       = YES;
     return gcdDelegate;
 }
 
@@ -50,6 +58,8 @@
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, _delay * NSEC_PER_SEC);
         dispatch_after(popTime, _queue, ^{ [super completeResult:asyncResult]; });
     }
+    else if (_barrier)
+        dispatch_barrier_async(_queue, ^{ [super completeResult:asyncResult]; });
     else
         dispatch_async(_queue, ^{ [super completeResult:asyncResult]; });
 }

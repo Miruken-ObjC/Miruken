@@ -39,6 +39,16 @@
 
 - (void)complete
 {
+    [self completeForRetry:NO];
+}
+
+- (void)retry
+{
+    [self completeForRetry:YES];
+}
+
+- (void)completeForRetry:(BOOL)canRetry
+{
     if (_deferred.state != MKPromiseStatePending)
         return;
 
@@ -46,7 +56,10 @@
     {
         [_invocation invoke];
         _result = [_invocation objectReturnValue];
-        [_deferred resolve:_result];
+        if (canRetry)
+            [_deferred notify:_result];
+        else
+            [_deferred resolve:_result];
     }
     @catch (NSException *exception)
     {
@@ -55,7 +68,8 @@
     }
     @finally
     {
-        _invocation = nil;
+        if (canRetry == NO)
+            _invocation = nil;
     }
 }
 

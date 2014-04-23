@@ -11,4 +11,6 @@
 
 @interface MKActiveCollectionViewCell : UICollectionViewCell <MKDirtyObjectTracking>
 
+- (void)refreshCollectionViewCellFromObject:(NSObject *)object;
+
 @end

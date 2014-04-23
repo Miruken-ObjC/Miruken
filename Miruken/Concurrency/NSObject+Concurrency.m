@@ -11,9 +11,10 @@
 #import "MKNewThreadDelegate.h"
 #import "MKMainThreadDelegate.h"
 #import "MKThreadDelegate.h"
+#import "MKDelayedDelegate.h"
 #import "MKOperationQueueDelegate.h"
 #import "MKGrandCentralDispatchDelegate.h"
-#import "MKDelayedDelegate.h"
+#import "MKGrandCentralTimerDelegate.h"
 #import "MKScheduledPromise.h"
 #import "MKAction.h"
 
@@ -78,13 +79,13 @@
 + (instancetype)queued
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                     delegate:[MKOperationQueueDelegate forObject:self]];
+                delegate:[MKOperationQueueDelegate forObject:self]];
 }
 
 + (instancetype)queued:(NSOperationQueue *)queue
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                         delegate:[MKOperationQueueDelegate withQueue:queue]];
+                delegate:[MKOperationQueueDelegate withQueue:queue]];
 }
 
 + (instancetype)queuedMain
@@ -118,13 +119,13 @@
 + (instancetype)dispatchedMain
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                         delegate:[MKGrandCentralDispatchDelegate dispatchMainQueue]];
+                delegate:[MKGrandCentralDispatchDelegate dispatchMainQueue]];
 }
 
 + (instancetype)dispatchedGlobal
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                         delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueue]];
+                delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueue]];
 }
 
 + (instancetype)dispatchedGlobal:(long)priority
@@ -133,17 +134,16 @@
                 delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueueWithPriority:priority]];
 }
 
-+ (instancetype)delayedDispatchedGlobal:(NSTimeInterval)delay
-{
-    return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueueWithDelay:delay]];
-
-}
-
 + (instancetype)dispatchedQueued:(dispatch_queue_t)queue
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                         delegate:[MKGrandCentralDispatchDelegate dispatchQueue:queue]];
+                delegate:[MKGrandCentralDispatchDelegate dispatchQueue:queue]];
+}
+
++ (instancetype)barrierQueued:(dispatch_queue_t)queue
+{
+    return (id)[[MKAsyncObject alloc] initWithClass:[self class]
+                delegate:[MKGrandCentralDispatchDelegate barrierQueue:queue]];
 }
 
 - (instancetype)dispatchGlobal
@@ -151,7 +151,7 @@
     return [self conformsToProtocol:@protocol(MKPromise)]
          ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedGlobal]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
-                        delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueue]];
+                delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueue]];
 }
 
 - (instancetype)dispatchMain
@@ -159,7 +159,7 @@
     return [self conformsToProtocol:@protocol(MKPromise)]
          ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedMain]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
-                                          delegate:[MKGrandCentralDispatchDelegate dispatchMainQueue]];
+                delegate:[MKGrandCentralDispatchDelegate dispatchMainQueue]];
 }
 
 - (instancetype)dispatchGlobal:(long)priority
@@ -184,21 +184,60 @@
     return [self conformsToProtocol:@protocol(MKPromise)]
          ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedQueued:queue]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
-                                          delegate:[MKGrandCentralDispatchDelegate dispatchQueue:queue]];
+                delegate:[MKGrandCentralDispatchDelegate dispatchQueue:queue]];
 }
 
-#pragma mark - Delays
+- (instancetype)onBarrierQueue:(dispatch_queue_t)queue
+{
+    return [self conformsToProtocol:@protocol(MKPromise)]
+         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedQueued:queue]]
+         : (id)[[MKAsyncObject alloc] initWithObject:self
+                delegate:[MKGrandCentralDispatchDelegate barrierQueue:queue]];
+}
+
+#pragma mark - Delays & Timers
 
 + (instancetype)delayed:(NSTimeInterval)delay;
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                         delegate:[MKDelayedDelegate withDelay:delay]];
+                delegate:[MKDelayedDelegate withDelay:delay]];
 }
 
 + (instancetype)delayedMain:(NSTimeInterval)delay
 {
     return (id)[[MKAsyncObject alloc] initWithClass:[self class]
-                                         delegate:[MKDelayedDelegate withDelayOnMain:delay]];
+                delegate:[MKDelayedDelegate withDelayOnMain:delay]];
+}
+
++ (instancetype)delayedDispatchedGlobal:(NSTimeInterval)delay
+{
+    return (id)[[MKAsyncObject alloc] initWithClass:[self class]
+            delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueueWithDelay:delay]];
+    
+}
+
++ (instancetype)scheduledAtInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                             leeway:(NSTimeInterval)leeway
+{
+    return (id)[[MKAsyncObject alloc] initWithClass:[self class]
+                delegate:[MKGrandCentralTimerDelegate scheduleAfterDelay:delay interval:interval
+                                                                  leeway:leeway]];
+}
+
++ (instancetype)scheduledAtInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                             leeway:(NSTimeInterval)leeway queue:(dispatch_queue_t)queue
+{
+    return (id)[[MKAsyncObject alloc] initWithClass:[self class]
+                delegate:[MKGrandCentralTimerDelegate scheduleAfterDelay:delay interval:interval
+                                                                  leeway:leeway queue:queue]];
+}
+
++ (instancetype)scheduledOnMainAtInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                                   leeway:(NSTimeInterval)leeway
+{
+    return (id)[[MKAsyncObject alloc] initWithObject:self
+                delegate:[MKGrandCentralTimerDelegate scheduleOnMainAfterDelay:delay interval:interval
+                                                                        leeway:leeway]];
 }
 
 - (instancetype)afterDelay:(NSTimeInterval)delay
@@ -215,7 +254,31 @@
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKDelayedDelegate withDelayOnMain:delay]];
 }
 
-#pragma mark - Custom
+- (instancetype)atInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                    leeway:(NSTimeInterval)leeway
+{
+    return (id)[[MKAsyncObject alloc] initWithObject:self
+                delegate:[MKGrandCentralTimerDelegate scheduleAfterDelay:delay interval:interval
+                                                                  leeway:leeway]];
+}
+
+- (instancetype)atInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                    leeway:(NSTimeInterval)leeway queue:(dispatch_queue_t)queue
+{
+    return (id)[[MKAsyncObject alloc] initWithObject:self
+                delegate:[MKGrandCentralTimerDelegate scheduleAfterDelay:delay interval:interval
+                                                                  leeway:leeway queue:queue]];
+}
+
+- (instancetype)onMainAtInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                          leeway:(NSTimeInterval)leeway
+{
+    return (id)[[MKAsyncObject alloc] initWithClass:[self class]
+                delegate:[MKGrandCentralTimerDelegate scheduleOnMainAfterDelay:delay interval:interval
+                                                                        leeway:leeway]];
+}
+
+#pragma mark - Custom Strategy
 
 + (instancetype)concurrent:(id<MKAsyncDelegate>)asyncDelegate
 {

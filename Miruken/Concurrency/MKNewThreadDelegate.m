@@ -15,7 +15,7 @@
     static id sharedInstance;
     static dispatch_once_t once;
     
-    dispatch_once(&once, ^{ sharedInstance = [[self alloc] init]; });
+    dispatch_once(&once, ^{ sharedInstance = [self new]; });
     return sharedInstance;
 }
 

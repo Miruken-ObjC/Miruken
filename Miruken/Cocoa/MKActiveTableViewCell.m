@@ -8,6 +8,7 @@
 
 #import "MKActiveTableViewCell.h"
 #import "MKMixingIn.h"
+#import "NSObject+Concurrency.h"
 
 @implementation MKActiveTableViewCell
 
@@ -30,6 +31,15 @@
 }
 
 - (void)configureSelectedState:(BOOL)selected
+{
+}
+
+- (void)objectBecameDirty:(NSObject *)object
+{
+    [[self onMainThread] refreshTableViewCellFromObject:object];
+}
+
+- (void)refreshTableViewCellFromObject:(NSObject *)object
 {
 }
 

@@ -17,14 +17,14 @@
 
 + (instancetype)withDelay:(NSTimeInterval)delay
 {
-    MKDelayedDelegate *delayDelegate = [MKDelayedDelegate new];
+    MKDelayedDelegate *delayDelegate = [self new];
     delayDelegate->_delay          = delay;
     return delayDelegate;
 }
 
 + (instancetype)withDelayOnMain:(NSTimeInterval)delay
 {
-    MKDelayedDelegate *delayDelegate = [MKDelayedDelegate withDelay:delay];
+    MKDelayedDelegate *delayDelegate = [self withDelay:delay];
     delayDelegate->_onMain         = YES;
     return delayDelegate;
 }

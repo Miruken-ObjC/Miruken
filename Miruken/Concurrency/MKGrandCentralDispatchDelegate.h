@@ -24,4 +24,6 @@
 
 + (instancetype)dispatchQueue:(dispatch_queue_t)queue;
 
++ (instancetype)barrierQueue:(dispatch_queue_t)queue;
+
 @end

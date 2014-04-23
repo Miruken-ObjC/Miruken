@@ -28,7 +28,7 @@
 
 #pragma mark - MKViewRegion
 
-- (id<MKPromise>)presentViewController:(UIViewController *)viewController
+- (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
 {
     BOOL                  isModal            = NO;
     MKCallbackHandler    *composer           = self.composer;
@@ -47,14 +47,14 @@
         if (navigationController)
         {
             [navigationController pushViewController:viewController animated:YES];
-            return [[MKDeferred resolved] promise];
+            return [[MKDeferred resolved:viewController.context] promise];
         }
     }
     
     return [self presentViewControllerModally:viewController];
 }
 
-- (id<MKPromise>)presentViewControllerModally:(UIViewController *)viewController
+- (id<MKPromise>)presentViewControllerModally:(UIViewController<MKContextual> *)viewController
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];
@@ -72,7 +72,7 @@
                     _window.rootViewController = nil;
             }];
     }
-    return [[MKDeferred resolved] promise];
+    return [[MKDeferred resolved:viewController.context] promise];
 }
 
 @end

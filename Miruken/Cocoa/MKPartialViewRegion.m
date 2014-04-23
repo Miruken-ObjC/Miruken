@@ -65,7 +65,7 @@
 
 #pragma mark - MKViewRegion
 
-- (id<MKPromise>)presentViewController:(UIViewController *)viewController
+- (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
 {
     self.clipsToBounds                       = YES;
     MKCallbackHandler    *composer           = self.composer;
@@ -82,21 +82,23 @@
             if (navigationController)
             {
                 [navigationController pushViewController:viewController animated:YES];
-                return [[MKDeferred resolved] promise];
+                return [[MKDeferred resolved:viewController.context] promise];
             }
         }
         
         if (_transition)
         {
             return [[MKDeferred rejected:[NSError errorWithDomain:MKCocoaErrorDomain
-                                                            code:MKCocoaErrorTransitionInProgress
+                                                             code:MKCocoaErrorTransitionInProgress
                                                          userInfo:nil]] promise];
         }
         
         _transition = [self partialTransitionTo:viewController];
         [self removePartialController];
         [self addPartialController];
-        return [_transition promise];
+        return [_transition pipe:^(id result) {
+            return viewController.context;
+        }];
     }
     
     return [self notHandled];

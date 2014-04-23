@@ -20,6 +20,8 @@
 @protocol MKConcurrency <NSObject>
 
 @optional
+#pragma mark - Threads
+
 - (instancetype)inNewThread;
 
 - (instancetype)onMainThread;
@@ -28,11 +30,15 @@
 
 - (instancetype)onThread:(NSThread *)thread;
 
+#pragma mark - Operation Queues
+
 - (instancetype)queued;
 
 - (instancetype)onQueue:(NSOperationQueue *)queue;
 
 - (instancetype)onMainQueue;
+
+#pragma mark - Grand Central Dispatch
 
 - (instancetype)dispatchMain;
 
@@ -40,13 +46,28 @@
 
 - (instancetype)dispatchGlobal:(long)priority;
 
-- (instancetype)dispatchGlobalAfterDelay:(NSTimeInterval)delay;
-
 - (instancetype)onDispatchQueue:(dispatch_queue_t)queue;
+
+- (instancetype)onBarrierQueue:(dispatch_queue_t)queue;
+
+#pragma mark - Delays & Timers
 
 - (instancetype)afterDelay:(NSTimeInterval)delay;
 
 - (instancetype)onMainAfterDelay:(NSTimeInterval)delay;
+
+- (instancetype)dispatchGlobalAfterDelay:(NSTimeInterval)delay;
+
+- (instancetype)atInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                    leeway:(NSTimeInterval)leeway;
+
+- (instancetype)atInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                    leeway:(NSTimeInterval)leeway queue:(dispatch_queue_t)queue;
+
+- (instancetype)onMainAtInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
+                          leeway:(NSTimeInterval)leeway;
+
+#pragma mark - Custom Strategy
 
 - (instancetype)concurrent:(id<MKAsyncDelegate>)asyncDelegate;
 

@@ -24,6 +24,8 @@
 
 - (void)complete;
 
+- (void)retry;
+
 - (id<MKPromise>)promise;
 
 @end
