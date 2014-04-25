@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C10819042796009F110F /* MKCocoaErrors.h */; };
 		1405C10B19042796009F110F /* MKCocoaErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405C10919042796009F110F /* MKCocoaErrors.m */; };
-		1405C10E1905CBA5009F110F /* MKFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C10C1905CBA5009F110F /* MKFlipTransition.h */; };
-		1405C10F1905CBA5009F110F /* MKFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405C10D1905CBA5009F110F /* MKFlipTransition.m */; };
+		1405C10E1905CBA5009F110F /* MKPageFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */; };
+		1405C10F1905CBA5009F110F /* MKPageFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405C10D1905CBA5009F110F /* MKPageFlipTransition.m */; };
 		1405C11219087091009F110F /* MKGrandCentralTimerDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C11019087091009F110F /* MKGrandCentralTimerDelegate.h */; };
 		1405C11319087091009F110F /* MKGrandCentralTimerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405C11119087091009F110F /* MKGrandCentralTimerDelegate.m */; };
 		142FE8C118DBA62200569636 /* MKMixingIn.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8BF18DBA62200569636 /* MKMixingIn.h */; };
@@ -232,8 +232,8 @@
 		0C07D65B5617417FA5C12730 /* libPods-Miruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Miruken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1405C10819042796009F110F /* MKCocoaErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCocoaErrors.h; sourceTree = "<group>"; };
 		1405C10919042796009F110F /* MKCocoaErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCocoaErrors.m; sourceTree = "<group>"; };
-		1405C10C1905CBA5009F110F /* MKFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFlipTransition.h; sourceTree = "<group>"; };
-		1405C10D1905CBA5009F110F /* MKFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFlipTransition.m; sourceTree = "<group>"; };
+		1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPageFlipTransition.h; sourceTree = "<group>"; };
+		1405C10D1905CBA5009F110F /* MKPageFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPageFlipTransition.m; sourceTree = "<group>"; };
 		1405C11019087091009F110F /* MKGrandCentralTimerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKGrandCentralTimerDelegate.h; sourceTree = "<group>"; };
 		1405C11119087091009F110F /* MKGrandCentralTimerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKGrandCentralTimerDelegate.m; sourceTree = "<group>"; };
 		142FE8BF18DBA62200569636 /* MKMixingIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMixingIn.h; sourceTree = "<group>"; };
@@ -628,8 +628,8 @@
 				14C54C5918F1999F001C39D5 /* MKZoomTransition.m */,
 				14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */,
 				14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */,
-				1405C10C1905CBA5009F110F /* MKFlipTransition.h */,
-				1405C10D1905CBA5009F110F /* MKFlipTransition.m */,
+				1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */,
+				1405C10D1905CBA5009F110F /* MKPageFlipTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -1066,7 +1066,7 @@
 				14982DAA18BA33AC0065EE40 /* MKValidationResult.h in Headers */,
 				14982DA818BA33AC0065EE40 /* NSError+MKValidation.h in Headers */,
 				14982DAC18BA33AC0065EE40 /* MKValidateCallbackHandler.h in Headers */,
-				1405C10E1905CBA5009F110F /* MKFlipTransition.h in Headers */,
+				1405C10E1905CBA5009F110F /* MKPageFlipTransition.h in Headers */,
 				14982DB218BA33AC0065EE40 /* MKValidation.h in Headers */,
 				14E9DCF218D3593E0045760D /* MKActiveCollectionViewCell.h in Headers */,
 				142FE8E918E84C3F00569636 /* MKModalPresentationScope.h in Headers */,
@@ -1274,7 +1274,7 @@
 				14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */,
 				1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */,
 				14982E0018C38EDC0065EE40 /* UIStoryboard+Naming.m in Sources */,
-				1405C10F1905CBA5009F110F /* MKFlipTransition.m in Sources */,
+				1405C10F1905CBA5009F110F /* MKPageFlipTransition.m in Sources */,
 				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
 				14982D7218B9245E0065EE40 /* MKUserInteractionMixin.m in Sources */,
 				1462998018B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m in Sources */,

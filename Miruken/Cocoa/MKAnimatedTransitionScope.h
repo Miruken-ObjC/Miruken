@@ -69,15 +69,17 @@
 
 #pragma mark - extra 
 
-- (instancetype)crossDissolve;
-
 - (instancetype)zoom;
 
 - (instancetype)portal;
 
+- (instancetype)pageFlip;
+
 - (instancetype)slide3D;
 
 - (instancetype)shuffle3D;
+
+- (instancetype)crossDissolve;
 
 - (instancetype)animate:(UIViewAnimationOptions)options;
 

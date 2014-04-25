@@ -19,6 +19,8 @@
 
 - (void)clearDirty;
 
+- (void)batchUpdates:(void (^)(void))updates;
+
 @end
 
 @interface MKDirtyChecking : NSObject <MKDirtyChecking>

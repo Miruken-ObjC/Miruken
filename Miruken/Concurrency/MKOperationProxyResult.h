@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MKAsyncProxyResult.h"
 #import "MKOperationResult.h"
 

@@ -36,9 +36,10 @@
          : (id)[[MKOperationResult alloc]      initWithInvocation:invocation];
 }
 
-- (void)completeResult:(id<MKAsyncResult>)asyncResult
+- (void)completeResult:(id<MKOperationResult>)asyncResult
 {
-   [_queue addOperation:[(id<MKOperationResult>)asyncResult operation]];
+    [_queue addOperation:[asyncResult operation]];
+    [[asyncResult promise] cancel:^{ [[asyncResult operation] cancel]; }];
 }
 
 + (NSOperationQueue *)getObjectQueue:(id)object

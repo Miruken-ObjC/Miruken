@@ -12,7 +12,7 @@
   Specialized AsyncResult that integrates with the NSOperationQueue mechanism. 
  */
 
-@protocol MKOperationResult
+@protocol MKOperationResult <MKAsyncResult>
 
 - (NSOperation *)operation;
 

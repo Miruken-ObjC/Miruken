@@ -10,8 +10,9 @@
 #import "MKMixingIn.h"
 #import <objc/runtime.h>
 
+static NSString *const kIsDirtyProperty       = @"isDirty";
+static NSString *const kInternalDirtyProperty = @"Dirty_isDirty";
 static int             kDirtyMixinContext;
-static NSString *const kIsDirtyProperty = @"isDirty";
 
 @implementation MKDirtyChecking
 
@@ -25,40 +26,87 @@ static NSString *const kIsDirtyProperty = @"isDirty";
 
 @implementation MKDirtyMixin
 
-#pragma mark - DirtyChecking
+#pragma mark - MKDirtyChecking
 
 - (BOOL)isDirty
+{
+    return [self Dirty_isDirty];
+}
+
+- (void)clearDirty
+{
+    [self Dirty_setDirty:NO notify:NO];
+}
+
+- (void)batchUpdates:(void (^)(void))updates
+{
+    if (updates)
+    {
+        BOOL suppress = [self Dirty_suppress];
+        @try {
+            [self setDirty_suppress:YES];
+            [self clearDirty];
+            updates();
+            if ([self Dirty_isDirty])
+                [self didChangeValueForKey:kIsDirtyProperty];
+        }
+        @finally {
+            [self setDirty_suppress:suppress];
+        }
+    }
+}
+
+#pragma mark - MKDirtyChecking mixin
+
+- (BOOL)Dirty_isDirty
 {
     NSNumber *dirty = objc_getAssociatedObject(self, @selector(isDirty));
     return [dirty boolValue];
 }
 
-- (void)clearDirty
+- (void)Dirty_setDirty:(BOOL)dirty notify:(BOOL)notify
 {
-    [self setDirty:NO];
-}
-
-#pragma mark - DirtyChecking mixin 
-
-- (void)setDirty:(BOOL)dirty
-{
-    NSNumber *dirtyBool = [NSNumber numberWithBool:dirty];
-    objc_setAssociatedObject(self, @selector(isDirty), dirtyBool, OBJC_ASSOCIATION_RETAIN);
-}
-
-+ (id)swizzleDirty_alloc
-{
-    id object = [self swizzleDirty_alloc];
-
-    [object addObserver:object forKeyPath:kIsDirtyProperty options:0 context:&kDirtyMixinContext];
+    BOOL changed = ([self isDirty] != dirty);
+    notify       = ((notify || changed) && ([self Dirty_suppress] == NO));
     
+    if (notify)
+        [self willChangeValueForKey:kIsDirtyProperty];
+    
+    if (changed)
+    {
+        NSNumber *dirtyBool = dirty ? [NSNumber numberWithBool:YES] : nil;
+        objc_setAssociatedObject(self, @selector(isDirty), dirtyBool, OBJC_ASSOCIATION_RETAIN);
+    }
+    
+    if (notify)
+        [self didChangeValueForKey:kIsDirtyProperty];
+}
+
+- (BOOL)Dirty_suppress
+{
+    NSNumber *suppress = objc_getAssociatedObject(self, @selector(Dirty_suppress));
+    return [suppress boolValue];
+}
+
+- (void)setDirty_suppress:(BOOL)suppress
+{
+    NSNumber *suppressBool = suppress ? [NSNumber numberWithBool:YES] : nil;
+    objc_setAssociatedObject(self, @selector(Dirty_suppress), suppressBool, OBJC_ASSOCIATION_RETAIN);
+}
+
+/**
+ * alloc calls allocWithZone:nil
+ */
++ (id)swizzleDirty_allocWithZone:(NSZone *)zone
+{
+    id object = [self swizzleDirty_allocWithZone:zone];
+    [object addObserver:object forKeyPath:kIsDirtyProperty options:0 context:&kDirtyMixinContext];
     return object;
 }
 
 - (void)swizzleDirty_dealloc
 {
     [self removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyMixinContext];
-    
     [self swizzleDirty_dealloc];
 }
 
@@ -67,14 +115,21 @@ static NSString *const kIsDirtyProperty = @"isDirty";
 {
     if (context == &kDirtyMixinContext)
     {
-        if ([keyPath isEqualToString:kIsDirtyProperty])
-            [self setDirty:YES];
+        if ([keyPath isEqualToString:kInternalDirtyProperty])
+            [self Dirty_setDirty:YES notify:YES];
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingIsDirty
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey
+{
+    return [theKey isEqualToString:kIsDirtyProperty]
+         ? NO
+         : [super automaticallyNotifiesObserversForKey:theKey];
+}
+
++ (NSSet *)keyPathsForValuesAffectingDirty_isDirty
 {
     Class         cls     = self;
     NSMutableSet *propSet = [NSMutableSet set];
@@ -83,11 +138,12 @@ static NSString *const kIsDirtyProperty = @"isDirty";
     {
         unsigned int  numProps;
         objc_property_t *propList = class_copyPropertyList(cls, &numProps);
-
+        
         for (unsigned int i = 0; i < numProps; ++i)
         {
             NSString *propName = [NSString stringWithUTF8String:property_getName(propList[i])];
-            if ([propName isEqualToString:kIsDirtyProperty] == NO)
+            if ([propName isEqualToString:kInternalDirtyProperty] == NO &&
+                [propName isEqualToString:kIsDirtyProperty] == NO)
                 [propSet addObject:propName];
         }
         

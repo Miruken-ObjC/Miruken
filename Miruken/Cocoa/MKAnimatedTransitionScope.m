@@ -9,10 +9,11 @@
 #import "MKAnimatedTransitionScope.h"
 #import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
+#import "MKZoomTransition.h"
+#import "MKPageFlipTransition.h"
+#import "MKPortalTransition.h"
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
-#import "MKPortalTransition.h"
-#import "MKZoomTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -150,11 +151,6 @@
 
 #pragma mark - extra
 
-- (instancetype)crossDissolve
-{
-    return [self animate:UIViewAnimationOptionTransitionCrossDissolve];
-}
-
 - (instancetype)zoom
 {
     [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
@@ -164,6 +160,12 @@
 - (instancetype)portal
 {
     [self requirePresentationPolicy].transitionDelegate = [MKPortalTransition new];
+    return self;
+}
+
+- (instancetype)pageFlip
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKPageFlipTransition new];
     return self;
 }
 
@@ -177,6 +179,11 @@
 {
     [self requirePresentationPolicy].transitionDelegate = [MKShuffle3DTransition new];
     return self;
+}
+
+- (instancetype)crossDissolve
+{
+    return [self animate:UIViewAnimationOptionTransitionCrossDissolve];
 }
 
 - (instancetype)animate:(UIViewAnimationOptions)options
