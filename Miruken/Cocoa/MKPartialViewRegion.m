@@ -122,7 +122,7 @@
         [[MKContextualHelper bindChildContextFrom:self.context toChild:toViewController]
             subscribeDidEnd:^(id<MKContext> context) {
                 @strongify(self);
-                if (_transition == transition)
+                if (_transition == nil || _transition == transition)
                 {
                     _transition = [self partialTransitionTo:nil];
                     [self removePartialController];

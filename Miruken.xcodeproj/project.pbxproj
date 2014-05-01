@@ -152,6 +152,8 @@
 		14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */; };
 		14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */ = {isa = PBXBuildFile; fileRef = 14982E0918C395750065EE40 /* UICollectionView_Issues.h */; };
 		14982E0C18C395750065EE40 /* UICollectionView_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 14982E0A18C395750065EE40 /* UICollectionView_Issues.m */; };
+		14A0F48F1914686B00A67B7C /* MKKeyboardMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F48D1914686B00A67B7C /* MKKeyboardMixin.h */; };
+		14A0F4901914686B00A67B7C /* MKKeyboardMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */; };
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
@@ -439,6 +441,8 @@
 		14982E0618C394BF0065EE40 /* MKInhibitInputAccessoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKInhibitInputAccessoryView.m; sourceTree = "<group>"; };
 		14982E0918C395750065EE40 /* UICollectionView_Issues.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICollectionView_Issues.h; sourceTree = "<group>"; };
 		14982E0A18C395750065EE40 /* UICollectionView_Issues.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICollectionView_Issues.m; sourceTree = "<group>"; };
+		14A0F48D1914686B00A67B7C /* MKKeyboardMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKKeyboardMixin.h; sourceTree = "<group>"; };
+		14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKKeyboardMixin.m; sourceTree = "<group>"; };
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
@@ -545,6 +549,8 @@
 			children = (
 				14982D5D18B9245E0065EE40 /* MKPagingMixin.h */,
 				14982D5E18B9245E0065EE40 /* MKPagingMixin.m */,
+				14A0F48D1914686B00A67B7C /* MKKeyboardMixin.h */,
+				14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */,
 				14982D5918B9245E0065EE40 /* MKAlertViewMixin.h */,
 				14982D5A18B9245E0065EE40 /* MKAlertViewMixin.m */,
 				14982D5718B9245E0065EE40 /* MKActionSheetMixin.h */,
@@ -626,10 +632,10 @@
 				14C54C6118F4A24E001C39D5 /* MKShuffle3DTransition.m */,
 				14C54C5818F1999F001C39D5 /* MKZoomTransition.h */,
 				14C54C5918F1999F001C39D5 /* MKZoomTransition.m */,
-				14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */,
-				14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */,
 				1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */,
 				1405C10D1905CBA5009F110F /* MKPageFlipTransition.m */,
+				14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */,
+				14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -1053,6 +1059,7 @@
 				14982D7518B9252F0065EE40 /* UIScrollView+Motion.h in Headers */,
 				14982D6B18B9245E0065EE40 /* MKPagingMixin.h in Headers */,
 				14C54C6618FAEA77001C39D5 /* MKPortalTransition.h in Headers */,
+				14A0F48F1914686B00A67B7C /* MKKeyboardMixin.h in Headers */,
 				14982D6D18B9245E0065EE40 /* UINavigationController_RotationMixin.h in Headers */,
 				14982D6518B9245E0065EE40 /* MKActionSheetMixin.h in Headers */,
 				142FE8FF18ECC69400569636 /* MKAnimatedTransition.h in Headers */,
@@ -1207,6 +1214,7 @@
 				14982DAF18BA33AC0065EE40 /* MKValidationErrors.m in Sources */,
 				14982D2A18B16C8E0065EE40 /* MKContextualHelper.m in Sources */,
 				142FE8D118DE415300569636 /* MKPresentationPolicy.m in Sources */,
+				14A0F4901914686B00A67B7C /* MKKeyboardMixin.m in Sources */,
 				14982D6E18B9245E0065EE40 /* UINavigationController_RotationMixin.m in Sources */,
 				14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */,
 				14982D2818B16C8E0065EE40 /* MKContextObserver.m in Sources */,

@@ -18,4 +18,6 @@
        fromViewController:(UIViewController *)fromViewController
          toViewController:(UIViewController *)toViewController;
 
+- (void)completeTransition:(id<UIViewControllerContextTransitioning>)transitionContext;
+
 @end

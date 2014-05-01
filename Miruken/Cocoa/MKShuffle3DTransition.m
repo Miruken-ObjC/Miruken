@@ -32,9 +32,7 @@
     
     if (fromView == nil || toView == nil)
     {
-        [containerView addSubview:toView];
-        BOOL cancelled = [transitionContext transitionWasCancelled];
-        [transitionContext completeTransition:!cancelled];
+        [self completeTransition:transitionContext];
         return;
     }
  

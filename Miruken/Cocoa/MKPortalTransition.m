@@ -33,11 +33,9 @@
 {
     UIView *containerView = [transitionContext containerView];
 
-    if (fromView == nil)
+    if (fromView == nil || toView == nil)
     {
-        [containerView addSubview:toView];
-        BOOL cancelled = [transitionContext transitionWasCancelled];
-        [transitionContext completeTransition:!cancelled];
+        [self completeTransition:transitionContext];
         return;
     }
     

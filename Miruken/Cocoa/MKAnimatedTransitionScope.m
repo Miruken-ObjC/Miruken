@@ -137,7 +137,7 @@
     return self;
 }
 
-#pragma mark - curl
+#pragma mark - page
 
 - (instancetype)curlUp
 {
@@ -147,6 +147,12 @@
 - (instancetype)curlDown
 {
     return [self animate:UIViewAnimationOptionTransitionCurlDown];
+}
+
+- (instancetype)pageFlip
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKPageFlipTransition new];
+    return self;
 }
 
 #pragma mark - extra
@@ -160,12 +166,6 @@
 - (instancetype)portal
 {
     [self requirePresentationPolicy].transitionDelegate = [MKPortalTransition new];
-    return self;
-}
-
-- (instancetype)pageFlip
-{
-    [self requirePresentationPolicy].transitionDelegate = [MKPageFlipTransition new];
     return self;
 }
 

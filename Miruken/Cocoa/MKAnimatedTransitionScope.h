@@ -61,19 +61,19 @@
 
 - (instancetype)moveInFromPosition:(MKStartingPosition)position;
 
-#pragma mark - curl
+#pragma mark - page
 
 - (instancetype)curlUp;
 
 - (instancetype)curlDown;
+
+- (instancetype)pageFlip;
 
 #pragma mark - extra 
 
 - (instancetype)zoom;
 
 - (instancetype)portal;
-
-- (instancetype)pageFlip;
 
 - (instancetype)slide3D;
 

@@ -55,6 +55,20 @@
            toViewController:toViewController];
 }
 
+- (void)completeTransition:(id<UIViewControllerContextTransitioning>)transitionContext
+{
+    UIViewController *fromViewController =
+        [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *toViewController   =
+        [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    if (toViewController.view)
+        [transitionContext.containerView addSubview:toViewController.view];
+    [fromViewController.view removeFromSuperview];
+    BOOL cancelled = [transitionContext transitionWasCancelled];
+    [transitionContext completeTransition:!cancelled];
+}
+
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
        fromViewController:(UIViewController *)fromViewController
          toViewController:(UIViewController *)toViewController
