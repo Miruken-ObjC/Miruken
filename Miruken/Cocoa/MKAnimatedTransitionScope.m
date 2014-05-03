@@ -14,6 +14,7 @@
 #import "MKPortalTransition.h"
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
+#import "MKTurn3DTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -37,6 +38,20 @@
 - (instancetype)flipFromBottom
 {
     return [self animate:UIViewAnimationOptionTransitionFlipFromBottom];
+}
+
+- (instancetype)horizontalTurn3D
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKTurn3DTransition turnDirection:MKTurnDirectionHorizontal];
+    return self;
+}
+
+- (instancetype)verticalTurn3D
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKTurn3DTransition turnDirection:MKTurnDirectionVertical];
+    return self;
 }
 
 #pragma mark - push

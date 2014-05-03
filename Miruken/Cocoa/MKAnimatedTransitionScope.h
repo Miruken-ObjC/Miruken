@@ -21,6 +21,10 @@
 
 - (instancetype)flipFromBottom;
 
+- (instancetype)horizontalTurn3D;
+
+- (instancetype)verticalTurn3D;
+
 #pragma mark - push
 
 - (instancetype)pushFromTop;
