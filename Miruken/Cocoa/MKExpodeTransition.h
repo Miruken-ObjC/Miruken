@@ -1,8 +1,8 @@
 //
-//  MKPageFlipTransition.h
+//  MKExpodeTransition.h
 //  Miruken
 //
-//  Created by Craig Neuwirt on 4/21/14.
+//  Created by Craig Neuwirt on 5/3/14.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 //  Based on work by Colin Eberhardt on 09/09/2013.
@@ -11,6 +11,6 @@
 
 #import "MKAnimatedTransition.h"
 
-@interface MKPageFlipTransition : MKAnimatedTransition
+@interface MKExpodeTransition : MKAnimatedTransition
 
 @end

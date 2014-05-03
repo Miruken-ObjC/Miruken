@@ -158,6 +158,8 @@
 		14A0F49419146D8E00A67B7C /* MKTurn3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */; };
 		14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F4951915304000A67B7C /* MKPageFoldTransition.h */; };
 		14A0F4981915304000A67B7C /* MKPageFoldTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F4961915304000A67B7C /* MKPageFoldTransition.m */; };
+		14A0F49B19153BA600A67B7C /* MKExpodeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49919153BA600A67B7C /* MKExpodeTransition.h */; };
+		14A0F49C19153BA600A67B7C /* MKExpodeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49A19153BA600A67B7C /* MKExpodeTransition.m */; };
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
@@ -451,6 +453,8 @@
 		14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTurn3DTransition.m; sourceTree = "<group>"; };
 		14A0F4951915304000A67B7C /* MKPageFoldTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPageFoldTransition.h; sourceTree = "<group>"; };
 		14A0F4961915304000A67B7C /* MKPageFoldTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPageFoldTransition.m; sourceTree = "<group>"; };
+		14A0F49919153BA600A67B7C /* MKExpodeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKExpodeTransition.h; sourceTree = "<group>"; };
+		14A0F49A19153BA600A67B7C /* MKExpodeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKExpodeTransition.m; sourceTree = "<group>"; };
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
@@ -642,6 +646,8 @@
 				14A0F4961915304000A67B7C /* MKPageFoldTransition.m */,
 				14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */,
 				14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */,
+				14A0F49919153BA600A67B7C /* MKExpodeTransition.h */,
+				14A0F49A19153BA600A67B7C /* MKExpodeTransition.m */,
 				14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */,
 				14C54C5D18F1A8E3001C39D5 /* MKSlide3DTransition.m */,
 				14A0F49119146D8E00A67B7C /* MKTurn3DTransition.h */,
@@ -1054,6 +1060,7 @@
 				14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */,
 				142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */,
 				1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */,
+				14A0F49B19153BA600A67B7C /* MKExpodeTransition.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
@@ -1312,6 +1319,7 @@
 				14982DBD18BA39770065EE40 /* MKCallbackHandler+SideEffects.m in Sources */,
 				14982D2718B16C8E0065EE40 /* MKContext.m in Sources */,
 				14982E0418C394390065EE40 /* UIWebView+Extra.m in Sources */,
+				14A0F49C19153BA600A67B7C /* MKExpodeTransition.m in Sources */,
 				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
 				1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */,
 				142FE8DA18DF21BB00569636 /* MKCallbackHandler+Presentation.m in Sources */,

@@ -10,6 +10,7 @@
 #import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
 #import "MKZoomTransition.h"
+#import "MKExpodeTransition.h"
 #import "MKPageFlipTransition.h"
 #import "MKPageFoldTransition.h"
 #import "MKPortalTransition.h"
@@ -194,6 +195,12 @@
 - (instancetype)portal
 {
     [self requirePresentationPolicy].transitionDelegate = [MKPortalTransition new];
+    return self;
+}
+
+- (instancetype)explode
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKExpodeTransition new];
     return self;
 }
 

@@ -52,8 +52,8 @@
     transform.m34           = -0.005;
     containerView.layer.sublayerTransform = transform;
     
-    CGSize size             = toView.frame.size;
-    float  foldWidth        = size.width * 0.5 / (float)self.folds;
+    CGSize  size            = toView.frame.size;
+    CGFloat foldWidth       = size.width * 0.5 / (CGFloat)self.folds;
     
     // arrays that hold the snapshot views
     NSMutableArray *fromViewFolds = [NSMutableArray new];
@@ -62,7 +62,7 @@
     // create the folds for the form- and to- views
     for (NSInteger foldIdx = 0; foldIdx < self.folds; ++foldIdx)
     {
-        float offset = (float)foldIdx * foldWidth * 2;
+        CGFloat offset                   = (CGFloat)foldIdx * foldWidth * 2;
         
         // the left and right side of the fold for the from- view, with identity transform and 0.0 alpha
         // on the shadow, with each view at its initial position
@@ -103,7 +103,7 @@
         // set the final state for each fold
         for (NSInteger foldIdx = 0; foldIdx < self.folds; ++foldIdx)
         {
-            float offset = (float)foldIdx * foldWidth * 2;
+            CGFloat offset               = (CGFloat)foldIdx * foldWidth * 2;
             
             // the left and right side of the fold for the from- view, with 90 degree transform and 1.0 alpha
             // on the shadow, with each view positioned at the edge of thw screen.
@@ -149,7 +149,7 @@
 {
     CGSize  size          = view.frame.size;
     UIView *containerView = view.superview;
-    float   foldWidth     = size.width * 0.5 / (float)self.folds;
+    CGFloat foldWidth     = size.width * 0.5 / (CGFloat)self.folds;
     
     UIView *snapshotView;
     
