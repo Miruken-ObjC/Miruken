@@ -10,18 +10,18 @@
 
 @implementation MKTurn3DTransition
 
-- (id)init
-{
-    if (self = [super init])
-        _turnDirection = MKTurnDirectionVertical;
-    return self;
-}
-
 + (instancetype)turnDirection:(MKTurnDirection)turnDirection
 {
     MKTurn3DTransition *turn = [self new];
     turn->_turnDirection     = turnDirection;
     return turn;
+}
+
+- (id)init
+{
+    if (self = [super init])
+        _turnDirection = MKTurnDirectionVertical;
+    return self;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
@@ -60,18 +60,14 @@
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     
     [UIView animateKeyframesWithDuration:duration delay:0.0 options:0 animations:^{
-          [UIView addKeyframeWithRelativeStartTime:0.0
-                                  relativeDuration:0.5
-                                        animations:^{
-                                            // rotate the from view
-                                            fromView.layer.transform = [self rotate:factor * M_PI_2];
-                                        }];
-          [UIView addKeyframeWithRelativeStartTime:0.5
-                                  relativeDuration:0.5
-                                        animations:^{
-                                            // rotate the to view
-                                            toView.layer.transform =  [self rotate:0.0];
-                                        }];
+        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
+            // rotate the from view
+            fromView.layer.transform = [self rotate:factor * M_PI_2];
+            }];
+        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
+            // rotate the to view
+            toView.layer.transform = [self rotate:0.0];
+            }];
     } completion:^(BOOL finished) {
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];

@@ -11,6 +11,7 @@
 #import "MKPushMoveInTransition.h"
 #import "MKZoomTransition.h"
 #import "MKPageFlipTransition.h"
+#import "MKPageFoldTransition.h"
 #import "MKPortalTransition.h"
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
@@ -167,6 +168,18 @@
 - (instancetype)pageFlip
 {
     [self requirePresentationPolicy].transitionDelegate = [MKPageFlipTransition new];
+    return self;
+}
+
+- (instancetype)pageFold
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKPageFoldTransition new];
+    return self;
+}
+
+- (instancetype)pageFold:(NSUInteger)folds
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKPageFoldTransition folds:folds];
     return self;
 }
 

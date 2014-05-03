@@ -156,6 +156,8 @@
 		14A0F4901914686B00A67B7C /* MKKeyboardMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */; };
 		14A0F49319146D8E00A67B7C /* MKTurn3DTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49119146D8E00A67B7C /* MKTurn3DTransition.h */; };
 		14A0F49419146D8E00A67B7C /* MKTurn3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */; };
+		14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F4951915304000A67B7C /* MKPageFoldTransition.h */; };
+		14A0F4981915304000A67B7C /* MKPageFoldTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F4961915304000A67B7C /* MKPageFoldTransition.m */; };
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
@@ -447,6 +449,8 @@
 		14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKKeyboardMixin.m; sourceTree = "<group>"; };
 		14A0F49119146D8E00A67B7C /* MKTurn3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTurn3DTransition.h; sourceTree = "<group>"; };
 		14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTurn3DTransition.m; sourceTree = "<group>"; };
+		14A0F4951915304000A67B7C /* MKPageFoldTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPageFoldTransition.h; sourceTree = "<group>"; };
+		14A0F4961915304000A67B7C /* MKPageFoldTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPageFoldTransition.m; sourceTree = "<group>"; };
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
@@ -634,6 +638,8 @@
 				14C54C5918F1999F001C39D5 /* MKZoomTransition.m */,
 				1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */,
 				1405C10D1905CBA5009F110F /* MKPageFlipTransition.m */,
+				14A0F4951915304000A67B7C /* MKPageFoldTransition.h */,
+				14A0F4961915304000A67B7C /* MKPageFoldTransition.m */,
 				14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */,
 				14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */,
 				14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */,
@@ -1042,6 +1048,7 @@
 				142FE8ED18E84FED00569636 /* MKPresentationPolicyHandler.h in Headers */,
 				142FE8FB18ECC60200569636 /* MKPushMoveInTransition.h in Headers */,
 				142FE8F118E856A500569636 /* MKAnimatedTransitionScope.h in Headers */,
+				14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
 				14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */,
@@ -1296,6 +1303,7 @@
 				1462998018B02DCD002BCBF6 /* MKOnDemandInCallbackHandler.m in Sources */,
 				1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */,
 				14982D7A18B9257B0065EE40 /* UIWindow+Rotation.m in Sources */,
+				14A0F4981915304000A67B7C /* MKPageFoldTransition.m in Sources */,
 				14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */,
 				14982D8C18B92BE70065EE40 /* MKCallbackHandler+Recoverable.m in Sources */,
 				14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */,

@@ -73,6 +73,10 @@
 
 - (instancetype)pageFlip;
 
+- (instancetype)pageFold;
+
+- (instancetype)pageFold:(NSUInteger)folds;
+
 #pragma mark - extra 
 
 - (instancetype)zoom;
