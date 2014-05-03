@@ -13,4 +13,6 @@
 
 @interface MKSlide3DTransition : MKAnimatedTransition
 
+@property (assign, nonatomic) CGFloat perspective;
+
 @end

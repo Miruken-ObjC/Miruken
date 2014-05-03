@@ -13,4 +13,6 @@
 
 @interface MKPageFlipTransition : MKAnimatedTransition
 
+@property (assign, nonatomic) CGFloat perspective;
+
 @end

@@ -11,14 +11,18 @@
 
 #import "MKShuffle3DTransition.h"
 
-#define kSuffleAnimationDuration (1.3f)
+#define kSuffleAnimationDuration  (1.3f)
+#define kDefaultPerspective       (-1.0 / 2000.0)
 
 @implementation MKShuffle3DTransition
 
 - (id)init
 {
     if (self = [super init])
+    {
         self.animationDuration = kSuffleAnimationDuration;
+        _perspective           = kDefaultPerspective;
+    }
     return self;
 }
 
@@ -55,12 +59,12 @@
         // Apply z-index translations to make the views move away from the user
         [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.20 animations:^{
             CATransform3D fromT          = CATransform3DIdentity;
-            fromT.m34                    = 1.0 / -2000;
+            fromT.m34                    = _perspective;
             fromT                        = CATransform3DTranslate(fromT, 0.0, 0.0, -590.0);
             fromSnapshot.layer.transform = fromT;
             
             CATransform3D toT            = CATransform3DIdentity;
-            toT.m34                      = 1.0 / -2000;
+            toT.m34                      = _perspective;
             toT                          = CATransform3DTranslate(fromT, 0.0, 0.0, -600.0);
             toView.layer.transform       = toT;
         }];

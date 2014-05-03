@@ -11,7 +11,8 @@
 
 #import "MKPageFoldTransition.h"
 
-#define kDefaultPageFolds  2
+#define kDefaultPageFolds    2
+#define kDefaultPerspective  (-1.0 / 200.0)
 
 @implementation MKPageFoldTransition
 
@@ -25,7 +26,10 @@
 - (id)init
 {
     if (self = [super init])
-        _folds = kDefaultPageFolds;
+    {
+        _folds       = kDefaultPageFolds;
+        _perspective = kDefaultPerspective;
+    }
     return self;
 }
 
@@ -49,7 +53,7 @@
     
     // Add a perspective transform
     CATransform3D transform = CATransform3DIdentity;
-    transform.m34           = -0.005;
+    transform.m34           = _perspective;
     containerView.layer.sublayerTransform = transform;
     
     CGSize  size            = toView.frame.size;

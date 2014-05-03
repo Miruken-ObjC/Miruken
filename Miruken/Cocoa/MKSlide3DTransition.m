@@ -11,14 +11,18 @@
 
 #import "MKSlide3DTransition.h"
 
-#define kSlideAnimationDuration (0.5f)
+#define kSlideAnimationDuration   (0.5f)
+#define kDefaultPerspective       (-1.0 / 2000.0)
 
 @implementation MKSlide3DTransition
 
 - (id)init
 {
     if (self = [super init])
+    {
         self.animationDuration = kSlideAnimationDuration;
+        _perspective           = kDefaultPerspective;
+    }
     return self;
 }
 
@@ -35,7 +39,7 @@
     
     // 90 degrees away from the user
     CATransform3D t = CATransform3DRotate(CATransform3DIdentity, M_PI / 2.0, 0.0, 1.0, 0.0);
-    t.m34           = 1.0 / -2000;
+    t.m34           = _perspective;
     
     if (self.isPresenting)
     {

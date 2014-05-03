@@ -11,7 +11,16 @@
 
 #import "MKExpodeTransition.h"
 
+#define kExplodeAnimationDuration (1.0f)
+
 @implementation MKExpodeTransition
+
+- (id)init
+{
+    if (self = [super init])
+        self.animationDuration = kExplodeAnimationDuration;
+    return self;
+}
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
        fromViewController:(UIViewController *)fromViewController
@@ -21,22 +30,28 @@
     UIView *fromView          = fromViewController.view;
     UIView *toView            = toViewController.view;
 
+    if (fromView == nil)
+    {
+        [self completeTransition:transitionContext];
+        return;
+    }
+    
     if (toView)
     {
         [containerView addSubview:toView];
         [containerView sendSubviewToBack:toView];
     }
-    
+
     CGSize          size      = toView ? toView.frame.size : fromView.frame.size;
-    NSMutableArray *snapshots = [NSMutableArray new];
-    
-    CGFloat xFactor           = 10.0f;
-    CGFloat yFactor           = xFactor * size.height / size.width;
+    CGFloat         xFactor   = 10.0f;
+    CGFloat         yFactor   = xFactor * size.height / size.width;
     
     // snapshot the from view, this makes subsequent snaphots more performant
     UIView *fromViewSnapshot  = [fromView snapshotViewAfterScreenUpdates:NO];
+    [fromView removeFromSuperview];
     
     // create a snapshot for each of the exploding pieces
+    NSMutableArray *snapshots = [NSMutableArray new];
     for (CGFloat x = 0; x < size.width; x += size.width / xFactor)
     {
         for (CGFloat y = 0; y < size.height; y += size.height / yFactor)

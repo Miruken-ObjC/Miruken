@@ -160,6 +160,8 @@
 		14A0F4981915304000A67B7C /* MKPageFoldTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F4961915304000A67B7C /* MKPageFoldTransition.m */; };
 		14A0F49B19153BA600A67B7C /* MKExpodeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49919153BA600A67B7C /* MKExpodeTransition.h */; };
 		14A0F49C19153BA600A67B7C /* MKExpodeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49A19153BA600A67B7C /* MKExpodeTransition.m */; };
+		14A0F49F19154D1900A67B7C /* MKCubeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49D19154D1900A67B7C /* MKCubeTransition.h */; };
+		14A0F4A019154D1900A67B7C /* MKCubeTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49E19154D1900A67B7C /* MKCubeTransition.m */; };
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
@@ -455,6 +457,8 @@
 		14A0F4961915304000A67B7C /* MKPageFoldTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPageFoldTransition.m; sourceTree = "<group>"; };
 		14A0F49919153BA600A67B7C /* MKExpodeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKExpodeTransition.h; sourceTree = "<group>"; };
 		14A0F49A19153BA600A67B7C /* MKExpodeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKExpodeTransition.m; sourceTree = "<group>"; };
+		14A0F49D19154D1900A67B7C /* MKCubeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCubeTransition.h; sourceTree = "<group>"; };
+		14A0F49E19154D1900A67B7C /* MKCubeTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCubeTransition.m; sourceTree = "<group>"; };
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
@@ -654,6 +658,8 @@
 				14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */,
 				14C54C6018F4A24E001C39D5 /* MKShuffle3DTransition.h */,
 				14C54C6118F4A24E001C39D5 /* MKShuffle3DTransition.m */,
+				14A0F49D19154D1900A67B7C /* MKCubeTransition.h */,
+				14A0F49E19154D1900A67B7C /* MKCubeTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				142FE8E118DFB6E700569636 /* MKModalFlipHorizontalTransition.h in Headers */,
 				14982D9818BA2D830065EE40 /* UIAlertView+Block.h in Headers */,
 				14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */,
+				14A0F49F19154D1900A67B7C /* MKCubeTransition.h in Headers */,
 				14982D7918B9257B0065EE40 /* UIWindow+Rotation.h in Headers */,
 				142FE8C118DBA62200569636 /* MKMixingIn.h in Headers */,
 				14982DBE18BA39770065EE40 /* MKSideEffectCallbackHandler.h in Headers */,
@@ -1331,6 +1338,7 @@
 				1462998218B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m in Sources */,
 				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,
 				14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */,
+				14A0F4A019154D1900A67B7C /* MKCubeTransition.m in Sources */,
 				1462997E18B02DCD002BCBF6 /* MKObjectCallbackHandler.m in Sources */,
 				14982D6A18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m in Sources */,
 				142FE8C218DBA62200569636 /* MKMixingIn.m in Sources */,

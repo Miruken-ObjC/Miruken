@@ -12,13 +12,17 @@
 #import "MKPageFlipTransition.h"
 
 #define kPageFlipAnimationDuration (1.0f)
+#define kDefaultPerspective        (-1.0 / 500.0)
 
 @implementation MKPageFlipTransition
 
 - (id)init
 {
     if (self = [super init])
+    {
         self.animationDuration = kPageFlipAnimationDuration;
+        _perspective           = kDefaultPerspective;
+    }
     return self;
 }
 
@@ -42,7 +46,7 @@
     
     // Add a perspective transform
     CATransform3D transform = CATransform3DIdentity;
-    transform.m34           = -0.002;
+    transform.m34           = _perspective;
     [containerView.layer setSublayerTransform:transform];
     
     // Give both VCs the same start frame

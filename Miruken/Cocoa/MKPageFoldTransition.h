@@ -14,6 +14,7 @@
 @interface MKPageFoldTransition : MKAnimatedTransition
 
 @property (assign, nonatomic) NSUInteger folds;
+@property (assign, nonatomic) CGFloat    perspective;
 
 + (instancetype)folds:(NSUInteger)folds;
 

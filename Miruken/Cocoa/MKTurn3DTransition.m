@@ -8,19 +8,24 @@
 
 #import "MKTurn3DTransition.h"
 
+#define kDefaultPerspective  (-1.0 / 500.0)
+
 @implementation MKTurn3DTransition
 
-+ (instancetype)turnDirection:(MKTurnDirection)turnDirection
++ (instancetype)turnAxis:(MKTurnTransitionAxis)turnAxis
 {
     MKTurn3DTransition *turn = [self new];
-    turn->_turnDirection     = turnDirection;
+    turn->_turnAxis          = turnAxis;
     return turn;
 }
 
 - (id)init
 {
     if (self = [super init])
-        _turnDirection = MKTurnDirectionVertical;
+    {
+        _turnAxis    = MKTurnTransitionAxisVertical;
+        _perspective = kDefaultPerspective;
+    }
     return self;
 }
 
@@ -43,7 +48,7 @@
     
     // Add a perspective transform
     CATransform3D transform = CATransform3DIdentity;
-    transform.m34           = -0.002;
+    transform.m34           = _perspective;
     [containerView.layer setSublayerTransform:transform];
     
     // Give both VCs the same start frame
@@ -76,7 +81,7 @@
 
 - (CATransform3D)rotate:(CGFloat)angle
 {
-    return (_turnDirection == MKTurnDirectionHorizontal)
+    return (_turnAxis == MKTurnTransitionAxisHorizontal)
          ? CATransform3DMakeRotation(angle, 1.0, 0.0, 0.0)
          : CATransform3DMakeRotation(angle, 0.0, 1.0, 0.0);
 }

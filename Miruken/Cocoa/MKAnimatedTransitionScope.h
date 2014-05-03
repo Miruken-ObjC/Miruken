@@ -91,6 +91,14 @@
 
 - (instancetype)crossDissolve;
 
+- (instancetype)horizontalCube;
+
+- (instancetype)horizontalCubeAtDegrees:(CGFloat)angle;
+
+- (instancetype)verticalCube;
+
+- (instancetype)verticalCubeAtDegrees:(CGFloat)angle;
+
 - (instancetype)animate:(UIViewAnimationOptions)options;
 
 - (instancetype)duration:(NSTimeInterval)duration;

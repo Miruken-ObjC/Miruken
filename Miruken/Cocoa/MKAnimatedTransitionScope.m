@@ -9,6 +9,7 @@
 #import "MKAnimatedTransitionScope.h"
 #import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
+#import "MKCubeTransition.h"
 #import "MKZoomTransition.h"
 #import "MKExpodeTransition.h"
 #import "MKPageFlipTransition.h"
@@ -45,14 +46,14 @@
 - (instancetype)horizontalTurn3D
 {
     [self requirePresentationPolicy].transitionDelegate =
-        [MKTurn3DTransition turnDirection:MKTurnDirectionHorizontal];
+        [MKTurn3DTransition turnAxis:MKTurnTransitionAxisHorizontal];
     return self;
 }
 
 - (instancetype)verticalTurn3D
 {
     [self requirePresentationPolicy].transitionDelegate =
-        [MKTurn3DTransition turnDirection:MKTurnDirectionVertical];
+        [MKTurn3DTransition turnAxis:MKTurnTransitionAxisVertical];
     return self;
 }
 
@@ -186,6 +187,11 @@
 
 #pragma mark - extra
 
+- (instancetype)cube
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
+    return self;
+}
 - (instancetype)zoom
 {
     [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
@@ -219,6 +225,36 @@
 - (instancetype)crossDissolve
 {
     return [self animate:UIViewAnimationOptionTransitionCrossDissolve];
+}
+
+- (instancetype)horizontalCube
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKCubeTransition cubeAxis:MKCubeTransitionAxisHorizontal];
+    return self;
+}
+
+- (instancetype)horizontalCubeAtDegrees:(CGFloat)angle
+{
+    MKCubeTransition *cube = [MKCubeTransition cubeAxis:MKCubeTransitionAxisHorizontal];
+    cube.rotateDegrees     = angle;
+    [self requirePresentationPolicy].transitionDelegate = cube;
+    return self;
+}
+
+- (instancetype)verticalCube
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKCubeTransition cubeAxis:MKCubeTransitionAxisVertical];
+    return self;
+}
+
+- (instancetype)verticalCubeAtDegrees:(CGFloat)angle
+{
+    MKCubeTransition *cube = [MKCubeTransition cubeAxis:MKCubeTransitionAxisVertical];
+    cube.rotateDegrees     = angle;
+    [self requirePresentationPolicy].transitionDelegate = cube;
+    return self;
 }
 
 - (instancetype)animate:(UIViewAnimationOptions)options
