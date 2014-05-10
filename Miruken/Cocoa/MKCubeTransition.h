@@ -5,6 +5,9 @@
 //  Created by Craig Neuwirt on 5/3/14.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
+//  Based on work by Andrés Brun on 27/10/13.
+//  Copyright (c) 2013 Andrés Brun. All rights reserved.
+//
 
 #import "MKAnimatedTransition.h"
 

@@ -101,28 +101,28 @@
 {
     return [MKOnDemandInCallbackHandler
                 handledBy:provider
-                     when:^(id callback){ return [callback isKindOfClass:aClass]; } ];
+                     when:^(id callback){ return [callback isKindOfClass:aClass]; }];
 }
 
 + (instancetype)acceptingProtocol:(Protocol *)aProtocol handle:(MKOnDemandCallbackIn)provider
 {
     return [MKOnDemandInCallbackHandler
                 handledBy:provider
-                     when:^(id callback){ return [callback conformsToProtocol:aProtocol]; } ];
+                     when:^(id callback) { return [callback conformsToProtocol:aProtocol]; }];
 }
 
 + (instancetype)providingClass:(Class)aClass handle:(MKOnDemandCallbackOut)provider
 {
     return [MKOnDemandOutCallbackHandler
                 providedBy:provider
-                     when:^(id callback){ return (BOOL)(callback == aClass); } ];
+                      when:^(id callback) { return (BOOL)(callback == aClass); }];
 }
 
 + (instancetype)providingProtocol:(Protocol *)aProtocol handle:(MKOnDemandCallbackOut)provider
 {
     return [MKOnDemandOutCallbackHandler
                 providedBy:provider
-                      when:^(id callback){ return (BOOL)(callback == aProtocol); } ];
+                      when:^(id callback) { return (BOOL)(callback == aProtocol); }];
 }
 
 @end

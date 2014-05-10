@@ -11,7 +11,7 @@
 
 @implementation MKOnDemandInCallbackHandler
 {
-    MKOnDemandCallbackIn  _provider;
+    MKOnDemandCallbackIn  _handler;
     MKCallbackPredicate   _condition;
 }
 
@@ -22,10 +22,10 @@
                                        reason:@"provider cannot be nil"
                                      userInfo:nil];            
     
-    MKOnDemandInCallbackHandler *handler = [self new];
-    handler->_provider                   = provider;
-    handler->_condition                  = condition;
-    return handler;
+    MKOnDemandInCallbackHandler *onDemand = [self new];
+    onDemand->_handler                    = provider;
+    onDemand->_condition                  = condition;
+    return onDemand;
 }
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
@@ -36,17 +36,17 @@
         if (receiver.object)
         {
             return _condition(receiver.object)
-                && _provider(receiver.object, composer)
+                && _handler(receiver.object, composer)
                 && [receiver tryResolve:receiver.object];
         }
         return NO;
     }
-    return _condition(callback) && _provider(callback, composer);
+    return _condition(callback) && _handler(callback, composer);
 }
 
 - (void)dealloc
 {
-    _provider  = nil;
+    _handler  = nil;
     _condition = nil;
 }
 

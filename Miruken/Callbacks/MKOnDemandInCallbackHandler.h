@@ -14,6 +14,6 @@
 
 @interface MKOnDemandInCallbackHandler : MKCallbackHandler
 
-+ (instancetype)handledBy:(MKOnDemandCallbackIn)provider when:(MKCallbackPredicate)condition;
++ (instancetype)handledBy:(MKOnDemandCallbackIn)handler when:(MKCallbackPredicate)condition;
 
 @end

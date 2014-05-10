@@ -58,9 +58,9 @@
     {
         _object = result;
         [super resolve:_object];
-        return YES;
     }
-    return NO;
+    
+    return compatible;
 }
 
 - (id)reject:(id)reason

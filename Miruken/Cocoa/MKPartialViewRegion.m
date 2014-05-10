@@ -26,8 +26,8 @@
 {
     MKContext                  *_context;
     UIViewController           *_controller;
-    NSArray                    *_constraints;
     MKPartialTransitionContext *_transition;
+    UIView                     *_transitionView;
 }
 
 - (id)controller
@@ -67,7 +67,6 @@
 
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
 {
-    self.clipsToBounds                       = YES;
     MKCallbackHandler    *composer           = self.composer;
     MKPresentationPolicy *presentationPolicy = [self presentationPolicy];
     [presentationPolicy applyPolicyToViewController:viewController];
@@ -96,9 +95,7 @@
         _transition = [self partialTransitionTo:viewController];
         [self removePartialController];
         [self addPartialController];
-        return [_transition pipe:^(id result) {
-            return viewController.context;
-        }];
+        return [_transition pipe:^(id result) { return viewController.context; }];
     }
     
     return [self notHandled];
@@ -106,7 +103,16 @@
 
 - (MKPartialTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
 {
-    return [MKPartialTransitionContext transitionContainerView:self
+    if (_transitionView == nil)
+    {
+        _transitionView = [[UIView alloc] initWithFrame:self.bounds];
+        _transitionView.clipsToBounds                             = YES;
+        _transitionView.translatesAutoresizingMaskIntoConstraints = NO;
+        _transitionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        [self addSubview:_transitionView];
+    }
+
+    return [MKPartialTransitionContext transitionContainerView:_transitionView
                                             fromViewController:_controller
                                               toViewController:toViewController];
 }
@@ -149,12 +155,6 @@
     
     if (fromViewController)
     {
-        if (_constraints)
-        {
-            [self removeConstraints:_constraints];
-            _constraints = nil;
-        }
-
         [fromViewController willMoveToParentViewController:nil];
         [fromViewController removeFromParentViewController];
         [fromViewController didMoveToParentViewController:nil];
@@ -169,22 +169,14 @@
 - (void)completeTransition:(BOOL)didComplete
 {
     if (didComplete)
-        [self anchorPartialViewToRegion:_transition.toViewController.view];
+    {
+        UIView *toView = _transition.toViewController.view;
+        toView.translatesAutoresizingMaskIntoConstraints = NO;
+        toView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+
     [_transition.fromViewController.view removeFromSuperview];
     _transition = nil;
-}
-
-- (void)anchorPartialViewToRegion:(UIView *)view
-{
-    if (view.superview == nil)
-        return;
-    NSDictionary *views = NSDictionaryOfVariableBindings(view);
-    _constraints = [[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[view]-0-|"
-                                                            options:0 metrics:nil views:views]
-            arrayByAddingObjectsFromArray:
-                   [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-0-[view]-0-|"
-                                                            options:0 metrics:nil views:views]];
-    [self addConstraints:_constraints];
 }
 
 - (void)dealloc

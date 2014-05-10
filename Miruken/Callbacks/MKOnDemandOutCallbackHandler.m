@@ -23,10 +23,10 @@
                                        reason:@"provider cannot be nil"
                                      userInfo:nil];
     
-    MKOnDemandOutCallbackHandler *handler = [self new];
-    handler->_provider                    = provider;
-    handler->_condition                   = condition;
-    return handler;
+    MKOnDemandOutCallbackHandler *onDemand = [self new];
+    onDemand->_provider                    = provider;
+    onDemand->_condition                   = condition;
+    return onDemand;
 }
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
