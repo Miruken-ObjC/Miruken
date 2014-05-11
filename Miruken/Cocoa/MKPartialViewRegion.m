@@ -7,6 +7,7 @@
 //
 
 #import "MKPartialViewRegion.h"
+#import "MKViewControllerWapperView.h"
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
@@ -16,18 +17,48 @@
 #import "NSObject+NotHandled.h"
 #import "NSObject+Context.h"
 #import "MKCocoaErrors.h"
-#import "MKDeferred.h"
 #import "EXTScope.h"
 
-@interface MKPartialTransitionContext : MKTransitionContext
+@interface MKPartialViewRegion()
+@property (weak, nonatomic) MKTransitionContext *transition;
 @end
 
 @implementation MKPartialViewRegion
 {
-    MKContext                  *_context;
-    UIViewController           *_controller;
-    MKPartialTransitionContext *_transition;
-    UIView                     *_transitionView;
+    MKContext                         *_context;
+    UIViewController                  *_controller;
+    __weak UIView                     *_transitionView;
+    __weak MKViewControllerWapperView *_wrapperView;
+}
+
+- (id)init
+{
+    if (self = [super init])
+        [self initPartialViewRegion];
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+        [self initPartialViewRegion];
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+        [self initPartialViewRegion];
+    return self;
+}
+
+- (void)initPartialViewRegion
+{
+    UIView *transitionView          = [[UIView alloc] initWithFrame:self.bounds];
+    transitionView.clipsToBounds    = YES;
+    transitionView.autoresizingMask = UIViewAutoresizingFlexibleHeight
+                                    | UIViewAutoresizingFlexibleWidth;
+    [self addSubview:_transitionView = transitionView];
 }
 
 - (id)controller
@@ -86,35 +117,32 @@
         }
         
         if (_transition)
-        {
             return [[MKDeferred rejected:[NSError errorWithDomain:MKCocoaErrorDomain
                                                              code:MKCocoaErrorTransitionInProgress
                                                          userInfo:nil]] promise];
-        }
         
         _transition = [self partialTransitionTo:viewController];
         [self removePartialController];
         [self addPartialController];
-        return [_transition pipe:^(id result) { return viewController.context; }];
+        return [_transition pipe:^(NSNumber *didComplete) {
+            return viewController.context;
+        }];
     }
     
     return [self notHandled];
 }
 
-- (MKPartialTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
+- (MKTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
 {
-    if (_transitionView == nil)
+    if (_wrapperView == nil)
     {
-        _transitionView = [[UIView alloc] initWithFrame:self.bounds];
-        _transitionView.clipsToBounds                             = YES;
-        _transitionView.translatesAutoresizingMaskIntoConstraints = NO;
-        _transitionView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self addSubview:_transitionView];
+        _wrapperView = [MKViewControllerWapperView wrapperViewForView:toViewController.view
+                                                                frame:_transitionView.bounds];
+        [_transitionView addSubview:_wrapperView];
     }
-
-    return [MKPartialTransitionContext transitionContainerView:_transitionView
-                                            fromViewController:_controller
-                                              toViewController:toViewController];
+    return [MKTransitionContext transitionContainerView:_wrapperView
+                                     fromViewController:_controller
+                                       toViewController:toViewController];
 }
 
 - (void)addPartialController
@@ -124,13 +152,13 @@
     if (toViewController)
     {
         @weakify(self);
-        __weak MKPartialTransitionContext *transition = _transition;
+        __weak MKTransitionContext *transition = _transition;
         [[MKContextualHelper bindChildContextFrom:self.context toChild:toViewController]
             subscribeDidEnd:^(id<MKContext> context) {
                 @strongify(self);
-                if (_transition == nil || _transition == transition)
+                if (self.transition == nil || self.transition == transition)
                 {
-                    _transition = [self partialTransitionTo:nil];
+                    self.transition = [self partialTransitionTo:nil];
                     [self removePartialController];
                 }
             }];
@@ -139,10 +167,6 @@
         [toViewController willMoveToParentViewController:owningController];
         [owningController  addChildViewController:toViewController];
         [toViewController didMoveToParentViewController:owningController];
-        
-        UIView *partialView = toViewController.view;
-        partialView.frame   = self.bounds;
-        [self addSubview:partialView];
         
         [_transition animateTranstion];
         _controller = toViewController;
@@ -160,40 +184,20 @@
         [fromViewController didMoveToParentViewController:nil];
         
         if (_transition.isPresenting == NO)
+        {
             [_transition animateTranstion];
+            [_wrapperView removeFromSuperview];
+            _wrapperView = nil;
+        }
         
         _controller = nil;
     }
-}
-
-- (void)completeTransition:(BOOL)didComplete
-{
-    if (didComplete)
-    {
-        UIView *toView = _transition.toViewController.view;
-        toView.translatesAutoresizingMaskIntoConstraints = NO;
-        toView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    }
-
-    [_transition.fromViewController.view removeFromSuperview];
-    _transition = nil;
 }
 
 - (void)dealloc
 {
     [_context end];
     _context = nil;
-}
-
-@end
-
-#pragma mark - MKPartialTransitionContext
-
-@implementation MKPartialTransitionContext
-
-- (void)completeTransition:(BOOL)didComplete
-{
-    [(MKPartialViewRegion *)self.containerView completeTransition:didComplete];
 }
 
 @end

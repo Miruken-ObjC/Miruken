@@ -684,7 +684,7 @@
 
 @implementation MKPipe
 {
-    MKDeferred      *_pipe;
+    MKDeferred        *_pipe;
     MKDoneFilter       _doneFilter;
     MKFailFilter       _failFilter;
     MKProgressFilter   _progressFilter;

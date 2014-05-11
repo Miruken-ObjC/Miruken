@@ -92,6 +92,7 @@
 
 - (void)completeTransition:(BOOL)didComplete
 {
+    [_fromViewController.view removeFromSuperview];
     if (self.state == MKPromiseStatePending)
         [self resolve:[NSNumber numberWithBool:didComplete]];
 }
