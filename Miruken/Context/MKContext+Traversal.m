@@ -12,7 +12,7 @@
 #import "NSInvocation+Objects.h"
 #import "MKMixin.h"
 
-@interface ContextTraversalTrampoline : NSProxy
+@interface MKContextTraversalTrampoline : NSProxy
 
 - (id)initWithContext:(MKContext *)context axis:(MKTraversingAxes)axis;
 
@@ -69,14 +69,14 @@
 
 - (instancetype)newContextTraversal:(MKTraversingAxes)axis
 {
-    return (MKContext *) [[ContextTraversalTrampoline alloc]  initWithContext:self axis:axis];
+    return (MKContext *) [[MKContextTraversalTrampoline alloc]  initWithContext:self axis:axis];
 }
 
 @end
 
 #pragma mark - Context Traversal Trampoline
 
-@implementation ContextTraversalTrampoline
+@implementation MKContextTraversalTrampoline
 {
     MKContext         *_context;
     MKTraversingAxes _axis;
@@ -84,7 +84,7 @@
 
 + (void)initialize
 {
-    if (self == ContextTraversalTrampoline.class)
+    if (self == MKContextTraversalTrampoline.class)
         [MKMixin from:MKCallbackHandler.class into:self];
 }
 
@@ -107,6 +107,8 @@
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
 {
+    if (composer == self)
+        composer = _context;
     return [_context handle:callback greedy:greedy composition:composer axis:_axis];
 }
 
@@ -116,7 +118,7 @@
     if ([MKCallbackHandler isUnknownMethod:signature])
     {
         MKFindMethodSignature *findSignature = [MKFindMethodSignature forSelector:sel];
-        if ([self handle:findSignature greedy:NO composition:nil])
+        if ([self handle:findSignature greedy:NO composition:_context])
             return findSignature.signature;
     }
     return [MKCallbackHandler isUnknownMethod:signature] ? nil : signature;
@@ -131,7 +133,7 @@
     else
     {
         MKHandleMethod *invokeMethod = [MKHandleMethod withInvocation:invocation];
-        if ([self handle:invokeMethod greedy:NO composition:nil] == NO)
+        if ([self handle:invokeMethod greedy:NO composition:_context] == NO)
             [_context doesNotRecognizeSelector:invocation.selector];
     }
     

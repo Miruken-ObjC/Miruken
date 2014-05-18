@@ -11,8 +11,14 @@
 #import "Configuration.h"
 #import "GetResource.h"
 #import "ResourceUsage.h"
+#import <UIKit/UIKit.h>
 
 @implementation ResourcesCallbackHandler
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    _active = YES;
+}
 
 - (BOOL)handleGetResource:(GetResource *)getResource composition:(MKCallbackHandler *)composer
 {

@@ -9,8 +9,14 @@
 #import "ConfigurationCallbackHandler.h"
 #import "Configuration.h"
 #import "MKDeferred.h"
+#import <UIKit/UIKit.h>
 
 @implementation ConfigurationCallbackHandler
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    _active = YES;
+}
 
 - (void)populateConfiguration:(Configuration *)config
 {

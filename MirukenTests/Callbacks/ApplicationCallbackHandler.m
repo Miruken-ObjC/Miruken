@@ -7,6 +7,7 @@
 //
 
 #import "ApplicationCallbackHandler.h"
+#import "NSObject+Context.h"
 #import <UIKit/UIKit.h>
 
 @implementation ApplicationCallbackHandler
@@ -17,9 +18,15 @@
     return YES;
 }
 
-- (void)startMissleLaunch
+- (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    [self notHandled];
+    _active = YES;
+}
+
+- (BOOL)startMissleLaunch
+{
+    [(id<UIApplicationDelegate>)self.composer applicationDidBecomeActive:[UIApplication sharedApplication]];
+    return YES;
 }
 
 @end

@@ -32,6 +32,8 @@
         toView.transform = CGAffineTransformMakeScale(0.0, 0.0);
         if (fromView)
             [containerView insertSubview:toView aboveSubview:fromView];
+        else
+            [containerView addSubview:toView];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             toView.transform = CGAffineTransformMakeScale(1.0, 1.0);

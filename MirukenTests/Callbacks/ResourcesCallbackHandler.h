@@ -10,4 +10,6 @@
 
 @interface ResourcesCallbackHandler : MKDynamicCallbackHandler
 
+@property (readonly, assign, nonatomic) BOOL active;
+
 @end

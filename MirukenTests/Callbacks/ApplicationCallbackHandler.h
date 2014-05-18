@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "MirukenCallbacks.h"
 
-@interface ApplicationCallbackHandler : MKDynamicCallbackHandler <UIApplicationDelegate>
+@protocol ApplicationCallbackHandler
 
-@property (strong, nonatomic) NSDictionary *launchOptions;
+- (BOOL)startMissleLaunch;
+
+@end
+
+@interface ApplicationCallbackHandler : MKDynamicCallbackHandler
+    <ApplicationCallbackHandler, UIApplicationDelegate>
+
+@property (strong,   nonatomic)         NSDictionary *launchOptions;
+@property (readonly, assign, nonatomic) BOOL          active;
+
 
 @end

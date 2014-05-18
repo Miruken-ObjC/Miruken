@@ -10,4 +10,6 @@
 
 @interface ConfigurationTagCallbackHandler : MKDynamicCallbackHandler
 
+@property (readonly, assign, nonatomic) BOOL active;
+
 @end

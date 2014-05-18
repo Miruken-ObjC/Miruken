@@ -511,7 +511,7 @@
 - (void)testWillFailIfMethodOnCallbackHandlerRecognizedButNotHandled
 {
     ApplicationCallbackHandler *handler = [ApplicationCallbackHandler new];
-    XCTAssertThrows([(id<UIApplicationDelegate>)handler applicationDidBecomeActive:[UIApplication sharedApplication]], @"Expected unrecognized selector");
+    XCTAssertThrows([(id<UIApplicationDelegate>)handler applicationWillResignActive:[UIApplication sharedApplication]], @"Expected unrecognized selector");
 }
 
 - (void)testBestEffortWillIgnoreMethodOnCallbackHandlerRecognizedButNotHandled
@@ -523,7 +523,7 @@
 - (void)testWillFailBroadcastIfCallbackHandlerRecognizedButNotHandled
 {
     ApplicationCallbackHandler *handler = [[ApplicationCallbackHandler new] broadcast];
-    XCTAssertThrows([(id<UIApplicationDelegate>)handler applicationDidBecomeActive:[UIApplication sharedApplication]], @"Expected unrecognized selector");
+    XCTAssertThrows([(id<UIApplicationDelegate>)handler applicationWillResignActive:[UIApplication sharedApplication]], @"Expected unrecognized selector");
 }
 
 - (void)testCanHandleMethodOnCallbackHandlerWithResult
@@ -542,6 +542,23 @@
     XCTAssertNotNil(launchOptions, @"launchOptions are nil");
     XCTAssertEqualObjects([launchOptions valueForKey:@"Settings"], @"MySettings.plist", @"Settings don't match");
     XCTAssertTrue(launch == allow, @"launch and allow should be the same");
+}
+
+- (void)testWillNotPropogateGreedyThroughComposer
+{
+    ConfigurationCallbackHandler    *ch       = [ConfigurationCallbackHandler new];
+    ConfigurationTagCallbackHandler *cth      = [ConfigurationTagCallbackHandler new];
+    ResourcesCallbackHandler        *rh       = [ResourcesCallbackHandler new];
+    ApplicationCallbackHandler      *ah       = [ApplicationCallbackHandler new];
+    MKCompositeCallbackHandler      *handlers = [MKCompositeCallbackHandler withHandlers:
+                                                 ch, cth, rh, ah, nil];
+    
+    BOOL started = [(id<ApplicationCallbackHandler>)[handlers notify] startMissleLaunch];
+    XCTAssertTrue(started, @"Missle launch not started");
+    XCTAssertTrue(ch.active, @"ConfigurationCallbackHandler should be active");
+    XCTAssertFalse(cth.active, @"ConfigurationTagCallbackHandler should not be active");
+    XCTAssertFalse(rh.active, @"ResourcesCallbackHandler should not be active");
+    XCTAssertFalse(ah.active, @"ApplicationCallbackHandler should not be active");
 }
 
 - (void)testCanHandleUnknownCallback

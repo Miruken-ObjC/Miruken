@@ -8,8 +8,14 @@
 
 #import "ConfigurationTagCallbackHandler.h"
 #import "Configuration.h"
+#import <UIKit/UIKit.h>
 
 @implementation ConfigurationTagCallbackHandler
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    _active = YES;
+}
 
 - (BOOL)handleConfiguration:(Configuration *)config
 {

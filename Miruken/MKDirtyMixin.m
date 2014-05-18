@@ -100,13 +100,13 @@ static int             kDirtyMixinContext;
 + (id)swizzleDirty_allocWithZone:(NSZone *)zone
 {
     id object = [self swizzleDirty_allocWithZone:zone];
-    [object addObserver:object forKeyPath:kIsDirtyProperty options:0 context:&kDirtyMixinContext];
+    [object addObserver:object forKeyPath:kInternalDirtyProperty options:0 context:&kDirtyMixinContext];
     return object;
 }
 
 - (void)swizzleDirty_dealloc
 {
-    [self removeObserver:self forKeyPath:kIsDirtyProperty context:&kDirtyMixinContext];
+    [self removeObserver:self forKeyPath:kInternalDirtyProperty context:&kDirtyMixinContext];
     [self swizzleDirty_dealloc];
 }
 

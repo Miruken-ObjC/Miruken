@@ -11,9 +11,9 @@
 #import "MKHandleMethod.h"
 
 /**
-  An MKInvocationCallbackHandler captures additional constraints when performing
-  normal objective-c method invocations.  i.e. greedy semantics
-  */
+  An InvocationCallbackHandler captures additional semantics when performing
+  normal objective-c method invocations.  i.e. broadcast, best-effort, ...
+ */
 
 @interface MKInvocationCallbackHandler : MKCallbackHandlerDecorator
 

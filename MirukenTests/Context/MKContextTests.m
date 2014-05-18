@@ -9,6 +9,10 @@
 #import <XCTest/XCTest.h>
 #import "Miruken.h"
 #import "Configuration.h"
+#import "ConfigurationCallbackHandler.h"
+#import "ConfigurationTagCallbackHandler.h"
+#import "ResourcesCallbackHandler.h"
+#import "ApplicationCallbackHandler.h"
 #import "SomeViewController.h"
 #import "SomeContextualObject.h"
 #import "ConfigurationCallbackHandler.h"
@@ -55,6 +59,11 @@ BOOL deallocCalled;
     
     deallocCalled = NO;
     rootContext = [MyContext new];
+    
+    [MKContextualMixin mixInto:ConfigurationCallbackHandler.class];
+    [MKContextualMixin mixInto:ConfigurationTagCallbackHandler.class];
+    [MKContextualMixin mixInto:ResourcesCallbackHandler.class];
+    [MKContextualMixin mixInto:ApplicationCallbackHandler.class];
 }
 
 - (void)tearDown
@@ -836,6 +845,21 @@ BOOL deallocCalled;
     XCTAssertEqual(child3_1.state, MKContextStateEnded, @"child3_1 active");
     XCTAssertEqual(child3_2.state, MKContextStateEnded, @"child3_2 active");
     XCTAssertEqual(child3_3.state, MKContextStateEnded, @"child3_3 active");
+}
+
+- (void)testWillNotPropogateTraversalThroughComposer
+{
+    ConfigurationCallbackHandler    *ch  = [ConfigurationCallbackHandler newInContext:rootContext];
+    ConfigurationTagCallbackHandler *cth = [ConfigurationTagCallbackHandler newInChildContext:[ch context]];
+    ResourcesCallbackHandler        *rh  = [ResourcesCallbackHandler newInChildContext:[cth context]];
+    ApplicationCallbackHandler      *ah  = [ApplicationCallbackHandler newInChildContext:[rh context]];
+    
+    BOOL started = [(id<ApplicationCallbackHandler>)[rootContext forNotification] startMissleLaunch];
+    XCTAssertTrue(started, @"Missle launch not started");
+    XCTAssertTrue(ch.active, @"ConfigurationCallbackHandler should be active");
+    XCTAssertFalse(cth.active, @"ConfigurationTagCallbackHandler should not be active");
+    XCTAssertFalse(rh.active, @"ResourcesCallbackHandler should not be active");
+    XCTAssertFalse(ah.active, @"ApplicationCallbackHandler should not be active");
 }
 
 @end

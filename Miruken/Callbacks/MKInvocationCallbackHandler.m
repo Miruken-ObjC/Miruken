@@ -34,7 +34,7 @@
         return YES;
     
     MKHandleMethod *invokeMethod = [MKHandleMethod withInvocation:anInvocation didInvoke:_didInvoke];
-    return [super handle:invokeMethod greedy:broadcast] || bestEffort;
+    return [super handle:invokeMethod greedy:broadcast composition:self.decoratee] || bestEffort;
 }
 
 @end
