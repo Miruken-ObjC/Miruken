@@ -12,10 +12,11 @@
 
 + (instancetype)wrapperViewForView:(UIView *)view frame:(CGRect)frame
 {
-    MKViewControllerWapperView *wrapper = [[self alloc] initWithFrame:frame];
+    MKViewControllerWapperView *wrapper = [[self alloc] initWithFrame:CGRectZero];
     wrapper.autoresizingMask            = UIViewAutoresizingFlexibleRightMargin
                                         | UIViewAutoresizingFlexibleBottomMargin;
-    wrapper.frame                       = wrapper.frame;
+    wrapper.backgroundColor             = [UIColor clearColor];
+    wrapper.frame                       = frame;
     return wrapper;
 }
 
@@ -29,7 +30,7 @@
 - (UIView *)wrappedView
 {
     NSArray *subViews = self.subviews;
-    return  subViews.count > 0 ? subViews[0] : nil;
+    return subViews.count > 0 ? subViews[0] : nil;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -44,10 +45,19 @@
     [self.wrappedView setBounds:bounds];
 }
 
-- (void)layoutSubviews
+- (void)didMoveToSuperview
 {
-    [super layoutSubviews];
-    self.wrappedView.frame = self.bounds;
+    [super didMoveToSuperview];
+    self.frame = self.superview.bounds;
 }
+
+//
+//- (void)layoutSubviews
+//{
+//    [super layoutSubviews];
+//    
+//    if (_tightWrappingDisabled == NO)
+//        self.wrappedView.frame = self.bounds;
+//}
 
 @end

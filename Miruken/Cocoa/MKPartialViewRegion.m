@@ -58,6 +58,7 @@
     transitionView.clipsToBounds    = YES;
     transitionView.autoresizingMask = UIViewAutoresizingFlexibleHeight
                                     | UIViewAutoresizingFlexibleWidth;
+    transitionView.backgroundColor  = [UIColor clearColor];
     [self addSubview:_transitionView = transitionView];
 }
 
@@ -137,9 +138,10 @@
     if (_wrapperView == nil)
     {
         _wrapperView = [MKViewControllerWapperView wrapperViewForView:toViewController.view
-                                                                frame:_transitionView.bounds];
+                                                                frame:self.bounds];
         [_transitionView addSubview:_wrapperView];
     }
+    toViewController.view.frame = _wrapperView.bounds;
     return [MKTransitionContext transitionContainerView:_wrapperView
                                      fromViewController:_controller
                                        toViewController:toViewController];
@@ -184,11 +186,7 @@
         [fromViewController didMoveToParentViewController:nil];
         
         if (_transition.isPresenting == NO)
-        {
             [_transition animateTranstion];
-            [_wrapperView removeFromSuperview];
-            _wrapperView = nil;
-        }
         
         _controller = nil;
     }

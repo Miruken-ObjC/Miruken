@@ -52,6 +52,7 @@
 
     if (fromView == nil || toView == nil)
     {
+        [containerView addSubview:toView];
         return [self completeTransition:transitionContext];
         return;
     }
@@ -102,7 +103,7 @@
         switch (_cubeAxis) {
             case MKCubeTransitionAxisHorizontal:
             {
-                CGFloat tx              = - direction * (containerView.frame.size.width) / 2.0;
+                CGFloat tx              = -direction * (containerView.frame.size.width) / 2.0;
                 containerView.transform = CGAffineTransformMakeTranslation(tx, 0);
                 break;
             }
@@ -119,6 +120,7 @@
         toView.layer.transform   = CATransform3DIdentity;
         fromShadow.alpha         = 1.0;
         toShadow.alpha           = 0.0;
+        
     }
     completion:^(BOOL finished) {
         //Set the final position of every elements transformed
