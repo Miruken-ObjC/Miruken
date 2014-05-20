@@ -183,6 +183,8 @@
 		14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */; };
 		14E9DCF818D3E9FE0045760D /* MKDirtyMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCF718D3E9FE0045760D /* MKDirtyMixinTests.m */; };
 		14E9DCFC18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCFB18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m */; };
+		14F25ECD192BF67700D66A5C /* MKCADisplayLinkDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 14F25ECB192BF67700D66A5C /* MKCADisplayLinkDelegate.h */; };
+		14F25ECE192BF67700D66A5C /* MKCADisplayLinkDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F25ECC192BF67700D66A5C /* MKCADisplayLinkDelegate.m */; };
 		14FD8A5618A7CB18008077CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5518A7CB18008077CF /* Foundation.framework */; };
 		14FD8A5B18A7CB18008077CF /* Miruken.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 14FD8A5A18A7CB18008077CF /* Miruken.h */; };
 		14FD8A6418A7CB18008077CF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A6318A7CB18008077CF /* XCTest.framework */; };
@@ -482,6 +484,8 @@
 		14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKActiveTableViewCell.m; sourceTree = "<group>"; };
 		14E9DCF718D3E9FE0045760D /* MKDirtyMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDirtyMixinTests.m; sourceTree = "<group>"; };
 		14E9DCFB18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDirtyObjectTrackingMixinTests.m; sourceTree = "<group>"; };
+		14F25ECB192BF67700D66A5C /* MKCADisplayLinkDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCADisplayLinkDelegate.h; sourceTree = "<group>"; };
+		14F25ECC192BF67700D66A5C /* MKCADisplayLinkDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCADisplayLinkDelegate.m; sourceTree = "<group>"; };
 		14FD8A5218A7CB18008077CF /* libMiruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMiruken.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		14FD8A5518A7CB18008077CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		14FD8A5918A7CB18008077CF /* Miruken-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Miruken-Prefix.pch"; sourceTree = "<group>"; };
@@ -969,6 +973,8 @@
 				14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */,
 				14FD8A8618A7DBF7008077CF /* MKBufferedPromise.h */,
 				14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */,
+				14F25ECB192BF67700D66A5C /* MKCADisplayLinkDelegate.h */,
+				14F25ECC192BF67700D66A5C /* MKCADisplayLinkDelegate.m */,
 				14FD8A8918A7DBF7008077CF /* MKConcurrency.h */,
 				14FD8A8B18A7DBF7008077CF /* MKDeferred.h */,
 				14FD8A8C18A7DBF7008077CF /* MKDeferred.m */,
@@ -1082,6 +1088,7 @@
 				142FE8E118DFB6E700569636 /* MKModalFlipHorizontalTransition.h in Headers */,
 				14982D9818BA2D830065EE40 /* UIAlertView+Block.h in Headers */,
 				14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */,
+				14F25ECD192BF67700D66A5C /* MKCADisplayLinkDelegate.h in Headers */,
 				14A0F49F19154D1900A67B7C /* MKCubeTransition.h in Headers */,
 				14982D7918B9257B0065EE40 /* UIWindow+Rotation.h in Headers */,
 				142FE8C118DBA62200569636 /* MKMixingIn.h in Headers */,
@@ -1328,6 +1335,7 @@
 				14A0F4981915304000A67B7C /* MKPageFoldTransition.m in Sources */,
 				14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */,
 				14982D8C18B92BE70065EE40 /* MKCallbackHandler+Recoverable.m in Sources */,
+				14F25ECE192BF67700D66A5C /* MKCADisplayLinkDelegate.m in Sources */,
 				14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */,
 				1462997618B02DCD002BCBF6 /* MKConditionCallbackHandler.m in Sources */,
 				14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */,

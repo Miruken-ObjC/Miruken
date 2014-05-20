@@ -69,7 +69,7 @@
 
 - (instancetype)newContextTraversal:(MKTraversingAxes)axis
 {
-    return (MKContext *) [[MKContextTraversalTrampoline alloc]  initWithContext:self axis:axis];
+    return (MKContext *) [[MKContextTraversalTrampoline alloc] initWithContext:self axis:axis];
 }
 
 @end

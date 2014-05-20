@@ -67,6 +67,10 @@
 - (instancetype)onMainAtInterval:(NSTimeInterval)interval afterDelay:(NSTimeInterval)delay
                           leeway:(NSTimeInterval)leeway;
 
+- (instancetype)displayLink;
+
+- (instancetype)displayLinkOnRunLoop:(NSRunLoop *)runLoop forMode:(NSString *)mode;
+
 #pragma mark - Custom Strategy
 
 - (instancetype)concurrent:(id<MKAsyncDelegate>)asyncDelegate;

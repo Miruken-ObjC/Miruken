@@ -44,7 +44,8 @@
     else
     {
         [self performSelector:@selector(completeResultAfterDelay:)
-                   withObject:asyncResult afterDelay:_delay];
+                   withObject:asyncResult afterDelay:_delay
+                      inModes:@[NSRunLoopCommonModes]];
     }
 }
 
