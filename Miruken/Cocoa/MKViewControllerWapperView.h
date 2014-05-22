@@ -10,10 +10,6 @@
 
 @interface MKViewControllerWapperView : UIView
 
-@property (assign, nonatomic) BOOL tightWrappingDisabled;
-
-+ (instancetype)wrapperViewForView:(UIView *)view frame:(CGRect)frame;
-
-+ (instancetype)existingWrapperViewForView:(UIView *)view;
+- (void)wrapView:(UIView *)view;
 
 @end

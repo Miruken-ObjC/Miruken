@@ -25,7 +25,7 @@
 
 + (id)deferredPromise:(MKDeferred *)deferred
 {
-    return [[MKPromise alloc] initWithDeferred:deferred];
+    return [[self alloc] initWithDeferred:deferred];
 }
 
 - (id)initWithDeferred:(MKDeferred *)deferred
@@ -693,7 +693,7 @@
 + (instancetype)filteredPromise:(id<MKPromise>)promise doneFilter:(MKDoneFilter)doneFilter
                      failFilter:(MKFailFilter)failFilter progressFilter:(MKProgressFilter)progressFilter
 {
-    return [[MKPipe alloc] initWithPromise:promise doneFilter:doneFilter failFilter:failFilter
+    return [[self alloc] initWithPromise:promise doneFilter:doneFilter failFilter:failFilter
                           progressFilter:progressFilter];
 }
 
@@ -808,13 +808,13 @@
 - (id<MKPromise>)pipe:(MKDoneFilter)doneFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:nil
-                          progressFilter:nil];
+                            progressFilter:nil];
 }
 
 - (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:failFilter
-                          progressFilter:nil];
+                            progressFilter:nil];
 }
 
 - (id<MKPromise>)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter

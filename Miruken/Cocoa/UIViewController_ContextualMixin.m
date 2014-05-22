@@ -28,7 +28,13 @@
             @strongify(self, viewControllerToPresent);
             if (self.presentedViewController == viewControllerToPresent
             && [self.presentedViewController isBeingDismissed] == NO)
-                [self dismissViewControllerAnimated:YES completion:nil];
+            {
+                // Skip animation if parent context is ending since parent should
+                // manage dismissal.
+                
+                [self dismissViewControllerAnimated:[[ctx parent] state] == MKContextStateActive
+                                         completion:nil];
+            }
         }] retain:YES];
     }
     

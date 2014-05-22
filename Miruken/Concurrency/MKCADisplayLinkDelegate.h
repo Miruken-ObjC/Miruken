@@ -8,6 +8,10 @@
 
 #import "MKAsyncDelegate.h"
 
+/**
+  Defines the concurrency strategy for executing an invocation bound to the display vsync.
+ */
+
 @interface MKCADisplayLinkDelegate : MKAsyncDelegate
 
 + (instancetype)displayLinkOnRunLoop:(NSRunLoop *)runLoop forMode:(NSString *)mode;

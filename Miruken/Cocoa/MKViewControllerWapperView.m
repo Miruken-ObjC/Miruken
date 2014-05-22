@@ -10,21 +10,32 @@
 
 @implementation MKViewControllerWapperView
 
-+ (instancetype)wrapperViewForView:(UIView *)view frame:(CGRect)frame
+- (id)init
 {
-    MKViewControllerWapperView *wrapper = [[self alloc] initWithFrame:CGRectZero];
-    wrapper.autoresizingMask            = UIViewAutoresizingFlexibleRightMargin
-                                        | UIViewAutoresizingFlexibleBottomMargin;
-    wrapper.backgroundColor             = [UIColor clearColor];
-    wrapper.frame                       = frame;
-    return wrapper;
+    if (self = [super init])
+        [self setupWrapper];
+    return self;
 }
 
-+ (instancetype)existingWrapperViewForView:(UIView *)view
+- (id)initWithFrame:(CGRect)frame
 {
-    return [view.superview isKindOfClass:MKViewControllerWapperView.class]
-         ? (MKViewControllerWapperView *)(view.superview)
-         : nil;
+    if (self = [super initWithFrame:frame])
+        [self setupWrapper];
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+        [self setupWrapper];
+    return self;
+}
+
+- (void)setupWrapper
+{
+    self.autoresizingMask = UIViewAutoresizingFlexibleWidth
+                          | UIViewAutoresizingFlexibleHeight;
+    self.backgroundColor  = [UIColor clearColor];
 }
 
 - (UIView *)wrappedView
@@ -45,19 +56,18 @@
     [self.wrappedView setBounds:bounds];
 }
 
+- (void)wrapView:(UIView *)view
+{
+    view.frame = self.bounds;
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth
+                          | UIViewAutoresizingFlexibleHeight;
+    [self insertSubview:view atIndex:0];
+}
+
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
     self.frame = self.superview.bounds;
 }
-
-//
-//- (void)layoutSubviews
-//{
-//    [super layoutSubviews];
-//    
-//    if (_tightWrappingDisabled == NO)
-//        self.wrappedView.frame = self.bounds;
-//}
 
 @end

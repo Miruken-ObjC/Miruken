@@ -27,7 +27,6 @@
 {
     MKContext                         *_context;
     UIViewController                  *_controller;
-    __weak UIView                     *_transitionView;
     __weak MKViewControllerWapperView *_wrapperView;
 }
 
@@ -54,12 +53,11 @@
 
 - (void)initPartialViewRegion
 {
-    UIView *transitionView          = [[UIView alloc] initWithFrame:self.bounds];
-    transitionView.clipsToBounds    = YES;
-    transitionView.autoresizingMask = UIViewAutoresizingFlexibleHeight
-                                    | UIViewAutoresizingFlexibleWidth;
-    transitionView.backgroundColor  = [UIColor clearColor];
-    [self addSubview:_transitionView = transitionView];
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight
+                          | UIViewAutoresizingFlexibleWidth;
+    MKViewControllerWapperView *wrapperView = [[MKViewControllerWapperView alloc] initWithFrame:self.bounds];
+    [self addSubview:wrapperView];
+    _wrapperView          = wrapperView;
 }
 
 - (id)controller
@@ -135,13 +133,6 @@
 
 - (MKTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
 {
-    if (_wrapperView == nil)
-    {
-        _wrapperView = [MKViewControllerWapperView wrapperViewForView:toViewController.view
-                                                                frame:self.bounds];
-        [_transitionView addSubview:_wrapperView];
-    }
-    toViewController.view.frame = _wrapperView.bounds;
     return [MKTransitionContext transitionContainerView:_wrapperView
                                      fromViewController:_controller
                                        toViewController:toViewController];
@@ -169,6 +160,7 @@
         [toViewController willMoveToParentViewController:owningController];
         [owningController  addChildViewController:toViewController];
         [toViewController didMoveToParentViewController:owningController];
+        [_wrapperView wrapView:toViewController.view];
         
         [_transition animateTranstion];
         _controller = toViewController;
