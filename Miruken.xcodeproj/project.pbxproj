@@ -156,8 +156,8 @@
 		149963EC191FA9F3002FBFED /* MKViewControllerWapperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 149963EA191FA9F3002FBFED /* MKViewControllerWapperView.m */; };
 		14A0F48F1914686B00A67B7C /* MKKeyboardMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F48D1914686B00A67B7C /* MKKeyboardMixin.h */; };
 		14A0F4901914686B00A67B7C /* MKKeyboardMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */; };
-		14A0F49319146D8E00A67B7C /* MKTurn3DTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49119146D8E00A67B7C /* MKTurn3DTransition.h */; };
-		14A0F49419146D8E00A67B7C /* MKTurn3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */; };
+		14A0F49319146D8E00A67B7C /* MKFlip3DTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49119146D8E00A67B7C /* MKFlip3DTransition.h */; };
+		14A0F49419146D8E00A67B7C /* MKFlip3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F49219146D8E00A67B7C /* MKFlip3DTransition.m */; };
 		14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F4951915304000A67B7C /* MKPageFoldTransition.h */; };
 		14A0F4981915304000A67B7C /* MKPageFoldTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A0F4961915304000A67B7C /* MKPageFoldTransition.m */; };
 		14A0F49B19153BA600A67B7C /* MKExpodeTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14A0F49919153BA600A67B7C /* MKExpodeTransition.h */; };
@@ -457,8 +457,8 @@
 		149963EA191FA9F3002FBFED /* MKViewControllerWapperView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKViewControllerWapperView.m; sourceTree = "<group>"; };
 		14A0F48D1914686B00A67B7C /* MKKeyboardMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKKeyboardMixin.h; sourceTree = "<group>"; };
 		14A0F48E1914686B00A67B7C /* MKKeyboardMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKKeyboardMixin.m; sourceTree = "<group>"; };
-		14A0F49119146D8E00A67B7C /* MKTurn3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTurn3DTransition.h; sourceTree = "<group>"; };
-		14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTurn3DTransition.m; sourceTree = "<group>"; };
+		14A0F49119146D8E00A67B7C /* MKFlip3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKFlip3DTransition.h; sourceTree = "<group>"; };
+		14A0F49219146D8E00A67B7C /* MKFlip3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKFlip3DTransition.m; sourceTree = "<group>"; };
 		14A0F4951915304000A67B7C /* MKPageFoldTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPageFoldTransition.h; sourceTree = "<group>"; };
 		14A0F4961915304000A67B7C /* MKPageFoldTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPageFoldTransition.m; sourceTree = "<group>"; };
 		14A0F49919153BA600A67B7C /* MKExpodeTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKExpodeTransition.h; sourceTree = "<group>"; };
@@ -662,8 +662,8 @@
 				14A0F49A19153BA600A67B7C /* MKExpodeTransition.m */,
 				14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */,
 				14C54C5D18F1A8E3001C39D5 /* MKSlide3DTransition.m */,
-				14A0F49119146D8E00A67B7C /* MKTurn3DTransition.h */,
-				14A0F49219146D8E00A67B7C /* MKTurn3DTransition.m */,
+				14A0F49119146D8E00A67B7C /* MKFlip3DTransition.h */,
+				14A0F49219146D8E00A67B7C /* MKFlip3DTransition.m */,
 				14C54C6018F4A24E001C39D5 /* MKShuffle3DTransition.h */,
 				14C54C6118F4A24E001C39D5 /* MKShuffle3DTransition.m */,
 				14A0F49D19154D1900A67B7C /* MKCubeTransition.h */,
@@ -1104,7 +1104,7 @@
 				14982D6D18B9245E0065EE40 /* UINavigationController_RotationMixin.h in Headers */,
 				14982D6518B9245E0065EE40 /* MKActionSheetMixin.h in Headers */,
 				142FE8FF18ECC69400569636 /* MKAnimatedTransition.h in Headers */,
-				14A0F49319146D8E00A67B7C /* MKTurn3DTransition.h in Headers */,
+				14A0F49319146D8E00A67B7C /* MKFlip3DTransition.h in Headers */,
 				14982E0B18C395750065EE40 /* UICollectionView_Issues.h in Headers */,
 				14982E0318C394390065EE40 /* UIWebView+Extra.h in Headers */,
 				14982DB018BA33AC0065EE40 /* MKValidationExtension.h in Headers */,
@@ -1258,7 +1258,7 @@
 				149963EC191FA9F3002FBFED /* MKViewControllerWapperView.m in Sources */,
 				142FE8D118DE415300569636 /* MKPresentationPolicy.m in Sources */,
 				14A0F4901914686B00A67B7C /* MKKeyboardMixin.m in Sources */,
-				14A0F49419146D8E00A67B7C /* MKTurn3DTransition.m in Sources */,
+				14A0F49419146D8E00A67B7C /* MKFlip3DTransition.m in Sources */,
 				14982D6E18B9245E0065EE40 /* UINavigationController_RotationMixin.m in Sources */,
 				14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */,
 				14982D2818B16C8E0065EE40 /* MKContextObserver.m in Sources */,

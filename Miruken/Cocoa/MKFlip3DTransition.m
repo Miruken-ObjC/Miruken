@@ -1,23 +1,23 @@
 //
-//  MKTurn3DTransition.m
+//  MKFlip3DTransition.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 5/2/14.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKTurn3DTransition.h"
+#import "MKFlip3DTransition.h"
 
 #define kDefaultPerspective  (-1.0 / 500.0)
 
-@implementation MKTurn3DTransition
+@implementation MKFlip3DTransition
 {
     MKStartingPosition _startingPosition;
 }
 
 + (instancetype)turnFromPosition:(MKStartingPosition)position
 {
-    MKTurn3DTransition *turn = [self new];
+    MKFlip3DTransition *turn = [self new];
     turn->_startingPosition  = position;
     return turn;
 }

@@ -75,4 +75,33 @@
 {
 }
 
+- (MKStartingPosition)inverseStartingPosition:(MKStartingPosition)position
+{
+    switch (position) {
+        case MKStartingPositionLeft:
+            return MKStartingPositionRight;
+            
+        case MKStartingPositionRight:
+            return MKStartingPositionLeft;
+            
+        case MKStartingPositionBottom:
+            return MKStartingPositionTop;
+            
+        case MKStartingPositionBottomLeft:
+            return MKStartingPositionTopRight;
+            
+        case MKStartingPositionBottomRight:
+            return MKStartingPositionTopLeft;
+            
+        case MKStartingPositionTop:
+            return MKStartingPositionBottom;
+            
+        case MKStartingPositionTopLeft:
+            return MKStartingPositionBottomRight;
+            
+        case MKStartingPositionTopRight:
+            return MKStartingPositionBottomLeft;
+    }
+}
+
 @end

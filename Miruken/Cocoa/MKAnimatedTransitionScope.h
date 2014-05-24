@@ -37,7 +37,7 @@
 
 - (instancetype)flipFromBottomRight3D;
 
-- (instancetype)flipFromPosition:(MKStartingPosition)position;
+- (instancetype)flip3DFromPosition:(MKStartingPosition)position;
 
 #pragma mark - push
 

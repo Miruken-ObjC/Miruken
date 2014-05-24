@@ -1,5 +1,5 @@
 //
-//  MKTurn3DTransition.h
+//  MKFlip3DTransition.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 5/2/14.
@@ -11,7 +11,7 @@
 
 #import "MKAnimatedTransition.h"
 
-@interface MKTurn3DTransition : MKAnimatedTransition
+@interface MKFlip3DTransition : MKAnimatedTransition
 
 @property (assign, nonatomic) CGFloat perspective;
 

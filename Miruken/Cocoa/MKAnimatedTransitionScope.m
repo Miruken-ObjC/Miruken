@@ -17,7 +17,7 @@
 #import "MKPortalTransition.h"
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
-#import "MKTurn3DTransition.h"
+#import "MKFlip3DTransition.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -45,48 +45,48 @@
 
 - (instancetype)flipFromTop3D
 {
-    return [self flipFromPosition:MKStartingPositionTop];
+    return [self flip3DFromPosition:MKStartingPositionTop];
 }
 
 - (instancetype)flipFromBottom3D
 {
-    return [self flipFromPosition:MKStartingPositionBottom];
+    return [self flip3DFromPosition:MKStartingPositionBottom];
 }
 
 - (instancetype)flipFromLeft3D
 {
-    return [self flipFromPosition:MKStartingPositionLeft];
+    return [self flip3DFromPosition:MKStartingPositionLeft];
 }
 
 - (instancetype)flipFromRight3D
 {
-    return [self flipFromPosition:MKStartingPositionRight];
+    return [self flip3DFromPosition:MKStartingPositionRight];
 }
 
 - (instancetype)flipFromTopLeft3D
 {
-    return [self flipFromPosition:MKStartingPositionTopLeft];
+    return [self flip3DFromPosition:MKStartingPositionTopLeft];
 }
 
 - (instancetype)flipFromTopRight3D
 {
-    return [self flipFromPosition:MKStartingPositionTopRight];
+    return [self flip3DFromPosition:MKStartingPositionTopRight];
 }
 
 - (instancetype)flipFromBottomLeft3D
 {
-    return [self flipFromPosition:MKStartingPositionBottomLeft];
+    return [self flip3DFromPosition:MKStartingPositionBottomLeft];
 }
 
 - (instancetype)flipFromBottomRight3D
 {
-    return [self flipFromPosition:MKStartingPositionBottomRight];
+    return [self flip3DFromPosition:MKStartingPositionBottomRight];
 }
 
-- (instancetype)flipFromPosition:(MKStartingPosition)position
+- (instancetype)flip3DFromPosition:(MKStartingPosition)position
 {
     [self requirePresentationPolicy].transitionDelegate =
-        [MKTurn3DTransition turnFromPosition:position];
+        [MKFlip3DTransition turnFromPosition:position];
     return self;
 }
 
