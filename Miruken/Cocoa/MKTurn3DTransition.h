@@ -11,16 +11,10 @@
 
 #import "MKAnimatedTransition.h"
 
-typedef NS_ENUM(NSInteger, MKTurnTransitionAxis) {
-    MKTurnTransitionAxisHorizontal = 0,
-    MKTurnTransitionAxisVertical
-};
-
 @interface MKTurn3DTransition : MKAnimatedTransition
 
-@property (assign, nonatomic) MKTurnTransitionAxis turnAxis;
-@property (assign, nonatomic) CGFloat              perspective;
+@property (assign, nonatomic) CGFloat perspective;
 
-+ (instancetype)turnAxis:(MKTurnTransitionAxis)turnAxis;
++ (instancetype)turnFromPosition:(MKStartingPosition)position;
 
 @end

@@ -43,17 +43,50 @@
     return [self animate:UIViewAnimationOptionTransitionFlipFromBottom];
 }
 
-- (instancetype)horizontalTurn3D
+- (instancetype)flipFromTop3D
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKTurn3DTransition turnAxis:MKTurnTransitionAxisHorizontal];
-    return self;
+    return [self flipFromPosition:MKStartingPositionTop];
 }
 
-- (instancetype)verticalTurn3D
+- (instancetype)flipFromBottom3D
+{
+    return [self flipFromPosition:MKStartingPositionBottom];
+}
+
+- (instancetype)flipFromLeft3D
+{
+    return [self flipFromPosition:MKStartingPositionLeft];
+}
+
+- (instancetype)flipFromRight3D
+{
+    return [self flipFromPosition:MKStartingPositionRight];
+}
+
+- (instancetype)flipFromTopLeft3D
+{
+    return [self flipFromPosition:MKStartingPositionTopLeft];
+}
+
+- (instancetype)flipFromTopRight3D
+{
+    return [self flipFromPosition:MKStartingPositionTopRight];
+}
+
+- (instancetype)flipFromBottomLeft3D
+{
+    return [self flipFromPosition:MKStartingPositionBottomLeft];
+}
+
+- (instancetype)flipFromBottomRight3D
+{
+    return [self flipFromPosition:MKStartingPositionBottomRight];
+}
+
+- (instancetype)flipFromPosition:(MKStartingPosition)position
 {
     [self requirePresentationPolicy].transitionDelegate =
-        [MKTurn3DTransition turnAxis:MKTurnTransitionAxisVertical];
+        [MKTurn3DTransition turnFromPosition:position];
     return self;
 }
 

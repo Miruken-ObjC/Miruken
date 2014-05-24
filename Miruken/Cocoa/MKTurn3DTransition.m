@@ -11,11 +11,14 @@
 #define kDefaultPerspective  (-1.0 / 500.0)
 
 @implementation MKTurn3DTransition
+{
+    MKStartingPosition _startingPosition;
+}
 
-+ (instancetype)turnAxis:(MKTurnTransitionAxis)turnAxis
++ (instancetype)turnFromPosition:(MKStartingPosition)position
 {
     MKTurn3DTransition *turn = [self new];
-    turn->_turnAxis          = turnAxis;
+    turn->_startingPosition  = position;
     return turn;
 }
 
@@ -23,8 +26,8 @@
 {
     if (self = [super init])
     {
-        _turnAxis    = MKTurnTransitionAxisVertical;
-        _perspective = kDefaultPerspective;
+        _startingPosition = MKStartingPositionTop;
+        _perspective      = kDefaultPerspective;
     }
     return self;
 }
@@ -43,6 +46,10 @@
         return;
     }
     
+    MKStartingPosition startingPosition = self.isPresenting
+                                        ? _startingPosition
+                                        : [self inverseStartingPosition:_startingPosition];
+    
     // Add the toView to the container
     [containerView addSubview:toView];
     
@@ -56,34 +63,58 @@
     fromView.frame          = initialFrame;
     toView.frame            = initialFrame;
     
-    float factor = self.isPresenting ? -1.0 : 1.0;
-    
     // flip the to VC halfway round - hiding it
-    toView.layer.transform = [self rotate:factor * -M_PI_2];
+    toView.layer.transform  = [self rotate:-M_PI_2 startingPosition:startingPosition];
+    toView.hidden           = YES;
     
     // animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
+    NSTimeInterval halfway  = duration / 2.0;
     
-    [UIView animateKeyframesWithDuration:duration delay:0.0 options:0 animations:^{
-        [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
-            // rotate the from view
-            fromView.layer.transform = [self rotate:factor * M_PI_2];
-            }];
-        [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
-            // rotate the to view
-            toView.layer.transform = [self rotate:0.0];
-            }];
+    [UIView animateWithDuration:halfway delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn animations:^{
+        fromView.layer.transform = [self rotate:M_PI_2 startingPosition:startingPosition];
+    } completion:^(BOOL finished) {
+        fromView.hidden = YES;
+        toView.hidden   = NO;
+    }];
+    
+    [UIView animateWithDuration:halfway delay:halfway
+                        options:UIViewAnimationOptionCurveEaseOut animations:^{
+        toView.layer.transform = [self rotate:0.0 startingPosition:startingPosition];
     } completion:^(BOOL finished) {
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];
     }];
 }
 
-- (CATransform3D)rotate:(CGFloat)angle
+- (CATransform3D)rotate:(CGFloat)angle startingPosition:(MKStartingPosition)startingPosition
 {
-    return (_turnAxis == MKTurnTransitionAxisHorizontal)
-         ? CATransform3DMakeRotation(angle, 1.0, 0.0, 0.0)
-         : CATransform3DMakeRotation(angle, 0.0, 1.0, 0.0);
+    switch (startingPosition) {
+        case MKStartingPositionLeft:
+            return CATransform3DMakeRotation(angle, 0.0, 1.0, 0.0);
+            
+        case MKStartingPositionRight:
+            return CATransform3DMakeRotation(angle, 0.0, -1.0, 0.0);
+            
+        case MKStartingPositionBottom:
+            return CATransform3DMakeRotation(angle, 1.0, 0.0, 0.0);
+            
+        case MKStartingPositionBottomLeft:
+            return CATransform3DMakeRotation(angle, 1.0, 1.0, 0.0);
+            
+        case MKStartingPositionBottomRight:
+            return CATransform3DMakeRotation(angle, 1.0, -1.0, 0.0);
+            
+        case MKStartingPositionTop:
+            return CATransform3DMakeRotation(angle, -1.0, 0.0, 0.0);
+            
+        case MKStartingPositionTopLeft:
+            return CATransform3DMakeRotation(angle, -1.0, 1.0, 0.0);
+            
+        case MKStartingPositionTopRight:
+            return CATransform3DMakeRotation(angle, -1.0, -1.0, 0.0);
+    }
 }
 
 @end

@@ -21,9 +21,23 @@
 
 - (instancetype)flipFromBottom;
 
-- (instancetype)horizontalTurn3D;
+- (instancetype)flipFromTop3D;
 
-- (instancetype)verticalTurn3D;
+- (instancetype)flipFromBottom3D;
+
+- (instancetype)flipFromLeft3D;
+
+- (instancetype)flipFromRight3D;
+
+- (instancetype)flipFromTopLeft3D;
+
+- (instancetype)flipFromTopRight3D;
+
+- (instancetype)flipFromBottomLeft3D;
+
+- (instancetype)flipFromBottomRight3D;
+
+- (instancetype)flipFromPosition:(MKStartingPosition)position;
 
 #pragma mark - push
 
