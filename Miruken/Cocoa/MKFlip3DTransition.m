@@ -8,7 +8,7 @@
 
 #import "MKFlip3DTransition.h"
 
-#define kDefaultPerspective  (-1.0 / 500.0)
+#define kDefaultPerspective  (-1.0 / 500.0f)
 
 @implementation MKFlip3DTransition
 {

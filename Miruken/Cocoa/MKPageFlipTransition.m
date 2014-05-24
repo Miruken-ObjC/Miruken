@@ -12,7 +12,7 @@
 #import "MKPageFlipTransition.h"
 
 #define kPageFlipAnimationDuration (1.0f)
-#define kDefaultPerspective        (-1.0 / 500.0)
+#define kDefaultPerspective        (-1.0 / 500.0f)
 
 @implementation MKPageFlipTransition
 

@@ -12,7 +12,7 @@
 #import "MKPageFoldTransition.h"
 
 #define kDefaultPageFolds    2
-#define kDefaultPerspective  (-1.0 / 200.0)
+#define kDefaultPerspective  (-1.0 / 200.0f)
 
 @implementation MKPageFoldTransition
 

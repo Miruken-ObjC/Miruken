@@ -12,7 +12,7 @@
 #import "MKSlide3DTransition.h"
 
 #define kSlideAnimationDuration   (0.5f)
-#define kDefaultPerspective       (-1.0 / 2000.0)
+#define kDefaultPerspective       (-1.0 / 2000.0f)
 
 @implementation MKSlide3DTransition
 

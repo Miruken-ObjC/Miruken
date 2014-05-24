@@ -113,6 +113,10 @@
 
 - (instancetype)verticalCubeAtDegrees:(CGFloat)angle;
 
+- (instancetype)natGeo;
+
+- (instancetype)natGeoFirstPartRatio:(CGFloat)ratio;
+
 - (instancetype)animate:(UIViewAnimationOptions)options;
 
 - (instancetype)duration:(NSTimeInterval)duration;

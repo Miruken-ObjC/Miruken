@@ -11,7 +11,7 @@
 
 #import "MKCubeTransition.h"
 
-#define kDefaultPerspective        (-1.0 / 200.0)
+#define kDefaultPerspective        (-1.0 / 200.0f)
 #define kDefaultRotationDeg        (90.0)
 #define degreesToRadians(degrees)  ((degrees) / 180.0 * M_PI)
 

@@ -12,6 +12,7 @@
 #import "MKCubeTransition.h"
 #import "MKZoomTransition.h"
 #import "MKExpodeTransition.h"
+#import "MKNatGeoTransition.h"
 #import "MKPageFlipTransition.h"
 #import "MKPageFoldTransition.h"
 #import "MKPortalTransition.h"
@@ -240,6 +241,19 @@
 - (instancetype)explode
 {
     [self requirePresentationPolicy].transitionDelegate = [MKExpodeTransition new];
+    return self;
+}
+
+- (instancetype)natGeo
+{
+    [self requirePresentationPolicy].transitionDelegate = [MKNatGeoTransition new];
+    return self;
+}
+
+- (instancetype)natGeoFirstPartRatio:(CGFloat)ratio
+{
+    [self requirePresentationPolicy].transitionDelegate =
+        [MKNatGeoTransition natGeoFirstPartRatio:ratio];
     return self;
 }
 
