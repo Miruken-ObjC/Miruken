@@ -70,28 +70,28 @@
         
         // the left and right side of the fold for the from- view, with identity transform and 0.0 alpha
         // on the shadow, with each view at its initial position
-        UIView *leftFromViewFold         = [self createSnapshotFromView:fromView afterUpdates:NO
-                                                               location:offset left:YES];
+        UIView *leftFromViewFold         = [self _createSnapshotFromView:fromView afterUpdates:NO
+                                                                location:offset left:YES];
         leftFromViewFold.layer.position  = CGPointMake(offset, size.height / 2);
         [fromViewFolds addObject:leftFromViewFold];
         [leftFromViewFold.subviews[1] setAlpha:0.0];
         
-        UIView *rightFromViewFold        = [self createSnapshotFromView:fromView afterUpdates:NO
-                                                               location:offset + foldWidth left:NO];
+        UIView *rightFromViewFold        = [self _createSnapshotFromView:fromView afterUpdates:NO
+                                                                location:offset + foldWidth left:NO];
         rightFromViewFold.layer.position = CGPointMake(offset + foldWidth * 2, size.height/2);
         [fromViewFolds addObject:rightFromViewFold];
         [rightFromViewFold.subviews[1] setAlpha:0.0];
         
         // the left and right side of the fold for the to- view, with a 90-degree transform and 1.0 alpha
         // on the shadow, with each view positioned at the very edge of the screen
-        UIView *leftToViewFold           = [self createSnapshotFromView:toView afterUpdates:YES
-                                                               location:offset left:YES];
+        UIView *leftToViewFold           = [self _createSnapshotFromView:toView afterUpdates:YES
+                                                                location:offset left:YES];
         leftToViewFold.layer.position    = CGPointMake(self.isPresenting ? 0.0 : size.width, size.height / 2);
         leftToViewFold.layer.transform   = CATransform3DMakeRotation(M_PI_2, 0.0, 1.0, 0.0);
         [toViewFolds addObject:leftToViewFold];
         
-        UIView *rightToViewFold          = [self createSnapshotFromView:toView afterUpdates:YES
-                                                               location:offset + foldWidth left:NO];
+        UIView *rightToViewFold          = [self _createSnapshotFromView:toView afterUpdates:YES
+                                                                location:offset + foldWidth left:NO];
         rightToViewFold.layer.position   = CGPointMake(self.isPresenting ? 0.0 : size.width, size.height/2);
         rightToViewFold.layer.transform  = CATransform3DMakeRotation(-M_PI_2, 0.0, 1.0, 0.0);
         [toViewFolds addObject:rightToViewFold];
@@ -148,8 +148,8 @@
 }
 
 // creates a snapshot for the gives view
-- (UIView *)createSnapshotFromView:(UIView *)view afterUpdates:(BOOL)afterUpdates
-                         location:(CGFloat)offset left:(BOOL)left
+- (UIView *)_createSnapshotFromView:(UIView *)view afterUpdates:(BOOL)afterUpdates
+                           location:(CGFloat)offset left:(BOOL)left
 {
     CGSize  size          = view.frame.size;
     UIView *containerView = view.superview;
@@ -181,7 +181,7 @@
     }
     
     // create a shadow
-    UIView *snapshotWithShadowView   = [self addShadowToView:snapshotView reverse:left];
+    UIView *snapshotWithShadowView   = [self _addShadowToView:snapshotView reverse:left];
     
     // add to the container
     [containerView addSubview:snapshotWithShadowView];
@@ -193,7 +193,7 @@
 
 // adds a gradient to an image by creating a containing UIView with both the given view
 // and the gradient as subviews
-- (UIView *)addShadowToView:(UIView*)view reverse:(BOOL)reverse
+- (UIView *)_addShadowToView:(UIView*)view reverse:(BOOL)reverse
 {
     // create a view with the same frame
     UIView          *viewWithShadow = [[UIView alloc] initWithFrame:view.frame];

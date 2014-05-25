@@ -69,14 +69,14 @@
 {
     if (_context == nil)
     {
-        UIViewController<MKContextual> *owningController = [self owningViewController];
+        UIViewController<MKContextual> *owningController = [self _owningViewController];
         _context                                         = [owningController.context newChildContext];
         [_context addHandler:[MKDynamicCallbackHandler delegateTo:self]];
     }
     return _context;
 }
 
-- (MKPresentationPolicy *)presentationPolicy
+- (MKPresentationPolicy *)_presentationPolicy
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     return [self.composer handle:presentationPolicy greedy:YES]
@@ -84,7 +84,7 @@
          : nil;
 }
 
-- (UIViewController<MKContextual> *)owningViewController
+- (UIViewController<MKContextual> *)_owningViewController
 {
     id nextResponder = self;
     while ((nextResponder = [nextResponder nextResponder]))
@@ -98,7 +98,7 @@
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
 {
     MKCallbackHandler    *composer           = self.composer;
-    MKPresentationPolicy *presentationPolicy = [self presentationPolicy];
+    MKPresentationPolicy *presentationPolicy = [self _presentationPolicy];
     [presentationPolicy applyPolicyToViewController:viewController];
     
     if (presentationPolicy.isModal == NO)
@@ -120,9 +120,9 @@
                                                              code:MKCocoaErrorTransitionInProgress
                                                          userInfo:nil]] promise];
         
-        _transition = [self partialTransitionTo:viewController];
-        [self removePartialController];
-        [self addPartialController];
+        _transition = [self _partialTransitionTo:viewController];
+        [self _removePartialController];
+        [self _addPartialController];
         return [_transition pipe:^(NSNumber *didComplete) {
             return viewController.context;
         }];
@@ -131,14 +131,14 @@
     return [self notHandled];
 }
 
-- (MKTransitionContext *)partialTransitionTo:(UIViewController *)toViewController
+- (MKTransitionContext *)_partialTransitionTo:(UIViewController *)toViewController
 {
     return [MKTransitionContext transitionContainerView:_wrapperView
                                      fromViewController:_controller
                                        toViewController:toViewController];
 }
 
-- (void)addPartialController
+- (void)_addPartialController
 {
     UIViewController *toViewController = _transition.toViewController;
     
@@ -151,12 +151,12 @@
                 @strongify(self);
                 if (self.transition == nil || self.transition == transition)
                 {
-                    self.transition = [self partialTransitionTo:nil];
-                    [self removePartialController];
+                    self.transition = [self _partialTransitionTo:nil];
+                    [self _removePartialController];
                 }
             }];
 
-        UIViewController *owningController = [self owningViewController];
+        UIViewController *owningController = [self _owningViewController];
         [toViewController willMoveToParentViewController:owningController];
         [owningController  addChildViewController:toViewController];
         [toViewController didMoveToParentViewController:owningController];
@@ -167,7 +167,7 @@
     }
 }
 
-- (void)removePartialController
+- (void)_removePartialController
 {
     UIViewController *fromViewController = _transition.fromViewController;
     

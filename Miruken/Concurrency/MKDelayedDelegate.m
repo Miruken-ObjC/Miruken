@@ -43,13 +43,13 @@
     }
     else
     {
-        [self performSelector:@selector(completeResultAfterDelay:)
+        [self performSelector:@selector(_completeResultAfterDelay:)
                    withObject:asyncResult afterDelay:_delay
                       inModes:@[NSRunLoopCommonModes]];
     }
 }
 
-- (void)completeResultAfterDelay:(id<MKAsyncResult>)asyncResult
+- (void)_completeResultAfterDelay:(id<MKAsyncResult>)asyncResult
 {
     [super completeResult:asyncResult];
 }

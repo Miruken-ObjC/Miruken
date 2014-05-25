@@ -31,9 +31,9 @@
 {
     if (callback)
     {
-        SEL selector = [self findBestHandleSelector:callback target:target];
+        SEL selector = [self _findBestHandleSelector:callback target:target];
         return selector
-        ? [self invokeCallbackHandler:callback selector:selector composition:composer target:target]
+        ? [self _invokeCallbackHandler:callback selector:selector composition:composer target:target]
         : [self handleUnknown:callback composition:composer target:target];
     }
     return NO;
@@ -45,12 +45,12 @@
     if (unknown == nil)
         unknown = [self resolveNamedSelector:@"handleUnknownCallback:composition:" target:target];
     
-    return unknown && [self invokeCallbackHandler:callback selector:unknown
+    return unknown && [self _invokeCallbackHandler:callback selector:unknown
                                       composition:composer target:target];
 }
 
-- (BOOL)invokeCallbackHandler:(id)callback selector:(SEL)selector
-                  composition:(id<MKCallbackHandler>)composer target:(id)target
+- (BOOL)_invokeCallbackHandler:(id)callback selector:(SEL)selector
+                   composition:(id<MKCallbackHandler>)composer target:(id)target
 {
     BOOL handled                  = YES;
     NSMethodSignature *signature  = [target methodSignatureForSelector:selector];
@@ -65,7 +65,7 @@
     return handled;
 }
 
-- (SEL)findBestHandleSelector:(id)callback target:(id)target
+- (SEL)_findBestHandleSelector:(id)callback target:(id)target
 {
     Class cbClass = [callback class];
     

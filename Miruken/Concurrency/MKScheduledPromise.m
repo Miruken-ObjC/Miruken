@@ -133,18 +133,6 @@
     }
 }
 
-- (NSArray *)mapArray:(NSArray *)array map:(id (^)(id obj))map
-{
-    NSMutableArray *mappedArray = [NSMutableArray arrayWithCapacity:array.count];
-    for (id obj in array)
-    {
-        id mapped = map(obj);
-        if (mapped)
-            [mappedArray addObject:mapped];
-    }
-    return mappedArray;
-}
-
 - (void)dealloc
 {
     _promise   = nil;

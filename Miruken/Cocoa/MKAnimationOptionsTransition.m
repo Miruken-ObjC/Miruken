@@ -49,7 +49,7 @@
                                                 ? _animationOptions
                                                 : [self inferInverseAnimationOptions];
         
-        if ([self shouldPerformTransitionWithOptions:animationOptions])
+        if ([self _shouldPerformTransitionWithOptions:animationOptions])
         {
             [UIView transitionWithView:containerView
                               duration:[self transitionDuration:transitionContext]
@@ -103,7 +103,7 @@
     return options;
 }
 
-- (BOOL)shouldPerformTransitionWithOptions:(UIViewAnimationOptions)options
+- (BOOL)_shouldPerformTransitionWithOptions:(UIViewAnimationOptions)options
 {
     UIViewAnimationOptions transition = (options & kViewAnimationOptionsTransitionsMask);
     

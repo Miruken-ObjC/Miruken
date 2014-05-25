@@ -8,6 +8,7 @@
 
 #import "MKNatGeoTransition.h"
 
+#define kNatGeoAnimationDuration   (1.4f)
 #define kDefaultFirstPartRatio     (0.8f);
 #define kDefaultPerspective        (-1.0 / 500.0f)
 #define degreesToRadians(degrees)  ((degrees) / 180.0 * M_PI)
@@ -33,8 +34,9 @@
 {
     if (self = [super init])
     {
-        _firstPartRatio = kDefaultFirstPartRatio;
-        _perspective    = kDefaultPerspective;
+        _firstPartRatio        = kDefaultFirstPartRatio;
+        _perspective           = kDefaultPerspective;
+        self.animationDuration = kNatGeoAnimationDuration;
     }
     return self;
 }

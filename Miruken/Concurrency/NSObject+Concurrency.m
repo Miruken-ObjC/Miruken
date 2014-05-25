@@ -246,6 +246,12 @@
     return (id)[[MKAsyncObject alloc] initWithClass:self delegate:[MKCADisplayLinkDelegate new]];
 }
 
++ (instancetype)displayLinkdeOnRunLoop:(NSRunLoop *)runLoop forMode:(NSString *)mode
+{
+     return (id)[[MKAsyncObject alloc] initWithClass:self
+                delegate:[MKCADisplayLinkDelegate displayLinkdeOnRunLoop:runLoop forMode:mode]];
+}
+
 - (instancetype)afterDelay:(NSTimeInterval)delay
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
@@ -287,6 +293,12 @@
 - (instancetype)displayLink
 {
     return (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKCADisplayLinkDelegate new]];
+}
+
+- (instancetype)displayLinkOnRunLoop:(NSRunLoop *)runLoop forMode:(NSString *)mode
+{
+    return (id)[[MKAsyncObject alloc] initWithObject:self
+                delegate:[MKCADisplayLinkDelegate displayLinkdeOnRunLoop:runLoop forMode:mode]];
 }
 
 #pragma mark - Custom Strategy

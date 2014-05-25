@@ -64,7 +64,7 @@
     toView.frame            = initialFrame;
     
     // flip the to VC halfway round - hiding it
-    toView.layer.transform  = [self rotate:-M_PI_2 startingPosition:startingPosition];
+    toView.layer.transform  = [self _rotate:-M_PI_2 startingPosition:startingPosition];
     toView.hidden           = YES;
     
     // animate
@@ -73,7 +73,7 @@
     
     [UIView animateWithDuration:halfway delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn animations:^{
-        fromView.layer.transform = [self rotate:M_PI_2 startingPosition:startingPosition];
+        fromView.layer.transform = [self _rotate:M_PI_2 startingPosition:startingPosition];
     } completion:^(BOOL finished) {
         fromView.hidden = YES;
         toView.hidden   = NO;
@@ -81,14 +81,14 @@
     
     [UIView animateWithDuration:halfway delay:halfway
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
-        toView.layer.transform = [self rotate:0.0 startingPosition:startingPosition];
+        toView.layer.transform = [self _rotate:0.0 startingPosition:startingPosition];
     } completion:^(BOOL finished) {
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];
     }];
 }
 
-- (CATransform3D)rotate:(CGFloat)angle startingPosition:(MKStartingPosition)startingPosition
+- (CATransform3D)_rotate:(CGFloat)angle startingPosition:(MKStartingPosition)startingPosition
 {
     switch (startingPosition) {
         case MKStartingPositionLeft:

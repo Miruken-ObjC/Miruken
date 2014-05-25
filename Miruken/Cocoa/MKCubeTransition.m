@@ -91,8 +91,8 @@
     toView.layer.transform = viewToTransform;
     
     //Create the shadow
-    UIView *fromShadow     = [self addOpacityToView:fromView withColor:[UIColor blackColor]];
-    UIView *toShadow       = [self addOpacityToView:toView withColor:[UIColor blackColor]];
+    UIView *fromShadow     = [self _addOpacityToView:fromView withColor:[UIColor blackColor]];
+    UIView *toShadow       = [self _addOpacityToView:toView withColor:[UIColor blackColor]];
     fromShadow.alpha       = 0.0;
     toShadow.alpha         = 1.0;
     
@@ -143,7 +143,7 @@
     }];
 }
 
-- (UIView *)addOpacityToView:(UIView *)view withColor:(UIColor *)theColor
+- (UIView *)_addOpacityToView:(UIView *)view withColor:(UIColor *)theColor
 {
     UIView *shadowView = [[UIView alloc] initWithFrame:view.bounds];
     [shadowView setBackgroundColor:[theColor colorWithAlphaComponent:0.8]];

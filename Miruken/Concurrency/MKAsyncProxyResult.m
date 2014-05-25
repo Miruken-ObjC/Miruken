@@ -32,22 +32,17 @@
     return _deferred.state != MKPromiseStatePending;
 }
 
-- (BOOL)isProxyResult
-{
-    return YES;
-}
-
 - (void)complete
 {
-    [self completeForRetry:NO];
+    [self _completeForRetry:NO];
 }
 
 - (void)retry
 {
-    [self completeForRetry:YES];
+    [self _completeForRetry:YES];
 }
 
-- (void)completeForRetry:(BOOL)canRetry
+- (void)_completeForRetry:(BOOL)canRetry
 {
     if (_deferred.state != MKPromiseStatePending)
         return;

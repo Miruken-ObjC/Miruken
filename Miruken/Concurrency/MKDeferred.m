@@ -712,7 +712,7 @@
                 if (_doneFilter)
                 {
                     result = _doneFilter(result);
-                    if ([self chainPromise:result])
+                    if ([self _chainPromise:result])
                         return;
                 }
                 [_pipe resolve:result];
@@ -721,7 +721,7 @@
                if (_failFilter)
                {
                    reason = _failFilter(reason);
-                   if ([self chainPromise:reason])
+                   if ([self _chainPromise:reason])
                        return;
                }
                [_pipe reject:reason handled:handled];
@@ -738,7 +738,7 @@
     return self;
 }
 
-- (BOOL)chainPromise:(id)object
+- (BOOL)_chainPromise:(id)object
 {
     if ([object conformsToProtocol:@protocol(MKPromise)] == NO)
         return NO;

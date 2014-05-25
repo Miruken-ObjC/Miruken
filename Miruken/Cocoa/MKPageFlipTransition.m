@@ -55,33 +55,33 @@
     toView.frame            = initialFrame;
     
     // create two-part snapshots of both the from- and to- views
-    NSArray *toViewSnapshots          = [self createSnapshots:toView afterScreenUpdates:YES];
+    NSArray *toViewSnapshots          = [self _createSnapshots:toView afterScreenUpdates:YES];
     UIView  *flippedSectionOfToView   = toViewSnapshots[self.isPresenting ? 1 : 0];
 
-    NSArray *fromViewSnapshots        = [self createSnapshots:fromView afterScreenUpdates:NO];
+    NSArray *fromViewSnapshots        = [self _createSnapshots:fromView afterScreenUpdates:NO];
     UIView  *flippedSectionOfFromView = fromViewSnapshots[self.isPresenting ? 0 : 1];
     
     // replace the from- and to- views with container views that include gradients
-    flippedSectionOfFromView = [self addShadowToView:flippedSectionOfFromView
+    flippedSectionOfFromView = [self _addShadowToView:flippedSectionOfFromView
                                        containerView:containerView
                                              reverse:self.isPresenting];
     UIView  *flippedSectionOfFromViewShadow = flippedSectionOfFromView.subviews[1];
     flippedSectionOfFromViewShadow.alpha    = 0.0;
     
-    flippedSectionOfToView = [self addShadowToView:flippedSectionOfToView
+    flippedSectionOfToView = [self _addShadowToView:flippedSectionOfToView
                                      containerView:containerView
                                            reverse:!self.isPresenting];
     UIView  *flippedSectionOfToViewShadow   = flippedSectionOfToView.subviews[1];
     flippedSectionOfToViewShadow.alpha      = 1.0;
     
     // change the anchor point so that the view rotate around the correct edge
-    [self updateAnchorPointAndOffset:CGPointMake(self.isPresenting ? 1.0 : 0.0, 0.5)
+    [self _updateAnchorPointAndOffset:CGPointMake(self.isPresenting ? 1.0 : 0.0, 0.5)
                                 view:flippedSectionOfFromView];
-    [self updateAnchorPointAndOffset:CGPointMake(self.isPresenting ? 0.0 : 1.0, 0.5)
+    [self _updateAnchorPointAndOffset:CGPointMake(self.isPresenting ? 0.0 : 1.0, 0.5)
                                 view:flippedSectionOfToView];
     
     // rotate the to- view by 90 degrees, hiding it
-    flippedSectionOfToView.layer.transform = [self rotate:self.isPresenting ? -M_PI_2 : M_PI_2];
+    flippedSectionOfToView.layer.transform = [self _rotate:self.isPresenting ? -M_PI_2 : M_PI_2];
     
     // animate
     NSTimeInterval duration = [self transitionDuration:transitionContext];
@@ -89,12 +89,12 @@
     [UIView animateKeyframesWithDuration:duration delay:0.0 options:0 animations:^{
         [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
             // rotate the from- view to 90 degrees
-            flippedSectionOfFromView.layer.transform = [self rotate:self.isPresenting ? M_PI_2 : -M_PI_2];
+            flippedSectionOfFromView.layer.transform = [self _rotate:self.isPresenting ? M_PI_2 : -M_PI_2];
             flippedSectionOfFromViewShadow.alpha     = 1.0;
             }];
         [UIView addKeyframeWithRelativeStartTime:0.5 relativeDuration:0.5 animations:^{
             // rotate the to- view to 0 degrees
-            flippedSectionOfToView.layer.transform   = [self rotate:self.isPresenting ? -0.001 : 0.001];
+            flippedSectionOfToView.layer.transform   = [self _rotate:self.isPresenting ? -0.001 : 0.001];
             flippedSectionOfToViewShadow.alpha       = 0.0;
             }];
     } completion:^(BOOL finished) {
@@ -117,7 +117,7 @@
 
 // adds a gradient to an image by creating a containing UIView with both the given view
 // and the gradient as subviews
-- (UIView *)addShadowToView:(UIView *)view containerView:(UIView *)containerView reverse:(BOOL)reverse
+- (UIView *)_addShadowToView:(UIView *)view containerView:(UIView *)containerView reverse:(BOOL)reverse
 {
     // create a view with the same frame
     UIView *viewWithShadow = [[UIView alloc] initWithFrame:view.frame];
@@ -144,7 +144,7 @@
 }
 
 // creates a pair of snapshots from the given view
-- (NSArray *)createSnapshots:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates
+- (NSArray *)_createSnapshots:(UIView *)view afterScreenUpdates:(BOOL)afterUpdates
 {
     UIView *containerView  = view.superview;
     
@@ -175,14 +175,14 @@
 }
 
 // updates the anchor point for the given view, offseting the frame to compensate for the resulting movement
-- (void)updateAnchorPointAndOffset:(CGPoint)anchorPoint view:(UIView *)view
+- (void)_updateAnchorPointAndOffset:(CGPoint)anchorPoint view:(UIView *)view
 {
     view.layer.anchorPoint = anchorPoint;
     CGFloat xOffset        = anchorPoint.x - 0.5;
     view.frame = CGRectOffset(view.frame, xOffset * view.frame.size.width, 0);
 }
 
-- (CATransform3D)rotate:(CGFloat)angle
+- (CATransform3D)_rotate:(CGFloat)angle
 {
     return CATransform3DMakeRotation(angle, 0.0, 1.0, 0.0);
 }

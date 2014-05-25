@@ -40,7 +40,7 @@
     
     MKStartingPosition startingPosition = self.isPresenting
                                         ? _startingPosition
-                                        : [self inferInverseStartingPosition];
+                                        : [self inverseStartingPosition:_startingPosition];
     
     if (fromView)
     {
@@ -48,7 +48,7 @@
         [containerView addSubview:fromView];
     }
     
-    [self setView:toView startingPosition:startingPosition inContainerView:containerView inverse:NO];
+    [self _setView:toView startingPosition:startingPosition inContainerView:containerView inverse:NO];
     [containerView addSubview:toView];
     [containerView bringSubviewToFront:toView];
     
@@ -56,7 +56,7 @@
                       duration:[self transitionDuration:transitionContext]
                        options:0 animations:^{
                            if ((_push || self.isPresenting == NO) && fromView)
-                               [self setView:fromView startingPosition:startingPosition
+                               [self _setView:fromView startingPosition:startingPosition
                                     inContainerView:containerView inverse:YES];
                            toView.frame = containerView.frame;
                        } completion:^(BOOL finished) {
@@ -67,7 +67,7 @@
                        }];
 }
 
-- (void)setView:(UIView *)view startingPosition:(MKStartingPosition)startingPosition
+- (void)_setView:(UIView *)view startingPosition:(MKStartingPosition)startingPosition
     inContainerView:(UIView *)containerView inverse:(BOOL)inverse
 {
     CGRect    frame            = view.frame;
@@ -113,35 +113,6 @@
     
     frame.size = containerView.frame.size;
     view.frame = frame;
-}
-
-- (MKStartingPosition)inferInverseStartingPosition
-{
-    switch (_startingPosition) {
-        case MKStartingPositionLeft:
-            return MKStartingPositionRight;
-            
-        case MKStartingPositionRight:
-            return MKStartingPositionLeft;
-            
-        case MKStartingPositionBottom:
-            return MKStartingPositionTop;
-            
-        case MKStartingPositionBottomLeft:
-            return MKStartingPositionTopRight;
-            
-        case MKStartingPositionBottomRight:
-            return MKStartingPositionTopLeft;
-            
-        case MKStartingPositionTop:
-            return MKStartingPositionBottom;
-            
-        case MKStartingPositionTopLeft:
-            return MKStartingPositionBottomRight;
-            
-        case MKStartingPositionTopRight:
-            return MKStartingPositionBottomLeft;
-    }
 }
 
 @end

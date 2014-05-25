@@ -66,7 +66,7 @@
         _outAsyncResult  = nil;
     }
     
-    if ([asyncResult isProxyResult])
+    if ([asyncResult isProxy])
     {
         _asyncResult = asyncResult;
         SEL selector = [invocation selector];

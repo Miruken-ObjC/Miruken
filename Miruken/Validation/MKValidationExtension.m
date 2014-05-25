@@ -25,7 +25,7 @@
 }
 
 - (BOOL)handleMKValidationResult:(NSString *)specifier validation:(MKValidationResult *)validation
-             composition:(id<MKCallbackHandler>)composer target:(id)target
+                     composition:(id<MKCallbackHandler>)composer target:(id)target
 {
     BOOL passObject   = YES;
     BOOL passComposer = NO;

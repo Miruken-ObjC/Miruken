@@ -46,7 +46,7 @@
 
 - (void)dealloc
 {
-    _handler  = nil;
+    _handler   = nil;
     _condition = nil;
 }
 

@@ -40,12 +40,12 @@
         [super completeResult:asyncResult];
     else
     {
-        [self performSelectorOnMainThread:@selector(completeResultOnMainThread:)
+        [self performSelectorOnMainThread:@selector(_completeResultOnMainThread:)
                                withObject:asyncResult waitUntilDone:_waitUntilDone];
     }
 }
 
-- (void)completeResultOnMainThread:(id<MKAsyncResult>)asyncResult
+- (void)_completeResultOnMainThread:(id<MKAsyncResult>)asyncResult
 {
     [super completeResult:asyncResult];
 }

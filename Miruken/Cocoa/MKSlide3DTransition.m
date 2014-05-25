@@ -43,15 +43,15 @@
     
     if (self.isPresenting)
     {
-        [self setAnchorPoint:CGPointMake(1.0, 0.5) forView:toView];
+        [self _setAnchorPoint:CGPointMake(1.0, 0.5) forView:toView];
         if (fromView)
-            [self setAnchorPoint:CGPointMake(0.0, 0.5) forView:fromView];
+            [self _setAnchorPoint:CGPointMake(0.0, 0.5) forView:fromView];
     }
     else
     {
         if (toView)
-            [self setAnchorPoint:CGPointMake(0.0, 0.5) forView:toView];
-        [self setAnchorPoint:CGPointMake(1.0, 0.5) forView:fromView];
+            [self _setAnchorPoint:CGPointMake(0.0, 0.5) forView:toView];
+        [self _setAnchorPoint:CGPointMake(1.0, 0.5) forView:fromView];
     }
     
     fromView.layer.zPosition = 2.0;
@@ -69,7 +69,7 @@
     }];
 }
 
-- (void)setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
+- (void)_setAnchorPoint:(CGPoint)anchorPoint forView:(UIView *)view
 {
     CGPoint oldOrigin      = view.frame.origin;
     view.layer.anchorPoint = anchorPoint;

@@ -20,12 +20,12 @@
     
     BOOL handled
         = receiver.object
-        ? (self.delegate && [self handleCallback:specifier receive:receiver
+        ? (self.delegate && [self _handleCallback:specifier receive:receiver
                                      composition:composer target:self.delegate])
-            || [self handleCallback:specifier receive:receiver composition:composer target:self]
-        : (self.delegate && [self provideCallback:specifier receive:receiver
+            || [self _handleCallback:specifier receive:receiver composition:composer target:self]
+        : (self.delegate && [self _provideCallback:specifier receive:receiver
                                       composition:composer target:self.delegate])
-            || [self provideCallback:specifier receive:receiver composition:composer target:self];
+            || [self _provideCallback:specifier receive:receiver composition:composer target:self];
     
     return handled
         || (self.delegate && [receiver tryResolve:self.delegate withKindOfClass:YES])
@@ -36,9 +36,9 @@
                              composition:(id<MKCallbackHandler>)composer
 {
     BOOL handled
-        = (self.delegate && [self provideCallback:NSStringFromProtocol(receiver.forProtocol)
+        = (self.delegate && [self _provideCallback:NSStringFromProtocol(receiver.forProtocol)
                                           receive:receiver composition:composer target:self.delegate])
-       || [self provideCallback:NSStringFromProtocol(receiver.forProtocol) receive:receiver
+       || [self _provideCallback:NSStringFromProtocol(receiver.forProtocol) receive:receiver
                     composition:composer target:self];
     
     return handled
@@ -48,8 +48,8 @@
 
 #pragma mark - Callback receiver conventions
 
-- (BOOL)handleCallback:(NSString *)specifier receive:(id<MKCallbackReceiver>)receiver
-           composition:(id<MKCallbackHandler>)composer target:(id)target
+- (BOOL)_handleCallback:(NSString *)specifier receive:(id<MKCallbackReceiver>)receiver
+            composition:(id<MKCallbackHandler>)composer target:(id)target
 {
     BOOL passComposer = NO;
     
@@ -114,8 +114,8 @@
     return handled;
 }
 
-- (BOOL)provideCallback:(NSString *)specifier receive:(id<MKCallbackReceiver>)receiver
-            composition:(id<MKCallbackHandler>)composer target:(id)target
+- (BOOL)_provideCallback:(NSString *)specifier receive:(id<MKCallbackReceiver>)receiver
+             composition:(id<MKCallbackHandler>)composer target:(id)target
 {
     BOOL passComposer = NO;
     

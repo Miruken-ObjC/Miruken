@@ -51,10 +51,10 @@
         }
     }
     
-    return [self presentViewControllerModally:viewController];
+    return [self _presentViewControllerModally:viewController];
 }
 
-- (id<MKPromise>)presentViewControllerModally:(UIViewController<MKContextual> *)viewController
+- (id<MKPromise>)_presentViewControllerModally:(UIViewController<MKContextual> *)viewController
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];

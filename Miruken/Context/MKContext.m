@@ -80,7 +80,7 @@
 
 - (instancetype)newChildContext
 {
-    [self ensureActive];
+    [self _ensureActive];
     
     MKContext *childContext = [self.class new];
     childContext.parent   = self;
@@ -100,7 +100,7 @@
 
 - (void)setParent:(MKContext *)parent
 {
-    [self ensureActive];
+    [self _ensureActive];
     
     if (_unsubscribeFromParent)
     {
@@ -199,7 +199,7 @@
 
 - (MKContextUnsubscribe)subscribe:(id<MKContextObserver>)observer retain:(BOOL)retain
 {
-    [self ensureActive];
+    [self _ensureActive];
     
     if (observer == nil)
         @throw [NSException exceptionWithName: NSInvalidArgumentException
@@ -225,7 +225,7 @@
     return ^{ @strongify(self); [self unsubscribe:observer]; };
 }
 
-- (void)notifyWillEnd:(BOOL)willEnd
+- (void)_notifyWillEnd:(BOOL)willEnd
 {
     for (id<MKContextObserver> observer in _subscriptions)
     {
@@ -250,7 +250,7 @@
     }
 }
 
-- (void)notifyChild:(MKContext *)child willEnd:(BOOL)willEnd
+- (void)_notifyChild:(MKContext *)child willEnd:(BOOL)willEnd
 {
     for (id<MKContextObserver> observer in _subscriptions)
     {
@@ -283,23 +283,23 @@
         MKContext *keepAlive = self;
         
         _state = MKContextStateEnding;
-        [self notifyWillEnd:YES];
+        [self _notifyWillEnd:YES];
         if (_parent)
-            [_parent notifyChild:self willEnd:YES];
+            [_parent _notifyChild:self willEnd:YES];
         _state = MKContextStateEnded;
         if (_parent)
         {
             [_parent removeChildContext:self];
-            [_parent notifyChild:self willEnd:NO];
+            [_parent _notifyChild:self willEnd:NO];
         }
-        [self notifyWillEnd:NO];
+        [self _notifyWillEnd:NO];
         _retainedSubscriptions = nil;
         _subscriptions         = nil;
         keepAlive              = nil;
     }
 }
 
-- (void)ensureActive
+- (void)_ensureActive
 {
     if (_state != MKContextStateActive)
         @throw [NSException exceptionWithName:NSInternalInconsistencyException

@@ -18,8 +18,6 @@
 
 - (BOOL)isComplete;
 
-- (BOOL)isProxyResult;
-
 - (id)result;
 
 - (void)complete;

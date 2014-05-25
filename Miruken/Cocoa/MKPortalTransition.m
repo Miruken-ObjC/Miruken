@@ -23,13 +23,13 @@
     UIView *toView   = toViewController.view;
     
     if (self.isPresenting)
-        [self presentAnimation:transitionContext fromView:fromView toView:toView];
+        [self _presentAnimation:transitionContext fromView:fromView toView:toView];
     else
-        [self dismissAnimation:transitionContext fromView:fromView toView:toView];
+        [self _dismissAnimation:transitionContext fromView:fromView toView:toView];
 }
 
-- (void)presentAnimation:(id<UIViewControllerContextTransitioning>)transitionContext
-                fromView:(UIView *)fromView toView:(UIView *)toView
+- (void)_presentAnimation:(id<UIViewControllerContextTransitioning>)transitionContext
+                 fromView:(UIView *)fromView toView:(UIView *)toView
 {
     UIView *containerView = [transitionContext containerView];
 
@@ -109,8 +109,8 @@
     }];
 }
 
-- (void)dismissAnimation:(id<UIViewControllerContextTransitioning>)transitionContext
-                fromView:(UIView *)fromView toView:(UIView *)toView
+- (void)_dismissAnimation:(id<UIViewControllerContextTransitioning>)transitionContext
+                 fromView:(UIView *)fromView toView:(UIView *)toView
 {
     if (toView == nil)
     {

@@ -21,11 +21,11 @@
 
 - (void)completeResult:(id<MKAsyncResult>)asyncResult
 {
-    [NSThread detachNewThreadSelector:@selector(completeResultOnThread:)
+    [NSThread detachNewThreadSelector:@selector(_completeResultOnThread:)
                              toTarget:self withObject:asyncResult];
 }
 
-- (void)completeResultOnThread:(id<MKAsyncResult>)asyncResult
+- (void)_completeResultOnThread:(id<MKAsyncResult>)asyncResult
 {
     [super completeResult:asyncResult];
 }
