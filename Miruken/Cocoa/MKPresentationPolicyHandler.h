@@ -11,7 +11,7 @@
 
 @interface MKPresentationPolicyHandler : MKCallbackHandler
 
-@property (readonly, copy, nonatomic) MKPresentationPolicy *presentationPolicy;
+@property (readonly, strong, nonatomic) MKPresentationPolicy *presentationPolicy;
 
 + (instancetype)handlerWithPresentationPolicy:(MKPresentationPolicy *)policy;
 

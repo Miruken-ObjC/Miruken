@@ -43,8 +43,7 @@
 
 - (void)setSuppressAutoRotation:(BOOL)suppress
 {
-    objc_setAssociatedObject(self, @selector(isAutoRotationSuppressed),
-                             [NSNumber numberWithBool:suppress], OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, @selector(isAutoRotationSuppressed), @(suppress), OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (BOOL)isAutoRotationSuppressed

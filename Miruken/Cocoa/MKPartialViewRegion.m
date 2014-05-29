@@ -14,9 +14,9 @@
 #import "MKTransitionContext.h"
 #import "MKCallbackHandler+Resolvers.h"
 #import "MKContext+Subscribe.h"
-#import "NSObject+NotHandled.h"
 #import "NSObject+Context.h"
 #import "MKCocoaErrors.h"
+#import "MKMixin.h"
 #import "EXTScope.h"
 
 @interface MKPartialViewRegion()
@@ -28,6 +28,12 @@
     MKContext                         *_context;
     UIViewController                  *_controller;
     __weak MKViewControllerWapperView *_wrapperView;
+}
+
++ (void)initialize
+{
+    if (self == MKPartialViewRegion.class)
+        [MKMixin mixinFrom:MKViewRegionSubclassing.class];
 }
 
 - (id)init
@@ -76,14 +82,6 @@
     return _context;
 }
 
-- (MKPresentationPolicy *)_presentationPolicy
-{
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    return [self.composer handle:presentationPolicy greedy:YES]
-         ? presentationPolicy
-         : nil;
-}
-
 - (UIViewController<MKContextual> *)_owningViewController
 {
     id nextResponder = self;
@@ -93,42 +91,37 @@
     return nil;
 }
 
-#pragma mark - MKViewRegion
+#pragma mark - MKViewRegionSubclassing
 
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
+                            withPolicy:(MKPresentationPolicy *)policy
 {
-    MKCallbackHandler    *composer           = self.composer;
-    MKPresentationPolicy *presentationPolicy = [self _presentationPolicy];
-    [presentationPolicy applyPolicyToViewController:viewController];
+    MKCallbackHandler *composer = self.composer;
+    [policy applyPolicyToViewController:viewController];
     
-    if (presentationPolicy.isModal == NO)
+    if (self.context != composer)
     {
-        if (self.context != composer)
+        UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
+        UINavigationController *navigationController = owner.navigationController;
+        
+        if (navigationController)
         {
-            UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
-            UINavigationController *navigationController = owner.navigationController;
-            
-            if (navigationController)
-            {
-                [navigationController pushViewController:viewController animated:YES];
-                return [[MKDeferred resolved:viewController.context] promise];
-            }
+            [navigationController pushViewController:viewController animated:YES];
+            return [[MKDeferred resolved:viewController.context] promise];
         }
-        
-        if (_transition)
-            return [[MKDeferred rejected:[NSError errorWithDomain:MKCocoaErrorDomain
-                                                             code:MKCocoaErrorTransitionInProgress
-                                                         userInfo:nil]] promise];
-        
-        _transition = [self _partialTransitionTo:viewController];
-        [self _removePartialController];
-        [self _addPartialController];
-        return [_transition pipe:^(NSNumber *didComplete) {
-            return viewController.context;
-        }];
     }
     
-    return [self notHandled];
+    if (_transition)
+        return [[MKDeferred rejected:[NSError errorWithDomain:MKCocoaErrorDomain
+                                                         code:MKCocoaErrorTransitionInProgress
+                                                     userInfo:nil]] promise];
+    
+    _transition = [self _partialTransitionTo:viewController];
+    [self _removePartialController];
+    [self _addPartialController];
+    return [_transition pipe:^(NSNumber *didComplete) {
+        return viewController.context;
+    }];
 }
 
 - (MKTransitionContext *)_partialTransitionTo:(UIViewController *)toViewController
@@ -157,7 +150,6 @@
             }];
 
         UIViewController *owningController = [self _owningViewController];
-        [toViewController willMoveToParentViewController:owningController];
         [owningController  addChildViewController:toViewController];
         [toViewController didMoveToParentViewController:owningController];
         [_wrapperView wrapView:toViewController.view];
@@ -175,7 +167,6 @@
     {
         [fromViewController willMoveToParentViewController:nil];
         [fromViewController removeFromParentViewController];
-        [fromViewController didMoveToParentViewController:nil];
         
         if (_transition.isPresenting == NO)
             [_transition animateTranstion];

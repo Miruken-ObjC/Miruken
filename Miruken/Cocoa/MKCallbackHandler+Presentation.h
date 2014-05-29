@@ -7,11 +7,9 @@
 //
 
 #import "MKCallbackHandler.h"
-#import "MKPresentationPolicy.h"
+#import "MKPresentationOptions.h"
 #import "MKModalPresentationScope.h"
 #import "MKAnimatedTransitionScope.h"
-
-typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 @interface MKCallbackHandler (Presentation)
 
@@ -19,8 +17,6 @@ typedef void (^MKConfigurePresentationPolicy)(MKPresentationPolicy *policy);
 
 - (MKAnimatedTransitionScope *)transition;
 
-- (instancetype)transition:(id<UIViewControllerTransitioningDelegate>)transition;
-
-- (instancetype)usePresentationPolicy:(MKPresentationPolicy *)policy;
+- (instancetype)presentWithOptions:(id<MKPresentationOptions>)options;
 
 @end

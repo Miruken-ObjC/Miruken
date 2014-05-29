@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MKViewRegion.h"
+#import "MKViewRegionSubclassing.h"
 #import "MKContext.h"
 
-@interface MKPartialViewRegion : UIView <MKViewRegion>
+@interface MKPartialViewRegion : UIView <MKViewRegionSubclassing>
 
 - (MKContext *)context;
 

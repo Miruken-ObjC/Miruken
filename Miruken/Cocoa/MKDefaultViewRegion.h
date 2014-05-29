@@ -7,9 +7,9 @@
 //
 
 #import "MKDynamicCallbackHandler.h"
-#import "MKViewRegion.h"
+#import "MKViewRegionSubclassing.h"
 
-@interface MKDefaultViewRegion : MKDynamicCallbackHandler <MKViewRegion>
+@interface MKDefaultViewRegion : MKDynamicCallbackHandler <MKViewRegionSubclassing>
 
 - (id)initWithWindow:(UIWindow *)window;
 

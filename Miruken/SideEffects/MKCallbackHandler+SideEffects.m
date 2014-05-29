@@ -96,6 +96,46 @@
             }];
 }
 
+- (instancetype)oneClick:(UIControl *)control
+{
+    __block BOOL guarded = NO;
+    __block BOOL enabled = control.enabled;
+    return [self sideEffect:^(id callback, MKCallbackHandler *composer) {
+                if ((guarded = [self isGuarded:control]))
+                    return NO;
+                [self setGuarded:control guarded:YES];
+                [[control onMainQueue] setEnabled:NO];
+                return YES;
+            }
+            after:^(id callback, MKCallbackHandler *composer) {
+                if (guarded == NO)
+                {
+                    [self setGuarded:control guarded:NO];
+                    [[control onMainQueue] setEnabled:enabled];
+                }
+            }];
+}
+
+- (instancetype)oneClickBarButton:(UIBarButtonItem *)barItem
+{
+    __block BOOL guarded = NO;
+    __block BOOL enabled = barItem.enabled;
+    return [self sideEffect:^(id callback, MKCallbackHandler *composer) {
+                if ((guarded = [self isGuarded:barItem]))
+                    return NO;
+                [self setGuarded:barItem guarded:YES];
+                [[barItem onMainQueue] setEnabled:NO];
+                return YES;
+            }
+            after:^(id callback, MKCallbackHandler *composer) {
+                if (guarded == NO)
+                {
+                    [self setGuarded:barItem guarded:NO];
+                    [[barItem onMainQueue] setEnabled:enabled];
+                }
+            }];
+}
+
 #pragma mark - guard
 
 - (instancetype)guard:(id)guard
@@ -145,7 +185,7 @@
 
 - (void)setGuarded:(id)guard guarded:(BOOL)guarded
 {
-    NSNumber *guardedBool = guarded ? [NSNumber numberWithBool:YES] : nil;
+    NSNumber *guardedBool = guarded ? @YES : nil;
     objc_setAssociatedObject(guard, @selector(isGuarded:), guardedBool, OBJC_ASSOCIATION_RETAIN);
 }
 

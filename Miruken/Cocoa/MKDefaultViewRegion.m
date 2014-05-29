@@ -8,17 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "MKDefaultViewRegion.h"
+#import "MKModalOptions.h"
+#import "MKTransitionOptions.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
 #import "MKContext+Subscribe.h"
 #import "MKCallbackHandler+Resolvers.h"
 #import "NSObject+Context.h"
 #import "MKDeferred.h"
+#import "MKMixin.h"
 
 @implementation MKDefaultViewRegion
 {
     UIWindow *_window;
 }
+
++ (void)initialize
+{
+    if (self == MKDefaultViewRegion.class)
+        [MKMixin mixinFrom:MKViewRegionSubclassing.class];
+}
+
 - (id)initWithWindow:(UIWindow *)window
 {
     if (self = [super init])
@@ -26,20 +36,16 @@
     return self;
 }
 
-#pragma mark - MKViewRegion
+#pragma mark - MKViewRegionSubclassing
 
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
+                            withPolicy:(MKPresentationPolicy *)policy
 {
-    BOOL                  isModal            = NO;
-    MKCallbackHandler    *composer           = self.composer;
-    MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
-    if ([composer handle:presentationPolicy greedy:YES])
-    {
-        [presentationPolicy applyPolicyToViewController:viewController];
-        isModal = presentationPolicy.isModal;
-    }
+    MKCallbackHandler *composer = self.composer;
+    [policy applyPolicyToViewController:viewController];
     
-    if (presentationPolicy.isModal == NO)
+    MKModalOptions *modalOptions = [policy optionsWithClass:MKModalOptions.class];
+    if (modalOptions == nil)
     {
         UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
         UINavigationController *navigationController = owner.navigationController;
@@ -51,10 +57,11 @@
         }
     }
     
-    return [self _presentViewControllerModally:viewController];
+    return [self _presentViewControllerModally:viewController modalOptions:modalOptions];
 }
 
 - (id<MKPromise>)_presentViewControllerModally:(UIViewController<MKContextual> *)viewController
+                                  modalOptions:(MKModalOptions *)modalOptions
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];

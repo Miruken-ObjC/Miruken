@@ -52,7 +52,7 @@
                                        reason:@"cannot divide by 0"
                                      userInfo:nil];
     
-    return [NSNumber numberWithDouble:(operand / by)];
+    return @(operand / by);
 }
 
 @end

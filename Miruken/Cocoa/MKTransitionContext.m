@@ -94,7 +94,7 @@
 {
     [_fromViewController.view removeFromSuperview];
     if (self.state == MKPromiseStatePending)
-        [self resolve:[NSNumber numberWithBool:didComplete]];
+        [self resolve:@(didComplete)];
 }
 
 - (UIViewController *)viewControllerForKey:(NSString *)key

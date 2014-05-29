@@ -18,15 +18,15 @@
                                      userInfo:nil];
     
     MKPresentationPolicyHandler *handler = [self new];
-    handler->_presentationPolicy         = [policy copy];
+    handler->_presentationPolicy         = policy;
     return handler;
 }
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
 {
-    if ([callback isKindOfClass:MKPresentationPolicy.class])
+    if ([callback conformsToProtocol:@protocol(MKPresentationOptions)])
     {
-        [_presentationPolicy mergeIntoPolicy:callback];
+        [_presentationPolicy mergeIntoOptions:callback];
         return YES;
     }
     return NO;

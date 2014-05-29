@@ -28,6 +28,10 @@ typedef void (^MKSideEffectAfterAction)(id callback, id<MKCallbackHandler> compo
 
 - (instancetype)spinToolbarItem:(UIViewController<MKContextual> *)viewController atIndex:(NSUInteger)index;
 
+- (instancetype)oneClick:(UIControl *)control;
+
+- (instancetype)oneClickBarButton:(UIBarButtonItem *)barItem;
+
 - (instancetype)guard:(id)guard;
 
 - (instancetype)suspendUserInteraction:(UIView *)view;

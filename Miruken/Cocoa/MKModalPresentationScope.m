@@ -7,13 +7,14 @@
 //
 
 #import "MKModalPresentationScope.h"
+#import "MKModalOptions.h"
 
 @implementation MKModalPresentationScope
 
 + (instancetype)for:(MKCallbackHandler *)handler
 {
-    MKModalPresentationScope *scope         = [super for:handler];
-    [scope requirePresentationPolicy].modal = YES;
+    MKModalPresentationScope *scope = [super for:handler];
+    [[scope requirePresentationPolicy] addOrMergeOptions:[MKModalOptions new]];
     return scope;
 }
 
@@ -41,7 +42,9 @@
 
 - (instancetype)presentationStyle:(UIModalPresentationStyle)presentationStyle
 {
-    self.presentationPolicy.modalPresentationStyle = presentationStyle;
+    MKModalOptions *modalOptions = [MKModalOptions new];
+    modalOptions.modalPresentationStyle = presentationStyle;
+    [[self requirePresentationPolicy] addOrMergeOptions:modalOptions];
     return self;
 }
 
@@ -69,19 +72,25 @@
 
 - (instancetype)transitionStyle:(UIModalTransitionStyle)transitionStyle
 {
-    self.presentationPolicy.modalTransitionStyle = transitionStyle;
+    MKModalOptions *modalOptions = [MKModalOptions new];
+    modalOptions.modalTransitionStyle = transitionStyle;
+    [[self requirePresentationPolicy] addOrMergeOptions:modalOptions];
     return self;
 }
 
 - (instancetype)definesPresentationContext
 {
-    self.presentationPolicy.definesPresentationContext = YES;
+    MKModalOptions *modalOptions = [MKModalOptions new];
+    modalOptions.definesPresentationContext = YES;
+    [[self requirePresentationPolicy] addOrMergeOptions:modalOptions];
     return self;
 }
 
 - (instancetype)providesPresentationContextTransition
 {
-    self.presentationPolicy.providesPresentationContextTransitionStyle = YES;
+    MKModalOptions *modalOptions = [MKModalOptions new];
+    modalOptions.providesPresentationContextTransitionStyle = YES;
+    [[self requirePresentationPolicy] addOrMergeOptions:modalOptions];
     return self;
 }
 

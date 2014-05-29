@@ -41,8 +41,7 @@ typedef NS_ENUM(NSUInteger, MKPagingMixinState) {
 
 - (void)setScrollState:(MKPagingMixinState)scrollState
 {
-    NSNumber *state = [NSNumber numberWithInt:scrollState];
-    objc_setAssociatedObject(self, @selector(scrollState), state, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(scrollState), @(scrollState), OBJC_ASSOCIATION_RETAIN);
 }
 
 - (CGPoint)scrollOffset

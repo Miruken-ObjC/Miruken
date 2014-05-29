@@ -21,5 +21,4 @@
 
 @end
 
-#define MKViewRegion(handler)             ((id<MKViewRegion>)(handler))
-#define MKViewRegionHint(region,handler)  (region ? region : MKViewRegion(handler))
+#define MKViewRegion(handler)  ((id<MKViewRegion>)(handler))

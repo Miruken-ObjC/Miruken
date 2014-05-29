@@ -19,6 +19,14 @@
     return self;
 }
 
+#pragma mark - MKTransitionTraits
+
+- (instancetype)duration:(NSTimeInterval)duration
+{
+    _animationDuration = duration;
+    return self;
+}
+
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)

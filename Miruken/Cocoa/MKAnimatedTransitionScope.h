@@ -7,9 +7,10 @@
 //
 
 #import "MKPresentationScope.h"
+#import "MKTransitionTraits.h"
 #import "MKStartingPosition.h"
 
-@interface MKAnimatedTransitionScope : MKPresentationScope
+@interface MKAnimatedTransitionScope : MKPresentationScope <MKTransitionTraits>
 
 #pragma mark - flip
 
@@ -118,7 +119,5 @@
 - (instancetype)natGeoFirstPartRatio:(CGFloat)ratio;
 
 - (instancetype)animate:(UIViewAnimationOptions)options;
-
-- (instancetype)duration:(NSTimeInterval)duration;
 
 @end

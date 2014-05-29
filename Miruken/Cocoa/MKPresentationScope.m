@@ -25,9 +25,9 @@
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
 {
     BOOL handled = NO;
-    if (self.presentationPolicy && [callback isKindOfClass:MKPresentationPolicy.class])
+    if (self.presentationPolicy && [callback conformsToProtocol:@protocol(MKPresentationOptions)])
     {
-        [self.presentationPolicy mergeIntoPolicy:callback];
+        [self.presentationPolicy mergeIntoOptions:callback];
         handled = YES;
     }
     return (handled && greedy == NO)

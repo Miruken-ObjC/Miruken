@@ -7,142 +7,89 @@
 //
 
 #import "MKPresentationPolicy.h"
-#import "MKModalFlipHorizontalTransition.h"
-#import "MKAnimationOptionsTransition.h"
 
 @implementation MKPresentationPolicy
 {
-    struct
+    NSMutableArray *_options;
+}
+
+- (id)init
+{
+    if (self = [super init])
+        _options = [NSMutableArray new];
+    return self;
+}
+
+- (id)initWithOptions:(NSArray *)options
+{
+    if (self = [super init])
+        _options = [NSMutableArray arrayWithArray:options];
+    return self;
+}
+
+- (NSArray *)options
+{
+    return [_options copy];
+}
+
+- (id<MKPresentationOptions>)optionsWithClass:(Class)optionsClass
+{
+    NSUInteger idx = [self _indexOfOptionsWithClass:optionsClass];
+    return (idx != NSNotFound) ? _options[idx] : nil;
+}
+
+- (void)addOrMergeOptions:(id<MKPresentationOptions>)options
+{
+    if ([options isKindOfClass:MKPresentationPolicy.class])
     {
-        unsigned int modal:1;
-        unsigned int modalTransitionStyle:1;
-        unsigned int modalPresentationStyle:1;
-        unsigned int definesPresentationContext:1;
-        unsigned int providesPresentationContextTransitionStyle:1;
-        unsigned int animationDuration:1;
-        unsigned int transitionDelegate:1;
-    } _specified;
+        MKPresentationPolicy *policy = options;
+        for (id<MKPresentationOptions> nestedOptions in policy.options)
+            [self addOrMergeOptions:nestedOptions];
+    }
+    else
+    {
+        NSUInteger idx = [self _indexOfOptionsWithClass:options.class];
+        if (idx != NSNotFound)
+            [options mergeIntoOptions:_options[idx]];
+        else
+            [_options addObject:options];
+    }
 }
 
-- (id)copyWithZone:(NSZone *)zone
+- (void)removeOptionsWithClass:(Class)optionsClass
 {
-    MKPresentationPolicy *copy                        = [[self.class allocWithZone:zone] init];
-    copy->_modal                                      = _modal;
-    copy->_modalTransitionStyle                       = _modalTransitionStyle;
-    copy->_modalPresentationStyle                     = _modalPresentationStyle;
-    copy->_definesPresentationContext                 = _definesPresentationContext;
-    copy->_providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
-    copy->_animationDuration                          = _animationDuration;
-    copy->_transitionDelegate                         = _transitionDelegate;
-    copy->_specified                                  = _specified;
-    return copy;
-}
-
-- (void)setModal:(BOOL)modal
-{
-    _modal           = modal;
-    _specified.modal = YES;
-}
-
-- (void)setModalTransitionStyle:(UIModalTransitionStyle)modalTransitionStyle
-{
-    self.modal                      = YES;
-    _modalTransitionStyle           = modalTransitionStyle;
-    _specified.modalTransitionStyle = YES;
-}
-
-- (void)setModalPresentationStyle:(UIModalPresentationStyle)modalPresentationStyle
-{
-    self.modal                        = YES;
-    _modalPresentationStyle           = modalPresentationStyle;
-    _specified.modalPresentationStyle = YES;
-}
-
-- (void)setDefinesPresentationContext:(BOOL)definesPresentationContext
-{
-    _definesPresentationContext           = definesPresentationContext;
-    _specified.definesPresentationContext = YES;
-}
-
-- (void)setProvidesPresentationContextTransitionStyle:(BOOL)providesPresentationContextTransitionStyle
-{
-    _providesPresentationContextTransitionStyle           = providesPresentationContextTransitionStyle;
-    _specified.providesPresentationContextTransitionStyle = YES;
-}
-
-- (void)setAnimationDuration:(NSTimeInterval)animationDuration
-{
-    _animationDuration           = animationDuration;
-    _specified.animationDuration = YES;
-}
-
-- (void)setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)transitionDelegate
-{
-    _transitionDelegate           = transitionDelegate;
-    _specified.transitionDelegate = YES;
+    NSUInteger idx = [self _indexOfOptionsWithClass:optionsClass];
+    if (idx != NSNotFound)
+        [_options removeObjectAtIndex:idx];
 }
 
 - (void)applyPolicyToViewController:(UIViewController *)viewController
 {
-    if (_specified.modalPresentationStyle)
-        viewController.modalPresentationStyle = _modalPresentationStyle;
-    
-    if (_specified.definesPresentationContext)
-        viewController.definesPresentationContext = _definesPresentationContext;
-    
-    if (_specified.providesPresentationContextTransitionStyle)
-        viewController.providesPresentationContextTransitionStyle =
-        _providesPresentationContextTransitionStyle;
-    
-    if (_specified.transitionDelegate)
-    {
-        if (_specified.animationDuration &&
-            [_transitionDelegate respondsToSelector:@selector(setAnimationDuration:)])
-            [(id)_transitionDelegate setAnimationDuration:_animationDuration];
-        viewController.transitioningDelegate = _transitionDelegate;
-    }
-    else if (_specified.modalTransitionStyle)
-    {
-        if (_modalTransitionStyle == UIModalTransitionStyleFlipHorizontal &&
-            _specified.transitionDelegate == NO)
-        {
-            _transitionDelegate = [MKModalFlipHorizontalTransition new];
-            viewController.transitioningDelegate = _transitionDelegate;
-        }
-        else
-        {
-            viewController.modalTransitionStyle = _modalTransitionStyle;
-        }
-    }
-    
-    if (_specified.modal && _specified.modalPresentationStyle == NO &&
-        _specified.modalTransitionStyle == NO && viewController.transitioningDelegate)
-        viewController.modalPresentationStyle = UIModalPresentationCustom;
+    for (id<MKPresentationOptions> options in _options)
+        [options applyPolicyToViewController:viewController];
 }
 
-- (void)mergeIntoPolicy:(MKPresentationPolicy *)otherPolicy
+- (void)mergeIntoOptions:(id<MKPresentationOptions>)otherOptions
 {
-    if (_specified.modal && (otherPolicy->_specified.modal == NO))
-        otherPolicy.modal = _modal;
-    
-    if (_specified.modalTransitionStyle && (otherPolicy->_specified.modalTransitionStyle == NO))
-        otherPolicy.modalTransitionStyle = _modalTransitionStyle;
-    
-    if (_specified.modalPresentationStyle && (otherPolicy->_specified.modalPresentationStyle == NO))
-        otherPolicy.modalPresentationStyle = _modalPresentationStyle;
-    
-    if (_specified.definesPresentationContext && (otherPolicy->_specified.definesPresentationContext == NO))
-        otherPolicy.definesPresentationContext = _definesPresentationContext;
-    
-    if (_specified.providesPresentationContextTransitionStyle &&
-        (otherPolicy->_specified.providesPresentationContextTransitionStyle == NO))
-        otherPolicy.providesPresentationContextTransitionStyle = _providesPresentationContextTransitionStyle;
- 
-    if (_specified.animationDuration && (otherPolicy->_specified.animationDuration == NO))
-        otherPolicy.animationDuration = _animationDuration;
+    if ([otherOptions isKindOfClass:MKPresentationPolicy.class])
+    {
+        MKPresentationPolicy *policy = otherOptions;
+        for (id<MKPresentationOptions> nestedOptions in policy.options)
+            [self mergeIntoOptions:nestedOptions];
+    }
+    else
+    {
+        id<MKPresentationOptions> options = [self optionsWithClass:otherOptions.class];
+        [options mergeIntoOptions:otherOptions];
+    }
+}
 
-    if (_specified.transitionDelegate && (otherPolicy->_specified.transitionDelegate == NO))
-        otherPolicy.transitionDelegate = _transitionDelegate;
+- (NSUInteger)_indexOfOptionsWithClass:(Class)optionsClass
+{
+    return [_options indexOfObjectPassingTest:
+            ^(id<MKPresentationOptions> options, NSUInteger idx, BOOL *stop) {
+                return  ((*stop = [options isKindOfClass:optionsClass]));
+            }];
 }
 
 @end

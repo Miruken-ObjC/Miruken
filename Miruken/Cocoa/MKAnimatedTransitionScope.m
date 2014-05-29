@@ -19,6 +19,7 @@
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
 #import "MKFlip3DTransition.h"
+#import "MKTransitionOptions.h"
 
 @implementation MKAnimatedTransitionScope
 
@@ -86,9 +87,7 @@
 
 - (instancetype)flip3DFromPosition:(MKStartingPosition)position
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKFlip3DTransition turnFromPosition:position];
-    return self;
+    return [self _setTransitionDelegate: [MKFlip3DTransition turnFromPosition:position]];
 }
 
 #pragma mark - push
@@ -135,9 +134,7 @@
 
 - (instancetype)pushFromPosition:(MKStartingPosition)position
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKPushMoveInTransition pushFromPosition:position];
-    return self;
+    return [self _setTransitionDelegate:[MKPushMoveInTransition pushFromPosition:position]];
 }
 
 #pragma mark - move in
@@ -184,9 +181,7 @@
 
 - (instancetype)moveInFromPosition:(MKStartingPosition)position
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKPushMoveInTransition moveInFromPosition:position];
-    return self;
+    return [self _setTransitionDelegate:[MKPushMoveInTransition moveInFromPosition:position]];
 }
 
 #pragma mark - page
@@ -203,70 +198,54 @@
 
 - (instancetype)pageFlip
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKPageFlipTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKPageFlipTransition new]];
 }
 
 - (instancetype)pageFold
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKPageFoldTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKPageFoldTransition new]];
 }
 
 - (instancetype)pageFold:(NSUInteger)folds
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKPageFoldTransition folds:folds];
-    return self;
+    return [self _setTransitionDelegate: [MKPageFoldTransition folds:folds]];
 }
 
 #pragma mark - extra
 
-- (instancetype)cube
-{
-    [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
-    return self;
-}
 - (instancetype)zoom
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKZoomTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKZoomTransition new]];
 }
 
 - (instancetype)portal
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKPortalTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKPortalTransition new]];
 }
 
 - (instancetype)explode
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKExpodeTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKExpodeTransition new]];
 }
 
 - (instancetype)natGeo
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKNatGeoTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKNatGeoTransition new]];
 }
 
 - (instancetype)natGeoFirstPartRatio:(CGFloat)ratio
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKNatGeoTransition natGeoFirstPartRatio:ratio];
-    return self;
+    return [self _setTransitionDelegate: [MKNatGeoTransition natGeoFirstPartRatio:ratio]];
 }
 
 - (instancetype)slide3D
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKSlide3DTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKSlide3DTransition new]];
 }
 
 - (instancetype)shuffle3D
 {
-    [self requirePresentationPolicy].transitionDelegate = [MKShuffle3DTransition new];
-    return self;
+    return [self _setTransitionDelegate:[MKShuffle3DTransition new]];
 }
 
 - (instancetype)crossDissolve
@@ -276,44 +255,79 @@
 
 - (instancetype)horizontalCube
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKCubeTransition cubeAxis:MKCubeTransitionAxisHorizontal];
-    return self;
+    return [self _setTransitionDelegate:[MKCubeTransition cubeAxis:MKCubeTransitionAxisHorizontal]];
 }
 
 - (instancetype)horizontalCubeAtDegrees:(CGFloat)angle
 {
     MKCubeTransition *cube = [MKCubeTransition cubeAxis:MKCubeTransitionAxisHorizontal];
     cube.rotateDegrees     = angle;
-    [self requirePresentationPolicy].transitionDelegate = cube;
-    return self;
+    return [self _setTransitionDelegate:cube];
 }
 
 - (instancetype)verticalCube
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKCubeTransition cubeAxis:MKCubeTransitionAxisVertical];
-    return self;
+    return [self _setTransitionDelegate:[MKCubeTransition cubeAxis:MKCubeTransitionAxisVertical]];
 }
 
 - (instancetype)verticalCubeAtDegrees:(CGFloat)angle
 {
     MKCubeTransition *cube = [MKCubeTransition cubeAxis:MKCubeTransitionAxisVertical];
     cube.rotateDegrees     = angle;
-    [self requirePresentationPolicy].transitionDelegate = cube;
-    return self;
+    return [self _setTransitionDelegate:cube];
 }
 
 - (instancetype)animate:(UIViewAnimationOptions)options
 {
-    [self requirePresentationPolicy].transitionDelegate =
-        [MKAnimationOptionsTransition transitionWithOptions:options];
+    return [self _setTransitionDelegate: [MKAnimationOptionsTransition transitionWithOptions:options]];
+}
+
+#pragma mark - MKTransitionTraits
+
+- (instancetype)fadeIn
+{
+    return [self _fade:MKTransitionFadeStyleIn];
+}
+
+- (instancetype)fadeOut
+{
+    return [self _fade:MKTransitionFadeStyleOut];
+}
+
+- (instancetype)fadeInOut
+{
+    return [self _fade:MKTransitionFadeStyleInOut];
+}
+
+- (instancetype)_fade:(MKTransitionFadeStyle)fadeStyle
+{
+    MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
+    transitionOptions.fadeStyle            = fadeStyle;
+    [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
     return self;
 }
 
 - (instancetype)duration:(NSTimeInterval)duration
 {
-    [self requirePresentationPolicy].animationDuration = duration;
+    MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
+    transitionOptions.animationDuration    = duration;
+    [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
+    return self;
+}
+
+- (instancetype)perspective:(CGFloat)perspective
+{
+    MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
+    transitionOptions.perspective          = perspective;
+    [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
+    return self;
+}
+
+- (instancetype)_setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)delegate
+{
+    MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
+    transitionOptions.transitionDelegate   = delegate;
+    [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
     return self;
 }
 

@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MKTransitionTraits.h"
 #import "MKStartingPosition.h"
 
 @interface MKAnimatedTransition : NSObject
-    <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
+    <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning, MKTransitionTraits>
 
 @property (readonly,  assign, nonatomic) BOOL           isPresenting;
 @property (readwrite, assign, nonatomic) NSTimeInterval animationDuration;

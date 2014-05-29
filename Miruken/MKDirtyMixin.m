@@ -74,7 +74,7 @@ static int             kDirtyMixinContext;
     
     if (changed)
     {
-        NSNumber *dirtyBool = dirty ? [NSNumber numberWithBool:YES] : nil;
+        NSNumber *dirtyBool = dirty ? @YES : nil;
         objc_setAssociatedObject(self, @selector(isDirty), dirtyBool, OBJC_ASSOCIATION_RETAIN);
     }
     
@@ -90,7 +90,7 @@ static int             kDirtyMixinContext;
 
 - (void)setDirty_suppress:(BOOL)suppress
 {
-    NSNumber *suppressBool = suppress ? [NSNumber numberWithBool:YES] : nil;
+    NSNumber *suppressBool = suppress ? @YES : nil;
     objc_setAssociatedObject(self, @selector(Dirty_suppress), suppressBool, OBJC_ASSOCIATION_RETAIN);
 }
 
