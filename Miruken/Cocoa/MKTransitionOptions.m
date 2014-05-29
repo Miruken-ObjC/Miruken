@@ -17,7 +17,6 @@
         unsigned int animationDuration:1;
         unsigned int fadeStyle:1;
         unsigned int perspective:1;
-        unsigned int transitionDelegate:1;
     } _specified;
 }
 
@@ -43,12 +42,27 @@
 
 - (void)setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)transitionDelegate
 {
-    _transitionDelegate           = transitionDelegate;
-    _specified.transitionDelegate = YES;
+    _transitionDelegate = transitionDelegate;
 }
 
 - (void)applyPolicyToViewController:(UIViewController *)viewController
 {
+    if (viewController.transitioningDelegate == nil && _transitionDelegate)
+    {
+        if (_specified.animationDuration &&
+            [_transitionDelegate respondsToSelector:@selector(setAnimationDuration:)])
+            [(id)_transitionDelegate setAnimationDuration:_animationDuration];
+        
+        if (_specified.perspective &&
+            [_transitionDelegate respondsToSelector:@selector(setPerspective:)])
+            [(id)_transitionDelegate setPerspective:_perspective];
+        
+        if (_specified.fadeStyle &&
+            [_transitionDelegate respondsToSelector:@selector(setFadeStyle:)])
+            [(id)_transitionDelegate setFadeStyle:_fadeStyle];
+        
+        viewController.transitioningDelegate = _transitionDelegate;
+    }
 }
 
 - (void)mergeIntoOptions:(MKTransitionOptions *)otherOptions
@@ -67,7 +81,7 @@
     if (_specified.perspective && (transitionOptions->_specified.perspective == NO))
         transitionOptions.perspective = _perspective;
 
-    if (_specified.transitionDelegate && (transitionOptions->_specified.transitionDelegate == NO))
+    if (_transitionDelegate && (transitionOptions->_transitionDelegate == nil))
         transitionOptions.transitionDelegate = _transitionDelegate;
 }
 

@@ -73,9 +73,9 @@
 {
     if ([otherOptions isKindOfClass:MKPresentationPolicy.class])
     {
-        MKPresentationPolicy *policy = otherOptions;
-        for (id<MKPresentationOptions> nestedOptions in policy.options)
-            [self mergeIntoOptions:nestedOptions];
+        MKPresentationPolicy *otherPolicy = otherOptions;
+        for (id<MKPresentationOptions> options in self.options)
+            [otherPolicy addOrMergeOptions:options];
     }
     else
     {

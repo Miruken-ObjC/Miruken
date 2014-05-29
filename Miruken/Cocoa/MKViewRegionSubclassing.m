@@ -58,9 +58,6 @@
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     [self.composer handle:presentationPolicy greedy:YES];
 
-    if (presentationPolicy == nil)
-        presentationPolicy = [MKPresentationPolicy new];
-    
     return [self canPresentWithOptions:presentationPolicy]
          ? [self presentViewController:viewController withPolicy:presentationPolicy]
          : [self notHandled];

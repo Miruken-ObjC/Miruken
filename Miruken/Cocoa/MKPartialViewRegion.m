@@ -11,6 +11,7 @@
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
+#import "MKTransitionOptions.h"
 #import "MKTransitionContext.h"
 #import "MKCallbackHandler+Resolvers.h"
 #import "MKContext+Subscribe.h"
@@ -33,7 +34,7 @@
 + (void)initialize
 {
     if (self == MKPartialViewRegion.class)
-        [MKMixin mixinFrom:MKViewRegionSubclassing.class];
+        [self mixinFrom:MKViewRegionSubclassing.class];
 }
 
 - (id)init
@@ -92,6 +93,11 @@
 }
 
 #pragma mark - MKViewRegionSubclassing
+
+- (BOOL)canPresentWithMKTransitionOptions:(MKTransitionOptions *)options
+{
+    return YES;
+}
 
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
                             withPolicy:(MKPresentationPolicy *)policy

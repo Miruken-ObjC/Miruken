@@ -26,7 +26,7 @@
 + (void)initialize
 {
     if (self == MKDefaultViewRegion.class)
-        [MKMixin mixinFrom:MKViewRegionSubclassing.class];
+        [self mixinFrom:MKViewRegionSubclassing.class];
 }
 
 - (id)initWithWindow:(UIWindow *)window
@@ -37,6 +37,16 @@
 }
 
 #pragma mark - MKViewRegionSubclassing
+
+- (BOOL)canPresentWithMKModalOptions:(MKModalOptions *)options
+{
+    return YES;
+}
+
+- (BOOL)canPresentWithMKTransitionOptions:(MKTransitionOptions *)options
+{
+    return YES;
+}
 
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
                             withPolicy:(MKPresentationPolicy *)policy
