@@ -28,12 +28,12 @@
 		142FE8E218DFB6E700569636 /* MKModalFlipHorizontalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */; };
 		142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E318E381EC00569636 /* MKAnimationOptionsTransition.h */; };
 		142FE8E618E381EC00569636 /* MKAnimationOptionsTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E418E381EC00569636 /* MKAnimationOptionsTransition.m */; };
-		142FE8E918E84C3F00569636 /* MKModalPresentationScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E718E84C3F00569636 /* MKModalPresentationScope.h */; };
-		142FE8EA18E84C3F00569636 /* MKModalPresentationScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E818E84C3F00569636 /* MKModalPresentationScope.m */; };
+		142FE8E918E84C3F00569636 /* MKModalScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8E718E84C3F00569636 /* MKModalScope.h */; };
+		142FE8EA18E84C3F00569636 /* MKModalScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8E818E84C3F00569636 /* MKModalScope.m */; };
 		142FE8ED18E84FED00569636 /* MKPresentationPolicyHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8EB18E84FED00569636 /* MKPresentationPolicyHandler.h */; };
 		142FE8EE18E84FED00569636 /* MKPresentationPolicyHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8EC18E84FED00569636 /* MKPresentationPolicyHandler.m */; };
-		142FE8F118E856A500569636 /* MKAnimatedTransitionScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8EF18E856A500569636 /* MKAnimatedTransitionScope.h */; };
-		142FE8F218E856A500569636 /* MKAnimatedTransitionScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8F018E856A500569636 /* MKAnimatedTransitionScope.m */; };
+		142FE8F118E856A500569636 /* MKTransitionScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8EF18E856A500569636 /* MKTransitionScope.h */; };
+		142FE8F218E856A500569636 /* MKTransitionScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8F018E856A500569636 /* MKTransitionScope.m */; };
 		142FE8F618E8E9F600569636 /* MKPresentationScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8F418E8E9F600569636 /* MKPresentationScope.h */; };
 		142FE8F718E8E9F600569636 /* MKPresentationScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8F518E8E9F600569636 /* MKPresentationScope.m */; };
 		142FE8FB18ECC60200569636 /* MKPushMoveInTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE8F918ECC60200569636 /* MKPushMoveInTransition.h */; };
@@ -52,6 +52,12 @@
 		145AF3271932A30100766F40 /* MKTransitionOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3251932A30100766F40 /* MKTransitionOptions.m */; };
 		145AF32E1937703800766F40 /* MKViewRegionSubclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF32C1937703800766F40 /* MKViewRegionSubclassing.h */; };
 		145AF32F1937703800766F40 /* MKViewRegionSubclassing.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF32D1937703800766F40 /* MKViewRegionSubclassing.m */; };
+		145AF332193906B900766F40 /* MKNavigationOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF330193906B900766F40 /* MKNavigationOptions.h */; };
+		145AF333193906B900766F40 /* MKNavigationOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF331193906B900766F40 /* MKNavigationOptions.m */; };
+		145AF33619390B7700766F40 /* MKNavigationTransitionWrapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF33419390B7700766F40 /* MKNavigationTransitionWrapper.h */; };
+		145AF33719390B7700766F40 /* MKNavigationTransitionWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF33519390B7700766F40 /* MKNavigationTransitionWrapper.m */; };
+		145AF33A19392D1300766F40 /* MKNavigationScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF33819392D1300766F40 /* MKNavigationScope.h */; };
+		145AF33B19392D1300766F40 /* MKNavigationScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF33919392D1300766F40 /* MKNavigationScope.m */; };
 		1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */; };
 		1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */; };
 		1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */; };
@@ -275,12 +281,12 @@
 		142FE8E018DFB6E700569636 /* MKModalFlipHorizontalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModalFlipHorizontalTransition.m; sourceTree = "<group>"; };
 		142FE8E318E381EC00569636 /* MKAnimationOptionsTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimationOptionsTransition.h; sourceTree = "<group>"; };
 		142FE8E418E381EC00569636 /* MKAnimationOptionsTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimationOptionsTransition.m; sourceTree = "<group>"; };
-		142FE8E718E84C3F00569636 /* MKModalPresentationScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModalPresentationScope.h; sourceTree = "<group>"; };
-		142FE8E818E84C3F00569636 /* MKModalPresentationScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModalPresentationScope.m; sourceTree = "<group>"; };
+		142FE8E718E84C3F00569636 /* MKModalScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKModalScope.h; sourceTree = "<group>"; };
+		142FE8E818E84C3F00569636 /* MKModalScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKModalScope.m; sourceTree = "<group>"; };
 		142FE8EB18E84FED00569636 /* MKPresentationPolicyHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPresentationPolicyHandler.h; sourceTree = "<group>"; };
 		142FE8EC18E84FED00569636 /* MKPresentationPolicyHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPresentationPolicyHandler.m; sourceTree = "<group>"; };
-		142FE8EF18E856A500569636 /* MKAnimatedTransitionScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAnimatedTransitionScope.h; sourceTree = "<group>"; };
-		142FE8F018E856A500569636 /* MKAnimatedTransitionScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedTransitionScope.m; sourceTree = "<group>"; };
+		142FE8EF18E856A500569636 /* MKTransitionScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTransitionScope.h; sourceTree = "<group>"; };
+		142FE8F018E856A500569636 /* MKTransitionScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTransitionScope.m; sourceTree = "<group>"; };
 		142FE8F418E8E9F600569636 /* MKPresentationScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPresentationScope.h; sourceTree = "<group>"; };
 		142FE8F518E8E9F600569636 /* MKPresentationScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPresentationScope.m; sourceTree = "<group>"; };
 		142FE8F818ECC43900569636 /* MKStartingPosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKStartingPosition.h; sourceTree = "<group>"; };
@@ -301,6 +307,12 @@
 		145AF3251932A30100766F40 /* MKTransitionOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTransitionOptions.m; sourceTree = "<group>"; };
 		145AF32C1937703800766F40 /* MKViewRegionSubclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKViewRegionSubclassing.h; sourceTree = "<group>"; };
 		145AF32D1937703800766F40 /* MKViewRegionSubclassing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKViewRegionSubclassing.m; sourceTree = "<group>"; };
+		145AF330193906B900766F40 /* MKNavigationOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNavigationOptions.h; sourceTree = "<group>"; };
+		145AF331193906B900766F40 /* MKNavigationOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNavigationOptions.m; sourceTree = "<group>"; };
+		145AF33419390B7700766F40 /* MKNavigationTransitionWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNavigationTransitionWrapper.h; sourceTree = "<group>"; };
+		145AF33519390B7700766F40 /* MKNavigationTransitionWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNavigationTransitionWrapper.m; sourceTree = "<group>"; };
+		145AF33819392D1300766F40 /* MKNavigationScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNavigationScope.h; sourceTree = "<group>"; };
+		145AF33919392D1300766F40 /* MKNavigationScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNavigationScope.m; sourceTree = "<group>"; };
 		1462993518B02DCD002BCBF6 /* MKCallbackHandler+Builders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Builders.h"; sourceTree = "<group>"; };
 		1462993618B02DCD002BCBF6 /* MKCallbackHandler+Builders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Builders.m"; sourceTree = "<group>"; };
 		1462993718B02DCD002BCBF6 /* MKCallbackHandler+Buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Buffer.h"; sourceTree = "<group>"; };
@@ -645,10 +657,12 @@
 				142FE8F818ECC43900569636 /* MKStartingPosition.h */,
 				142FE8F418E8E9F600569636 /* MKPresentationScope.h */,
 				142FE8F518E8E9F600569636 /* MKPresentationScope.m */,
-				142FE8E718E84C3F00569636 /* MKModalPresentationScope.h */,
-				142FE8E818E84C3F00569636 /* MKModalPresentationScope.m */,
-				142FE8EF18E856A500569636 /* MKAnimatedTransitionScope.h */,
-				142FE8F018E856A500569636 /* MKAnimatedTransitionScope.m */,
+				142FE8E718E84C3F00569636 /* MKModalScope.h */,
+				142FE8E818E84C3F00569636 /* MKModalScope.m */,
+				142FE8EF18E856A500569636 /* MKTransitionScope.h */,
+				142FE8F018E856A500569636 /* MKTransitionScope.m */,
+				145AF33819392D1300766F40 /* MKNavigationScope.h */,
+				145AF33919392D1300766F40 /* MKNavigationScope.m */,
 				142FE8D718DF21BB00569636 /* MKCallbackHandler+Presentation.h */,
 				142FE8D818DF21BB00569636 /* MKCallbackHandler+Presentation.m */,
 			);
@@ -663,6 +677,8 @@
 				142FE90218F0855300569636 /* MKTransitionContext.m */,
 				142FE8FD18ECC69400569636 /* MKAnimatedTransition.h */,
 				142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */,
+				145AF33419390B7700766F40 /* MKNavigationTransitionWrapper.h */,
+				145AF33519390B7700766F40 /* MKNavigationTransitionWrapper.m */,
 				142FE8F918ECC60200569636 /* MKPushMoveInTransition.h */,
 				142FE8FA18ECC60200569636 /* MKPushMoveInTransition.m */,
 				142FE8E318E381EC00569636 /* MKAnimationOptionsTransition.h */,
@@ -704,6 +720,8 @@
 				145AF3211932567400766F40 /* MKModalOptions.m */,
 				145AF3241932A30100766F40 /* MKTransitionOptions.h */,
 				145AF3251932A30100766F40 /* MKTransitionOptions.m */,
+				145AF330193906B900766F40 /* MKNavigationOptions.h */,
+				145AF331193906B900766F40 /* MKNavigationOptions.m */,
 				142FE8EB18E84FED00569636 /* MKPresentationPolicyHandler.h */,
 				142FE8EC18E84FED00569636 /* MKPresentationPolicyHandler.m */,
 			);
@@ -1113,7 +1131,7 @@
 				142FE8ED18E84FED00569636 /* MKPresentationPolicyHandler.h in Headers */,
 				142FE8FB18ECC60200569636 /* MKPushMoveInTransition.h in Headers */,
 				149963EB191FA9F3002FBFED /* MKViewControllerWapperView.h in Headers */,
-				142FE8F118E856A500569636 /* MKAnimatedTransitionScope.h in Headers */,
+				142FE8F118E856A500569636 /* MKTransitionScope.h in Headers */,
 				14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
@@ -1154,6 +1172,7 @@
 				14982DB018BA33AC0065EE40 /* MKValidationExtension.h in Headers */,
 				14982D7D18B92A370065EE40 /* MKMasterDetail.h in Headers */,
 				142FE8F618E8E9F600569636 /* MKPresentationScope.h in Headers */,
+				145AF332193906B900766F40 /* MKNavigationOptions.h in Headers */,
 				14982DFF18C38EDC0065EE40 /* UIStoryboard+Naming.h in Headers */,
 				142FE8DD18DF318100569636 /* NSObject+Context.h in Headers */,
 				14982DAA18BA33AC0065EE40 /* MKValidationResult.h in Headers */,
@@ -1161,9 +1180,11 @@
 				14982DAC18BA33AC0065EE40 /* MKValidateCallbackHandler.h in Headers */,
 				145AF3261932A30100766F40 /* MKTransitionOptions.h in Headers */,
 				1405C10E1905CBA5009F110F /* MKPageFlipTransition.h in Headers */,
+				145AF33619390B7700766F40 /* MKNavigationTransitionWrapper.h in Headers */,
+				145AF33A19392D1300766F40 /* MKNavigationScope.h in Headers */,
 				14982DB218BA33AC0065EE40 /* MKValidation.h in Headers */,
 				14E9DCF218D3593E0045760D /* MKActiveCollectionViewCell.h in Headers */,
-				142FE8E918E84C3F00569636 /* MKModalPresentationScope.h in Headers */,
+				142FE8E918E84C3F00569636 /* MKModalScope.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,6 +1362,7 @@
 				14982D7618B9252F0065EE40 /* UIScrollView+Motion.m in Sources */,
 				14982DB118BA33AC0065EE40 /* MKValidationExtension.m in Sources */,
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,
+				145AF33719390B7700766F40 /* MKNavigationTransitionWrapper.m in Sources */,
 				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
 				142FE8E618E381EC00569636 /* MKAnimationOptionsTransition.m in Sources */,
 				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
@@ -1390,16 +1412,18 @@
 				1462997618B02DCD002BCBF6 /* MKConditionCallbackHandler.m in Sources */,
 				14FD8AB118A7DBF7008077CF /* MKNewThreadDelegate.m in Sources */,
 				14982DBD18BA39770065EE40 /* MKCallbackHandler+SideEffects.m in Sources */,
+				145AF33B19392D1300766F40 /* MKNavigationScope.m in Sources */,
 				14982D2718B16C8E0065EE40 /* MKContext.m in Sources */,
 				14982E0418C394390065EE40 /* UIWebView+Extra.m in Sources */,
 				14A0F49C19153BA600A67B7C /* MKExpodeTransition.m in Sources */,
+				145AF333193906B900766F40 /* MKNavigationOptions.m in Sources */,
 				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
 				1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */,
 				142FE8DA18DF21BB00569636 /* MKCallbackHandler+Presentation.m in Sources */,
 				14982DAB18BA33AC0065EE40 /* MKValidationResult.m in Sources */,
 				14982CF518B10E430065EE40 /* NSObject+ResolvePromise.m in Sources */,
-				142FE8EA18E84C3F00569636 /* MKModalPresentationScope.m in Sources */,
-				142FE8F218E856A500569636 /* MKAnimatedTransitionScope.m in Sources */,
+				142FE8EA18E84C3F00569636 /* MKModalScope.m in Sources */,
+				142FE8F218E856A500569636 /* MKTransitionScope.m in Sources */,
 				1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */,
 				1462998218B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m in Sources */,
 				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,

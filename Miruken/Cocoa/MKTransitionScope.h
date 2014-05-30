@@ -1,5 +1,5 @@
 //
-//  MKAnimatedTransitionScope.h
+//  MKTransitionScope.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/30/14.
@@ -10,7 +10,7 @@
 #import "MKTransitionTraits.h"
 #import "MKStartingPosition.h"
 
-@interface MKAnimatedTransitionScope : MKPresentationScope <MKTransitionTraits>
+@interface MKTransitionScope : MKPresentationScope <MKTransitionTraits>
 
 #pragma mark - flip
 

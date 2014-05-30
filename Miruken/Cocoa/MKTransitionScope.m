@@ -1,12 +1,12 @@
 //
-//  MKAnimatedTransitionScope.m
+//  MKTransitionScope.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/30/14.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKAnimatedTransitionScope.h"
+#import "MKTransitionScope.h"
 #import "MKAnimationOptionsTransition.h"
 #import "MKPushMoveInTransition.h"
 #import "MKCubeTransition.h"
@@ -21,7 +21,7 @@
 #import "MKFlip3DTransition.h"
 #import "MKTransitionOptions.h"
 
-@implementation MKAnimatedTransitionScope
+@implementation MKTransitionScope
 
 #pragma mark - flip
 
@@ -311,22 +311,25 @@
 {
     MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
     transitionOptions.animationDuration    = duration;
-    [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
-    return self;
+    return [self _addOrMergeTransitionOptions:transitionOptions];
 }
 
 - (instancetype)perspective:(CGFloat)perspective
 {
     MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
     transitionOptions.perspective          = perspective;
-    [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
-    return self;
+    return [self _addOrMergeTransitionOptions:transitionOptions];
 }
 
 - (instancetype)_setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)delegate
 {
     MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
     transitionOptions.transitionDelegate   = delegate;
+    return [self _addOrMergeTransitionOptions:transitionOptions];
+}
+
+- (instancetype)_addOrMergeTransitionOptions:(MKTransitionOptions *)transitionOptions
+{
     [[self requirePresentationPolicy] addOrMergeOptions:transitionOptions];
     return self;
 }

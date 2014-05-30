@@ -8,14 +8,14 @@
 
 #import "MKCallbackHandler.h"
 #import "MKPresentationOptions.h"
-#import "MKModalPresentationScope.h"
-#import "MKAnimatedTransitionScope.h"
+#import "MKModalScope.h"
+#import "MKTransitionScope.h"
 
 @interface MKCallbackHandler (Presentation)
 
-- (MKModalPresentationScope *)modal;
+- (MKModalScope *)modal;
 
-- (MKAnimatedTransitionScope *)transition;
+- (MKTransitionScope *)transition;
 
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options;
 

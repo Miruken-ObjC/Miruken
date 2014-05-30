@@ -10,8 +10,6 @@
 
 @implementation MKTransitionOptions
 {
-    id<UIViewControllerTransitioningDelegate> _transitionDelegate;
-
     struct
     {
         unsigned int animationDuration:1;
@@ -19,8 +17,6 @@
         unsigned int perspective:1;
     } _specified;
 }
-
-#pragma mark - MKTransitionOptions
 
 - (void)setAnimationDuration:(NSTimeInterval)animationDuration
 {
@@ -65,7 +61,7 @@
     }
 }
 
-- (void)mergeIntoOptions:(MKTransitionOptions *)otherOptions
+- (void)mergeIntoOptions:(id<MKPresentationOptions>)otherOptions
 {
     if ([otherOptions isKindOfClass:self.class] == NO)
         return;

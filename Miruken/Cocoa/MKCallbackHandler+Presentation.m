@@ -14,14 +14,14 @@
 
 #pragma mark - Modal presentations
 
-- (MKModalPresentationScope *)modal
+- (MKModalScope *)modal
 {
-    return [MKModalPresentationScope for:self];
+    return [MKModalScope for:self];
 }
 
-- (MKAnimatedTransitionScope *)transition
+- (MKTransitionScope *)transition
 {
-    return [MKAnimatedTransitionScope for:self];
+    return [MKTransitionScope for:self];
 }
 
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options

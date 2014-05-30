@@ -1,5 +1,5 @@
 //
-//  MKModalPresentationScope.h
+//  MKModalScope.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 3/30/14.
@@ -8,7 +8,7 @@
 
 #import "MKPresentationScope.h"
 
-@interface MKModalPresentationScope : MKPresentationScope
+@interface MKModalScope : MKPresentationScope
 
 - (instancetype)fullScreen;
 
