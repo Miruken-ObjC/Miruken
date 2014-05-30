@@ -47,7 +47,7 @@
 
 - (void)applyPolicyToViewController:(UIViewController *)viewController
 {
-    if (viewController.transitioningDelegate == nil && _transitionDelegate)
+    if (_transitionDelegate)
     {
         if (_specified.animationDuration &&
             [_transitionDelegate respondsToSelector:@selector(setAnimationDuration:)])

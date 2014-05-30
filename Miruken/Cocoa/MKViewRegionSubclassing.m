@@ -25,10 +25,6 @@
 
 - (BOOL)_canPresentWithOptions:(id<MKPresentationOptions>)options
 {
-    if (options == nil)
-        @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:@"options cannot be nil"
-                                     userInfo:nil];
     BOOL canPresent = NO;
     SEL selector = NSSelectorFromString([NSString stringWithFormat:@"canPresentWith%@:",
                                          NSStringFromClass([options class])]);

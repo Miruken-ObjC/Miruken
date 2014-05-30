@@ -45,9 +45,9 @@
     [containerView sendSubviewToBack:toView];
     
     // Add a perspective transform
-    CATransform3D transform = CATransform3DIdentity;
-    transform.m34           = _perspective;
-    [containerView.layer setSublayerTransform:transform];
+    CATransform3D transform               = CATransform3DIdentity;
+    transform.m34                         = _perspective;
+    containerView.layer.sublayerTransform = transform;
     
     // Give both VCs the same start frame
     CGRect initialFrame     = [transitionContext initialFrameForViewController:fromViewController];
@@ -110,8 +110,10 @@
         for (UIView *snapshot in [fromViewSnapshots arrayByAddingObjectsFromArray:toViewSnapshots])
             [snapshot removeFromSuperview];
         
+        containerView.layer.sublayerTransform = CATransform3DIdentity;
+        
           // inform the context of completion
-        [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+        [transitionContext completeTransition:!cancelled];
     }];
 }
 

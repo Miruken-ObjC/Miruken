@@ -10,7 +10,10 @@
 //
 
 #import "MKAnimatedTransition.h"
+#import "MKTransitionOptions.h"
 
 @interface MKPortalTransition : MKAnimatedTransition
+
+@property (assign, nonatomic) MKTransitionFadeStyle fadeStyle;
 
 @end

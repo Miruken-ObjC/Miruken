@@ -8,8 +8,11 @@
 
 #import "MKAnimatedTransition.h"
 #import "MKStartingPosition.h"
+#import "MKTransitionOptions.h"
 
 @interface MKPushMoveInTransition : MKAnimatedTransition
+
+@property (assign, nonatomic) MKTransitionFadeStyle fadeStyle;
 
 + (instancetype)pushFromPosition:(MKStartingPosition)position;
 

@@ -34,12 +34,22 @@
 
 - (id<MKPresentationOptions>)optionsWithClass:(Class)optionsClass
 {
+    if (optionsClass == nil)
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"optionsClass cannot be nil"
+                                     userInfo:nil];
+    
     NSUInteger idx = [self _indexOfOptionsWithClass:optionsClass];
     return (idx != NSNotFound) ? _options[idx] : nil;
 }
 
 - (void)addOrMergeOptions:(id<MKPresentationOptions>)options
 {
+    if (options == nil)
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"options cannot be nil"
+                                     userInfo:nil];
+    
     if ([options isKindOfClass:MKPresentationPolicy.class])
     {
         MKPresentationPolicy *policy = options;
@@ -58,6 +68,11 @@
 
 - (void)removeOptionsWithClass:(Class)optionsClass
 {
+    if (optionsClass == nil)
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"optionsClass cannot be nil"
+                                     userInfo:nil];
+    
     NSUInteger idx = [self _indexOfOptionsWithClass:optionsClass];
     if (idx != NSNotFound)
         [_options removeObjectAtIndex:idx];
@@ -71,6 +86,11 @@
 
 - (void)mergeIntoOptions:(id<MKPresentationOptions>)otherOptions
 {
+    if (otherOptions == nil)
+        @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                       reason:@"otherOptions cannot be nil"
+                                     userInfo:nil];
+
     if ([otherOptions isKindOfClass:MKPresentationPolicy.class])
     {
         MKPresentationPolicy *otherPolicy = otherOptions;
