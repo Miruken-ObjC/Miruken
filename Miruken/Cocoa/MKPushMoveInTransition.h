@@ -8,7 +8,6 @@
 
 #import "MKAnimatedTransition.h"
 #import "MKStartingPosition.h"
-#import "MKTransitionOptions.h"
 
 @interface MKPushMoveInTransition : MKAnimatedTransition
 

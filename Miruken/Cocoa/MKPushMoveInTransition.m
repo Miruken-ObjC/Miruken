@@ -53,31 +53,25 @@
     [self _setView:toView startingPosition:startingPosition inContainerView:containerView inverse:NO];
     [containerView addSubview:toView];
     [containerView bringSubviewToFront:toView];
-    
-    [self fadeFromView:fromView toView:toView initial:YES];
+
+    BOOL clipToBounds           = containerView.clipsToBounds;
+    containerView.clipsToBounds = YES;
+    [self fade:_fadeStyle fromView:fromView toView:toView initial:YES];
     
     [UIView transitionWithView:containerView
                       duration:[self transitionDuration:transitionContext]
                        options:0 animations:^{
-                           [self fadeFromView:fromView toView:toView initial:NO];
+                           [self fade:_fadeStyle fromView:fromView toView:toView initial:NO];
                            if ((_push || self.isPresenting == NO) && fromView)
                                [self _setView:fromView startingPosition:startingPosition
                                     inContainerView:containerView inverse:YES];
                            toView.frame = containerView.frame;
                        } completion:^(BOOL finished) {
                            [fromView removeFromSuperview];
+                           containerView.clipsToBounds = clipToBounds;
                            BOOL cancelled = [transitionContext transitionWasCancelled];
                            [transitionContext completeTransition:!cancelled];
                        }];
-}
-
-- (void)fadeFromView:(UIView *)fromView toView:(UIView *)toView initial:(BOOL)initial
-{
-    initial = self.isPresenting ? initial : !initial;
-    if (_fadeStyle == MKTransitionFadeStyleIn || _fadeStyle == MKTransitionFadeStyleInOut)
-        toView.alpha = initial ? 0.0 : 1.0;
-    else if (_fadeStyle == MKTransitionFadeStyleInOut || _fadeStyle == MKTransitionFadeStyleInOut)
-        fromView.alpha = initial ? 1.0 : 0.0;
 }
 
 - (void)_setView:(UIView *)view startingPosition:(MKStartingPosition)startingPosition

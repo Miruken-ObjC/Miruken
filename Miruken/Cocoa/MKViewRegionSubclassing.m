@@ -26,8 +26,8 @@
 - (BOOL)_canPresentWithOptions:(id<MKPresentationOptions>)options
 {
     BOOL canPresent = NO;
-    SEL selector = NSSelectorFromString([NSString stringWithFormat:@"canPresentWith%@:",
-                                         NSStringFromClass([options class])]);
+    SEL  selector   = NSSelectorFromString([NSString stringWithFormat:@"canPresentWith%@:",
+                                            NSStringFromClass([options class])]);
     if ([self respondsToSelector:selector])
     {
         NSMethodSignature *signature  = [self methodSignatureForSelector:selector];
@@ -38,6 +38,7 @@
         if (strcmp([signature methodReturnType], @encode(BOOL)) == 0)
             [invocation getReturnValue:&canPresent];
     }
+    
     return canPresent;
 }
 
@@ -48,6 +49,8 @@
             return NO;
     return YES;
 }
+
+#pragma mark - MKViewRegion
 
 - (id<MKPromise>)presentViewController:(UIViewController *)viewController
 {

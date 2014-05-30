@@ -60,11 +60,10 @@
 
 - (void)initPartialViewRegion
 {
-    self.autoresizingMask = UIViewAutoresizingFlexibleHeight
-                          | UIViewAutoresizingFlexibleWidth;
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     MKViewControllerWapperView *wrapperView = [[MKViewControllerWapperView alloc] initWithFrame:self.bounds];
     [self addSubview:wrapperView];
-    _wrapperView          = wrapperView;
+    _wrapperView = wrapperView;
 }
 
 - (id)controller

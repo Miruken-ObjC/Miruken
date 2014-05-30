@@ -111,8 +111,6 @@
             [snapshot removeFromSuperview];
         
         containerView.layer.sublayerTransform = CATransform3DIdentity;
-        
-          // inform the context of completion
         [transitionContext completeTransition:!cancelled];
     }];
 }

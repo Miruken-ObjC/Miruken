@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MKStartingPosition.h"
+#import <MKTransitionOptions.h>
 
 @interface MKAnimatedTransition : NSObject
     <UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning>
@@ -20,6 +21,11 @@
          toViewController:(UIViewController *)toViewController;
 
 - (void)completeTransition:(id<UIViewControllerContextTransitioning>)transitionContext;
+
+- (void)fade:(MKTransitionFadeStyle)fadeStyle fromView:(UIView *)fromView toView:(UIView *)toView
+     initial:(BOOL)initial;
+
+- (MKTransitionFadeStyle)inverseFadeStyle:(MKTransitionFadeStyle)fadeStyle;
 
 - (MKStartingPosition)inverseStartingPosition:(MKStartingPosition)position;
 

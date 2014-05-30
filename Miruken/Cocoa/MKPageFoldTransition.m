@@ -52,8 +52,8 @@
     [containerView addSubview:toView];
     
     // Add a perspective transform
-    CATransform3D transform = CATransform3DIdentity;
-    transform.m34           = _perspective;
+    CATransform3D transform               = CATransform3DIdentity;
+    transform.m34                         = _perspective;
     containerView.layer.sublayerTransform = transform;
     
     CGSize  size            = toView.frame.size;
@@ -142,6 +142,8 @@
         // restore the to- and from- to the initial location
         toView.frame   = containerView.bounds;
         fromView.frame = containerView.bounds;
+        
+        containerView.layer.sublayerTransform = CATransform3DIdentity;
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];
     }];

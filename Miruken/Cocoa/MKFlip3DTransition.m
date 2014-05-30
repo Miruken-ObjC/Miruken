@@ -54,9 +54,9 @@
     [containerView addSubview:toView];
     
     // Add a perspective transform
-    CATransform3D transform = CATransform3DIdentity;
-    transform.m34           = _perspective;
-    [containerView.layer setSublayerTransform:transform];
+    CATransform3D transform               = CATransform3DIdentity;
+    transform.m34                         = _perspective;
+    containerView.layer.sublayerTransform = transform;
     
     // Give both VCs the same start frame
     CGRect initialFrame     = [transitionContext initialFrameForViewController:fromViewController];
@@ -83,6 +83,7 @@
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
         toView.layer.transform = [self _rotate:0.0 startingPosition:startingPosition];
     } completion:^(BOOL finished) {
+        containerView.layer.sublayerTransform = CATransform3DIdentity;
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];
     }];

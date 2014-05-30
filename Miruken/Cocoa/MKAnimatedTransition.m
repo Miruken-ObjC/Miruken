@@ -75,6 +75,32 @@
 {
 }
 
+- (void)fade:(MKTransitionFadeStyle)fadeStyle fromView:(UIView *)fromView toView:(UIView *)toView
+     initial:(BOOL)initial
+{
+    fadeStyle = self.isPresenting ? fadeStyle : [self inverseFadeStyle:fadeStyle];
+    
+    if (fadeStyle == MKTransitionFadeStyleIn || fadeStyle == MKTransitionFadeStyleInOut)
+        toView.alpha = initial ? 0.0 : 1.0;
+    
+    if (fadeStyle == MKTransitionFadeStyleOut || fadeStyle == MKTransitionFadeStyleInOut)
+        fromView.alpha = initial ? 1.0 : 0.0;
+}
+
+- (MKTransitionFadeStyle)inverseFadeStyle:(MKTransitionFadeStyle)fadeStyle
+{
+    switch (fadeStyle) {
+        case MKTransitionFadeStyleIn:
+            return MKTransitionFadeStyleOut;
+            
+        case MKTransitionFadeStyleOut:
+            return MKTransitionFadeStyleIn;
+            
+        default:
+            return fadeStyle;
+    }
+}
+
 - (MKStartingPosition)inverseStartingPosition:(MKStartingPosition)position
 {
     switch (position) {

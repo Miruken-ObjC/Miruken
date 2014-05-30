@@ -11,9 +11,16 @@
 
 #import "MKPortalTransition.h"
 
-#define ZOOM_SCALE 0.8
+#define kZoomScale (0.8)
 
 @implementation MKPortalTransition
+
+- (id)init
+{
+    if (self = [super init])
+        _fadeStyle = MKTransitionFadeStyleNone;
+    return self;
+}
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
        fromViewController:(UIViewController *)fromViewController
@@ -46,7 +53,7 @@
                                                 afterScreenUpdates:YES
                                                      withCapInsets:UIEdgeInsetsZero];
     CATransform3D scale            = CATransform3DIdentity;
-    toViewSnapshot.layer.transform = CATransform3DScale(scale, ZOOM_SCALE, ZOOM_SCALE, 1);
+    toViewSnapshot.layer.transform = CATransform3DScale(scale, kZoomScale, kZoomScale, 1);
     [containerView addSubview:toViewSnapshot];
     [containerView sendSubviewToBack:toViewSnapshot];
     toView.hidden                  = YES;
@@ -76,12 +83,19 @@
     
     // animate
 
+    [self fade:_fadeStyle fromView:leftHandView toView:toViewSnapshot initial:YES];
+    [self fade:_fadeStyle fromView:rightHandView toView:toViewSnapshot initial:YES];
+    
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
         // Open the portal doors of the from-view
         leftHandView.frame    = CGRectOffset(leftHandView.frame, - leftHandView.frame.size.width, 0);
         rightHandView.frame   = CGRectOffset(rightHandView.frame, rightHandView.frame.size.width, 0);
-         
+        
+        // Fade the portal doors of the from-view and to-view
+        [self fade:_fadeStyle fromView:leftHandView toView:toViewSnapshot initial:NO];
+        [self fade:_fadeStyle fromView:rightHandView toView:toViewSnapshot initial:NO];
+                            
         // zoom in the to-view
         toViewSnapshot.center = toView.center;
         toViewSnapshot.frame  = toView.frame;
@@ -154,15 +168,22 @@
     
     // animate
     
+    [self fade:_fadeStyle fromView:fromView toView:leftHandView initial:YES];
+    [self fade:_fadeStyle fromView:fromView toView:rightHandView initial:YES];
+    
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
          // Close the portal doors of the to-view
-         leftHandView.frame       = CGRectOffset(leftHandView.frame, leftHandView.frame.size.width, 0);
-         rightHandView.frame      = CGRectOffset(rightHandView.frame, - rightHandView.frame.size.width, 0);
+        leftHandView.frame       = CGRectOffset(leftHandView.frame, leftHandView.frame.size.width, 0);
+        rightHandView.frame      = CGRectOffset(rightHandView.frame, - rightHandView.frame.size.width, 0);
          
+        // Fade the portal doors of the to-view and from-view
+        [self fade:_fadeStyle fromView:fromView toView:leftHandView initial:NO];
+        [self fade:_fadeStyle fromView:fromView toView:rightHandView initial:NO];
+                            
          // Zoom out the from-view
          CATransform3D scale      = CATransform3DIdentity;
-         fromView.layer.transform = CATransform3DScale(scale, ZOOM_SCALE, ZOOM_SCALE, 1);
+         fromView.layer.transform = CATransform3DScale(scale, kZoomScale, kZoomScale, 1);
      } completion:^(BOOL finished) {
          BOOL cancelled = [transitionContext transitionWasCancelled];
          if (cancelled)
