@@ -42,9 +42,9 @@
     return canPresent;
 }
 
-- (BOOL)canPresentWithMKPresentationPolicy:(MKPresentationPolicy *)poicy
+- (BOOL)canPresentWithMKPresentationPolicy:(MKPresentationPolicy *)policy
 {
-    for (id<MKPresentationOptions> options in poicy.options)
+    for (id<MKPresentationOptions> options in policy.options)
         if ([self canPresentWithOptions:options] == NO)
             return NO;
     return YES;

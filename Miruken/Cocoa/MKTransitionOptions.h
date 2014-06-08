@@ -20,6 +20,7 @@ typedef NS_ENUM(NSUInteger, MKTransitionFadeStyle) {
 @property (assign, nonatomic) NSTimeInterval                            animationDuration;
 @property (assign, nonatomic) MKTransitionFadeStyle                     fadeStyle;
 @property (assign, nonatomic) CGFloat                                   perspective;
+@property (assign, nonatomic) BOOL                                      clipToBounds;
 @property (strong, nonatomic) id<UIViewControllerTransitioningDelegate> transitionDelegate;
 
 @end

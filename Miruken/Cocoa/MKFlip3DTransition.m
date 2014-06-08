@@ -28,6 +28,7 @@
     {
         _startingPosition = MKStartingPositionTop;
         _perspective      = kDefaultPerspective;
+        _clipToBounds     = NO;
     }
     return self;
 }
@@ -59,17 +60,19 @@
     containerView.layer.sublayerTransform = transform;
     
     // Give both VCs the same start frame
-    CGRect initialFrame     = [transitionContext initialFrameForViewController:fromViewController];
-    fromView.frame          = initialFrame;
-    toView.frame            = initialFrame;
+    CGRect initialFrame         = [transitionContext initialFrameForViewController:fromViewController];
+    fromView.frame              = initialFrame;
+    toView.frame                = initialFrame;
     
     // flip the to VC halfway round - hiding it
-    toView.layer.transform  = [self _rotate:-M_PI_2 startingPosition:startingPosition];
-    toView.hidden           = YES;
+    toView.layer.transform      = [self _rotate:-M_PI_2 startingPosition:startingPosition];
+    toView.hidden               = YES;
     
     // animate
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
-    NSTimeInterval halfway  = duration / 2.0;
+    NSTimeInterval duration     = [self transitionDuration:transitionContext];
+    NSTimeInterval halfway      = duration / 2.0;
+    BOOL           clipToBoubds = containerView.clipsToBounds;
+    containerView.clipsToBounds = _clipToBounds;
     
     [UIView animateWithDuration:halfway delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -83,6 +86,7 @@
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
         toView.layer.transform = [self _rotate:0.0 startingPosition:startingPosition];
     } completion:^(BOOL finished) {
+        containerView.clipsToBounds           = clipToBoubds;
         containerView.layer.sublayerTransform = CATransform3DIdentity;
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];

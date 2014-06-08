@@ -8,6 +8,9 @@
 
 #import "MKPushMoveInTransition.h"
 
+#define kPushAnimationDuration (0.5f)
+#define kMoveAnimationDuration (0.4f)
+
 @implementation MKPushMoveInTransition
 {
     BOOL               _push;
@@ -20,6 +23,7 @@
     push->_push                  = YES;
     push->_startingPosition      = position;
     push->_fadeStyle             = MKTransitionFadeStyleNone;
+    push.animationDuration       = kPushAnimationDuration;
     return push;
 }
 
@@ -29,6 +33,7 @@
     moveIn->_push                  = NO;
     moveIn->_startingPosition      = position;
     moveIn->_fadeStyle             = MKTransitionFadeStyleNone;
+    moveIn.animationDuration       = kMoveAnimationDuration;
     return moveIn;
 }
 

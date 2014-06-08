@@ -10,12 +10,15 @@
 #import "MKPresentationOptions.h"
 #import "MKModalScope.h"
 #import "MKTransitionScope.h"
+#import "MKNavigationScope.h"
 
 @interface MKCallbackHandler (Presentation)
 
 - (MKModalScope *)modal;
 
 - (MKTransitionScope *)transition;
+
+- (MKNavigationScope *)navigation;
 
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options;
 

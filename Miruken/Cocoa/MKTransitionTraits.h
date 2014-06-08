@@ -21,4 +21,6 @@
 
 - (instancetype)perspective:(CGFloat)perspective;
 
+- (instancetype)clipToBounds:(BOOL)clipToBounds;
+
 @end

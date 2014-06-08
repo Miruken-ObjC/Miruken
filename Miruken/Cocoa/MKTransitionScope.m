@@ -321,6 +321,13 @@
     return [self _addOrMergeTransitionOptions:transitionOptions];
 }
 
+- (instancetype)clipToBounds:(BOOL)clipToBounds
+{
+    MKTransitionOptions *transitionOptions = [MKTransitionOptions new];
+    transitionOptions.clipToBounds         = clipToBounds;
+    return [self _addOrMergeTransitionOptions:transitionOptions];
+}
+
 - (instancetype)_setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)delegate
 {
     MKTransitionOptions *transitionOptions = [MKTransitionOptions new];

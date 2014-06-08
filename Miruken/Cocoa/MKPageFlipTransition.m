@@ -22,6 +22,7 @@
     {
         self.animationDuration = kPageFlipAnimationDuration;
         _perspective           = kDefaultPerspective;
+        _clipToBounds          = NO;
     }
     return self;
 }
@@ -62,16 +63,17 @@
     UIView  *flippedSectionOfFromView = fromViewSnapshots[self.isPresenting ? 0 : 1];
     
     // replace the from- and to- views with container views that include gradients
+    UIView  *flippedSectionOfFromViewShadow, *flippedSectionOfToViewShadow;
     flippedSectionOfFromView = [self _addShadowToView:flippedSectionOfFromView
-                                       containerView:containerView
-                                             reverse:self.isPresenting];
-    UIView  *flippedSectionOfFromViewShadow = flippedSectionOfFromView.subviews[1];
+                                        containerView:containerView
+                                              reverse:self.isPresenting
+                                           shadowView:&flippedSectionOfFromViewShadow];
     flippedSectionOfFromViewShadow.alpha    = 0.0;
     
     flippedSectionOfToView = [self _addShadowToView:flippedSectionOfToView
-                                     containerView:containerView
-                                           reverse:!self.isPresenting];
-    UIView  *flippedSectionOfToViewShadow   = flippedSectionOfToView.subviews[1];
+                                      containerView:containerView
+                                            reverse:!self.isPresenting
+                                         shadowView:&flippedSectionOfToViewShadow];
     flippedSectionOfToViewShadow.alpha      = 1.0;
     
     // change the anchor point so that the view rotate around the correct edge
@@ -84,7 +86,9 @@
     flippedSectionOfToView.layer.transform = [self _rotate:self.isPresenting ? -M_PI_2 : M_PI_2];
     
     // animate
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    NSTimeInterval duration     = [self transitionDuration:transitionContext];
+    BOOL clipToBounds           = containerView.clipsToBounds;
+    containerView.clipsToBounds = _clipToBounds;
     
     [UIView animateKeyframesWithDuration:duration delay:0.0 options:0 animations:^{
         [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
@@ -110,6 +114,7 @@
         for (UIView *snapshot in [fromViewSnapshots arrayByAddingObjectsFromArray:toViewSnapshots])
             [snapshot removeFromSuperview];
         
+        containerView.clipsToBounds           = clipToBounds;
         containerView.layer.sublayerTransform = CATransform3DIdentity;
         [transitionContext completeTransition:!cancelled];
     }];
@@ -117,27 +122,28 @@
 
 // adds a gradient to an image by creating a containing UIView with both the given view
 // and the gradient as subviews
-- (UIView *)_addShadowToView:(UIView *)view containerView:(UIView *)containerView reverse:(BOOL)reverse
+- (UIView *)_addShadowToView:(UIView *)view containerView:(UIView *)containerView
+                     reverse:(BOOL)reverse shadowView:(out UIView **)shadowView
 {
     // create a view with the same frame
     UIView *viewWithShadow = [[UIView alloc] initWithFrame:view.frame];
     
     // create a shadow
-    UIView          *shadowView = [[UIView alloc] initWithFrame:viewWithShadow.bounds];
+    *shadowView                 = [[UIView alloc] initWithFrame:viewWithShadow.bounds];
     CAGradientLayer *gradient   = [CAGradientLayer layer];
-    gradient.frame              = shadowView.bounds;
+    gradient.frame              = (*shadowView).bounds;
     gradient.colors             = @[ (id)[UIColor colorWithWhite:0.0 alpha:0.0].CGColor,
                                      (id)[UIColor colorWithWhite:0.0 alpha:0.5].CGColor ];
     gradient.startPoint         = CGPointMake(reverse ? 0.0 : 1.0, 0.0);
     gradient.endPoint           = CGPointMake(reverse ? 1.0 : 0.0, 0.0);
-    [shadowView.layer insertSublayer:gradient atIndex:1];
+    [(*shadowView).layer insertSublayer:gradient atIndex:1];
     
     // add the original view into our new view
     view.frame = view.bounds;
     [viewWithShadow addSubview:view];
     
     // place the shadow on top
-    [viewWithShadow addSubview:shadowView];
+    [viewWithShadow addSubview:*shadowView];
     
     [containerView addSubview:viewWithShadow];
     return viewWithShadow;

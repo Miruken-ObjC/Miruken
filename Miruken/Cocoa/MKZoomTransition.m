@@ -15,7 +15,10 @@
 - (id)init
 {
     if (self = [super init])
+    {
+        _fadeStyle             = MKTransitionFadeStyleNone;
         self.animationDuration = kZoomAnimationDuration;
+    }
     return self;
 }
 
@@ -27,6 +30,8 @@
     UIView *fromView      = fromViewController.view;
     UIView *toView        = toViewController.view;
     
+    [self fade:_fadeStyle fromView:fromView toView:toView initial:YES];
+    
     if (self.isPresenting)
     {
         toView.transform = CGAffineTransformMakeScale(0.0, 0.0);
@@ -36,6 +41,7 @@
             [containerView addSubview:toView];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            [self fade:_fadeStyle fromView:fromView toView:toView initial:NO];
             toView.transform = CGAffineTransformMakeScale(1.0, 1.0);
         } completion:^(BOOL finished) {
             BOOL cancelled = [transitionContext transitionWasCancelled];
@@ -48,6 +54,7 @@
             [containerView insertSubview:toView belowSubview:fromView];
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+            [self fade:_fadeStyle fromView:fromView toView:toView initial:NO];
             fromView.transform = CGAffineTransformMakeScale(0.0, 0.0);
         } completion:^(BOOL finished) {
             BOOL cancelled = [transitionContext transitionWasCancelled];

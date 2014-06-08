@@ -14,6 +14,7 @@
 @interface MKFlip3DTransition : MKAnimatedTransition
 
 @property (assign, nonatomic) CGFloat perspective;
+@property (assign, nonatomic) BOOL    clipToBounds;
 
 + (instancetype)turnFromPosition:(MKStartingPosition)position;
 

@@ -51,22 +51,21 @@
     
     if (fromView == nil || toView == nil)
     {
-        [containerView addSubview:toView];
-        return [self completeTransition:transitionContext];
+        [self completeTransition:transitionContext];
         return;
     }
     
-    [transitionContext.containerView addSubview:fromViewController.view];
-    [transitionContext.containerView addSubview:toViewController.view];
+    [containerView addSubview:fromView];
+    [containerView addSubview:toView];
     
-    CALayer *fromLayer, *toLayer;
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    CALayer        *fromLayer, *toLayer;
+    NSTimeInterval  duration = [self transitionDuration:transitionContext];
     
     if (self.isPresenting)
     {
         fromView.userInteractionEnabled = NO;
-        fromLayer                       = fromViewController.view.layer;
-        toLayer                         = toViewController.view.layer;
+        fromLayer                       = fromView.layer;
+        toLayer                         = toView.layer;
         
         // Change anchor point and reposition it.
         CGRect oldFrame                 = fromLayer.frame;
@@ -100,21 +99,21 @@
               // interaction since the presentation has been cancelled
               if (cancelled)
               {
-                  [transitionContext.containerView bringSubviewToFront:fromViewController.view];
-                  fromViewController.view.userInteractionEnabled = YES;
+                  [containerView bringSubviewToFront:fromView];
+                  fromView.userInteractionEnabled = YES;
               }
               
-              fromViewController.view.layer.transform         = CATransform3DIdentity;
-              toViewController.view.layer.transform           = CATransform3DIdentity;
-              transitionContext.containerView.layer.transform = CATransform3DIdentity;
+              fromView.layer.transform      = CATransform3DIdentity;
+              toView.layer.transform        = CATransform3DIdentity;
+              containerView.layer.transform = CATransform3DIdentity;
               [transitionContext completeTransition:!cancelled];
           }];
     }
     else
     {
         toView.userInteractionEnabled = YES;
-        fromLayer                     = toViewController.view.layer;
-        toLayer                       = fromViewController.view.layer;
+        fromLayer                     = toView.layer;
+        toLayer                       = fromView.layer;
         
         // Reset to initial transform
         sourceLastTransform(fromLayer, _perspective);
@@ -143,13 +142,13 @@
               // interaction of the to view since the dismissal has been cancelled
               if (cancelled)
               {
-                  [transitionContext.containerView bringSubviewToFront:fromViewController.view];
+                  [containerView bringSubviewToFront:fromView];
                   toViewController.view.userInteractionEnabled = NO;
               }
               
-              fromViewController.view.layer.transform         = CATransform3DIdentity;
-              toViewController.view.layer.transform           = CATransform3DIdentity;
-              transitionContext.containerView.layer.transform = CATransform3DIdentity;
+              fromView.layer.transform      = CATransform3DIdentity;
+              toView.layer.transform        = CATransform3DIdentity;
+              containerView.layer.transform = CATransform3DIdentity;
               [transitionContext completeTransition:!cancelled];
           }];
     }

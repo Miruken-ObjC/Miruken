@@ -18,7 +18,7 @@
 + (instancetype)transitionWithOptions:(UIViewAnimationOptions)options
 {
     MKAnimationOptionsTransition *transition = [self new];
-    transition->_animationOptions                = options;
+    transition->_animationOptions            = options;
     return transition;
 }
 
@@ -30,42 +30,39 @@
     UIView *fromView      = fromViewController.view;
     UIView *toView        = toViewController.view;
 
-    if (self.isPresenting && fromView && toView)
+    UIViewAnimationOptions animationOptions = self.isPresenting
+                         ? _animationOptions
+                         : [self inferInverseAnimationOptions];
+    
+    if (fromView && toView)
     {
         [containerView addSubview:fromView];
         [containerView addSubview:toView];
         [UIView transitionFromView:fromView
                             toView:toView
                           duration:[self transitionDuration:transitionContext]
-                           options:_animationOptions
+                           options:animationOptions
                         completion:^(BOOL finished) {
                             BOOL cancelled = [transitionContext transitionWasCancelled];
                             [transitionContext completeTransition:!cancelled];
                         }];
     }
-    else
+    else if ([self _shouldPerformTransitionWithOptions:animationOptions])
     {
-        UIViewAnimationOptions animationOptions = self.isPresenting
-                                                ? _animationOptions
-                                                : [self inferInverseAnimationOptions];
-        
-        if ([self _shouldPerformTransitionWithOptions:animationOptions])
-        {
-            [UIView transitionWithView:containerView
-                              duration:[self transitionDuration:transitionContext]
-                               options:animationOptions animations:^{
-                                   if (self.isPresenting)
-                                       [containerView addSubview:toView];
-                                   else
-                                       [fromView removeFromSuperview];
-                               } completion:^(BOOL finished) {
-                                   BOOL cancelled = [transitionContext transitionWasCancelled];
-                                   [transitionContext completeTransition:!cancelled];
-                               }];
-        }
-        else
-            [transitionContext completeTransition:YES];
+        [UIView transitionWithView:containerView
+                          duration:[self transitionDuration:transitionContext]
+                           options:animationOptions animations:^{
+                               if (self.isPresenting)
+                                   [containerView addSubview:toView];
+                               else
+                                   [fromView removeFromSuperview];
+                           } completion:^(BOOL finished) {
+                               BOOL cancelled = [transitionContext transitionWasCancelled];
+                               [transitionContext completeTransition:!cancelled];
+                           }];
     }
+    else
+        [transitionContext completeTransition:YES];
 }
 
 - (UIViewAnimationOptions)inferInverseAnimationOptions
@@ -93,6 +90,10 @@
             
         case UIViewAnimationOptionTransitionCurlDown:
             options |= UIViewAnimationOptionTransitionCurlUp;
+            break;
+
+        case UIViewAnimationOptionTransitionCurlUp:
+            options |= UIViewAnimationOptionTransitionCurlDown;
             break;
             
         default:

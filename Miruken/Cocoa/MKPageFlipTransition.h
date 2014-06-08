@@ -14,5 +14,6 @@
 @interface MKPageFlipTransition : MKAnimatedTransition
 
 @property (assign, nonatomic) CGFloat perspective;
+@property (assign, nonatomic) BOOL    clipToBounds;
 
 @end

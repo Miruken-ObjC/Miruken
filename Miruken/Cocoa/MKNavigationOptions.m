@@ -8,11 +8,9 @@
 
 #import "MKNavigationOptions.h"
 #import "MKNavigationTransitionWrapper.h"
+#import <objc/runtime.h>
 
 @implementation MKNavigationOptions
-{
-    MKNavigationTransitionWrapper *_navigationDelegate;
-}
 
 - (void)applyPolicyToViewController:(UIViewController *)viewController
 {
@@ -27,10 +25,12 @@
         if (dummyController.transitioningDelegate)
         {
             UINavigationController *navigationController = (UINavigationController *)viewController;
-            _navigationDelegate = [MKNavigationTransitionWrapper
+            MKNavigationTransitionWrapper *navigationDelegate = [MKNavigationTransitionWrapper
                                    wrapNavigation:navigationController.delegate
                                    withTransition:dummyController.transitioningDelegate];
-            navigationController.delegate = _navigationDelegate;
+            // Retain the MKNavigationTransitionWrapper in the UINavigationController
+            objc_setAssociatedObject(viewController, _cmd, navigationDelegate, OBJC_ASSOCIATION_RETAIN);
+            navigationController.delegate = navigationDelegate;
         }
     }
 }

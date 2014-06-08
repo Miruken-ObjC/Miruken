@@ -11,7 +11,7 @@
 #import "MKDynamicCallbackHandler.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
-#import "MKTransitionOptions.h"
+#import "MKNavigationOptions.h"
 #import "MKTransitionContext.h"
 #import "MKCallbackHandler+Resolvers.h"
 #import "MKContext+Subscribe.h"
@@ -98,6 +98,11 @@
     return YES;
 }
 
+- (BOOL)canPresentWithMKNavigationOptions:(MKNavigationOptions *)options
+{
+    return YES;
+}
+
 - (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
                             withPolicy:(MKPresentationPolicy *)policy
 {
@@ -155,7 +160,7 @@
             }];
 
         UIViewController *owningController = [self _owningViewController];
-        [owningController  addChildViewController:toViewController];
+        [owningController addChildViewController:toViewController];
         [toViewController didMoveToParentViewController:owningController];
         [_wrapperView wrapView:toViewController.view];
         

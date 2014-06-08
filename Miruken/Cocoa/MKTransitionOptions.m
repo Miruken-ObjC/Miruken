@@ -15,6 +15,7 @@
         unsigned int animationDuration:1;
         unsigned int fadeStyle:1;
         unsigned int perspective:1;
+        unsigned int clipToBounds:1;
     } _specified;
 }
 
@@ -36,6 +37,12 @@
     _specified.perspective = YES;
 }
 
+- (void)setClipToBounds:(BOOL)clipToBounds
+{
+    _clipToBounds           = clipToBounds;
+    _specified.clipToBounds = YES;
+}
+
 - (void)setTransitionDelegate:(id<UIViewControllerTransitioningDelegate>)transitionDelegate
 {
     _transitionDelegate = transitionDelegate;
@@ -48,15 +55,19 @@
         if (_specified.animationDuration &&
             [_transitionDelegate respondsToSelector:@selector(setAnimationDuration:)])
             [(id)_transitionDelegate setAnimationDuration:_animationDuration];
-        
-        if (_specified.perspective &&
-            [_transitionDelegate respondsToSelector:@selector(setPerspective:)])
-            [(id)_transitionDelegate setPerspective:_perspective];
-        
+
         if (_specified.fadeStyle &&
             [_transitionDelegate respondsToSelector:@selector(setFadeStyle:)])
             [(id)_transitionDelegate setFadeStyle:_fadeStyle];
         
+        if (_specified.perspective &&
+            [_transitionDelegate respondsToSelector:@selector(setPerspective:)])
+            [(id)_transitionDelegate setPerspective:_perspective];
+
+        if (_specified.clipToBounds &&
+            [_transitionDelegate respondsToSelector:@selector(setClipToBounds:)])
+            [(id)_transitionDelegate setClipToBounds:_clipToBounds];
+
         viewController.transitioningDelegate = _transitionDelegate;
     }
 }
@@ -76,6 +87,9 @@
 
     if (_specified.perspective && (transitionOptions->_specified.perspective == NO))
         transitionOptions.perspective = _perspective;
+
+    if (_specified.clipToBounds && (transitionOptions->_specified.clipToBounds == NO))
+        transitionOptions.clipToBounds = _clipToBounds;
 
     if (_transitionDelegate && (transitionOptions->_transitionDelegate == nil))
         transitionOptions.transitionDelegate = _transitionDelegate;

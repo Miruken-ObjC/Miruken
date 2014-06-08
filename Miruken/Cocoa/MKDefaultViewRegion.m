@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MKDefaultViewRegion.h"
 #import "MKModalOptions.h"
-#import "MKTransitionOptions.h"
+#import "MKNavigationOptions.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
 #import "MKContext+Subscribe.h"
@@ -44,6 +44,11 @@
 }
 
 - (BOOL)canPresentWithMKTransitionOptions:(MKTransitionOptions *)options
+{
+    return YES;
+}
+
+- (BOOL)canPresentWithMMKNavigationOptions:(MKNavigationOptions *)options
 {
     return YES;
 }

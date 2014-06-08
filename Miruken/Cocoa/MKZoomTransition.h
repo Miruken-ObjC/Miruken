@@ -10,4 +10,6 @@
 
 @interface MKZoomTransition : MKAnimatedTransition
 
+@property (assign, nonatomic) MKTransitionFadeStyle fadeStyle;
+
 @end

@@ -56,26 +56,26 @@
     toViewSnapshot.layer.transform = CATransform3DScale(scale, kZoomScale, kZoomScale, 1);
     [containerView addSubview:toViewSnapshot];
     [containerView sendSubviewToBack:toViewSnapshot];
-    toView.hidden                  = YES;
-    
+    [containerView sendSubviewToBack:toView];
+ 
     // Create two-part snapshots of the from- view
     
     // snapshot the left-hand side of the from- view
-    CGRect  leftSnapshotRegion = CGRectMake(0, 0, fromView.frame.size.width / 2,
+    CGRect  leftSnapshotRegion  = CGRectMake(0, 0, fromView.frame.size.width / 2,
                                             fromView.frame.size.height);
-    UIView *leftHandView       = [fromView resizableSnapshotViewFromRect:leftSnapshotRegion
+    UIView *leftHandView        = [fromView resizableSnapshotViewFromRect:leftSnapshotRegion
                                                       afterScreenUpdates:NO
                                                            withCapInsets:UIEdgeInsetsZero];
-    leftHandView.frame         = leftSnapshotRegion;
+    leftHandView.frame          = leftSnapshotRegion;
     [containerView addSubview:leftHandView];
     
     // snapshot the right-hand side of the from- view
     CGRect  rightSnapshotRegion = CGRectMake(fromView.frame.size.width / 2, 0,
                                              fromView.frame.size.width / 2, fromView.frame.size.height);
-    UIView *rightHandView      = [fromView resizableSnapshotViewFromRect:rightSnapshotRegion
+    UIView *rightHandView       = [fromView resizableSnapshotViewFromRect:rightSnapshotRegion
                                                       afterScreenUpdates:NO
                                                            withCapInsets:UIEdgeInsetsZero];
-    rightHandView.frame        = rightSnapshotRegion;
+    rightHandView.frame         = rightSnapshotRegion;
     [containerView addSubview:rightHandView];
     
     // remove the view that was snapshotted
@@ -108,7 +108,6 @@
         }
         else
         {
-            toView.hidden = NO;
             [containerView addSubview:toView];
             [fromView removeFromSuperview];
         }

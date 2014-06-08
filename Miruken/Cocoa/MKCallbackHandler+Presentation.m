@@ -24,6 +24,11 @@
     return [MKTransitionScope for:self];
 }
 
+- (MKNavigationScope *)navigation
+{
+    return [MKNavigationScope for:self];
+}
+
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options
 {
     MKPresentationPolicy *policy = [MKPresentationPolicy new];

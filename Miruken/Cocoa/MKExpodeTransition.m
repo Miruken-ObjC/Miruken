@@ -42,9 +42,11 @@
         [containerView sendSubviewToBack:toView];
     }
 
-    CGSize          size      = toView ? toView.frame.size : fromView.frame.size;
-    CGFloat         xFactor   = 10.0f;
-    CGFloat         yFactor   = xFactor * size.height / size.width;
+    CGSize  size        = toView ? toView.frame.size : fromView.frame.size;
+    CGFloat xFactor     = 10.0f;
+    CGFloat yFactor     = xFactor * size.height / size.width;
+    CGFloat pieceWidth  = size.width / xFactor;
+    CGFloat pieceHeight = size.height / yFactor;
     
     // snapshot the from view, this makes subsequent snaphots more performant
     UIView *fromViewSnapshot  = [fromView snapshotViewAfterScreenUpdates:NO];
@@ -52,11 +54,11 @@
     
     // create a snapshot for each of the exploding pieces
     NSMutableArray *snapshots = [NSMutableArray new];
-    for (CGFloat x = 0; x < size.width; x += size.width / xFactor)
+    for (CGFloat x = 0; x < size.width; x += pieceWidth)
     {
-        for (CGFloat y = 0; y < size.height; y += size.height / yFactor)
+        for (CGFloat y = 0; y < size.height; y += pieceHeight)
         {
-            CGRect  snapshotRegion = CGRectMake(x, y, size.width / xFactor, size.height / yFactor);
+            CGRect  snapshotRegion = CGRectMake(x, y, pieceWidth, pieceHeight);
             UIView *snapshot       = [fromViewSnapshot resizableSnapshotViewFromRect:snapshotRegion
                                                                   afterScreenUpdates:NO
                                                                        withCapInsets:UIEdgeInsetsZero];
