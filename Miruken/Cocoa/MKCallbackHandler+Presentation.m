@@ -9,6 +9,7 @@
 #import "MKCallbackHandler+Presentation.h"
 #import "MKPresentationPolicyHandler.h"
 #import "MKCallbackHandler+Builders.h"
+#import "MKWindowOptions.h"
 
 @implementation MKCallbackHandler (Presentation)
 
@@ -27,6 +28,20 @@
 - (MKNavigationScope *)navigation
 {
     return [MKNavigationScope for:self];
+}
+
+- (instancetype)windowRoot
+{
+    MKWindowOptions *windowOptions = [MKWindowOptions new];
+    windowOptions.windowRoot       = YES;
+    return [self presentWithOptions:windowOptions];
+}
+
+- (instancetype)newWindow
+{
+    MKWindowOptions *windowOptions = [MKWindowOptions new];
+    windowOptions.newWindow        = YES;
+    return [self presentWithOptions:windowOptions];
 }
 
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options

@@ -10,10 +10,12 @@
 #import "MKDefaultViewRegion.h"
 #import "MKModalOptions.h"
 #import "MKNavigationOptions.h"
+#import "MKWindowOptions.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
 #import "MKContext+Subscribe.h"
 #import "MKCallbackHandler+Resolvers.h"
+#import "MKCallbackHandler+Context.h"
 #import "NSObject+Context.h"
 #import "MKDeferred.h"
 #import "MKMixin.h"
@@ -48,7 +50,12 @@
     return YES;
 }
 
-- (BOOL)canPresentWithMMKNavigationOptions:(MKNavigationOptions *)options
+- (BOOL)canPresentWithMKNavigationOptions:(MKNavigationOptions *)options
+{
+    return YES;
+}
+
+- (BOOL)canPresentWithMKWindowOptions:(MKWindowOptions *)options
 {
     return YES;
 }
@@ -58,6 +65,10 @@
 {
     MKCallbackHandler *composer = self.composer;
     [policy applyPolicyToViewController:viewController];
+    
+    MKWindowOptions *windowOptions = [policy optionsWithClass:MKWindowOptions.class];
+    if (windowOptions)
+        return [self _presentViewControllerWindow:viewController windowOptions:windowOptions];
     
     MKModalOptions *modalOptions = [policy optionsWithClass:MKModalOptions.class];
     if (modalOptions == nil)
@@ -94,6 +105,29 @@
                     _window.rootViewController = nil;
             }];
     }
+    return [[MKDeferred resolved:viewController.context] promise];
+}
+
+- (id<MKPromise>)_presentViewControllerWindow:(UIViewController<MKContextual> *)viewController
+                                windowOptions:(MKWindowOptions *)windowOptions
+{
+    MKContext *context = self.composer.context;
+    
+    if (windowOptions.newWindow)
+    {
+        
+    }
+    else if (windowOptions.windowRoot)
+    {
+        MKContext *rootContext     = [context unwindToRootContext];
+        [MKContextualHelper bindChildContextFrom:rootContext toChild:viewController];
+        _window.rootViewController = viewController;
+        [[(id<MKContextual>)viewController context] subscribeDidEnd:^(id<MKContext> context) {
+            if (_window.rootViewController == viewController)
+                _window.rootViewController = nil;
+        }];
+    }
+    
     return [[MKDeferred resolved:viewController.context] promise];
 }
 

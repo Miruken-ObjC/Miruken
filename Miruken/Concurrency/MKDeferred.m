@@ -362,6 +362,8 @@
 {
     pthread_mutex_lock(&_mutex);
     
+    id __unused keepAlive = self;  // prevent callback suicide
+    
     @try
     {
         // Ignore result if cancelled
@@ -371,13 +373,13 @@
         
         if (_state != MKPromiseStatePending)
             @throw [NSException
-                    exceptionWithName: NSInternalInconsistencyException
-                    reason: @"Deferred can only be resolved in the pending state"
-                    userInfo: nil];
+                    exceptionWithName:NSInternalInconsistencyException
+                               reason:@"Deferred can only be resolved in the pending state"
+                             userInfo:nil];
         
         _state  = MKPromiseStateResolved;
         _result = result;
-        
+
         if (_done)
             for (MKDoneCallback done in _done)
                 done(_result);
@@ -405,6 +407,8 @@
 {    
     pthread_mutex_lock(&_mutex);
     
+    id __unused keepAlive = self;  // prevent callback suicide
+    
     @try
     {
         // Ignore failure if cancelled
@@ -414,13 +418,13 @@
         
         if (_state != MKPromiseStatePending)
             @throw [NSException
-                    exceptionWithName: NSInternalInconsistencyException
-                    reason: @"Deferred can only be rejected in the pending state"
-                    userInfo: nil];
+                    exceptionWithName:NSInternalInconsistencyException
+                               reason:@"Deferred can only be rejected in the pending state"
+                             userInfo:nil];
         
         _state  = MKPromiseStateRejected;
         _result = reason;
-        
+
         if (_fail)
         {
             if (handled == NULL)
@@ -434,7 +438,6 @@
                 always();
         
         _done = _fail = _cancel = _always = _progress = nil;
-        
         return self;
     }
     @finally
@@ -447,6 +450,8 @@
 - (void)cancel
 {
     pthread_mutex_lock(&_mutex);
+    
+    id __unused keepAlive = self;  // prevent callback suicide
     
     @try
     {

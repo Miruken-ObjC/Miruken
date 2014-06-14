@@ -20,6 +20,10 @@
 
 - (MKNavigationScope *)navigation;
 
+- (instancetype)windowRoot;
+
+- (instancetype)newWindow;
+
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options;
 
 @end
