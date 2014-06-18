@@ -8,6 +8,7 @@
 
 #import "MKDeferred.h"
 #import "MKBufferedPromise.h"
+#import "MKWhen.h"
 #import <libkern/OSAtomic.h>
 #import <pthread.h>
 
@@ -46,11 +47,28 @@
     return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)done:(id)when:(MKDoneCallback)done
+{
+    [_deferred done:when:done];
+    return self;
+}
+#pragma clang diagnostic pop
+
 - (instancetype)fail:(MKFailCallback)fail
 {
     [_deferred fail:fail];
     return self;
 }
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)fail:(id)when:(MKFailCallback)fail
+{
+    [_deferred fail:when:fail];
+    return self;
+}
+#pragma clang diagnostic pop
 
 - (instancetype)error:(MKErrorCallback)error
 {
@@ -81,6 +99,15 @@
     [_deferred progress:progress];
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)progress:(id)when:(MKProgressCallback)progress
+{
+    [_deferred progress:when:progress];
+    return self;
+}
+#pragma clang diagnostic pop
 
 - (id<MKPromise>)pipe:(MKDoneFilter)doneFilter
 {
@@ -144,7 +171,6 @@
     NSMutableArray      *_always;
     NSMutableArray      *_progress;
     NSMutableArray      *_notifications;
-    pthread_mutexattr_t  _mutexAttr;
     pthread_mutex_t      _mutex;
     pthread_cond_t       _conditionVariable;
     BOOL                 _failureHandled;
@@ -158,10 +184,12 @@
     if (self = [super init])
     {
         _state = MKPromiseStatePending;
-        pthread_mutexattr_init(&_mutexAttr);
-        pthread_mutexattr_settype(&_mutexAttr, PTHREAD_MUTEX_RECURSIVE);
+        pthread_mutexattr_t  mutexAttr;
+        pthread_mutexattr_init(&mutexAttr);
+        pthread_mutexattr_settype(&mutexAttr, PTHREAD_MUTEX_RECURSIVE);
         pthread_cond_init(&_conditionVariable, NULL);
-        pthread_mutex_init(&_mutex, &_mutexAttr);
+        pthread_mutex_init(&_mutex, &mutexAttr);
+        pthread_mutexattr_destroy(&mutexAttr);
     }
     return self;
 }
@@ -188,8 +216,25 @@
 
 - (instancetype)done:(MKDoneCallback)done
 {
+    return done ? [self done:nil:done] : self;
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)done:(id)when:(MKDoneCallback)done
+{
     if (done == nil)
         return self;
+    
+    if (when)
+    {
+        MKDoneCallback  innerDone = done;
+        MKWhenPredicate condition = [MKWhen criteria:when];
+        done = ^(id result) {
+            if (condition(result))
+                innerDone(result);
+        };
+    }
     
     if (_state == MKPromiseStateResolved)
     {
@@ -198,7 +243,7 @@
     }
     
     pthread_mutex_lock(&_mutex);
-
+    
     @try
     {
         if (_state == MKPromiseStatePending)
@@ -215,11 +260,29 @@
         pthread_mutex_unlock(&_mutex);
     }
 }
+#pragma clang diagnostic pop
 
 - (instancetype)fail:(MKFailCallback)fail
 {
+    return fail ? [self fail:nil:fail] : self;
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)fail:(id)when:(MKFailCallback)fail
+{
     if (fail == nil)
         return self;
+    
+    if (when)
+    {
+        MKFailCallback  innerFail = fail;
+        MKWhenPredicate condition = [MKWhen criteria:when];
+        fail = ^(id reason, BOOL *handled) {
+            if (condition(reason))
+                innerFail(reason, handled);
+        };
+    }
     
     if (_state == MKPromiseStateRejected)
     {
@@ -245,6 +308,7 @@
         pthread_mutex_unlock(&_mutex);
     }
 }
+#pragma clang diagnostic pop
 
 - (instancetype)error:(MKErrorCallback)error
 {
@@ -321,11 +385,28 @@
 
 - (id<MKPromise>)progress:(MKProgressCallback)progress
 {
+    return progress ? [self progress:nil:progress] : self;
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (id<MKPromise>)progress:(id)when:(MKProgressCallback)progress
+{
     if (progress == nil)
         return self;
     
+    if (when)
+    {
+        MKProgressCallback innerProgress = progress;
+        MKWhenPredicate    condition     = [MKWhen criteria:when];
+        progress = ^(id progress, BOOL queued) {
+            if (condition(progress))
+                innerProgress(progress, queued);
+        };
+    }
+    
     pthread_mutex_lock(&_mutex);
-
+    
     @try
     {
         if (_state == MKPromiseStatePending)
@@ -347,6 +428,7 @@
         pthread_mutex_unlock(&_mutex);
     }
 }
+#pragma clang diagnostic pop
 
 - (id<MKBufferedPromise>)buffer
 {
@@ -678,7 +760,6 @@
     _result    = nil;
     _done = _fail = _cancel = _always = _progress = nil;
     
-    pthread_mutexattr_destroy(&_mutexAttr);
     pthread_cond_destroy(&_conditionVariable);
     pthread_mutex_destroy(&_mutex);
 }
@@ -774,11 +855,29 @@
     return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)done:(id)when:(MKDoneCallback)done
+{
+    [_pipe done:when:done];
+    return self;
+}
+#pragma clang diagnostic pop
+
 - (id<MKPromise>)fail:(MKFailCallback)fail
 {
     [_pipe fail:fail];
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)fail:(id)when:(MKFailCallback)fail
+{
+    [_pipe fail:when:fail];
+    return self;
+}
+#pragma clang diagnostic pop
 
 - (id<MKPromise>)error:(MKErrorCallback)error
 {
@@ -809,6 +908,15 @@
     [_pipe progress:progress];
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)progress:(id)when:(MKProgressCallback)progress
+{
+    [_pipe progress:when:progress];
+    return self;
+}
+#pragma clang diagnostic pop
 
 - (id<MKPromise>)pipe:(MKDoneFilter)doneFilter
 {

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1404D515194C7E41002774D7 /* MKWindowOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1404D513194C7E41002774D7 /* MKWindowOptions.h */; };
 		1404D516194C7E41002774D7 /* MKWindowOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404D514194C7E41002774D7 /* MKWindowOptions.m */; };
+		1404D51D1952366C002774D7 /* MKWhen.h in Headers */ = {isa = PBXBuildFile; fileRef = 1404D51B1952366C002774D7 /* MKWhen.h */; };
+		1404D51E1952366C002774D7 /* MKWhen.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404D51C1952366C002774D7 /* MKWhen.m */; };
 		1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C10819042796009F110F /* MKCocoaErrors.h */; };
 		1405C10B19042796009F110F /* MKCocoaErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 1405C10919042796009F110F /* MKCocoaErrors.m */; };
 		1405C10E1905CBA5009F110F /* MKPageFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */; };
@@ -264,6 +266,8 @@
 		0C07D65B5617417FA5C12730 /* libPods-Miruken.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Miruken.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1404D513194C7E41002774D7 /* MKWindowOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKWindowOptions.h; sourceTree = "<group>"; };
 		1404D514194C7E41002774D7 /* MKWindowOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKWindowOptions.m; sourceTree = "<group>"; };
+		1404D51B1952366C002774D7 /* MKWhen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKWhen.h; sourceTree = "<group>"; };
+		1404D51C1952366C002774D7 /* MKWhen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKWhen.m; sourceTree = "<group>"; };
 		1405C10819042796009F110F /* MKCocoaErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCocoaErrors.h; sourceTree = "<group>"; };
 		1405C10919042796009F110F /* MKCocoaErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCocoaErrors.m; sourceTree = "<group>"; };
 		1405C10C1905CBA5009F110F /* MKPageFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPageFlipTransition.h; sourceTree = "<group>"; };
@@ -1107,6 +1111,8 @@
 				1462998718B02EEA002BCBF6 /* MKReadWriteLock.m */,
 				14982D2B18B16DF20065EE40 /* MKWeakCell.h */,
 				14982D2C18B16DF20065EE40 /* MKWeakCell.m */,
+				1404D51B1952366C002774D7 /* MKWhen.h */,
+				1404D51C1952366C002774D7 /* MKWhen.m */,
 				14FD8AD618A7E867008077CF /* NSInvocation+Objects.h */,
 				14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */,
 			);
@@ -1146,6 +1152,7 @@
 				142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */,
 				1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */,
 				14A0F49B19153BA600A67B7C /* MKExpodeTransition.h in Headers */,
+				1404D51D1952366C002774D7 /* MKWhen.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
 				14982D6F18B9245E0065EE40 /* UIViewController_RotationMixin.h in Headers */,
@@ -1430,6 +1437,7 @@
 				142FE8DA18DF21BB00569636 /* MKCallbackHandler+Presentation.m in Sources */,
 				14982DAB18BA33AC0065EE40 /* MKValidationResult.m in Sources */,
 				14982CF518B10E430065EE40 /* NSObject+ResolvePromise.m in Sources */,
+				1404D51E1952366C002774D7 /* MKWhen.m in Sources */,
 				142FE8EA18E84C3F00569636 /* MKModalScope.m in Sources */,
 				142FE8F218E856A500569636 /* MKTransitionScope.m in Sources */,
 				1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */,

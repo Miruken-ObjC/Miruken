@@ -43,7 +43,17 @@ typedef NS_ENUM(NSUInteger, MKPromiseState) {
 
 - (instancetype)done:(MKDoneCallback)done;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)done:(id)when:(MKDoneCallback)done;
+#pragma clang diagnostic pop
+
 - (instancetype)fail:(MKFailCallback)fail;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)fail:(id)when:(MKFailCallback)fail;
+#pragma clang diagnostic pop
 
 - (instancetype)error:(MKErrorCallback)error;
 
@@ -54,6 +64,11 @@ typedef NS_ENUM(NSUInteger, MKPromiseState) {
 - (instancetype)always:(MKAlwaysCallback)always;
 
 - (instancetype)progress:(MKProgressCallback)progress;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)progress:(id)when:(MKProgressCallback)progress;
+#pragma clang diagnostic pop
 
 - (id<MKPromise>)pipe:(MKDoneFilter)doneFilter;
 

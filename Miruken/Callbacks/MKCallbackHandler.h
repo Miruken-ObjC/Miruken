@@ -27,9 +27,6 @@
 
 @end
 
-
-typedef BOOL (^MKCallbackPredicate)(id callback);
-
 typedef BOOL (^MKOnDemandCallbackIn)(id callback, id<MKCallbackHandler> composer);
 
 typedef id   (^MKOnDemandCallbackOut)(id<MKCallbackHandler> composer);

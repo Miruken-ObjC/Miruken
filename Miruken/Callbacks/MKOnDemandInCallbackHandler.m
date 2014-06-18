@@ -12,10 +12,10 @@
 @implementation MKOnDemandInCallbackHandler
 {
     MKOnDemandCallbackIn  _handler;
-    MKCallbackPredicate   _condition;
+    MKWhenPredicate       _condition;
 }
 
-+ (instancetype)handledBy:(MKOnDemandCallbackIn)provider when:(MKCallbackPredicate)condition
++ (instancetype)handledBy:(MKOnDemandCallbackIn)provider when:(MKWhenPredicate)condition
 {
     if (provider == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException

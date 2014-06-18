@@ -134,6 +134,38 @@
     XCTAssertEqualObjects(@"Hello", resolved, @"Deferred done callbacks not called");
 }
 
+- (void)testWillCallDoneCallbacksWithMatchingClassConstraint
+{
+    __block id  resolved = nil;
+    MKDeferred *deferred = [[MKDeferred new] resolve:@"Hello"];
+    [deferred done:NSString.class:^(id result) { resolved = result; }];
+    XCTAssertEqualObjects(@"Hello", resolved, @"Deferred done callbacks not called");
+}
+
+- (void)testWillNotCallDoneCallbacksWithUnmatchedClassConstraint
+{
+    __block id  resolved = nil;
+    MKDeferred *deferred = [[MKDeferred new] resolve:@"Hello"];
+    [deferred done:NSDictionary.class:^(id result) { resolved = result; }];
+    XCTAssertNil(resolved, @"Deferred done callbacks called");
+}
+
+- (void)testWillCallDoneCallbacksWithMatchingProtocolConstraint
+{
+    __block id  resolved = nil;
+    MKDeferred *deferred = [[MKDeferred new] resolve:@"Hello"];
+    [deferred done:@protocol(NSCopying):^(id result) { resolved = result; }];
+    XCTAssertEqualObjects(@"Hello", resolved, @"Deferred done callbacks not called");
+}
+
+- (void)testWillNotCallDoneCallbacksWithUnmatchedProtocolConstraint
+{
+    __block id  resolved = nil;
+    MKDeferred *deferred = [[MKDeferred new] resolve:@"Hello"];
+    [deferred done:@protocol(NSFastEnumeration):^(id result) { resolved = result; }];
+    XCTAssertNil(resolved, @"Deferred done callbacks called");
+}
+
 - (void)testWillCallFailCallbacksWhenDeferredRejected
 {
     __block NSError *rejected = nil;
@@ -150,6 +182,46 @@
     MKDeferred      *deferred = [MKDeferred rejected:error];
     [deferred error:^(NSError *error, BOOL *handled) { rejected = error; }];
     XCTAssertEqualObjects(@"Foo", rejected.domain, @"Deferred fail callbacks not called");
+}
+
+- (void)testWillCallFailCallbacksWithMatchingClassConstraint
+{
+    __block NSError *rejected = nil;
+    MKDeferred      *deferred = [MKDeferred new];
+    [deferred fail:NSError.class:^(NSError *error, BOOL *handled) { rejected = error; }];
+    XCTAssertNil(rejected, @"Deferred not rejected yet");
+    [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
+    XCTAssertEqualObjects(@"Foo", rejected.domain, @"Deferred fail callbacks not called");
+}
+
+- (void)testWillNotCallFailCallbacksWithUnmatchingClassConstraint
+{
+    __block NSError *rejected = nil;
+    MKDeferred      *deferred = [MKDeferred new];
+    [deferred fail:NSException.class:^(NSError *error, BOOL *handled) { rejected = error; }];
+    XCTAssertNil(rejected, @"Deferred not rejected yet");
+    [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
+    XCTAssertNil(rejected, @"Deferred fail callbacks called");
+}
+
+- (void)testWillCallFailCallbacksWithMatchingProtocolConstraint
+{
+    __block NSError *rejected = nil;
+    MKDeferred      *deferred = [MKDeferred new];
+    [deferred fail:@protocol(NSCopying):^(NSError *error, BOOL *handled) { rejected = error; }];
+    XCTAssertNil(rejected, @"Deferred not rejected yet");
+    [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
+    XCTAssertEqualObjects(@"Foo", rejected.domain, @"Deferred fail callbacks not called");
+}
+
+- (void)testWillNotCallFailCallbacksWithUnmatchingProtocolConstraint
+{
+    __block NSError *rejected = nil;
+    MKDeferred *deferred = [MKDeferred new];
+    [deferred fail:@protocol(NSFastEnumeration):^(NSError *error, BOOL *handled) { rejected = error; }];
+    XCTAssertNil(rejected, @"Deferred not rejected yet");
+    [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
+    XCTAssertNil(rejected, @"Deferred fail callbacks called");
 }
 
 - (void)testWillCallFailCallbacksWhenDeferredCancelled
@@ -312,7 +384,7 @@
     XCTAssertTrue(cancelled, @"promise always callbacks not called");
 }
 
-- (void)testCanNotifyProgress
+- (void)testWillNotifyProgress
 {
     __block NSUInteger  step      = 0;
     MKDeferred          *deferred = [MKDeferred new];
@@ -323,6 +395,54 @@
     XCTAssertEqual(5U, step, @"Expected step 5");
     [deferred notify:@(9U)];
     XCTAssertEqual(9U, step, @"Expected step 9");
+}
+
+- (void)testWillNotifyProgressWithMatchingClassConstraint
+{
+    __block NSUInteger  step     = 0;
+    MKDeferred         *deferred = [MKDeferred new];
+    [[deferred promise] progress:NSNumber.class:^(NSNumber *progress, BOOL queued) {
+        step = [progress unsignedIntegerValue];
+    }];
+    [deferred notify:@(5U)];
+    XCTAssertEqual(5U, step, @"Expected step 5");
+    [deferred notify:@(9U)];
+    XCTAssertEqual(9U, step, @"Expected step 9");
+}
+
+- (void)testWillNotNotifyProgressWithUnmatchingClassConstraint
+{
+    __block NSUInteger  step     = 0;
+    MKDeferred         *deferred = [MKDeferred new];
+    [[deferred promise] progress:NSDictionary.class:^(NSNumber *progress, BOOL queued) {
+        step = [progress unsignedIntegerValue];
+    }];
+    [deferred notify:@(5U)];
+    XCTAssertEqual(0U, step, @"Unexpected notification");
+}
+
+- (void)testWillNotifyProgressWithMatchingProtocolConstraint
+{
+    __block NSUInteger  step     = 0;
+    MKDeferred         *deferred = [MKDeferred new];
+    [[deferred promise] progress:@protocol(NSCopying):^(NSNumber *progress, BOOL queued) {
+        step = [progress unsignedIntegerValue];
+    }];
+    [deferred notify:@(5U)];
+    XCTAssertEqual(5U, step, @"Expected step 5");
+    [deferred notify:@(9U)];
+    XCTAssertEqual(9U, step, @"Expected step 9");
+}
+
+- (void)testWillNotNotifyProgressWithUnmatchingProtocolConstraint
+{
+    __block NSUInteger  step     = 0;
+    MKDeferred         *deferred = [MKDeferred new];
+    [[deferred promise] progress:@protocol(NSFastEnumeration):^(NSNumber *progress, BOOL queued) {
+        step = [progress unsignedIntegerValue];
+    }];
+    [deferred notify:@(5U)];
+    XCTAssertEqual(0U, step, @"Unexpected notification");
 }
 
 - (void)testWillNotQueueNotificationsByDefault

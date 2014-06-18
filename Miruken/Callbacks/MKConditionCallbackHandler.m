@@ -10,10 +10,10 @@
 
 @implementation MKConditionCallbackHandler
 {
-    MKCallbackPredicate   _condition;
+    MKWhenPredicate _condition;
 }
 
-+ (instancetype)for:(MKCallbackHandler *)aHandler when:(MKCallbackPredicate)condition
++ (instancetype)for:(MKCallbackHandler *)aHandler when:(MKWhenPredicate)condition
 {
     if (aHandler == nil)
     {

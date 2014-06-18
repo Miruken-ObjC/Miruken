@@ -98,12 +98,9 @@
         [owner presentViewController:viewController animated:YES completion: nil];
     else
     {
-        _window.rootViewController = viewController;
-        if ([viewController respondsToSelector:@selector(context)])
-            [[(id<MKContextual>)viewController context] subscribeDidEnd:^(id<MKContext> context) {
-                if (_window.rootViewController == viewController)
-                    _window.rootViewController = nil;
-            }];
+        MKWindowOptions *windowOptions = [MKWindowOptions new];
+        windowOptions.windowRoot       = YES;
+        return [self _presentViewControllerWindow:viewController windowOptions:windowOptions];
     }
     return [[MKDeferred resolved:viewController.context] promise];
 }
@@ -120,9 +117,9 @@
     else if (windowOptions.windowRoot)
     {
         MKContext *rootContext     = [context unwindToRootContext];
-        [MKContextualHelper bindChildContextFrom:rootContext toChild:viewController];
+        MKContext *childContext    = [MKContextualHelper bindChildContextFrom:rootContext toChild:viewController];
         _window.rootViewController = viewController;
-        [[(id<MKContextual>)viewController context] subscribeDidEnd:^(id<MKContext> context) {
+        [childContext subscribeDidEnd:^(id<MKContext> context) {
             if (_window.rootViewController == viewController)
                 _window.rootViewController = nil;
         }];

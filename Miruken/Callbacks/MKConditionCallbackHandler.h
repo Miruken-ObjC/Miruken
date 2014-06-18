@@ -7,6 +7,7 @@
 //
 
 #import "MKCallbackHandlerDecorator.h"
+#import "MKWhen.h"
 
 /**
   A MKConditionCallbackHandler decorates a MKCallbackHandler with a condition.
@@ -15,6 +16,6 @@
 
 @interface MKConditionCallbackHandler : MKCallbackHandlerDecorator
 
-+ (instancetype)for:(MKCallbackHandler *)handler when:(MKCallbackPredicate)condition;
++ (instancetype)for:(MKCallbackHandler *)handler when:(MKWhenPredicate)condition;
                                                               
 @end

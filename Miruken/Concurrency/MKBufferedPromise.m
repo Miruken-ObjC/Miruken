@@ -8,6 +8,7 @@
 
 #import "MKBufferedPromise.h"
 #import "NSInvocation+Objects.h"
+#import "MKWhen.h"
 #import "EXTScope.h"
 
 #pragma clang diagnostic push
@@ -21,7 +22,7 @@
     NSMutableArray   *_always;
     NSMutableArray   *_progress;
     NSMutableArray   *_buffer;
-    id<MKPromise>       _promise;
+    id<MKPromise>     _promise;
     BOOL              _flushed;
 }
 
@@ -34,7 +35,7 @@
 {
     if (promise == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:@"MKPromise cannot be nil"
+                                       reason:@"promise cannot be nil"
                                      userInfo:nil];
 
     if (self = [super init])
@@ -136,25 +137,63 @@
 
 - (instancetype)bufferDone:(MKDoneCallback)done
 {
+    return [self bufferDone:nil:done];
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)bufferDone:(id)when:(MKDoneCallback)done
+{
+    if (when)
+    {
+        MKDoneCallback  innerDone = done;
+        MKWhenPredicate condition = [MKWhen criteria:when];
+        done = ^(id result) {
+            if (condition(result))
+                innerDone(result);
+        };
+    }
+    
     if (_flushed)
         [_promise done:done];
     else if (_done == nil)
         _done = [NSMutableArray arrayWithObject:done];
     else
         [_done addObject:done];
+    
     return self;
 }
+#pragma clang diagnostic pop
 
 - (instancetype)bufferFail:(MKFailCallback)fail
 {
+    return [self bufferFail:nil:fail];
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)bufferFail:(id)when:(MKFailCallback)fail
+{
+    if (when)
+    {
+        MKFailCallback  innerFail = fail;
+        MKWhenPredicate condition = [MKWhen criteria:when];
+        fail = ^(id reason, BOOL *handled) {
+            if (condition(reason))
+                innerFail(reason, handled);
+        };
+    }
+    
     if (_flushed)
         [_promise fail:fail];
     else if (_fail == nil)
         _fail = [NSMutableArray arrayWithObject:fail];
     else
         [_fail addObject:fail];
+    
     return self;
 }
+#pragma clang diagnostic pop
 
 - (instancetype)bufferError:(MKErrorCallback)error
 {
@@ -191,16 +230,36 @@
     return self;
 }
 
+
 - (instancetype)bufferProgress:(MKProgressCallback)progress
 {
+    return [self bufferProgress:nil:progress];
+}
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)bufferProgress:(id)when:(MKProgressCallback)progress
+{
+    if (when)
+    {
+        MKProgressCallback innerProgress = progress;
+        MKWhenPredicate    condition     = [MKWhen criteria:when];
+        progress = ^(id progress, BOOL queued) {
+            if (condition(progress))
+                innerProgress(progress, queued);
+        };
+    }
+    
     if (_flushed)
         [_promise progress:progress];
     else if (_progress == nil)
         _progress = [NSMutableArray arrayWithObject:progress];
     else
         [_progress addObject:progress];
+    
     return self;
 }
+#pragma clang diagnostic pop
 
 - (instancetype)bufferAlways:(MKAlwaysCallback)always
 {

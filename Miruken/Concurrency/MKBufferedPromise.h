@@ -19,7 +19,17 @@
 
 - (instancetype)bufferDone:(MKDoneCallback)done;
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)bufferDone:(id)when:(MKDoneCallback)done;
+#pragma clang diagnostic pop
+
 - (instancetype)bufferFail:(MKFailCallback)fail;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)bufferFail:(id)when:(MKFailCallback)fail;
+#pragma clang diagnostic pop
 
 - (instancetype)bufferError:(MKErrorCallback)error;
 
@@ -28,6 +38,11 @@
 - (instancetype)bufferCancel:(MKCancelCallback)cancel;
 
 - (instancetype)bufferProgress:(MKProgressCallback)progress;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)bufferProgress:(id)when:(MKProgressCallback)progress;
+#pragma clang diagnostic pop
 
 - (instancetype)bufferAlways:(MKAlwaysCallback)always;
 

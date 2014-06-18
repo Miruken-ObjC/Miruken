@@ -7,6 +7,7 @@
 //
 
 #import "MKCallbackHandler.h"
+#import "MKWhen.h"
 
 /**
   MKCallbackHandler category for constructing callback handlers using more intuitive verbage.
@@ -14,7 +15,7 @@
 
 @interface MKCallbackHandler (Builders)
 
-- (instancetype)when:(MKCallbackPredicate)condition;
+- (instancetype)when:(MKWhenPredicate)condition;
 
 - (instancetype)whenKindOfClass:(Class)aClass;
 

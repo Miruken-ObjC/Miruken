@@ -9,6 +9,7 @@
 #import "MKScheduledPromise.h"
 #import "MKBufferedPromise.h"
 #import "MKAction.h"
+#import "MKWhen.h"
 #import "NSInvocation+Objects.h"
 
 @interface MKScheduledPromise()
@@ -64,6 +65,19 @@
     return self;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (id)done:(id)when:(MKDoneCallback)done
+{
+    MKWhenPredicate condition = [MKWhen tryCriteria:when];
+    [_promise done:^(id result) {
+        if (condition && condition(result))
+            [_scheduler do:^{ done(result); }];
+    }];
+    return self;
+}
+#pragma clang diagnostic pop
+
 - (id)fail:(MKFailCallback)fail
 {
     [_promise fail:^(id reason, BOOL *handled) {
@@ -71,6 +85,19 @@
     }];
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (instancetype)fail:(id)when:(MKFailCallback)fail
+{
+    MKWhenPredicate condition = [MKWhen tryCriteria:when];
+    [_promise fail:^(id reason, BOOL *handled) {
+        if (condition && condition(reason))
+            [_scheduler do:^{ fail(reason, handled); }];
+    }];
+    return self;
+}
+#pragma clang diagnostic pop
 
 - (id)error:(MKErrorCallback)error
 {
@@ -107,6 +134,19 @@
     }];
     return self;
 }
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-selector-name"
+- (id)progress:(id)when:(MKProgressCallback)progress
+{
+    MKWhenPredicate condition = [MKWhen tryCriteria:when];
+    [_promise progress:^(id info, BOOL queued) {
+        if (condition && condition(info))
+            [_scheduler do:^{ progress(info, queued); }];
+    }];
+    return self;
+}
+#pragma clang diagnostic pop
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {

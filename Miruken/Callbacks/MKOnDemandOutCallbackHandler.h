@@ -7,6 +7,7 @@
 //
 
 #import "MKCallbackHandler.h"
+#import "MKWhen.h"
 
 /**
   An MKOnDemandInCallbackHandler provides on-demand support for providing callbacks.
@@ -14,6 +15,6 @@
 
 @interface MKOnDemandOutCallbackHandler : MKCallbackHandler
 
-+ (instancetype)providedBy:(MKOnDemandCallbackOut)provider when:(MKCallbackPredicate)condition;
++ (instancetype)providedBy:(MKOnDemandCallbackOut)provider when:(MKWhenPredicate)condition;
 
 @end
