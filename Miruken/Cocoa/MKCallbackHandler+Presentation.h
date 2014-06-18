@@ -24,6 +24,8 @@
 
 - (instancetype)newWindow;
 
+- (instancetype)newWindowAtLevel:(UIWindowLevel)level;
+
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options;
 
 @end

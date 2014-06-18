@@ -17,6 +17,7 @@
 #import "MKCallbackHandler+Resolvers.h"
 #import "MKCallbackHandler+Context.h"
 #import "NSObject+Context.h"
+#import "UIWindow+Rotation.h"
 #import "MKDeferred.h"
 #import "MKMixin.h"
 
@@ -112,7 +113,26 @@
     
     if (windowOptions.newWindow)
     {
+        UIApplication       *application  = [UIApplication sharedApplication];
+        UIWindow            *keyWindow    = application.keyWindow;
+        MKContext           *childContext = [MKContextualHelper bindChildContextFrom:context toChild:viewController];
+        __block UIWindow    *newWindow    = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        MKDefaultViewRegion *newRegion    = [[self.class alloc] initWithWindow:newWindow];
+        [childContext addHandler:newRegion];
         
+        [childContext subscribeDidEnd:^(id<MKContext> context) {
+            [viewController.view removeFromSuperview];
+            [keyWindow makeKeyWindow];
+            [_window refreshOrientation];
+            newWindow.hidden = YES;
+            newWindow        = nil;
+        }];
+        
+        newWindow.windowLevel = windowOptions.specified.windowLevel
+                              ? windowOptions.windowLevel
+                              : _window.windowLevel + 1;  // put overlay on top
+        newWindow.rootViewController = viewController;
+        [newWindow makeKeyAndVisible];
     }
     else if (windowOptions.windowRoot)
     {

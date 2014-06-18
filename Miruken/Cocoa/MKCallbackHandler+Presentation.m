@@ -44,6 +44,14 @@
     return [self presentWithOptions:windowOptions];
 }
 
+- (instancetype)newWindowAtLevel:(UIWindowLevel)level
+{
+    MKWindowOptions *windowOptions = [MKWindowOptions new];
+    windowOptions.newWindow        = YES;
+    windowOptions.windowLevel      = level;
+    return [self presentWithOptions:windowOptions];
+}
+
 - (instancetype)presentWithOptions:(id<MKPresentationOptions>)options
 {
     MKPresentationPolicy *policy = [MKPresentationPolicy new];
