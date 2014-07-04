@@ -10,6 +10,6 @@
 
 @interface NSObject (NSObject_ResolvePromise)
 
-- (id<MKPromise>)effectivePromise;
+- (MKPromise)effectivePromise;
 
 @end

@@ -48,12 +48,12 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, _delay * NSEC_PER_SEC);
     dispatch_source_set_timer(_timer, popTime, _interval * NSEC_PER_SEC, _leeway * NSEC_PER_SEC);
     dispatch_source_set_event_handler(_timer, ^{
-        if (_interval == 0)
+        if (_interval == DISPATCH_TIME_FOREVER)
             [super completeResult:asyncResult];
         else
-            [asyncResult retry];
+            [asyncResult repeat];
     });
-    [[asyncResult promise] cancel:^{ dispatch_source_cancel(_timer); }];
+    [[asyncResult promise] cancel:^{  dispatch_source_cancel(_timer); }];
     dispatch_resume(_timer);
 }
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKAsyncResult.h"
+#import "MKAsyncResult_Subclassing.h"
 
 /**
   Specialized AsyncResult that integrates with the NSOperationQueue mechanism. 

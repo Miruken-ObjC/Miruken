@@ -12,6 +12,6 @@
 
 - (BOOL)isPromise;
 
-- (id<MKPromise>)makePromise;
+- (MKPromise)makePromise;
 
 @end

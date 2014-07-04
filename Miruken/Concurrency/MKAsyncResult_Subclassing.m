@@ -1,12 +1,12 @@
 //
-//  MKAsyncResult.m
+//  MKAsyncResult_Subclassing.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 10/26/12.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKAsyncResult.h"
+#import "MKAsyncResult_Subclassing.h"
 #import "MKDeferred.h"
 
 @implementation MKAsyncResult
@@ -14,7 +14,6 @@
     NSValue          *_result;
     NSException      *_exception;
     NSInvocation     *_invocation;
-    MKDeferred       *_deferred;
     NSArray          *_blockArguments;
 }
 
@@ -27,6 +26,11 @@
         _blockArguments = [MKAsyncResult copyBlockArguments:invocation];
     }
     return self;
+}
+
+- (MKPromise)promise
+{
+    return [_deferred promise];
 }
 
 - (BOOL)isComplete
@@ -49,17 +53,17 @@
 
 - (void)complete
 {
-    [self _completeForRetry:NO];
+    [self _completeForRepeat:NO];
 }
 
-- (void)retry
+- (void)repeat
 {
-    [self _completeForRetry:YES];
+    [self _completeForRepeat:YES];
 }
 
-- (void)_completeForRetry:(BOOL)canRetry
+- (void)_completeForRepeat:(BOOL)canRepeat
 {
-    if (_deferred.state != MKPromiseStatePending)
+    if (self.isComplete)
         return;
     
     @try
@@ -68,43 +72,49 @@
         NSMethodSignature *signature = [_invocation methodSignature];
         NSUInteger         length    = [signature methodReturnLength];
         if (length > 0)
+            _result = [self extractResultFromInvocation:_invocation];
+        
+        if (self.isComplete == NO)
         {
-            const char *returnType = [signature methodReturnType];
-            if (strcmp(returnType, @encode(dispatch_block_t)) == 0)
-            {
-                __unsafe_unretained dispatch_block_t block;
-                [_invocation getReturnValue:&block];
-                if (block)
-                    block = (__bridge dispatch_block_t)Block_copy((__bridge void*)block);
-                _result = [NSValue valueWithBytes:&block objCType:returnType];
-            }
+            if (canRepeat)
+                [_deferred notify:_result];
             else
-            {
-                void *buffer = (void *)malloc(length);
-                [_invocation getReturnValue:buffer];
-                _result = [NSValue valueWithBytes:buffer objCType:returnType];
-            }
+                [_deferred resolve:_result];
         }
-        if (canRetry)
-            [_deferred notify:_result];
-        else
-            [_deferred resolve:_result];
     }
     @catch (NSException *exception)
     {
         _exception = exception;
-        [_deferred reject:_exception];
+        if (self.isComplete == NO)
+            [_deferred reject:_exception];
     }
     @finally
     {
-         if (canRetry == NO)
+         if (canRepeat == NO)
              _invocation = nil;
     }
 }
 
-- (id<MKPromise>)promise
+- (id)extractResultFromInvocation:(NSInvocation *)invocation
 {
-    return [_deferred promise];
+    NSMethodSignature *signature = [_invocation methodSignature];
+    NSUInteger         length    = [signature methodReturnLength];
+    
+    const char *returnType = [signature methodReturnType];
+    if (strcmp(returnType, @encode(dispatch_block_t)) == 0)
+    {
+        __unsafe_unretained dispatch_block_t block;
+        [_invocation getReturnValue:&block];
+        if (block)
+            block = (__bridge dispatch_block_t)Block_copy((__bridge void *)block);
+        return [NSValue valueWithBytes:&block objCType:returnType];
+    }
+    else
+    {
+        void *buffer = (void *)malloc(length);
+        [_invocation getReturnValue:buffer];
+        return [NSValue valueWithBytes:buffer objCType:returnType];
+    }
 }
 
 + (NSArray *)copyBlockArguments:(NSInvocation *)invocation;

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MKPromise.h"
 
 @class MKAction;
@@ -19,6 +18,6 @@
 
 @interface MKScheduledPromise : NSProxy
 
-+ (id)schedulePromise:(id<MKPromise>)promise schedule:(MKAction *)scheduler;
++ (id)schedulePromise:(MKPromise)promise schedule:(MKAction *)scheduler;
 
 @end

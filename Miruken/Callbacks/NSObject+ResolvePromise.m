@@ -13,7 +13,7 @@
 
 @implementation NSObject (NSObject_ResolvePromise)
 
-- (id<MKPromise>)effectivePromise
+- (MKPromise)effectivePromise
 {
     // Promises are resolved for the following scenarios:
     //    - callbacks that are promises (e.g. deferred receivers)
@@ -21,7 +21,7 @@
     
     if ([self isPromise])
     {
-        return (id<MKPromise>)self;
+        return (MKPromise)self;
     }
     else if ([self isKindOfClass:MKHandleMethod.class])
     {
@@ -30,7 +30,7 @@
         {
             id result = [invocation objectReturnValue];
             if ([result conformsToProtocol:@protocol(MKPromise)])
-                return (id<MKPromise>)result;
+                return (MKPromise)result;
         }
     }
     

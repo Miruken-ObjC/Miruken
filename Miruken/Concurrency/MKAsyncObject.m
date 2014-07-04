@@ -11,11 +11,11 @@
 
 @implementation MKAsyncObject
 {
-    id                               _target;
-    __weak id                        _weakTarget;
+    id                                 _target;
+    __weak id                          _weakTarget;
     id<MKAsyncDelegate>                _delegate;
     id<MKAsyncResult>                  _asyncResult;
-    __autoreleasing id<MKAsyncResult> *_outAsyncResult;
+    id<MKAsyncResult> __autoreleasing *_outAsyncResult;
 }
 
 - (id)initWithClass:(Class)aClass delegate:(id<MKAsyncDelegate>)delegate

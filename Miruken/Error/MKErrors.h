@@ -13,16 +13,16 @@
 @protocol MKErrors
 
 @optional
-- (id<MKPromise>)handleFailure:(id)reason context:(void *)context;
+- (MKPromise)handleFailure:(id)reason context:(void *)context;
 
-- (id<MKPromise>)handleError:(NSError *)error context:(void *)context;
+- (MKPromise)handleError:(NSError *)error context:(void *)context;
 
-- (id<MKPromise>)handleException:(NSException *)exception context:(void *)context;
+- (MKPromise)handleException:(NSException *)exception context:(void *)context;
 
-- (id<MKPromise>)reportError:(NSError *)error message:(NSString *)message
-                       title:(NSString *)title context:(void *)context;
+- (MKPromise)reportError:(NSError *)error message:(NSString *)message
+                   title:(NSString *)title context:(void *)context;
 
-- (id<MKPromise>)reportException:(NSException *)exception context:(void *)context;
+- (MKPromise)reportException:(NSException *)exception context:(void *)context;
 
 @end
 

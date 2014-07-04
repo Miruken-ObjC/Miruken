@@ -16,10 +16,10 @@
     return [self conformsToProtocol:@protocol(MKPromise)];
 }
 
-- (id<MKPromise>)makePromise
+- (MKPromise)makePromise
 {
     return ([self conformsToProtocol:@protocol(MKPromise)])
-         ? (id<MKPromise>)self
+         ? (MKPromise)self
          : [[MKDeferred resolved:self] promise];
 }
 

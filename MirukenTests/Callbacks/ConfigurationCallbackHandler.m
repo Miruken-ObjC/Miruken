@@ -30,7 +30,7 @@
     return YES;
 }
 
-- (id<MKPromise>)provideConfiguration
+- (MKPromise)provideConfiguration
 {
     Configuration *config = [Configuration new];
     [self populateConfiguration:config];

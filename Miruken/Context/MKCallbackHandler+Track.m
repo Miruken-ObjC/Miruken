@@ -27,7 +27,7 @@
     
     return [MKCallbackHandlerFilter for:self
             filter:^(id callback, id<MKCallbackHandler> composer, BOOL(^proceed)()) {
-                id<MKPromise> promise;
+                MKPromise promise;
                 BOOL handled = proceed();
                 if (handled && (promise = [callback effectivePromise]))
                 {

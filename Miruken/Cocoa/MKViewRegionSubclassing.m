@@ -52,7 +52,7 @@
 
 #pragma mark - MKViewRegion
 
-- (id<MKPromise>)presentViewController:(UIViewController *)viewController
+- (MKPromise)presentViewController:(UIViewController *)viewController
 {
     MKPresentationPolicy *presentationPolicy = [MKPresentationPolicy new];
     [self.composer handle:presentationPolicy greedy:YES];
@@ -62,8 +62,8 @@
          : [self notHandled];
 }
 
-- (id<MKPromise>)presentViewController:(UIViewController *)viewController
-                            withPolicy:(MKPresentationPolicy *)policy
+- (MKPromise)presentViewController:(UIViewController *)viewController
+                        withPolicy:(MKPresentationPolicy *)policy
 {
     return [self notHandled];
 }

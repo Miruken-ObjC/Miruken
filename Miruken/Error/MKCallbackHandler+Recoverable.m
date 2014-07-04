@@ -22,7 +22,7 @@
 {
     return [MKCallbackHandlerFilter for:self
             filter:^(id callback, id<MKCallbackHandler> composer, BOOL(^proceed)()) {
-                id<MKPromise> promise = nil;
+                MKPromise promise = nil;
                 @try {
                     BOOL handled = proceed();
                     if (handled && (promise = [callback effectivePromise]))

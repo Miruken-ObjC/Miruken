@@ -11,9 +11,9 @@
 @protocol MKMasterDetail <NSObject>
 
 @optional
-- (id<MKPromise>)selectedDetail:(Class)detailClass;
+- (MKPromise)selectedDetail:(Class)detailClass;
 
-- (id<MKPromise>)selectedDetails:(Class)detailClass;
+- (MKPromise)selectedDetails:(Class)detailClass;
 
 - (void)selectDetail:(id)selectedDetail;
 
@@ -23,13 +23,13 @@
 
 - (BOOL)hasNextDetail:(Class)detailClass;
 
-- (id<MKPromise>)previousDetail:(Class)detailClass;
+- (MKPromise)previousDetail:(Class)detailClass;
 
-- (id<MKPromise>)nextDetail:(Class)detailClass;
+- (MKPromise)nextDetail:(Class)detailClass;
 
-- (id<MKPromise>)addDetail:(id)detail;
+- (MKPromise)addDetail:(id)detail;
 
-- (id<MKPromise>)removeDetail:(id)detail delete:(BOOL)delete;
+- (MKPromise)removeDetail:(id)detail delete:(BOOL)delete;
 
 @end
 

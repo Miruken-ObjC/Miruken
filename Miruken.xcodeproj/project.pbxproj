@@ -193,6 +193,10 @@
 		14C54C6318F4A24E001C39D5 /* MKShuffle3DTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C6118F4A24E001C39D5 /* MKShuffle3DTransition.m */; };
 		14C54C6618FAEA77001C39D5 /* MKPortalTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */; };
 		14C54C6718FAEA77001C39D5 /* MKPortalTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */; };
+		14CC91061966062000B7A649 /* MKDeferred+Await.h in Headers */ = {isa = PBXBuildFile; fileRef = 14CC91041966062000B7A649 /* MKDeferred+Await.h */; };
+		14CC91071966062000B7A649 /* MKDeferred+Await.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC91051966062000B7A649 /* MKDeferred+Await.m */; };
+		14CC910A1966088900B7A649 /* MKAsyncResult_Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 14CC91081966088900B7A649 /* MKAsyncResult_Subclassing.h */; };
+		14CC910E19660DCB00B7A649 /* MKAsyncDelegate_Subclassing.h in Headers */ = {isa = PBXBuildFile; fileRef = 14CC910C19660DCB00B7A649 /* MKAsyncDelegate_Subclassing.h */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -213,10 +217,10 @@
 		14FD8A6A18A7CB18008077CF /* libMiruken.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14FD8A5218A7CB18008077CF /* libMiruken.a */; };
 		14FD8A7018A7CB18008077CF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 14FD8A6E18A7CB18008077CF /* InfoPlist.strings */; };
 		14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7D18A7DBF7008077CF /* MKAction.m */; };
-		14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */; };
+		14FD8AA718A7DBF7008077CF /* MKAsyncDelegate_Subclassing.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate_Subclassing.m */; };
 		14FD8AA818A7DBF7008077CF /* MKAsyncObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */; };
 		14FD8AA918A7DBF7008077CF /* MKAsyncProxyResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8318A7DBF7008077CF /* MKAsyncProxyResult.m */; };
-		14FD8AAA18A7DBF7008077CF /* MKAsyncResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */; };
+		14FD8AAA18A7DBF7008077CF /* MKAsyncResult_Subclassing.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8518A7DBF7008077CF /* MKAsyncResult_Subclassing.m */; };
 		14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */; };
 		14FD8AAD18A7DBF7008077CF /* MKDeferred.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8C18A7DBF7008077CF /* MKDeferred.m */; };
 		14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A8E18A7DBF7008077CF /* MKDelayedDelegate.m */; };
@@ -227,7 +231,7 @@
 		14FD8AB318A7DBF7008077CF /* MKOperationQueueDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9818A7DBF7008077CF /* MKOperationQueueDelegate.m */; };
 		14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9A18A7DBF7008077CF /* MKOperationResult.m */; };
 		14FD8AB518A7DBF7008077CF /* MKScheduledPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */; };
-		14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */; };
+		14FD8AB618A7DBF7008077CF /* MKIgnoreResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8A9F18A7DBF7008077CF /* MKIgnoreResult.m */; };
 		14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */; };
 		14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */; };
 		14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FD8AA518A7DBF7008077CF /* NSObject+BuldPromise.m */; };
@@ -515,6 +519,10 @@
 		14C54C6118F4A24E001C39D5 /* MKShuffle3DTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKShuffle3DTransition.m; sourceTree = "<group>"; };
 		14C54C6418FAEA77001C39D5 /* MKPortalTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPortalTransition.h; sourceTree = "<group>"; };
 		14C54C6518FAEA77001C39D5 /* MKPortalTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPortalTransition.m; sourceTree = "<group>"; };
+		14CC91041966062000B7A649 /* MKDeferred+Await.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKDeferred+Await.h"; sourceTree = "<group>"; };
+		14CC91051966062000B7A649 /* MKDeferred+Await.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKDeferred+Await.m"; sourceTree = "<group>"; };
+		14CC91081966088900B7A649 /* MKAsyncResult_Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncResult_Subclassing.h; sourceTree = "<group>"; };
+		14CC910C19660DCB00B7A649 /* MKAsyncDelegate_Subclassing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncDelegate_Subclassing.h; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -539,13 +547,13 @@
 		14FD8A7C18A7DBF7008077CF /* MKAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAction.h; sourceTree = "<group>"; };
 		14FD8A7D18A7DBF7008077CF /* MKAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAction.m; sourceTree = "<group>"; };
 		14FD8A7E18A7DBF7008077CF /* MKAsyncDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncDelegate.h; sourceTree = "<group>"; };
-		14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncDelegate.m; sourceTree = "<group>"; };
+		14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate_Subclassing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncDelegate_Subclassing.m; sourceTree = "<group>"; };
 		14FD8A8018A7DBF7008077CF /* MKAsyncObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncObject.h; sourceTree = "<group>"; };
 		14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncObject.m; sourceTree = "<group>"; };
 		14FD8A8218A7DBF7008077CF /* MKAsyncProxyResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncProxyResult.h; sourceTree = "<group>"; };
 		14FD8A8318A7DBF7008077CF /* MKAsyncProxyResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncProxyResult.m; sourceTree = "<group>"; };
 		14FD8A8418A7DBF7008077CF /* MKAsyncResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAsyncResult.h; sourceTree = "<group>"; };
-		14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncResult.m; sourceTree = "<group>"; };
+		14FD8A8518A7DBF7008077CF /* MKAsyncResult_Subclassing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAsyncResult_Subclassing.m; sourceTree = "<group>"; };
 		14FD8A8618A7DBF7008077CF /* MKBufferedPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKBufferedPromise.h; sourceTree = "<group>"; };
 		14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKBufferedPromise.m; sourceTree = "<group>"; };
 		14FD8A8918A7DBF7008077CF /* MKConcurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKConcurrency.h; sourceTree = "<group>"; };
@@ -568,8 +576,8 @@
 		14FD8A9B18A7DBF7008077CF /* MKPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPromise.h; sourceTree = "<group>"; };
 		14FD8A9C18A7DBF7008077CF /* MKScheduledPromise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKScheduledPromise.h; sourceTree = "<group>"; };
 		14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKScheduledPromise.m; sourceTree = "<group>"; };
-		14FD8A9E18A7DBF7008077CF /* MKSynchronousResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSynchronousResult.h; sourceTree = "<group>"; };
-		14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSynchronousResult.m; sourceTree = "<group>"; };
+		14FD8A9E18A7DBF7008077CF /* MKIgnoreResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKIgnoreResult.h; sourceTree = "<group>"; };
+		14FD8A9F18A7DBF7008077CF /* MKIgnoreResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKIgnoreResult.m; sourceTree = "<group>"; };
 		14FD8AA018A7DBF7008077CF /* MKThreadDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKThreadDelegate.h; sourceTree = "<group>"; };
 		14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKThreadDelegate.m; sourceTree = "<group>"; };
 		14FD8AA218A7DBF7008077CF /* NSObject+Concurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Concurrency.h"; sourceTree = "<group>"; };
@@ -1032,13 +1040,15 @@
 				14FD8A7C18A7DBF7008077CF /* MKAction.h */,
 				14FD8A7D18A7DBF7008077CF /* MKAction.m */,
 				14FD8A7E18A7DBF7008077CF /* MKAsyncDelegate.h */,
-				14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate.m */,
+				14CC910C19660DCB00B7A649 /* MKAsyncDelegate_Subclassing.h */,
+				14FD8A7F18A7DBF7008077CF /* MKAsyncDelegate_Subclassing.m */,
 				14FD8A8018A7DBF7008077CF /* MKAsyncObject.h */,
 				14FD8A8118A7DBF7008077CF /* MKAsyncObject.m */,
 				14FD8A8218A7DBF7008077CF /* MKAsyncProxyResult.h */,
 				14FD8A8318A7DBF7008077CF /* MKAsyncProxyResult.m */,
 				14FD8A8418A7DBF7008077CF /* MKAsyncResult.h */,
-				14FD8A8518A7DBF7008077CF /* MKAsyncResult.m */,
+				14CC91081966088900B7A649 /* MKAsyncResult_Subclassing.h */,
+				14FD8A8518A7DBF7008077CF /* MKAsyncResult_Subclassing.m */,
 				14FD8A8618A7DBF7008077CF /* MKBufferedPromise.h */,
 				14FD8A8718A7DBF7008077CF /* MKBufferedPromise.m */,
 				14F25ECB192BF67700D66A5C /* MKCADisplayLinkDelegate.h */,
@@ -1052,6 +1062,8 @@
 				14FD8A9018A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m */,
 				1405C11019087091009F110F /* MKGrandCentralTimerDelegate.h */,
 				1405C11119087091009F110F /* MKGrandCentralTimerDelegate.m */,
+				14FD8A9E18A7DBF7008077CF /* MKIgnoreResult.h */,
+				14FD8A9F18A7DBF7008077CF /* MKIgnoreResult.m */,
 				14FD8A9118A7DBF7008077CF /* MKMainThreadDelegate.h */,
 				14FD8A9218A7DBF7008077CF /* MKMainThreadDelegate.m */,
 				14FD8A9318A7DBF7008077CF /* MKNewThreadDelegate.h */,
@@ -1065,14 +1077,14 @@
 				14FD8A9B18A7DBF7008077CF /* MKPromise.h */,
 				14FD8A9C18A7DBF7008077CF /* MKScheduledPromise.h */,
 				14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */,
-				14FD8A9E18A7DBF7008077CF /* MKSynchronousResult.h */,
-				14FD8A9F18A7DBF7008077CF /* MKSynchronousResult.m */,
 				14FD8AA018A7DBF7008077CF /* MKThreadDelegate.h */,
 				14FD8AA118A7DBF7008077CF /* MKThreadDelegate.m */,
 				14FD8AA218A7DBF7008077CF /* NSObject+Concurrency.h */,
 				14FD8AA318A7DBF7008077CF /* NSObject+Concurrency.m */,
 				14FD8AA418A7DBF7008077CF /* NSObject+BuildPromise.h */,
 				14FD8AA518A7DBF7008077CF /* NSObject+BuldPromise.m */,
+				14CC91041966062000B7A649 /* MKDeferred+Await.h */,
+				14CC91051966062000B7A649 /* MKDeferred+Await.m */,
 			);
 			path = Concurrency;
 			sourceTree = "<group>";
@@ -1131,7 +1143,9 @@
 				14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */,
 				1404D515194C7E41002774D7 /* MKWindowOptions.h in Headers */,
 				14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */,
+				14CC910E19660DCB00B7A649 /* MKAsyncDelegate_Subclassing.h in Headers */,
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
+				14CC91061966062000B7A649 /* MKDeferred+Await.h in Headers */,
 				14982D9418B92BE70065EE40 /* MKWellKnownErrorResults.h in Headers */,
 				142FE8D018DE415300569636 /* MKPresentationPolicy.h in Headers */,
 				142FE90318F0855300569636 /* MKTransitionContext.h in Headers */,
@@ -1199,6 +1213,7 @@
 				14982DB218BA33AC0065EE40 /* MKValidation.h in Headers */,
 				14E9DCF218D3593E0045760D /* MKActiveCollectionViewCell.h in Headers */,
 				142FE8E918E84C3F00569636 /* MKModalScope.h in Headers */,
+				14CC910A1966088900B7A649 /* MKAsyncResult_Subclassing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1350,7 +1365,7 @@
 				142FE8EE18E84FED00569636 /* MKPresentationPolicyHandler.m in Sources */,
 				14FD8AAF18A7DBF7008077CF /* MKGrandCentralDispatchDelegate.m in Sources */,
 				14FD8AAD18A7DBF7008077CF /* MKDeferred.m in Sources */,
-				14FD8AAA18A7DBF7008077CF /* MKAsyncResult.m in Sources */,
+				14FD8AAA18A7DBF7008077CF /* MKAsyncResult_Subclassing.m in Sources */,
 				1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */,
 				14982D9018B92BE70065EE40 /* MKErrorCallbackHandler.m in Sources */,
 				14982D2D18B16DF20065EE40 /* MKWeakCell.m in Sources */,
@@ -1379,7 +1394,7 @@
 				145AF33719390B7700766F40 /* MKNavigationTransitionWrapper.m in Sources */,
 				1462997918B02DCD002BCBF6 /* MKDynamicCallbackHandlerExtension.m in Sources */,
 				142FE8E618E381EC00569636 /* MKAnimationOptionsTransition.m in Sources */,
-				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate.m in Sources */,
+				14FD8AA718A7DBF7008077CF /* MKAsyncDelegate_Subclassing.m in Sources */,
 				14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */,
 				14FD8AB718A7DBF7008077CF /* MKThreadDelegate.m in Sources */,
 				14982D3418B175540065EE40 /* MKDirtyMixin.m in Sources */,
@@ -1394,6 +1409,7 @@
 				14982D6818B9245E0065EE40 /* MKAlertViewMixin.m in Sources */,
 				14982D4A18B181980065EE40 /* MKCallbackHandler+Track.m in Sources */,
 				1462997718B02DCD002BCBF6 /* MKDynamicCallbackHandler+CallbackReceiver.m in Sources */,
+				14CC91071966062000B7A649 /* MKDeferred+Await.m in Sources */,
 				1462998118B02DCD002BCBF6 /* MKOnDemandOutCallbackHandler.m in Sources */,
 				1405C10B19042796009F110F /* MKCocoaErrors.m in Sources */,
 				14982E0818C394BF0065EE40 /* MKInhibitInputAccessoryView.m in Sources */,
@@ -1443,7 +1459,7 @@
 				1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */,
 				1462998218B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m in Sources */,
 				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,
-				14FD8AB618A7DBF7008077CF /* MKSynchronousResult.m in Sources */,
+				14FD8AB618A7DBF7008077CF /* MKIgnoreResult.m in Sources */,
 				14A0F4A019154D1900A67B7C /* MKCubeTransition.m in Sources */,
 				1462997E18B02DCD002BCBF6 /* MKObjectCallbackHandler.m in Sources */,
 				14982D6A18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m in Sources */,

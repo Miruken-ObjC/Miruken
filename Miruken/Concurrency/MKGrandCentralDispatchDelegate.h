@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKAsyncDelegate.h"
+#import "MKAsyncDelegate_Subclassing.h"
 
 /**
   Defines the concurrency strategy for executing an invocation using GCD.

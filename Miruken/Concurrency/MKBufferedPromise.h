@@ -50,10 +50,10 @@
 
 @end
 
-@interface MKBufferedPromise : NSObject <MKBufferedPromise>
+@interface _MKBufferedPromise : NSObject <MKBufferedPromise>
 
-+ (instancetype)bufferPromise:(id<MKPromise>)promise;
++ (instancetype)bufferPromise:(MKPromise)promise;
 
-- (id)initWithPromise:(id<MKPromise>)promise;
+- (id)initWithPromise:(MKPromise)promise;
 
 @end

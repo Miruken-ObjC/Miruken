@@ -7,12 +7,13 @@
 //
 
 #import "MKAction.h"
-#import "MKAsyncDelegate.h"
+#import "MKAsyncDelegate_Subclassing.h"
 #import "MKAsyncObject.h"
-#import "MKAsyncResult.h"
+#import "MKAsyncResult_Subclassing.h"
 #import "MKBufferedPromise.h"
 #import "MKConcurrency.h"
 #import "MKDeferred.h"
 #import "MKPromise.h"
 #import "NSObject+Concurrency.h"
 #import "NSObject+BuildPromise.h"
+#import "MKDeferred+Await.h"

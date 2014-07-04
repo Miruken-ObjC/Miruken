@@ -14,8 +14,8 @@
 @optional
 - (BOOL)canPresentWithOptions:(id<MKPresentationOptions>)options;
 
-- (id<MKPromise>)presentViewController:(UIViewController *)viewController
-                            withPolicy:(MKPresentationPolicy *)policy;
+- (MKPromise)presentViewController:(UIViewController *)viewController
+                        withPolicy:(MKPresentationPolicy *)policy;
 
 @end
 

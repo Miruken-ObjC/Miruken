@@ -61,8 +61,8 @@
     return YES;
 }
 
-- (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
-                            withPolicy:(MKPresentationPolicy *)policy
+- (MKPromise)presentViewController:(UIViewController<MKContextual> *)viewController
+                        withPolicy:(MKPresentationPolicy *)policy
 {
     MKCallbackHandler *composer = self.composer;
     [policy applyPolicyToViewController:viewController];
@@ -87,8 +87,8 @@
     return [self _presentViewControllerModally:viewController modalOptions:modalOptions];
 }
 
-- (id<MKPromise>)_presentViewControllerModally:(UIViewController<MKContextual> *)viewController
-                                  modalOptions:(MKModalOptions *)modalOptions
+- (MKPromise)_presentViewControllerModally:(UIViewController<MKContextual> *)viewController
+                              modalOptions:(MKModalOptions *)modalOptions
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];
@@ -106,8 +106,8 @@
     return [[MKDeferred resolved:viewController.context] promise];
 }
 
-- (id<MKPromise>)_presentViewControllerWindow:(UIViewController<MKContextual> *)viewController
-                                windowOptions:(MKWindowOptions *)windowOptions
+- (MKPromise)_presentViewControllerWindow:(UIViewController<MKContextual> *)viewController
+                            windowOptions:(MKWindowOptions *)windowOptions
 {
     MKContext *context = self.composer.context;
     

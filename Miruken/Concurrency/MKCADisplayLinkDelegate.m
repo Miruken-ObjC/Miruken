@@ -29,7 +29,7 @@
     NSRunLoop     *runLoop     = _runLoop ? _runLoop : [NSRunLoop mainRunLoop];
     NSString      *mode        = _mode    ? _mode    : NSDefaultRunLoopMode;
     CADisplayLink *displayLink = [CADisplayLink displayLinkWithTarget:asyncResult
-                                                             selector:@selector(retry)];
+                                                             selector:@selector(repeat)];
     @weakify(displayLink);
     [[asyncResult promise] cancel:^{
         @strongify(displayLink);

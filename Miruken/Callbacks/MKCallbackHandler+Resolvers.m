@@ -37,7 +37,7 @@
     return handled;    
 }
 
-- (id<MKPromise>)getClassDeferred:(Class)aClass
+- (MKPromise)getClassDeferred:(Class)aClass
 {
     MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forClass:aClass];
     if ([self handle:receiver] == NO)
@@ -54,7 +54,7 @@
     return receiver;
 }
 
-- (id<MKPromise>)handleDeferred:(id)callback
+- (MKPromise)handleDeferred:(id)callback
 {
     MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forObject:callback];
     if ([self handle:receiver] == NO)
@@ -97,7 +97,7 @@
     return handled;    
 }
 
-- (id<MKPromise>)getProtocolDeferred:(Protocol *)aProtocol
+- (MKPromise)getProtocolDeferred:(Protocol *)aProtocol
 {
     MKProtocolCallbackReceiver *receiver = [MKProtocolCallbackReceiver forProtocol:aProtocol];
     if ([self handle:receiver] == NO)

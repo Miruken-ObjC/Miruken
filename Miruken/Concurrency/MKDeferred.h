@@ -24,7 +24,7 @@
 
 + (instancetype)rejected:(id)reason;
 
-- (id<MKPromise>)promise;
+- (MKPromise)promise;
 
 - (instancetype)done:(MKDoneCallback)done;
 
@@ -46,10 +46,10 @@
 
 - (instancetype)notify:(id)progress queue:(BOOL)queue;
 
-- (instancetype)track:(id<MKPromise>)promise;
+- (instancetype)connectPromise:(MKPromise)promise;
 
-+ (id<MKPromise>)when:(id)condition, ... NS_REQUIRES_NIL_TERMINATION;
++ (MKPromise)when:(id)condition, ... NS_REQUIRES_NIL_TERMINATION;
 
-+ (id<MKPromise>)whenAll:(NSArray *)conditions;
++ (MKPromise)whenAll:(NSArray *)conditions;
 
 @end

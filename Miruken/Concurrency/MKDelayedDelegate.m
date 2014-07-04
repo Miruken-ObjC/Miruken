@@ -7,7 +7,7 @@
 //
 
 #import "MKDelayedDelegate.h"
-#import "MKSynchronousResult.h"
+#import "MKIgnoreResult.h"
 
 @implementation MKDelayedDelegate
 {
@@ -31,7 +31,7 @@
 
 - (id<MKAsyncResult>)asyncResultForInvocation:(NSInvocation *)invocation
 {
-    return [[MKSynchronousResult alloc] initWithInvocation:invocation copyBlockArguments:YES];
+    return [[MKIgnoreResult alloc] initWithInvocation:invocation];
 }
 
 - (void)completeResult:(id<MKAsyncResult>)asyncResult

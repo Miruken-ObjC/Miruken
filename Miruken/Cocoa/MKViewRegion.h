@@ -17,7 +17,7 @@
 @protocol MKViewRegion <NSObject>
 
 @optional
-- (id<MKPromise>)presentViewController:(UIViewController *)viewController;
+- (MKPromise)presentViewController:(UIViewController *)viewController;
 
 @end
 

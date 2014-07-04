@@ -296,15 +296,15 @@
 
 - (void)testPromisePending
 {
-    id<MKPromise> promise = [[MKDeferred new] promise];
+    MKPromise promise = [[MKDeferred new] promise];
     XCTAssertEqual(MKPromiseStatePending, promise.state, @"state should be pending");
 }
 
 - (void)testPromiseResolved
 {
-    MKDeferred  *deferred = [MKDeferred new];
+    MKDeferred *deferred = [MKDeferred new];
     [deferred resolve];
-    id<MKPromise> promise = [deferred promise];
+    MKPromise   promise  = [deferred promise];
     XCTAssertEqual(MKPromiseStateResolved, promise.state, @"state should be resolved");
 }
 
@@ -312,15 +312,15 @@
 {
     MKDeferred *deferred = [MKDeferred new];
     [deferred reject:[NSError errorWithDomain:@"Foo" code:1 userInfo:nil]];
-    id<MKPromise> promise  = [deferred promise];
+    MKPromise   promise  = [deferred promise];
     XCTAssertEqual(MKPromiseStateRejected, promise.state, @"state should be rejected");
 }
 
 - (void)testPromiseCancelled
 {
-    MKDeferred    *deferred = [MKDeferred new];
+    MKDeferred *deferred = [MKDeferred new];
     [deferred cancel];
-    id<MKPromise>  promise  = [deferred promise];
+    MKPromise   promise  = [deferred promise];
     XCTAssertEqual(MKPromiseStateCancelled, promise.state, @"state should be cancelled");
 }
 

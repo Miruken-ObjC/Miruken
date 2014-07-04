@@ -103,8 +103,8 @@
     return YES;
 }
 
-- (id<MKPromise>)presentViewController:(UIViewController<MKContextual> *)viewController
-                            withPolicy:(MKPresentationPolicy *)policy
+- (MKPromise)presentViewController:(UIViewController<MKContextual> *)viewController
+                        withPolicy:(MKPresentationPolicy *)policy
 {
     MKCallbackHandler *composer = self.composer;
     [policy applyPolicyToViewController:viewController];

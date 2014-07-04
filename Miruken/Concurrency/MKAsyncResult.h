@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MKPromise.h"
 
 /**
@@ -22,18 +21,8 @@
 
 - (void)complete;
 
-- (void)retry;
+- (void)repeat;
 
-- (id<MKPromise>)promise;
-
-@end
-
-@interface MKAsyncResult : NSObject <MKAsyncResult>
-
-- (id)initWithInvocation:(NSInvocation *)invocation;
-
-+ (NSArray *)copyBlockArguments:(NSInvocation *)invocation;
-
-+ (void)releaseBlockArguments:(NSArray *)blockArguments;
+- (MKPromise)promise;
 
 @end

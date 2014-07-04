@@ -50,28 +50,28 @@
 - (instancetype)inNewThread
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction threadedNew]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction threadedNew]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKNewThreadDelegate sharedInstance]];
 }
 
 - (instancetype)onMainThread
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction threadedMain]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction threadedMain]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKMainThreadDelegate sharedInstance]];
 }
 
 - (instancetype)onMainThreadWait
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction threadedMainWait]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction threadedMainWait]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKMainThreadDelegate sharedInstanceWait]];
 }
 
 - (instancetype)onThread:(NSThread *)thread
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction threaded:thread]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction threaded:thread]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKThreadDelegate onThread:thread]];
 }
 
@@ -103,14 +103,14 @@
 - (instancetype)onQueue:(NSOperationQueue *)queue
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction queued:queue]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction queued:queue]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKOperationQueueDelegate withQueue:queue]];
 }
 
 - (instancetype)onMainQueue
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction queuedMain]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction queuedMain]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:
                 [MKOperationQueueDelegate withQueue:[NSOperationQueue mainQueue]]];
 }
@@ -150,7 +150,7 @@
 - (instancetype)dispatchGlobal
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedGlobal]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction dispatchedGlobal]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
                 delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueue]];
 }
@@ -158,7 +158,7 @@
 - (instancetype)dispatchMain
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedMain]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction dispatchedMain]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
                 delegate:[MKGrandCentralDispatchDelegate dispatchMainQueue]];
 }
@@ -166,7 +166,7 @@
 - (instancetype)dispatchGlobal:(long)priority
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedGlobal:priority]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction dispatchedGlobal:priority]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
                 delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueueWithPriority:priority]];
 }
@@ -174,7 +174,7 @@
 - (instancetype)dispatchGlobalAfterDelay:(NSTimeInterval)delay
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:
                                                                 [MKAction delayedDispatchedGlobal:delay]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
                     delegate:[MKGrandCentralDispatchDelegate dispatchGlobalQueueWithDelay:delay]];
@@ -183,7 +183,7 @@
 - (instancetype)onDispatchQueue:(dispatch_queue_t)queue
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedQueued:queue]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction dispatchedQueued:queue]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
                 delegate:[MKGrandCentralDispatchDelegate dispatchQueue:queue]];
 }
@@ -191,7 +191,7 @@
 - (instancetype)onBarrierQueue:(dispatch_queue_t)queue
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction dispatchedQueued:queue]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction dispatchedQueued:queue]]
          : (id)[[MKAsyncObject alloc] initWithObject:self
                 delegate:[MKGrandCentralDispatchDelegate barrierQueue:queue]];
 }
@@ -255,14 +255,14 @@
 - (instancetype)afterDelay:(NSTimeInterval)delay
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction delayed:delay]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction delayed:delay]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKDelayedDelegate withDelay:delay]];
 }
 
 - (instancetype)onMainAfterDelay:(NSTimeInterval)delay
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction delayedMain:delay]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction delayedMain:delay]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:[MKDelayedDelegate withDelayOnMain:delay]];
 }
 
@@ -311,7 +311,7 @@
 - (instancetype)concurrent:(id<MKAsyncDelegate>)asyncDelegate
 {
     return [self conformsToProtocol:@protocol(MKPromise)]
-         ? [MKScheduledPromise schedulePromise:(id<MKPromise>)self schedule:[MKAction concurrent:asyncDelegate]]
+         ? [MKScheduledPromise schedulePromise:(MKPromise)self schedule:[MKAction concurrent:asyncDelegate]]
          : (id)[[MKAsyncObject alloc] initWithObject:self delegate:asyncDelegate];
 }
 

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E469C14B0D174FE6973C0594"
+               BlueprintIdentifier = "C3498D3AE4E944C9ADED5F6E"
                BuildableName = "libPods-Miruken-libextobjc.a"
                BlueprintName = "Pods-Miruken-libextobjc"
                ReferencedContainer = "container:Pods.xcodeproj">

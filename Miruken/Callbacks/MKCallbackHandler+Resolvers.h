@@ -19,14 +19,14 @@
 
 - (BOOL)tryGetClass:(Class)aClass into:(out id __strong *)outItem;
 
-- (id<MKPromise>)getClassDeferred:(Class)aClass;
+- (MKPromise)getClassDeferred:(Class)aClass;
 
 - (id)getProtocol:(Protocol *)aProtocol orDefault:(id)theDefault;
 
 - (BOOL)tryGetProtocol:(Protocol *)aProtocol into:(out id __strong *)outItem;
 
-- (id<MKPromise>)getProtocolDeferred:(Protocol *)aProtocol;
+- (MKPromise)getProtocolDeferred:(Protocol *)aProtocol;
 
-- (id<MKPromise>)handleDeferred:(id)callback;
+- (MKPromise)handleDeferred:(id)callback;
 
 @end

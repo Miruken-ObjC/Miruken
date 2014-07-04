@@ -14,7 +14,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wprotocol"
 
-@implementation MKBufferedPromise
+@implementation _MKBufferedPromise
 {
     NSMutableArray   *_done;
     NSMutableArray   *_fail;
@@ -22,16 +22,16 @@
     NSMutableArray   *_always;
     NSMutableArray   *_progress;
     NSMutableArray   *_buffer;
-    id<MKPromise>     _promise;
+    MKPromise         _promise;
     BOOL              _flushed;
 }
 
-+ (instancetype)bufferPromise:(id<MKPromise>)promise
++ (instancetype)bufferPromise:(MKPromise)promise
 {
-    return [[MKBufferedPromise alloc] initWithPromise:promise];
+    return [[self alloc] initWithPromise:promise];
 }
 
-- (id)initWithPromise:(id<MKPromise>)promise
+- (id)initWithPromise:(MKPromise)promise
 {
     if (promise == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException

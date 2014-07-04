@@ -198,7 +198,7 @@
     
     return [MKCallbackHandlerFilter for:self
             filter:^(id callback, id<MKCallbackHandler> composer, BOOL(^proceed)()) {
-                id<MKPromise> promise = nil;
+                MKPromise promise = nil;
                 
                 if (before && before(callback, composer) == NO)
                     return YES;

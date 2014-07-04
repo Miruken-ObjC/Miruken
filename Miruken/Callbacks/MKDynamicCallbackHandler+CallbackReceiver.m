@@ -93,7 +93,7 @@
         {
             if (result != receiver)
             {
-                [[[((id<MKPromise>)result) done:^(id result) {
+                [[[((MKPromise)result) done:^(id result) {
                         [receiver resolve:result];
                     }]
                     fail:^(id reason, BOOL *failureHandled) {
@@ -150,7 +150,7 @@
     {
         if (result != receiver)
         {
-            [[[((id<MKPromise>)result) done:^(id result) {
+            [[[((MKPromise)result) done:^(id result) {
                   [receiver resolve:result];
                }]
                fail:^(id reason, BOOL *failureHandled) {

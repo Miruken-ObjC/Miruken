@@ -30,7 +30,7 @@
         [MKAlertViewMixin mixInto:self];
 }
 
-- (id<MKPromise>)handleFailure:(id)reason context:(void *)context
+- (MKPromise)handleFailure:(id)reason context:(void *)context
 {
     if (reason != nil)
     {
@@ -43,7 +43,7 @@
     return [[MKDeferred resolved] promise];
 }
 
-- (id<MKPromise>)handleError:(NSError *)error context:(void *)context
+- (MKPromise)handleError:(NSError *)error context:(void *)context
 {
     NSString *title   = @"Error";
     NSString *message = @"An unspecified error has occurred.";
@@ -52,14 +52,14 @@
                                          title:title context:context];
 }
 
-- (id<MKPromise>)handleException:(NSException *)exception context:(void *)context
+- (MKPromise)handleException:(NSException *)exception context:(void *)context
 {
     return [MKErrors(self.composer) reportException:exception context:context];
 }
 
 
-- (id<MKPromise>)reportError:(NSError *)error message:(NSString *)message
-              title:(NSString *)title context:(void *)context
+- (MKPromise)reportError:(NSError *)error message:(NSString *)message
+                   title:(NSString *)title context:(void *)context
 {
     MKDeferred *deferred = [MKDeferred new];
     
@@ -83,7 +83,7 @@
     return [deferred promise];
 }
 
-- (id<MKPromise>)reportException:(NSException *)exception context:(void *)context
+- (MKPromise)reportException:(NSException *)exception context:(void *)context
 {
     MKDeferred *deferred = [MKDeferred new];
     

@@ -15,8 +15,8 @@
 @interface MKScheduledPromise()
 {
 @protected
-    id<MKPromise>   _promise;
-    MKAction       *_scheduler;
+    MKPromise   _promise;
+    MKAction   *_scheduler;
 }
 
 @end
@@ -28,7 +28,7 @@
 
 @implementation MKScheduledPromise
 
-+ (id<MKPromise>)schedulePromise:(id<MKPromise>)promise schedule:(MKAction *)scheduler
++ (MKPromise)schedulePromise:(MKPromise)promise schedule:(MKAction *)scheduler
 {
     if (promise == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException
@@ -45,7 +45,7 @@
          : (id)[[MKScheduledPromise alloc] initWithPromise:promise schedule:scheduler];
 }
 
-- (id)initWithPromise:(id<MKPromise>)promise schedule:(MKAction *)scheduler
+- (id)initWithPromise:(MKPromise)promise schedule:(MKAction *)scheduler
 {
     _promise   = promise;
     _scheduler = scheduler;

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "728CD30932BE41F8842538D6"
+               BlueprintIdentifier = "2CE138073AAF46B8B769EC08"
                BuildableName = "libPods-Miruken-libffi.a"
                BlueprintName = "Pods-Miruken-libffi"
                ReferencedContainer = "container:Pods.xcodeproj">

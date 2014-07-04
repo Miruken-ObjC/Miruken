@@ -14,8 +14,8 @@
 
 @implementation MKEndContextOnError
 
-- (id<MKPromise>)reportError:(NSError *)error message:(NSString *)message
-                       title:(NSString *)title context:(void *)context
+- (MKPromise)reportError:(NSError *)error message:(NSString *)message
+                   title:(NSString *)title context:(void *)context
 {
     MKDeferred *deferred = [MKDeferred new];
     
