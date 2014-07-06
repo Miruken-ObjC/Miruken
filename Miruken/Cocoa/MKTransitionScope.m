@@ -16,6 +16,7 @@
 #import "MKPageFlipTransition.h"
 #import "MKPageFoldTransition.h"
 #import "MKPortalTransition.h"
+#import "MKSquishTransition.h"
 #import "MKHorizonatalLinesTransition.h"
 #import "MKVerticalLinesTransition.h"
 #import "MKShuffle3DTransition.h"
@@ -223,6 +224,11 @@
 - (instancetype)portal
 {
     return [self _setTransitionDelegate:[MKPortalTransition new]];
+}
+
+- (instancetype)squish
+{
+    return [self _setTransitionDelegate:[MKSquishTransition new]];
 }
 
 - (instancetype)explode

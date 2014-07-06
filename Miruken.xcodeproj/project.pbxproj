@@ -201,6 +201,8 @@
 		14CC91131969E8D500B7A649 /* MKHorizonatalLinesTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC91111969E8D500B7A649 /* MKHorizonatalLinesTransition.m */; };
 		14CC91161969F4FF00B7A649 /* MKVerticalLinesTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14CC91141969F4FF00B7A649 /* MKVerticalLinesTransition.h */; };
 		14CC91171969F4FF00B7A649 /* MKVerticalLinesTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC91151969F4FF00B7A649 /* MKVerticalLinesTransition.m */; };
+		14CC911A196A028A00B7A649 /* MKSquishTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14CC9118196A028A00B7A649 /* MKSquishTransition.h */; };
+		14CC911B196A028A00B7A649 /* MKSquishTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC9119196A028A00B7A649 /* MKSquishTransition.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -531,6 +533,8 @@
 		14CC91111969E8D500B7A649 /* MKHorizonatalLinesTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHorizonatalLinesTransition.m; sourceTree = "<group>"; };
 		14CC91141969F4FF00B7A649 /* MKVerticalLinesTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKVerticalLinesTransition.h; sourceTree = "<group>"; };
 		14CC91151969F4FF00B7A649 /* MKVerticalLinesTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKVerticalLinesTransition.m; sourceTree = "<group>"; };
+		14CC9118196A028A00B7A649 /* MKSquishTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSquishTransition.h; sourceTree = "<group>"; };
+		14CC9119196A028A00B7A649 /* MKSquishTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKSquishTransition.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -733,6 +737,8 @@
 				14A0F49E19154D1900A67B7C /* MKCubeTransition.m */,
 				145AF316193110B400766F40 /* MKNatGeoTransition.h */,
 				145AF317193110B400766F40 /* MKNatGeoTransition.m */,
+				14CC9118196A028A00B7A649 /* MKSquishTransition.h */,
+				14CC9119196A028A00B7A649 /* MKSquishTransition.m */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -1175,6 +1181,7 @@
 				14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
+				14CC911A196A028A00B7A649 /* MKSquishTransition.h in Headers */,
 				14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */,
 				142FE8E518E381EC00569636 /* MKAnimationOptionsTransition.h in Headers */,
 				1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */,
@@ -1403,6 +1410,7 @@
 				142FE8DE18DF318100569636 /* NSObject+Context.m in Sources */,
 				14982DBF18BA39770065EE40 /* MKSideEffectCallbackHandler.m in Sources */,
 				145AF319193110B400766F40 /* MKNatGeoTransition.m in Sources */,
+				14CC911B196A028A00B7A649 /* MKSquishTransition.m in Sources */,
 				14982D7618B9252F0065EE40 /* UIScrollView+Motion.m in Sources */,
 				14982DB118BA33AC0065EE40 /* MKValidationExtension.m in Sources */,
 				14982D5418B8025C0065EE40 /* MKCallbackHandler+Context.m in Sources */,

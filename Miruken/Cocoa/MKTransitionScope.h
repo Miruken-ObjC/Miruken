@@ -98,6 +98,8 @@
 
 - (instancetype)portal;
 
+- (instancetype)squish;
+
 - (instancetype)explode;
 
 - (instancetype)slide3D;

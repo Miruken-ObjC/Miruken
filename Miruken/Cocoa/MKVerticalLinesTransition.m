@@ -30,26 +30,29 @@
        fromViewController:(UIViewController *)fromViewController
          toViewController:(UIViewController *)toViewController
 {
-    UIView *containerView   = [transitionContext containerView];
-    UIView *fromView        = fromViewController.view;
-    UIView *toView          = toViewController.view;
+    UIView *containerView = [transitionContext containerView];
+    UIView *fromView      = fromViewController.view;
+    UIView *toView        = toViewController.view;
     
-    // lets get a snapshot of the outgoing view
-    UIView *fromSnapshot    = [fromView snapshotViewAfterScreenUpdates:NO];
+    // lets get a snapshot of the from view
+    UIView *fromSnapshot  = [fromView snapshotViewAfterScreenUpdates:NO];
     
     // cut it into vertical slices
-    NSArray *outgoingSlices = [self cutView:fromSnapshot];
+    NSArray *fromSlices   = [self cutView:fromSnapshot];
     
     // add the slices to the content view.
-    for (UIView *slice in outgoingSlices)
+    for (UIView *slice in fromSlices)
         [containerView addSubview:slice];
     
     toView.frame = [transitionContext finalFrameForViewController:toViewController];
     [containerView addSubview:toView];
     
-    CGFloat toViewStartY   = toView.frame.origin.y;
-    toView.alpha           = 0.0;
-    fromView.hidden        = YES;
+    CGFloat toViewStartY  = toView.frame.origin.y;
+    toView.alpha          = 0.0;
+    fromView.hidden       = YES;
+    
+    BOOL clipToBounds           = containerView.clipsToBounds;
+    containerView.clipsToBounds = YES;
     
     [UIView animateWithDuration:kAnimationDurationStep1 delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -59,37 +62,36 @@
         UIView *toSnapshot = [toView snapshotViewAfterScreenUpdates:YES];
         
         // cut it into vertical slices
-        NSArray *incomingSlices = [self cutView:toSnapshot];
+        NSArray *toSlices  = [self cutView:toSnapshot];
         
         // move the slices in to start position (mess them up)
-        [self repositionViewSlices:incomingSlices moveFirstFrameUp:NO];
+        [self repositionViewSlices:toSlices moveFirstFrameUp:NO];
         
         // add the slices to the content view.
-        for (UIView *slice in incomingSlices)
+        for (UIView *slice in toSlices)
             [containerView addSubview:slice];
         toView.hidden = YES;
         
         [UIView animateWithDuration:kAnimationDurationStep2 delay:0
              usingSpringWithDamping:0.8 initialSpringVelocity:0
                             options:UIViewAnimationOptionCurveEaseIn animations:^{
-            [self repositionViewSlices:outgoingSlices moveFirstFrameUp:YES];
-            [self resetViewSlices:incomingSlices toYOrigin:toViewStartY];
+            [self repositionViewSlices:fromSlices moveFirstFrameUp:YES];
+            [self resetViewSlices:toSlices toYOrigin:toViewStartY];
         } completion:^(BOOL finished) {
-            fromView.hidden = NO;
-            toView.hidden   = NO;
+            fromView.hidden             = NO;
+            toView.hidden               = NO;
+            containerView.clipsToBounds = clipToBounds;
             [toView setNeedsUpdateConstraints];
-            for (UIView *slice in incomingSlices)
+            for (UIView *slice in [fromSlices arrayByAddingObjectsFromArray:toSlices])
                 [slice removeFromSuperview];
-            for (UIView *slice in outgoingSlices)
-                [slice removeFromSuperview];
-            [transitionContext completeTransition:YES];
+            BOOL cancelled = [transitionContext transitionWasCancelled];
+            [transitionContext completeTransition:!cancelled];
         }];
     }];
 }
 
 -(NSMutableArray *)cutView:(UIView *)view
 {
-    CGFloat         maxX       = CGRectGetMaxX(view.frame);
     CGFloat         width      = CGRectGetWidth(view.frame);
     CGFloat         lineHeight = CGRectGetHeight(view.frame);
     NSMutableArray *lineSlices = [NSMutableArray array];
@@ -97,8 +99,6 @@
     for (CGFloat x = 0; x < width; x += _lineWidth)
     {
         CGRect subrect = CGRectMake(x, 0, _lineWidth, lineHeight);
-        if (CGRectGetMaxX(subrect) > maxX)
-            subrect.size.width -= (CGRectGetMaxX(subrect) - maxX);
         UIView *subsnapshot = [view resizableSnapshotViewFromRect:subrect afterScreenUpdates:NO
                                                     withCapInsets:UIEdgeInsetsZero];
         subsnapshot.frame   = subrect;
