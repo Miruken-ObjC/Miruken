@@ -76,11 +76,11 @@
     [UIView animateWithDuration:duration animations:^{
         for (UIView *view in snapshots)
         {
-            CGFloat xOffset = [self _randomFloatBetween:-100.0 and:100.0];
-            CGFloat yOffset = [self _randomFloatBetween:-100.0 and:100.0];
+            CGFloat xOffset = [self randomFloatBetween:-100.0 and:100.0];
+            CGFloat yOffset = [self randomFloatBetween:-100.0 and:100.0];
             view.frame      = CGRectOffset(view.frame, xOffset, yOffset);
             view.alpha      = 0.0;
-            CGFloat angle   = [self _randomFloatBetween:-10.0 and:10.0];
+            CGFloat angle   = [self randomFloatBetween:-10.0 and:10.0];
             view.transform  = CGAffineTransformScale(CGAffineTransformMakeRotation(angle), 0.0, 0.0);
         }
     } completion:^(BOOL finished) {
@@ -89,12 +89,6 @@
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];
     }];
-}
-
-- (CGFloat)_randomFloatBetween:(float)smallNumber and:(float)bigNumber
-{
-    CGFloat diff = bigNumber - smallNumber;
-    return (((CGFloat) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
 }
 
 @end

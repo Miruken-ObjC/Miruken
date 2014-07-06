@@ -22,6 +22,8 @@
 
 - (void)completeTransition:(id<UIViewControllerContextTransitioning>)transitionContext;
 
+- (CGFloat)randomFloatBetween:(float)smallNumber and:(float)bigNumber;
+
 - (void)fade:(MKTransitionFadeStyle)fadeStyle fromView:(UIView *)fromView toView:(UIView *)toView
      initial:(BOOL)initial;
 

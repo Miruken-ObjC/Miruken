@@ -16,6 +16,7 @@
 #import "MKPageFlipTransition.h"
 #import "MKPageFoldTransition.h"
 #import "MKPortalTransition.h"
+#import "MKVerticalLinesTransition.h"
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
 #import "MKFlip3DTransition.h"
@@ -275,6 +276,18 @@
     MKCubeTransition *cube = [MKCubeTransition cubeAxis:MKCubeTransitionAxisVertical];
     cube.rotateDegrees     = angle;
     return [self _setTransitionDelegate:cube];
+}
+
+- (instancetype)verticalLines
+{
+     return [self _setTransitionDelegate:[MKVerticalLinesTransition new]];
+}
+
+- (instancetype)verticalLinesWithHeight:(CGFloat)lineHeight
+{
+    MKVerticalLinesTransition *verticalLines = [MKVerticalLinesTransition new];
+    verticalLines.lineHeight                 = lineHeight;
+    return [self _setTransitionDelegate:verticalLines];
 }
 
 - (instancetype)animate:(UIViewAnimationOptions)options

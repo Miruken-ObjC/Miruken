@@ -75,6 +75,12 @@
 {
 }
 
+- (CGFloat)randomFloatBetween:(float)smallNumber and:(float)bigNumber
+{
+    CGFloat diff = bigNumber - smallNumber;
+    return (((CGFloat) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
+
 - (void)fade:(MKTransitionFadeStyle)fadeStyle fromView:(UIView *)fromView toView:(UIView *)toView
      initial:(BOOL)initial
 {

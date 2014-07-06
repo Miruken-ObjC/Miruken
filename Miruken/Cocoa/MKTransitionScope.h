@@ -114,6 +114,10 @@
 
 - (instancetype)verticalCubeAtDegrees:(CGFloat)angle;
 
+- (instancetype)verticalLines;
+
+- (instancetype)verticalLinesWithHeight:(CGFloat)lineHeight;
+
 - (instancetype)natGeo;
 
 - (instancetype)natGeoFirstPartRatio:(CGFloat)ratio;
