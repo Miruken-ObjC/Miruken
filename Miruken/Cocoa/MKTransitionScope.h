@@ -114,9 +114,13 @@
 
 - (instancetype)verticalCubeAtDegrees:(CGFloat)angle;
 
+- (instancetype)horizontalLines;
+
+- (instancetype)horizontalLinesWithHeight:(CGFloat)lineHeight;
+
 - (instancetype)verticalLines;
 
-- (instancetype)verticalLinesWithHeight:(CGFloat)lineHeight;
+- (instancetype)verticalLinesWithWidth:(CGFloat)lineWidth;
 
 - (instancetype)natGeo;
 

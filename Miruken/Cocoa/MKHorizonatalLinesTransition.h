@@ -1,5 +1,5 @@
 //
-//  MKVerticalLinesTransition.h
+//  MKHorizonatalLinesTransition.h
 //  Miruken
 //
 //  Created by Craig Neuwirt on 7/6/14.
@@ -10,8 +10,8 @@
 
 #import "MKAnimatedTransition.h"
 
-@interface MKVerticalLinesTransition : MKAnimatedTransition
+@interface MKHorizonatalLinesTransition : MKAnimatedTransition
 
-@property (assign, nonatomic) CGFloat lineWidth;
+@property (assign, nonatomic) CGFloat lineHeight;
 
 @end

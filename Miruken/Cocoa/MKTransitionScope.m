@@ -16,6 +16,7 @@
 #import "MKPageFlipTransition.h"
 #import "MKPageFoldTransition.h"
 #import "MKPortalTransition.h"
+#import "MKHorizonatalLinesTransition.h"
 #import "MKVerticalLinesTransition.h"
 #import "MKShuffle3DTransition.h"
 #import "MKSlide3DTransition.h"
@@ -278,16 +279,28 @@
     return [self _setTransitionDelegate:cube];
 }
 
-- (instancetype)verticalLines
+- (instancetype)horizontalLines
 {
-     return [self _setTransitionDelegate:[MKVerticalLinesTransition new]];
+     return [self _setTransitionDelegate:[MKHorizonatalLinesTransition new]];
 }
 
-- (instancetype)verticalLinesWithHeight:(CGFloat)lineHeight
+- (instancetype)horizontalLinesWithHeight:(CGFloat)lineHeight
 {
-    MKVerticalLinesTransition *verticalLines = [MKVerticalLinesTransition new];
-    verticalLines.lineHeight                 = lineHeight;
-    return [self _setTransitionDelegate:verticalLines];
+    MKHorizonatalLinesTransition *horizLines = [MKHorizonatalLinesTransition new];
+    horizLines.lineHeight                    = lineHeight;
+    return [self _setTransitionDelegate:horizLines];
+}
+
+- (instancetype)verticalLines
+{
+    return [self _setTransitionDelegate:[MKVerticalLinesTransition new]];
+}
+
+- (instancetype)verticalLinesWithWidth:(CGFloat)lineWidth
+{
+    MKVerticalLinesTransition *vertLines = [MKVerticalLinesTransition new];
+    vertLines.lineWidth                  = lineWidth;
+    return [self _setTransitionDelegate:vertLines];
 }
 
 - (instancetype)animate:(UIViewAnimationOptions)options
