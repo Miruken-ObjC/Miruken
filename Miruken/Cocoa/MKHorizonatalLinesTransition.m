@@ -69,7 +69,6 @@
             [containerView addSubview:slice];
 
         toView.hidden               = YES;
-        BOOL clipToBounds           = containerView.clipsToBounds;
         containerView.clipsToBounds = YES;
         
         [UIView animateWithDuration:kAnimationDurationStep2 delay:0
@@ -78,9 +77,8 @@
             [self repositionViewSlices:fromSlices moveLeft:self.isPresenting];
             [self resetViewSlices:toSlices toXOrigin:toViewStartX];
         } completion:^(BOOL finished) {
-            fromView.hidden             = NO;
-            toView.hidden               = NO;
-            containerView.clipsToBounds = clipToBounds;
+            fromView.hidden = NO;
+            toView.hidden   = NO;
             [toView setNeedsUpdateConstraints];
             for (UIView *slice in [fromSlices arrayByAddingObjectsFromArray:toSlices])
                 [slice removeFromSuperview];

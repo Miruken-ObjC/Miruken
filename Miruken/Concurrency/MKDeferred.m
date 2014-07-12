@@ -825,18 +825,30 @@
             done:^(id result) {
                 if (_doneFilter)
                 {
-                    result = _doneFilter(result);
-                    if ([self _chainPromise:result])
+                    @try {
+                        result = _doneFilter(result);
+                        if ([self _chainPromise:result])
+                            return;
+                    }
+                    @catch (NSException *exception) {
+                        [_pipe reject:exception];
                         return;
+                    }
                 }
                 [_pipe resolve:result];
             }]
            fail:^(id reason, BOOL *handled) {
                if (_failFilter)
                {
-                   reason = _failFilter(reason);
-                   if ([self _chainPromise:reason])
+                   @try {
+                       reason = _failFilter(reason);
+                       if ([self _chainPromise:reason])
+                           return;
+                   }
+                   @catch (NSException *exception) {
+                       [_pipe reject:exception handled:handled];
                        return;
+                   }
                }
                [_pipe reject:reason handled:handled];
            }]

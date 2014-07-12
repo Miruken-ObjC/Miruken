@@ -22,7 +22,7 @@
     {
         self.animationDuration = kPageFlipAnimationDuration;
         _perspective           = kDefaultPerspective;
-        _clipToBounds          = NO;
+        self.clipToBounds      = NO;
     }
     return self;
 }
@@ -86,9 +86,7 @@
     flippedSectionOfToView.layer.transform = [self _rotate:self.isPresenting ? -M_PI_2 : M_PI_2];
     
     // animate
-    NSTimeInterval duration     = [self transitionDuration:transitionContext];
-    BOOL clipToBounds           = containerView.clipsToBounds;
-    containerView.clipsToBounds = _clipToBounds;
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
     
     [UIView animateKeyframesWithDuration:duration delay:0.0 options:0 animations:^{
         [UIView addKeyframeWithRelativeStartTime:0.0 relativeDuration:0.5 animations:^{
@@ -114,7 +112,6 @@
         for (UIView *snapshot in [fromViewSnapshots arrayByAddingObjectsFromArray:toViewSnapshots])
             [snapshot removeFromSuperview];
         
-        containerView.clipsToBounds           = clipToBounds;
         containerView.layer.sublayerTransform = CATransform3DIdentity;
         [transitionContext completeTransition:!cancelled];
     }];

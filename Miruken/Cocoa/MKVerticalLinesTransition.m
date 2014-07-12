@@ -50,10 +50,7 @@
     CGFloat toViewStartY  = toView.frame.origin.y;
     toView.alpha          = 0.0;
     fromView.hidden       = YES;
-    
-    BOOL clipToBounds           = containerView.clipsToBounds;
-    containerView.clipsToBounds = YES;
-    
+
     [UIView animateWithDuration:kAnimationDurationStep1 delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn animations:^{
         // hack to get the incoming view to render before I snapshot it.
@@ -78,9 +75,8 @@
             [self repositionViewSlices:fromSlices moveFirstFrameUp:YES];
             [self resetViewSlices:toSlices toYOrigin:toViewStartY];
         } completion:^(BOOL finished) {
-            fromView.hidden             = NO;
-            toView.hidden               = NO;
-            containerView.clipsToBounds = clipToBounds;
+            fromView.hidden = NO;
+            toView.hidden   = NO;
             [toView setNeedsUpdateConstraints];
             for (UIView *slice in [fromSlices arrayByAddingObjectsFromArray:toSlices])
                 [slice removeFromSuperview];

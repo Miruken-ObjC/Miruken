@@ -15,6 +15,7 @@
 
 @property (readonly,  assign, nonatomic) BOOL           isPresenting;
 @property (readwrite, assign, nonatomic) NSTimeInterval animationDuration;
+@property (readwrite, assign, nonatomic) BOOL           clipToBounds;
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext
        fromViewController:(UIViewController *)fromViewController

@@ -28,7 +28,7 @@
     {
         _startingPosition = MKStartingPositionTop;
         _perspective      = kDefaultPerspective;
-        _clipToBounds     = NO;
+        self.clipToBounds = NO;
     }
     return self;
 }
@@ -71,8 +71,6 @@
     // animate
     NSTimeInterval duration     = [self transitionDuration:transitionContext];
     NSTimeInterval halfway      = duration / 2.0;
-    BOOL           clipToBoubds = containerView.clipsToBounds;
-    containerView.clipsToBounds = _clipToBounds;
     
     [UIView animateWithDuration:halfway delay:0.0
                         options:UIViewAnimationOptionCurveEaseIn animations:^{
@@ -86,7 +84,6 @@
                         options:UIViewAnimationOptionCurveEaseOut animations:^{
         toView.layer.transform = [self _rotate:0.0 startingPosition:startingPosition];
     } completion:^(BOOL finished) {
-        containerView.clipsToBounds           = clipToBoubds;
         containerView.layer.sublayerTransform = CATransform3DIdentity;
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];

@@ -27,46 +27,54 @@
 {
     if (self.isPresenting)
     {
-        [self animatePresentation:transitionContext
+        [self _animatePresentation:transitionContext
                fromViewController:fromViewController
                  toViewController:toViewController];
     }
     else
     {
-        [self animateDismissal:transitionContext
+        [self _animateDismissal:transitionContext
             fromViewController:fromViewController
               toViewController:toViewController];
     }
 }
 
--(void)animatePresentation:(id<UIViewControllerContextTransitioning>)transitionContext
-        fromViewController:(UIViewController *)fromViewController
-          toViewController:(UIViewController *)toViewController
+- (void)_animatePresentation:(id<UIViewControllerContextTransitioning>)transitionContext
+          fromViewController:(UIViewController *)fromViewController
+            toViewController:(UIViewController *)toViewController
 {
-    UIView *fromView      = fromViewController.view;
-    UIView *toView        = toViewController.view;
-    UIView *containerView = [transitionContext containerView];
+    UIView *fromView          = fromViewController.view;
+    UIView *toView            = toViewController.view;
+    UIView *containerView     = [transitionContext containerView];
     
+    toView.frame = ({
+        CGRect frame   = toView.frame;
+        frame.origin.x = -frame.size.width;
+        frame;
+    });
     [containerView addSubview:toView];
     
-    CGRect          initialFrame = [transitionContext initialFrameForViewController:fromViewController];
-    UIView         *blackView    = [[UIView alloc] initWithFrame:initialFrame];
-    blackView.backgroundColor    = [UIColor blackColor];
-    
-    UIView *snapshot = [toView resizableSnapshotViewFromRect:toView.frame
-                                          afterScreenUpdates:YES
-                                               withCapInsets:UIEdgeInsetsZero];
+    CGRect  initialFrame      = containerView.bounds;
+    UIView *blackView         = fromView ? [[UIView alloc] initWithFrame:initialFrame] : nil;
+    blackView.backgroundColor = [UIColor blackColor];
+    UIView *snapshot          = [toView snapshotViewAfterScreenUpdates:YES];
     [containerView addSubview:snapshot];
-    [containerView insertSubview:blackView belowSubview:fromView];
-    [containerView sendSubviewToBack:toView];
     
-    CGRect snapshotFrame     = initialFrame;
-    snapshotFrame.origin.y   = CGRectGetHeight(initialFrame);
-    snapshotFrame.origin.x   = CGRectGetMidX(initialFrame);
-    snapshotFrame.size.width = 10.0f;
-    snapshot.frame           = snapshotFrame;
+    if (blackView)
+    {
+        [containerView insertSubview:blackView belowSubview:fromView];
+        [containerView sendSubviewToBack:toView];
+    }
+    else
+        [toView removeFromSuperview];
     
-    NSTimeInterval duration  = [self transitionDuration:transitionContext];
+    CGRect snapshotFrame        = initialFrame;
+    snapshotFrame.origin.y      = CGRectGetHeight(initialFrame);
+    snapshotFrame.origin.x      = CGRectGetMidX(initialFrame) - 5.0;
+    snapshotFrame.size.width    = 10.0f;
+    snapshot.frame              = snapshotFrame;
+
+    NSTimeInterval duration     = [self transitionDuration:transitionContext];
 
     [UIView animateKeyframesWithDuration:duration delay:0.0
                                  options:UIViewKeyframeAnimationOptionCalculationModeCubic
@@ -86,38 +94,40 @@
             fromView.alpha           = 0.0f;
         }];
     } completion:^(BOOL finished) {
+        toView.frame = initialFrame;
+        [containerView addSubview:toView];
         [fromView removeFromSuperview];
         [snapshot removeFromSuperview];
         [blackView removeFromSuperview];
-        toView.alpha = 1.0f;
         BOOL cancelled = [transitionContext transitionWasCancelled];
         [transitionContext completeTransition:!cancelled];
     }];
 }
 
--(void)animateDismissal:(id<UIViewControllerContextTransitioning>)transitionContext
-     fromViewController:(UIViewController *)fromViewController
-       toViewController:(UIViewController *)toViewController
+- (void)_animateDismissal:(id<UIViewControllerContextTransitioning>)transitionContext
+       fromViewController:(UIViewController *)fromViewController
+         toViewController:(UIViewController *)toViewController
 {
-    
-    UIView *fromView      = fromViewController.view;
-    UIView *toView        = toViewController.view;
-    UIView *containerView = [transitionContext containerView];
+    UIView *fromView            = fromViewController.view;
+    UIView *toView              = toViewController.view;
+    UIView *containerView       = [transitionContext containerView];
 
-    [containerView addSubview:toView];
-    fromView.hidden       = YES;
-    
-    CGRect initialFrame   = [transitionContext initialFrameForViewController:fromViewController];
-    toView.frame          = initialFrame;
-    toView.alpha          = 0.2f;
+    CGRect initialFrame         = [transitionContext initialFrameForViewController:fromViewController];
+
+    if (toView)
+    {
+        toView.frame             = initialFrame;
+        toView.alpha             = 0.2f;
+        [containerView addSubview:toView];
+    }
+    fromView.hidden             = YES;
+
     CGAffineTransform transform = fromView.transform;
-    UIView *snapshot      = [fromView resizableSnapshotViewFromRect:fromView.frame
-                                                 afterScreenUpdates:NO
-                                                      withCapInsets:UIEdgeInsetsZero];
-    snapshot.transform    = transform;
+    UIView *snapshot            = [fromView snapshotViewAfterScreenUpdates:NO];
+    snapshot.transform          = transform;
     [containerView addSubview:snapshot];
     
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    NSTimeInterval duration     = [self transitionDuration:transitionContext];
 
     [UIView animateKeyframesWithDuration:duration delay:0.0
                                  options:UIViewKeyframeAnimationOptionCalculationModeCubic

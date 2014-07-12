@@ -15,7 +15,10 @@
 - (id)init
 {
     if (self = [super init])
+    {
         _animationDuration = kDefaultAnimationDuration;
+        _clipToBounds      = YES;
+    }
     return self;
 }
 
@@ -51,6 +54,8 @@
     UIViewController *toViewController   =
         [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
+    [transitionContext containerView].clipsToBounds = _clipToBounds;
+    
     [self animateTransition:transitionContext fromViewController:fromViewController
            toViewController:toViewController];
 }
@@ -62,9 +67,12 @@
     UIViewController *toViewController   =
         [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
+    [transitionContext containerView].clipsToBounds = YES;
+    
     if (toViewController.view)
         [transitionContext.containerView addSubview:toViewController.view];
     [fromViewController.view removeFromSuperview];
+    
     BOOL cancelled = [transitionContext transitionWasCancelled];
     [transitionContext completeTransition:!cancelled];
 }

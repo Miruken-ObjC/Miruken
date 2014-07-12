@@ -59,8 +59,6 @@
     [containerView addSubview:toView];
     [containerView bringSubviewToFront:toView];
 
-    BOOL clipToBounds           = containerView.clipsToBounds;
-    containerView.clipsToBounds = YES;
     [self fade:_fadeStyle fromView:fromView toView:toView initial:YES];
     
     [UIView transitionWithView:containerView
@@ -73,7 +71,6 @@
                            toView.frame = containerView.frame;
                        } completion:^(BOOL finished) {
                            [fromView removeFromSuperview];
-                           containerView.clipsToBounds = clipToBounds;
                            BOOL cancelled = [transitionContext transitionWasCancelled];
                            [transitionContext completeTransition:!cancelled];
                        }];
