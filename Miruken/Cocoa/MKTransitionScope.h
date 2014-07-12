@@ -116,13 +116,13 @@
 
 - (instancetype)verticalCubeAtDegrees:(CGFloat)angle;
 
-- (instancetype)horizontalLines;
+- (instancetype)sliceHorizontal;
 
-- (instancetype)horizontalLinesWithHeight:(CGFloat)lineHeight;
+- (instancetype)sliceHorizontalHeight:(CGFloat)lineHeight;
 
-- (instancetype)verticalLines;
+- (instancetype)sliceVertical;
 
-- (instancetype)verticalLinesWithWidth:(CGFloat)lineWidth;
+- (instancetype)sliceVerticalWidth:(CGFloat)lineWidth;
 
 - (instancetype)natGeo;
 

@@ -54,10 +54,16 @@
         fromView.frame = containerView.bounds;
         [containerView addSubview:fromView];
     }
-    
-    [self _setView:toView startingPosition:startingPosition inContainerView:containerView inverse:NO];
+
     [containerView addSubview:toView];
-    [containerView bringSubviewToFront:toView];
+    
+    if (_push || self.isPresenting)
+        [self _setView:toView startingPosition:startingPosition inContainerView:containerView inverse:NO];
+    else
+    {
+        toView.frame = containerView.bounds;
+        [containerView sendSubviewToBack:toView];
+    }
 
     [self fade:_fadeStyle fromView:fromView toView:toView initial:YES];
     
@@ -68,7 +74,7 @@
                            if ((_push || self.isPresenting == NO) && fromView)
                                [self _setView:fromView startingPosition:startingPosition
                                     inContainerView:containerView inverse:YES];
-                           toView.frame = containerView.frame;
+                           toView.frame = containerView.bounds;
                        } completion:^(BOOL finished) {
                            [fromView removeFromSuperview];
                            BOOL cancelled = [transitionContext transitionWasCancelled];

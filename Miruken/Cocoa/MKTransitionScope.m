@@ -285,24 +285,24 @@
     return [self _setTransitionDelegate:cube];
 }
 
-- (instancetype)horizontalLines
+- (instancetype)sliceHorizontal
 {
      return [self _setTransitionDelegate:[MKHorizonatalLinesTransition new]];
 }
 
-- (instancetype)horizontalLinesWithHeight:(CGFloat)lineHeight
+- (instancetype)sliceHorizontalHeight:(CGFloat)lineHeight
 {
     MKHorizonatalLinesTransition *horizLines = [MKHorizonatalLinesTransition new];
     horizLines.lineHeight                    = lineHeight;
     return [self _setTransitionDelegate:horizLines];
 }
 
-- (instancetype)verticalLines
+- (instancetype)sliceVertical
 {
     return [self _setTransitionDelegate:[MKVerticalLinesTransition new]];
 }
 
-- (instancetype)verticalLinesWithWidth:(CGFloat)lineWidth
+- (instancetype)sliceVerticalWidth:(CGFloat)lineWidth
 {
     MKVerticalLinesTransition *vertLines = [MKVerticalLinesTransition new];
     vertLines.lineWidth                  = lineWidth;

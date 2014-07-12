@@ -35,9 +35,10 @@
 {
     if (self = [super init])
     {
-        _cubeAxis      = MKCubeTransitionAxisHorizontal;
-        _rotateDegrees = kDefaultRotationDeg;
-        _perspective   = kDefaultPerspective;
+        _cubeAxis         = MKCubeTransitionAxisHorizontal;
+        _rotateDegrees    = kDefaultRotationDeg;
+        _perspective      = kDefaultPerspective;
+        self.clipToBounds = NO;
     }
     return self;
 }
