@@ -35,12 +35,17 @@
 {
     if (self = [super init])
     {
-        _cubeAxis         = MKCubeTransitionAxisHorizontal;
-        _rotateDegrees    = kDefaultRotationDeg;
-        _perspective      = kDefaultPerspective;
-        self.clipToBounds = NO;
+        _cubeAxis          = MKCubeTransitionAxisHorizontal;
+        _rotateDegrees     = kDefaultRotationDeg;
+        _perspective       = kDefaultPerspective;
+        super.clipToBounds = NO;
     }
     return self;
+}
+
+- (void)setClipToBounds:(BOOL)clipToBounds
+{
+    // never clip
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext

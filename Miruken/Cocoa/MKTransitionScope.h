@@ -96,6 +96,8 @@
 
 - (instancetype)zoom;
 
+- (instancetype)hover;
+
 - (instancetype)portal;
 
 - (instancetype)squish;

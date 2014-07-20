@@ -126,7 +126,7 @@
     return [_deferred pipe:doneFilter failFilter:failFilter progressFilter:progressFilter];
 }
 
-- (id<MKBufferedPromise>)buffer
+- (MKBufferedPromise)buffer
 {
     return [_MKBufferedPromise bufferPromise:self];
 }
@@ -436,7 +436,7 @@
 }
 #pragma clang diagnostic pop
 
-- (id<MKBufferedPromise>)buffer
+- (MKBufferedPromise)buffer
 {
     return [_MKBufferedPromise bufferPromise:self];
 }
@@ -977,7 +977,7 @@
                           progressFilter:progressFilter];
 }
 
-- (id<MKBufferedPromise>)buffer
+- (MKBufferedPromise)buffer
 {
     return [_MKBufferedPromise bufferPromise:self];
 }

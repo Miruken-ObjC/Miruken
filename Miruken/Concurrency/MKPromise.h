@@ -87,7 +87,7 @@ typedef NS_ENUM(NSUInteger, MKPromiseState) {
 - (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
    progressFilter:(MKProgressFilter)progressFilter;
 
-- (id<MKBufferedPromise>)buffer;
+- (MKBufferedPromise)buffer;
 
 - (instancetype)await;
 

@@ -11,6 +11,7 @@
 #import "MKPushMoveInTransition.h"
 #import "MKCubeTransition.h"
 #import "MKZoomTransition.h"
+#import "MKHoverTransition.h"
 #import "MKExpodeTransition.h"
 #import "MKNatGeoTransition.h"
 #import "MKPageFlipTransition.h"
@@ -219,6 +220,11 @@
 - (instancetype)zoom
 {
     return [self _setTransitionDelegate:[MKZoomTransition new]];
+}
+
+- (instancetype)hover
+{
+    return [self _setTransitionDelegate:[MKHoverTransition new]];
 }
 
 - (instancetype)portal

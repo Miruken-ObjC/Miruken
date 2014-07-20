@@ -83,7 +83,7 @@
     [self _ensureActive];
     
     MKContext *childContext = [self.class new];
-    childContext.parent   = self;
+    childContext.parent     = self;
     
     if (_children == nil)
         _children = [MKWeakCell cons:childContext];
