@@ -32,7 +32,7 @@
     
     [containerView addSubview:toView];
     
-    if (self.isPresenting)
+    if (self.isPresenting == NO)
         [containerView sendSubviewToBack:toView];
     
     toView.alpha     = 0.0f;

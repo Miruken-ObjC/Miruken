@@ -116,7 +116,7 @@
         UIViewController *presentedViewController = self.presentedViewController;
         if (presentedViewController)
         {
-            MKContext *childContext = [MKContextualHelper contextBoundTo:presentedViewController];
+            MKContext *childContext = [MKContextualHelper resolveContext:presentedViewController];
             if (childContext)
                 dismissedContext(childContext);
         }

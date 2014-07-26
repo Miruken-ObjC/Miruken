@@ -33,13 +33,6 @@
             userInfo:nil];
 }
 
-+ (MKContext *)contextBoundTo:(id)contextual
-{
-    return contextual && [contextual respondsToSelector:@selector(context)]
-    ? [contextual context]
-    : nil;
-}
-
 + (void)endContextBoundTo:(id)contextual
 {
     if (contextual &&

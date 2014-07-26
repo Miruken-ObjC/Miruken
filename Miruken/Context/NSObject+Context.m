@@ -60,7 +60,7 @@
     if (handleMethodComposer)
         return handleMethodComposer;
     
-    MKContext *context = [MKContextualHelper contextBoundTo:self];
+    MKContext *context = [MKContextualHelper resolveContext:self];
     if (context)
         return context;
     

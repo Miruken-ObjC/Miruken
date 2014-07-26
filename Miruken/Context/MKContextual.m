@@ -45,30 +45,8 @@
     {
         objc_setAssociatedObject(self, @selector(context), context, OBJC_ASSOCIATION_RETAIN);
         
-        // Allow callbacks to be processed by the host if not already a CallbackHandler
-        
-        id<MKCallbackHandler> handler;
-        
-        if (context)
-        {
-            if ([self conformsToProtocol:@protocol(MKCallbackHandler)])
-            {
-                handler = (id<MKCallbackHandler>)self;
-            }
-            else if ((handler = self.dynamicHandler) == nil)
-            {
-                handler = self.dynamicHandler = [MKDynamicCallbackHandler delegateTo:self];
-            }
-            [context addHandler:handler];
-        }
-        else
-        {
-            handler = [self conformsToProtocol:@protocol(MKCallbackHandler)]
-                    ? (id<MKCallbackHandler>)self : self.dynamicHandler;
-            
-            if (handler)
-                [currentContext removeHandler:handler];
-        }
+        [currentContext removeHandler:self];
+        [context addHandler:self];
         
         if ([self respondsToSelector:@selector(contextChanged:)])
             [self contextChanged:context];
@@ -77,7 +55,8 @@
 
 - (BOOL)isActiveContext
 {
-    return [self.context state] == MKContextStateActive;
+    MKContext *currentContext = self.context;
+    return currentContext && (currentContext.state == MKContextStateActive);
 }
 
 - (void)endContext
@@ -99,16 +78,6 @@
 - (void)endContext:(id)ignore
 {
     [self.context end];
-}
-
-- (MKDynamicCallbackHandler *)dynamicHandler
-{
-    return objc_getAssociatedObject(self, @selector(dynamicHandler));
-}
-
-- (void)setDynamicHandler:(MKDynamicCallbackHandler *)handler
-{
-    objc_setAssociatedObject(self, @selector(dynamicHandler), handler, OBJC_ASSOCIATION_RETAIN);
 }
 
 @end

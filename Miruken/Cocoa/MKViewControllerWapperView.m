@@ -59,8 +59,8 @@
 - (void)wrapView:(UIView *)view
 {
     view.frame = self.bounds;
-    view.autoresizingMask = UIViewAutoresizingFlexibleWidth
-                          | UIViewAutoresizingFlexibleHeight;
+    view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin
+                          | UIViewAutoresizingFlexibleRightMargin;
     [self insertSubview:view atIndex:0];
 }
 

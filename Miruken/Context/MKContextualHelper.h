@@ -18,8 +18,6 @@
 
 + (MKContext *)requireContext:(id)contextual;
 
-+ (MKContext *)contextBoundTo:(id)contextual;
-
 + (void)endContextBoundTo:(id)contextual;
 
 + (MKContext *)bindChildContextFrom:(id)parent toChild:(id)child;

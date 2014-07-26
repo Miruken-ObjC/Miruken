@@ -161,7 +161,7 @@
 {
     if (poppedContext && self.viewControllers.count > 1)
     {
-        MKContext *childContext = [MKContextualHelper contextBoundTo:self.topViewController];
+        MKContext *childContext = [MKContextualHelper resolveContext:self.topViewController];
         if (childContext)
             poppedContext(childContext);
     }
