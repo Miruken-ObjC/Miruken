@@ -17,4 +17,5 @@ typedef NS_ENUM(NSInteger, MKCallbackErrors) {
     MKCallbackErrorCallbackNotHandled = 3000,
     MKCallbackErrorCallbackClassNotFound,
     MKCallbackErrorCallbackProtocolNotFound,
+    MKCallbackErrorCallbackReceiverMismatch
 };

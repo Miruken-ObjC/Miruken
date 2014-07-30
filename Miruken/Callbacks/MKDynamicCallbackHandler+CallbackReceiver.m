@@ -28,8 +28,8 @@
             || [self _provideCallback:specifier receive:receiver composition:composer target:self];
     
     return handled
-        || (self.delegate && [receiver tryResolve:self.delegate withKindOfClass:YES])
-        || [receiver tryResolve:self withKindOfClass:YES];
+        || (self.delegate && [receiver tryResolve:self.delegate])
+        || [receiver tryResolve:self];
 }
 
 - (BOOL)handleMKProtocolCallbackReceiver:(MKProtocolCallbackReceiver *)receiver

@@ -18,12 +18,12 @@
 
 - (MKPromise)showStory:(NSString *)storyBaseName bundle:(NSBundle *)bundle;
 
-- (MKPromise)showStory:(NSString *)storyBaseName controllerIdentifier:(NSString *)identifier;
+- (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName;
 
-- (MKPromise)showStory:(NSString *)storyBaseName controllerIdentifier:(NSString *)identifier
+- (MKPromise)howsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
         bundleForClass:(Class)class;
 
-- (MKPromise)showStory:(NSString *)storyBaseName controllerIdentifier:(NSString *)identifier
+- (MKPromise)howsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
                 bundle:(NSBundle *)bundle;
 
 @end

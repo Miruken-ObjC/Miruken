@@ -7,6 +7,7 @@
 //
 
 #import "MKObjectCallbackReceiver.h"
+#import "MKCallbackErrors.h"
 
 @implementation MKObjectCallbackReceiver
 
@@ -29,11 +30,12 @@
 
 - (id)resolve:(id)result
 {
-    if ([result isKindOfClass:_class])
-    {
-        _object = result;
-        [super resolve:_object];
-    }
+    if ([result isKindOfClass:_class] == NO)
+        [self reject:[NSError errorWithDomain:MKCallbackErrorDomain
+                                         code:MKCallbackErrorCallbackReceiverMismatch
+                                     userInfo:nil]];
+    _object = result;
+    [super resolve:_object];
     return self;
 }
 

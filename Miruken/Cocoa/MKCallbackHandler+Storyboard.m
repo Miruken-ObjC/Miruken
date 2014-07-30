@@ -33,26 +33,26 @@
     return [MKViewRegion(self) presentViewController:viewController];
 }
 
-- (MKPromise)showStory:(NSString *)storyBaseName controllerIdentifier:(NSString *)identifier
+- (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
 {
     UIStoryboard *story = [UIStoryboard storyboardWithBaseName:storyBaseName bundle:nil];
-    UIViewController*viewController = [story instantiateViewControllerWithIdentifier:identifier];
+    UIViewController*viewController = [story instantiateViewControllerWithIdentifier:scene];
     return [MKViewRegion(self) presentViewController:viewController];
 }
 
-- (MKPromise)showStory:(NSString *)storyBaseName controllerIdentifier:(NSString *)identifier
-        bundleForClass:(Class)class
+- (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
+         bundleForClass:(Class)class
 {
     UIStoryboard *story = [UIStoryboard storyboardWithBaseName:storyBaseName bundleForClass:class];
-    UIViewController*viewController = [story instantiateViewControllerWithIdentifier:identifier];
+    UIViewController*viewController = [story instantiateViewControllerWithIdentifier:scene];
     return [MKViewRegion(self) presentViewController:viewController];
 }
 
-- (MKPromise)showStory:(NSString *)storyBaseName controllerIdentifier:(NSString *)identifier
-                bundle:(NSBundle *)bundle
+- (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
+                 bundle:(NSBundle *)bundle
 {
     UIStoryboard *story = [UIStoryboard storyboardWithBaseName:storyBaseName bundle:bundle];
-    UIViewController*viewController = [story instantiateViewControllerWithIdentifier:identifier];
+    UIViewController*viewController = [story instantiateViewControllerWithIdentifier:scene];
     return [MKViewRegion(self) presentViewController:viewController];
 }
 
