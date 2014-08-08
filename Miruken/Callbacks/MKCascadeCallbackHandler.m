@@ -24,11 +24,12 @@
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
 {
-    return greedy
-         ? [_handlerA handle:callback greedy:YES composition:composer]
-            |  [_handlerB handle:callback greedy:YES composition:composer]
-         : [_handlerA handle:callback greedy:NO composition:composer]
-            || [_handlerB handle:callback greedy:NO composition:composer];
+    BOOL handled = greedy
+       ? [_handlerA handle:callback greedy:YES composition:composer]
+           |  [_handlerB handle:callback greedy:YES composition:composer]
+       : [_handlerA handle:callback greedy:NO composition:composer]
+           || [_handlerB handle:callback greedy:NO composition:composer];
+    return handled || [super handle:callback greedy:greedy composition:composer];
 }
 
 - (void)dealloc

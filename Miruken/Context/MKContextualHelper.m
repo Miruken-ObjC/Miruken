@@ -44,11 +44,11 @@
         {
             @try
             {
-                [contextual setContext:nil];
+                [context end];
             }
             @finally
             {
-                [context end];
+                [contextual setContext:nil];
             }
         }
     }

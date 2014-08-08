@@ -9,6 +9,8 @@
 #import "MKCallbackHandler.h"
 #import "MKHandleGreedy.h"
 #import "MKHandleMethod.h"
+#import "MKObjectCallbackReceiver.h"
+#import "MKProtocolCallbackReceiver.h"
 #import <objc/runtime.h>
 
 static NSMethodSignature *unknownMethod;
@@ -36,8 +38,18 @@ static IMP NSObject_methodSignatureForSelectorIMP;
      return [self handle:callback greedy:greedy composition:self];
 }
 
-- (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(MKCallbackHandler *)composition
+- (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(MKCallbackHandler *)composer
 {
+    if ([callback isKindOfClass:MKObjectCallbackReceiver.class])
+    {
+        MKObjectCallbackReceiver *receiver = callback;
+        return [receiver tryResolve:self];
+    }
+    else if ([callback isKindOfClass:MKProtocolCallbackReceiver.class])
+    {
+        MKProtocolCallbackReceiver *receiver = callback;
+        return [receiver tryResolve:self];
+    }
     return NO;
 }
 

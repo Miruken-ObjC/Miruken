@@ -20,10 +20,10 @@
 
 - (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName;
 
-- (MKPromise)howsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
+- (MKPromise)showScene:(NSString *)scene fromStory:(NSString *)storyBaseName
         bundleForClass:(Class)class;
 
-- (MKPromise)howsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
+- (MKPromise)showScene:(NSString *)scene fromStory:(NSString *)storyBaseName
                 bundle:(NSBundle *)bundle;
 
 @end

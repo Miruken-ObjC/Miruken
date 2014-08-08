@@ -174,11 +174,8 @@
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id)composer
 {
-    if (_handlers == nil)
-        return NO;
-    
     BOOL handled = NO;
-    for (id<MKCallbackHandler> handler in [_handlers copy])
+    if (_handlers) for (id<MKCallbackHandler> handler in [_handlers copy])
     {
         if ([handler handle:callback greedy:greedy composition:composer])
         {
@@ -187,8 +184,7 @@
             handled = YES;
         }
     }
- 
-    return handled;
+    return handled || [super handle:callback greedy:greedy composition:composer];
 }
 
 - (void)dealloc

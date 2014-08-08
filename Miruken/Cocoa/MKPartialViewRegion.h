@@ -16,4 +16,6 @@
 
 - (id)controller;
 
+- (MKContext *)controllerContext;
+
 @end

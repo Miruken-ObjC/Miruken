@@ -8,7 +8,6 @@
 
 #import "MKPartialViewRegion.h"
 #import "MKViewControllerWapperView.h"
-#import "MKDynamicCallbackHandler.h"
 #import "MKContextualHelper.h"
 #import "MKPresentationPolicy.h"
 #import "MKNavigationOptions.h"
@@ -77,9 +76,14 @@
     {
         UIViewController<MKContextual> *owningController = [self _owningViewController];
         _context                                         = [owningController.context newChildContext];
-        [_context addHandler:[MKDynamicCallbackHandler delegateTo:self]];
+        [_context addHandler:self];
     }
     return _context;
+}
+
+- (MKContext *)controllerContext
+{
+    return [self.controller context];
 }
 
 - (UIViewController<MKContextual> *)_owningViewController

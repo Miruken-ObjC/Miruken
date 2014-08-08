@@ -40,16 +40,16 @@
     return [MKViewRegion(self) presentViewController:viewController];
 }
 
-- (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
-         bundleForClass:(Class)class
+- (MKPromise)showScene:(NSString *)scene fromStory:(NSString *)storyBaseName
+        bundleForClass:(Class)class
 {
     UIStoryboard *story = [UIStoryboard storyboardWithBaseName:storyBaseName bundleForClass:class];
     UIViewController*viewController = [story instantiateViewControllerWithIdentifier:scene];
     return [MKViewRegion(self) presentViewController:viewController];
 }
 
-- (MKPromise)showsScene:(NSString *)scene fromStory:(NSString *)storyBaseName
-                 bundle:(NSBundle *)bundle
+- (MKPromise)showScene:(NSString *)scene fromStory:(NSString *)storyBaseName
+                bundle:(NSBundle *)bundle
 {
     UIStoryboard *story = [UIStoryboard storyboardWithBaseName:storyBaseName bundle:bundle];
     UIViewController*viewController = [story instantiateViewControllerWithIdentifier:scene];

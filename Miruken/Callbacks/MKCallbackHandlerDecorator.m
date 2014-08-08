@@ -33,7 +33,8 @@
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
 {
-    return [_decoratee handle:callback greedy:greedy composition:composer];
+    return [_decoratee handle:callback greedy:greedy composition:composer]
+        || [super handle:callback greedy:greedy composition:composer];
 }
 
 - (void)dealloc

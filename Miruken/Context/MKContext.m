@@ -8,7 +8,6 @@
 
 #import "MKContext.h"
 #import "MKContextObserver.h"
-#import "MKOnDemandOutCallbackHandler.h"
 #import "MKHandleGreedy.h"
 #import "MKTraversingMixin.h"
 #import "MKWeakCell.h"
@@ -34,22 +33,6 @@
 {
     if (self == MKContext.class)
         [MKTraversingMixin mixInto:self];
-}
-
-- (MKContext *)init
-{
-    if (self = [super init])
-    {
-        @weakify(self);
-        [self addHandler:[MKOnDemandOutCallbackHandler
-                          providedBy:^(id composer) { return self; }
-                          when:^(Class class) {
-                              @strongify(self);
-                              return [self isKindOfClass:class];
-                          }]
-         ];
-    }
-    return self;
 }
 
 - (BOOL)hasChildren
