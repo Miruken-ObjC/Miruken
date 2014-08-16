@@ -46,6 +46,10 @@
 		142FE90018ECC69400569636 /* MKAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */; };
 		142FE90318F0855300569636 /* MKTransitionContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 142FE90118F0855300569636 /* MKTransitionContext.h */; };
 		142FE90418F0855300569636 /* MKTransitionContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 142FE90218F0855300569636 /* MKTransitionContext.m */; };
+		1459B7C4199F80EA00E5D12B /* MKTypeOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 1459B7C2199F80EA00E5D12B /* MKTypeOf.h */; };
+		1459B7C5199F80EA00E5D12B /* MKTypeOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459B7C3199F80EA00E5D12B /* MKTypeOf.m */; };
+		1459B7C7199F839700E5D12B /* MKCallbackHandlerDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1459B7C6199F839700E5D12B /* MKCallbackHandlerDecorator.h */; };
+		1459B7C9199F854900E5D12B /* MKTypeOfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459B7C8199F854900E5D12B /* MKTypeOfTests.m */; };
 		145AF318193110B400766F40 /* MKNatGeoTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF316193110B400766F40 /* MKNatGeoTransition.h */; };
 		145AF319193110B400766F40 /* MKNatGeoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF317193110B400766F40 /* MKNatGeoTransition.m */; };
 		145AF31D193253B200766F40 /* MKPresentationOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF31B193253B200766F40 /* MKPresentationOptions.h */; };
@@ -66,7 +70,6 @@
 		1462996B18B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993818B02DCD002BCBF6 /* MKCallbackHandler+Buffer.m */; };
 		1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */; };
 		1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462993E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m */; };
-		1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994218B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m */; };
 		1462997118B02DCD002BCBF6 /* MKCallbackHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994418B02DCD002BCBF6 /* MKCallbackHandler.m */; };
 		1462997218B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994618B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m */; };
 		1462997318B02DCD002BCBF6 /* MKCallbackHandlerFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1462994818B02DCD002BCBF6 /* MKCallbackHandlerFilter.m */; };
@@ -318,6 +321,10 @@
 		142FE8FE18ECC69400569636 /* MKAnimatedTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAnimatedTransition.m; sourceTree = "<group>"; };
 		142FE90118F0855300569636 /* MKTransitionContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTransitionContext.h; sourceTree = "<group>"; };
 		142FE90218F0855300569636 /* MKTransitionContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTransitionContext.m; sourceTree = "<group>"; };
+		1459B7C2199F80EA00E5D12B /* MKTypeOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKTypeOf.h; sourceTree = "<group>"; };
+		1459B7C3199F80EA00E5D12B /* MKTypeOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTypeOf.m; sourceTree = "<group>"; };
+		1459B7C6199F839700E5D12B /* MKCallbackHandlerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandlerDecorator.h; sourceTree = "<group>"; };
+		1459B7C8199F854900E5D12B /* MKTypeOfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTypeOfTests.m; sourceTree = "<group>"; };
 		145AF316193110B400766F40 /* MKNatGeoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNatGeoTransition.h; sourceTree = "<group>"; };
 		145AF317193110B400766F40 /* MKNatGeoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNatGeoTransition.m; sourceTree = "<group>"; };
 		145AF31A193250DD00766F40 /* MKTransitionTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKTransitionTraits.h; sourceTree = "<group>"; };
@@ -343,11 +350,8 @@
 		1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Invocation.m"; sourceTree = "<group>"; };
 		1462993D18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Resolvers.h"; sourceTree = "<group>"; };
 		1462993E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Resolvers.m"; sourceTree = "<group>"; };
-		1462994118B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Subscripting.h"; sourceTree = "<group>"; };
-		1462994218B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Subscripting.m"; sourceTree = "<group>"; };
 		1462994318B02DCD002BCBF6 /* MKCallbackHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandler.h; sourceTree = "<group>"; };
 		1462994418B02DCD002BCBF6 /* MKCallbackHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandler.m; sourceTree = "<group>"; };
-		1462994518B02DCD002BCBF6 /* MKCallbackHandlerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandlerDecorator.h; sourceTree = "<group>"; };
 		1462994618B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandlerDecorator.m; sourceTree = "<group>"; };
 		1462994718B02DCD002BCBF6 /* MKCallbackHandlerFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandlerFilter.h; sourceTree = "<group>"; };
 		1462994818B02DCD002BCBF6 /* MKCallbackHandlerFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKCallbackHandlerFilter.m; sourceTree = "<group>"; };
@@ -790,9 +794,7 @@
 				1462993A18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m */,
 				1462993D18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.h */,
 				1462993E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m */,
-				1462994118B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.h */,
-				1462994218B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m */,
-				1462994518B02DCD002BCBF6 /* MKCallbackHandlerDecorator.h */,
+				1459B7C6199F839700E5D12B /* MKCallbackHandlerDecorator.h */,
 				1462994618B02DCD002BCBF6 /* MKCallbackHandlerDecorator.m */,
 				1462994718B02DCD002BCBF6 /* MKCallbackHandlerFilter.h */,
 				1462994818B02DCD002BCBF6 /* MKCallbackHandlerFilter.m */,
@@ -979,6 +981,7 @@
 		14E9DCF618D3E9E40045760D /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				1459B7C8199F854900E5D12B /* MKTypeOfTests.m */,
 				14AB66A918D5F608005DA41E /* MKTraversingTests.m */,
 				14E9DCF718D3E9FE0045760D /* MKDirtyMixinTests.m */,
 				14E9DCFB18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m */,
@@ -1157,6 +1160,8 @@
 				1404D51C1952366C002774D7 /* MKWhen.m */,
 				14FD8AD618A7E867008077CF /* NSInvocation+Objects.h */,
 				14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */,
+				1459B7C2199F80EA00E5D12B /* MKTypeOf.h */,
+				1459B7C3199F80EA00E5D12B /* MKTypeOf.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1169,7 +1174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				14982D6918B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h in Headers */,
+				1459B7C4199F80EA00E5D12B /* MKTypeOf.h in Headers */,
 				14982DBC18BA39770065EE40 /* MKCallbackHandler+SideEffects.h in Headers */,
+				1459B7C7199F839700E5D12B /* MKCallbackHandlerDecorator.h in Headers */,
 				14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */,
 				14CC91161969F4FF00B7A649 /* MKVerticalLinesTransition.h in Headers */,
 				1404D515194C7E41002774D7 /* MKWindowOptions.h in Headers */,
@@ -1373,6 +1380,7 @@
 				14982D1418B11D100065EE40 /* MKTraversal.m in Sources */,
 				1462997A18B02DCD002BCBF6 /* MKHandleMethod.m in Sources */,
 				14FD8AA918A7DBF7008077CF /* MKAsyncProxyResult.m in Sources */,
+				1459B7C5199F80EA00E5D12B /* MKTypeOf.m in Sources */,
 				1462998518B02EA8002BCBF6 /* MKDynamicCallbackHandler.m in Sources */,
 				142FE90018ECC69400569636 /* MKAnimatedTransition.m in Sources */,
 				1462997518B02DCD002BCBF6 /* MKCompositeCallbackHandler.m in Sources */,
@@ -1496,7 +1504,6 @@
 				1404D51E1952366C002774D7 /* MKWhen.m in Sources */,
 				142FE8EA18E84C3F00569636 /* MKModalScope.m in Sources */,
 				142FE8F218E856A500569636 /* MKTransitionScope.m in Sources */,
-				1462997018B02DCD002BCBF6 /* MKCallbackHandler+Subscripting.m in Sources */,
 				1462998218B02DCD002BCBF6 /* MKProtocolCallbackReceiver.m in Sources */,
 				14FD8AB418A7DBF7008077CF /* MKOperationResult.m in Sources */,
 				14FD8AB618A7DBF7008077CF /* MKIgnoreResult.m in Sources */,
@@ -1513,6 +1520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1459B7C9199F854900E5D12B /* MKTypeOfTests.m in Sources */,
 				14E9DCFC18D3EF470045760D /* MKDirtyObjectTrackingMixinTests.m in Sources */,
 				14E9DCF818D3E9FE0045760D /* MKDirtyMixinTests.m in Sources */,
 				14982D0E18B112A20065EE40 /* ResourceUsage.m in Sources */,

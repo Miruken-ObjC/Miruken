@@ -15,18 +15,8 @@
 
 @interface MKCallbackHandler (Resolvers)
 
-- (id)getClass:(Class)aClass orDefault:(id)theDefault;
+- (id)resolve:(id)descriptor;
 
-- (BOOL)tryGetClass:(Class)aClass into:(out id __strong *)outItem;
-
-- (MKPromise)getClassDeferred:(Class)aClass;
-
-- (id)getProtocol:(Protocol *)aProtocol orDefault:(id)theDefault;
-
-- (BOOL)tryGetProtocol:(Protocol *)aProtocol into:(out id __strong *)outItem;
-
-- (MKPromise)getProtocolDeferred:(Protocol *)aProtocol;
-
-- (MKPromise)handleDeferred:(id)callback;
+- (id)objectForKeyedSubscript:(id)descriptor;
 
 @end

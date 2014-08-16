@@ -15,6 +15,7 @@
 #import "ConfigurationCallbackHandler.h"
 #import "ConfigurationTagCallbackHandler.h"
 #import "ResourcesCallbackHandler.h"
+#import "MKDeferred.h"
 
 @interface MKCallbackHandlerTests : XCTestCase
 {
@@ -43,11 +44,9 @@
 
 - (void)testCanHandleCallbackClass
 {
-    
-    NSDictionary      *item;
     MKCallbackHandler *handler = [properties toCallbackHandler:YES];
-    BOOL               handled = [handler tryGetClass:NSDictionary.class into:&item];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    NSDictionary      *item    = [handler resolve:NSDictionary.class];
+    XCTAssertNotNil(item, @"The callback was not handled");
     XCTAssertEqual(item, properties, @"The callback does not match");
 }
 
@@ -60,22 +59,20 @@
 
 - (void)testWillInformIfCallbackNotHandled
 {
-    
-    NSDictionary      *item;
     MKCallbackHandler *handler = [properties toCallbackHandler:YES];
-    BOOL               handled = [handler tryGetClass:NSString.class into:&item];
-    XCTAssertFalse(handled, @"The callback was handled");
+    NSDictionary    *item     = [handler resolve:NSString.class];
+    XCTAssertNil(item, @"The callback was handled");
 }
 
 - (void)testCanConsumeCallbackClass
 {
     BOOL __block       handled = NO;
     MKCallbackHandler *handler = [properties toCallbackHandler:YES];
-    [[handler getClassDeferred:NSDictionary.class] done:^(NSDictionary *item) {
+    [[[MKDeferred when:[handler resolve:NSDictionary.class]] done:^(NSDictionary *item) {
         XCTAssertEqual(item, properties, @"The callback does not match");
         XCTAssertEqualObjects(@"Craig", [item objectForKey:@"FirstName"], @"values don't match");
         handled = YES;
-    }];
+    }] wait];
     XCTAssertTrue(handled, @"The callback was not handled");
 }
 
@@ -83,20 +80,18 @@
 {
     BOOL __block       handled = YES;
     MKCallbackHandler *handler = [properties toCallbackHandler:YES];
-    [[handler getClassDeferred:NSArray.class] error:^(NSError *error, BOOL *h) {
-        XCTAssertEqualObjects(error.domain, MKCallbackErrorDomain, @"Incorrect error domain");
-        XCTAssertEqual(error.code, MKCallbackErrorCallbackClassNotFound, @"Incorrect error code");
-        handled = NO;
-    }];
+   [[[MKDeferred when:[handler resolve:NSArray.class]] done:^(NSArray *array) {
+       XCTAssertNil(array, @"callback was handled");
+       handled = NO;
+    }] wait];
     XCTAssertFalse(handled, @"The callback class was handled");
 }
 
 - (void)testCanHandleCallbackProtocol
 {
-    NSDictionary      *item;
     MKCallbackHandler *handler = [properties toCallbackHandler];
-    BOOL               handled = [handler tryGetProtocol:@protocol(NSFastEnumeration) into:&item];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    NSDictionary      *item    = [handler resolve:@protocol(NSFastEnumeration)];
+    XCTAssertNotNil(item, @"The callback was not handled");
     XCTAssertEqual(item, properties, @"The callback does not match");
 }
 
@@ -107,18 +102,11 @@
     XCTAssertEqual(item, properties, @"The callback does not match");
 }
 
-- (void)testRejectHandlerCallbackSubscriptingIfNotClassOrProtocol
-{
-    id ignore;
-    MKCallbackHandler *handler = [properties toCallbackHandler:YES];
-    XCTAssertThrows(ignore = handler[@"Hello"], @"Expected unrecognized index");
-}
-
 - (void)testCanConsumeCallbackProtocol
 {
     BOOL __block       handled = NO;
     MKCallbackHandler *handler = [properties toCallbackHandler];
-    [[handler getProtocolDeferred:@protocol(NSFastEnumeration)] done:^(id<NSFastEnumeration> item) {
+    [[MKDeferred when:[handler resolve:@protocol(NSFastEnumeration)]] done:^(id<NSFastEnumeration> item) {
         XCTAssertEqual(item, properties, @"The callback does not match");
         handled = YES;
     }];
@@ -127,14 +115,13 @@
 
 - (void)testCanFailConsumeCallbackProtocol
 {
-    BOOL __block       handled = YES;
+    BOOL __block       handled = NO;
     MKCallbackHandler *handler = [properties toCallbackHandler];
-    [[handler getProtocolDeferred:@protocol(MKCallbackHandler)] error:^(NSError *error, BOOL *h) {
-        XCTAssertEqualObjects(error.domain, MKCallbackErrorDomain, @"Incorrect error domain");
-        XCTAssertEqual(error.code, MKCallbackErrorCallbackProtocolNotFound, @"Incorrect error code");
-        handled = NO;
+    [[MKDeferred when:[handler resolve:@protocol(MKCallbackHandler)]] done:^(id<MKCallbackHandler> cb) {
+        XCTAssertNil(cb, @"Protocol was provided");
+        handled = YES;
     }];
-    XCTAssertFalse(handled, @"The callback protocol was handled");
+    XCTAssertTrue(handled, @"The callback protocol was handled");
 }
 
 - (void)testCanHandleCallbackInCustomHandler
@@ -148,28 +135,25 @@
 
 - (void)testCanProvideCallbackClassInCustomHandler
 {
-    Configuration                *config;
     ConfigurationCallbackHandler *handler = [ConfigurationCallbackHandler new];
-    BOOL                          handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration                *config  = [handler resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"mail.google.com", @"expected url mail.google.com");
 }
 
 - (void)testCanProvideCallbackToSelfIfDynamicHandler
 {
-    ConfigurationCallbackHandler *h;
     ConfigurationCallbackHandler *handler = [ConfigurationCallbackHandler new];
-    BOOL                          handled = [handler tryGetClass:ConfigurationCallbackHandler.class into:&h];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    ConfigurationCallbackHandler *h       = [handler resolve:ConfigurationCallbackHandler.class];
+    XCTAssertNotNil(h, @"The callback was not handled");
     XCTAssertEqual(handler, h, @"The handlers should be same");
 }
 
 - (void)testCanProvideCallbackProtocolInCustomHandler
 {
-    Configuration                *config;
     ConfigurationCallbackHandler *handler = [ConfigurationCallbackHandler new];
-    BOOL                          handled = [handler tryGetProtocol:@protocol(Configuration) into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration                *config  = [handler resolve:@protocol(Configuration)];
+    XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"mail.google.com", @"expected url mail.google.com");
 }
 
@@ -178,7 +162,7 @@
     BOOL __block                  handled = NO;
     Configuration                *config  = [Configuration new];
     ConfigurationCallbackHandler *handler = [ConfigurationCallbackHandler new];
-    [[handler handleDeferred:config] done:^(Configuration *theConfig) {
+    [[MKDeferred when:[handler resolve:config]] done:^(Configuration *theConfig) {
         XCTAssertEqualObjects(config.url, @"mail.google.com", @"expected url mail.google.com");
         handled = YES;
     }];
@@ -187,14 +171,13 @@
 
 - (void)testCanFailConsumeCallbackInCustomHandler
 {
-    BOOL __block                  handled = YES;
+    BOOL __block                  handled = NO;
     ConfigurationCallbackHandler *handler = [ConfigurationCallbackHandler new];
-    [[handler handleDeferred:[NSArray new]] error:^(NSError *error, BOOL *h) {
-        XCTAssertEqualObjects(error.domain, MKCallbackErrorDomain, @"Incorrect error domain");
-        XCTAssertEqual(error.code, MKCallbackErrorCallbackNotHandled, @"Incorrect error code");
-        handled = NO;
+    [[MKDeferred when:[handler resolve:[NSArray new]]] done:^(NSArray *array) {
+        XCTAssertNil(array, @"Callback was handled");
+        handled = YES;
     }];
-    XCTAssertFalse(handled, @"The callback was not handled");
+    XCTAssertTrue(handled, @"The callback was not handled");
 }
 
 - (void)testCanCascadeCallbackHandlers
@@ -338,9 +321,8 @@
         config.url            = @"www.rise.com";
         return config;
         }];
-    Configuration      *config;
-    BOOL                handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration *config = [handler resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"www.rise.com", @"expected url www.rise.com");
 }
 
@@ -352,9 +334,8 @@
                                        config.url            = @"www.rise.com";
                                        return config;
                                    }];
-    Configuration      *config;
-    BOOL                handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration *config = [handler resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"www.rise.com", @"expected url www.rise.com");
 }
 
@@ -365,9 +346,8 @@
      {
          return properties;
      }];
-    id<NSFastEnumeration> fastEnumerator;
-    BOOL                  handled = [handler tryGetProtocol:@protocol(NSFastEnumeration) into:&fastEnumerator];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    id<NSFastEnumeration> fastEnumerator = [handler resolve:@protocol(NSFastEnumeration)];
+    XCTAssertNotNil(fastEnumerator, @"The callback was not handled");
     XCTAssertEqual(properties, fastEnumerator, @"expected same dictionary");
 }
 
@@ -417,38 +397,34 @@
 
 - (void)testCanFilterCallbackKindOfClass
 {
-    Configuration     *config;
     MKCallbackHandler *handler = [[ConfigurationCallbackHandler new]
                                   whenKindOfClass:Configuration.class];
-    BOOL               handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration     *config  = [handler resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
 }
 
 - (void)testWillSkipCallbackNotKindOfClass
 {
-    Configuration     *config;
     MKCallbackHandler *handler = [[ConfigurationCallbackHandler new]
                                   whenKindOfClass:NSDictionary.class];
-    BOOL               handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertFalse(handled, @"The callback was handled");
+    Configuration     *config  = [handler resolve:Configuration.class];
+    XCTAssertNil(config, @"The callback was handled");
 }
 
 - (void)testCanFilterCallbackConformingToProtocol
 {
-    Configuration     *config;
     MKCallbackHandler *handler = [[ConfigurationCallbackHandler new]
                                   whenConformsToProtocol:@protocol(Configuration)];
-    BOOL               handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration     *config  = [handler resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
 }
 
 - (void)testWillSkipCallbackNotConformingToProtocol
 {
-    Configuration     *config;
     MKCallbackHandler *handler = [[ConfigurationCallbackHandler new]
                                   whenConformsToProtocol:@protocol(NSFastEnumeration)];
-    BOOL               handled = [handler tryGetClass:Configuration.class into:&config];
-    XCTAssertFalse(handled, @"The callback was handled");
+    Configuration     *config  = [handler resolve:Configuration.class];
+    XCTAssertNil(config, @"The callback was handled");
 }
 
 - (void)testCanDelegateDynamicCallbackHandler
@@ -476,11 +452,9 @@
 
 - (void)testCanProviderCallbackInDynamicCallbackHandlerWithComposition
 {
-    ResourceUsage            *stats;
     ResourcesCallbackHandler *handler = [ResourcesCallbackHandler new];
-    BOOL                      handled = [handler tryGetClass:ResourceUsage.class into:&stats];
-    XCTAssertTrue(handled, @"The resource stats was not handled");
-    XCTAssertNotNil(stats, @"stats was nil");
+    ResourceUsage            *usage   = [handler resolve:ResourceUsage.class];
+    XCTAssertNotNil(usage, @"usage was nil");
 }
 
 - (void)testCanHandleMethodOnCallbackHandler

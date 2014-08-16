@@ -37,6 +37,11 @@
     return [self newContextTraversal:MKTraversingAxisChild];
 }
 
+- (instancetype)sibling
+{
+    return [self newContextTraversal:MKTraversingAxisSibling];
+}
+
 - (instancetype)ancestor
 {
     return [self newContextTraversal:MKTraversingAxisAncestor];
@@ -50,6 +55,11 @@
 - (instancetype)childOrSelf
 {
     return [self newContextTraversal:MKTraversingAxisChildOrSelf];
+}
+
+- (instancetype)siblingOrSelf
+{
+    return [self newContextTraversal:MKTraversingAxisSiblingOrSelf];
 }
 
 - (instancetype)ancestorOrSelf

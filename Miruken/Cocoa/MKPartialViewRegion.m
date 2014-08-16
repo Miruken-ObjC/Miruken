@@ -115,7 +115,7 @@
     
     if (self.context != composer)
     {
-        UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
+        UIViewController       *owner = [composer resolve:UIViewController.class];
         UINavigationController *navigationController = owner.navigationController;
         
         if (navigationController)

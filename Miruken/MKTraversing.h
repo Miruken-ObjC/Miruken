@@ -16,9 +16,11 @@ typedef NS_ENUM(NSUInteger, MKTraversingAxes) {
     MKTraversingAxisSelf = 0,
     MKTraversingAxisRoot,
     MKTraversingAxisChild,
+    MKTraversingAxisSibling,
     MKTraversingAxisAncestor,
     MKTraversingAxisDescendant,
     MKTraversingAxisChildOrSelf,
+    MKTraversingAxisSiblingOrSelf,
     MKTraversingAxisAncestorOrSelf,
     MKTraversingAxisDescendantOrSelf,
     MKTraversingAxisParentSiblingOrSelf

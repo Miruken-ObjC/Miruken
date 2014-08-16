@@ -15,12 +15,9 @@
 
 - (MKContext *)context
 {
-    if ([self isKindOfClass:MKContext.class])
-        return (MKContext *)self;
-    
-    MKContext *context = nil;
-    [self tryGetClass:MKContext.class into:&context];
-    return context;
+    return [self isKindOfClass:MKContext.class]
+         ? (MKContext *)self
+         : [self resolve:MKContext.class];
 }
 
 - (id)forNotification

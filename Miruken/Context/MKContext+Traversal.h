@@ -16,11 +16,15 @@
 
 - (instancetype)child;
 
+- (instancetype)sibling;
+
 - (instancetype)ancestor;
 
 - (instancetype)descendant;
 
 - (instancetype)childOrSelf;
+
+- (instancetype)siblingOrSelf;
 
 - (instancetype)ancestorOrSelf;
 

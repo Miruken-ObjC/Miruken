@@ -57,9 +57,17 @@
         case MKTraversingAxisChild:
             [self traverseChildren:visitor withSelf:NO];
             break;
+
+        case MKTraversingAxisSibling:
+             [self traverseParentSiblingOrSelf:visitor withSelf:NO andParent:NO];
+            break;
             
         case MKTraversingAxisChildOrSelf:
             [self traverseChildren:visitor withSelf:YES];
+            break;
+            
+        case MKTraversingAxisSiblingOrSelf:
+            [self traverseParentSiblingOrSelf:visitor withSelf:YES andParent:NO];
             break;
             
         case MKTraversingAxisAncestor:
@@ -79,7 +87,7 @@
             break;
             
         case MKTraversingAxisParentSiblingOrSelf:
-            [self traverseParentSiblingOrSelf:visitor];
+            [self traverseParentSiblingOrSelf:visitor withSelf:YES andParent:YES];
             break;
     }
 }
@@ -147,11 +155,13 @@
     }
 }
 
-- (void)traverseParentSiblingOrSelf:(MKVisitor)visitor
+- (void)traverseParentSiblingOrSelf:(MKVisitor)visitor withSelf:(BOOL)withSelf
+                          andParent:(BOOL)withParent
 {
     BOOL stop = NO;
     
-    visitor(self, &stop);
+    if (withSelf)
+        visitor(self, &stop);
     
     if (stop == NO)
     {
@@ -164,20 +174,22 @@
                 if (stop) break;
             }
         }
-        if (stop == NO)
+        if (withParent && stop == NO)
             visitor(parent, &stop);
     }
 }
 
 #pragma mark - MKTraversingAxis validation
 
-NSString * const FormatAxisName[9] = {
+NSString * const FormatAxisName[] = {
     [MKTraversingAxisSelf]                = @"MKTraversingAxisSelf",
     [MKTraversingAxisRoot]                = @"MKTraversingAxisRoot",
     [MKTraversingAxisChild]               = @"MKTraversingAxisChild",
+    [MKTraversingAxisSibling]             = @"MKTraversingAxisSibling",
     [MKTraversingAxisAncestor]            = @"MKTraversingAxisAncestor",
     [MKTraversingAxisDescendant]          = @"MKTraversingAxisDescendant",
     [MKTraversingAxisChildOrSelf]         = @"MKTraversingAxisChildOrSelf",
+    [MKTraversingAxisSiblingOrSelf]       = @"MKTraversingAxisSiblingOrSelf",
     [MKTraversingAxisAncestorOrSelf]      = @"MKTraversingAxisAncestorOrSelf",
     [MKTraversingAxisDescendantOrSelf]    = @"MKTraversingAxisDescendantOrSelf",
     [MKTraversingAxisParentSiblingOrSelf] = @"MKTraversingAxisParentSiblingOrSelf"
@@ -206,6 +218,8 @@ NSString * const FormatAxisName[9] = {
             childrenRequired = YES;
             break;
 
+        case MKTraversingAxisSibling:
+        case MKTraversingAxisSiblingOrSelf:
         case MKTraversingAxisParentSiblingOrSelf:
             parentRequired   = YES;
             childrenRequired = YES;

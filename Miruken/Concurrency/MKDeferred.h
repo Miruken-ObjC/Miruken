@@ -48,7 +48,7 @@
 
 - (instancetype)connectPromise:(MKPromise)promise;
 
-+ (MKPromise)when:(id)condition, ... NS_REQUIRES_NIL_TERMINATION;
++ (MKPromise)when:(id)condition;
 
 + (MKPromise)whenAll:(NSArray *)conditions;
 

@@ -22,8 +22,8 @@
 
 - (BOOL)handleGetResource:(GetResource *)getResource composition:(MKCallbackHandler *)composer
 {
-    Configuration *configuration;
-    if ([composer tryGetClass:[Configuration class] into:&configuration])
+    Configuration *configuration = [composer resolve:Configuration.class];
+    if (configuration)
     {
         getResource.resource = [NSDictionary dictionaryWithObject:configuration.url forKey:@"url"];
         return YES;

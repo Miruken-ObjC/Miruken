@@ -74,7 +74,7 @@
     MKModalOptions *modalOptions = [policy optionsWithClass:MKModalOptions.class];
     if (modalOptions == nil)
     {
-        UIViewController       *owner = [composer getClass:UIViewController.class orDefault:nil];
+        UIViewController       *owner = [composer resolve:UIViewController.class];
         UINavigationController *navigationController = owner.navigationController;
         
         if (navigationController)
@@ -92,7 +92,7 @@
 {
     MKCallbackHandler *composer = self.composer;
     [MKContextualHelper bindChildContextFrom:composer toChild:viewController];
-    UIViewController  *owner    = [composer getClass:UIViewController.class orDefault:nil];
+    UIViewController  *owner    = [composer resolve:UIViewController.class];
     if (owner == nil)
         owner = _window.rootViewController;
     if (owner)

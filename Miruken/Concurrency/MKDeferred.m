@@ -704,16 +704,11 @@
     }
 }
 
-+ (MKPromise)when:(id)condition, ...
++ (MKPromise)when:(id)condition
 {
-    va_list args;
-    va_start(args, condition);
-    NSMutableArray *conditions = [NSMutableArray new];
-    for (id arg = condition; arg != nil; arg = va_arg(args, id))
-        [conditions addObject:arg];
-    va_end(args);
-    
-    return [self whenAll:conditions];
+    return [condition conformsToProtocol:@protocol(MKPromise)]
+         ? condition
+         : [[MKDeferred resolved:condition] promise];
 }
 
 + (MKPromise)whenAll:(NSArray *)conditions

@@ -560,7 +560,7 @@
     MKDeferred   *deferred1 = [MKDeferred new];
     MKDeferred   *deferred2 = [MKDeferred new];
     
-    [[MKDeferred when:deferred1, deferred2, nil]
+    [[MKDeferred whenAll:@[deferred1, deferred2]]
      done:^(id result) { resolved = YES; }];
     
     XCTAssertFalse(resolved, @"Should not be resolved yet");
@@ -577,7 +577,7 @@
     MKDeferred      *deferred1 = [MKDeferred new];
     MKDeferred      *deferred2 = [MKDeferred new];
     
-    [[MKDeferred when:deferred1, deferred2, nil]
+    [[MKDeferred whenAll:@[deferred1, deferred2]]
      done:^(NSArray *result) { aggregate = result; }];
     
     XCTAssertNil(aggregate, @"Should not be resolved yet");
@@ -594,7 +594,7 @@
     MKDeferred      *deferred1 = [MKDeferred new];
     MKDeferred      *deferred2 = [MKDeferred new];
     
-    [[MKDeferred when:deferred1, deferred2, nil]
+    [[MKDeferred whenAll:@[deferred1, deferred2]]
      error:^(NSError *error, BOOL *handled) { rejected = error; }];
     
     [deferred2 resolve:@"Hello"];
@@ -612,7 +612,7 @@
     MKDeferred    *deferred1 = [MKDeferred new];
     MKDeferred    *deferred2 = [MKDeferred new];
     
-    [[MKDeferred when:deferred1, deferred2, nil] cancel:^{ cancelled = YES; }];
+    [[MKDeferred whenAll:@[deferred1, deferred2]] cancel:^{ cancelled = YES; }];
     [deferred2 resolve:@"Hello"];
     
     XCTAssertFalse(cancelled, @"Should not be cancelled yet");
@@ -631,8 +631,8 @@
     [deferred1 reject:error];
     [deferred2 resolve:@"Hello"];
     
-    [[MKDeferred when:deferred1, deferred2, nil]
-     error:^(NSError *error, BOOL *handled) { rejected = error; }];
+    [[MKDeferred whenAll:@[deferred1, deferred2]]
+        error:^(NSError *error, BOOL *handled) { rejected = error; }];
     
     XCTAssertEqualObjects(@"Foo", rejected.domain, @"Master deferred fail not called");
 }
@@ -646,7 +646,7 @@
     [deferred1 cancel];
     [deferred2 resolve:@"Hello"];
     
-    [[MKDeferred when:deferred1, deferred2, nil] cancel:^{ cancelled = YES; }];
+    [[MKDeferred whenAll:@[deferred1, deferred2]] cancel:^{ cancelled = YES; }];
     
     XCTAssertTrue(cancelled, @"Master deferred cancelled not called");
 }

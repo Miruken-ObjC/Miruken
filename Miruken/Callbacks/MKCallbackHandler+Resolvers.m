@@ -10,109 +10,58 @@
 #import "MKObjectCallbackReceiver.h"
 #import "MKProtocolCallbackReceiver.h"
 #import "MKCallbackErrors.h"
+#import "MKTypeOf.h"
 
 @implementation MKCallbackHandler (Resolvers)
 
-#pragma mark - Callback class support
-
-- (id)getClass:(Class)aClass orDefault:(id)theDefault
+- (id)resolve:(id)descriptor
 {
-    if (theDefault != nil && [theDefault isKindOfClass:aClass] == NO)
-    {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:[NSString stringWithFormat:
-                                               @"The default value is not a kind of class %@", aClass]
-                                     userInfo:nil];
+    switch ([MKTypeOf id:descriptor]) {
+        case MKIdTypeNil:
+            return nil;
+            
+        case MKIdTypeClass:
+            return [self getClass:descriptor object:nil];
+            
+        case MKIdTypeProtocol:
+            return [self getProtocol:descriptor];
+            
+        case MKIdTypeObject:
+            return [self getClass:nil object:descriptor];
+            
+        default:
+            @throw [NSException exceptionWithName:NSInvalidArgumentException
+                        reason:[NSString stringWithFormat:
+                                @"Invalid desciptor %@.  Must be a class, protocol or object.",
+                                descriptor]
+                      userInfo:nil];
     }
-    MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forClass:aClass];
-    BOOL handled                       = [self handle:receiver];
-    return handled ? receiver.object : theDefault;
 }
 
-- (BOOL)tryGetClass:(Class)aClass into:(out id __strong *)outItem
+- (id)objectForKeyedSubscript:(id)descriptor
 {
-    MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forClass:aClass];
-    BOOL handled                       = [self handle:receiver];
-    *outItem                           = receiver.object;
-    return handled;    
+    return [self resolve:descriptor];
 }
 
-- (MKPromise)getClassDeferred:(Class)aClass
+- (id)getClass:(Class)aClass object:(id)anObject
 {
-    MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forClass:aClass];
-    if ([self handle:receiver] == NO)
+    MKObjectCallbackReceiver *receiver = anObject
+                                     ? [MKObjectCallbackReceiver forObject:anObject]
+                                     : [MKObjectCallbackReceiver forClass:aClass];
+    if ([self handle:receiver])
     {
-        NSDictionary* userInfo = @{ NSLocalizedDescriptionKey :
-            [NSString stringWithFormat:@"Callback class %@ could not be resolved", aClass]
-        };
-        
-        NSError *error = [NSError errorWithDomain:MKCallbackErrorDomain
-                                             code:MKCallbackErrorCallbackClassNotFound
-                                         userInfo:userInfo];
-        [receiver reject:error];
+        id received = receiver.object;
+        return (received && (anObject == nil || received != anObject)) ? received : receiver;
     }
-    return receiver;
+    return nil;
 }
 
-- (MKPromise)handleDeferred:(id)callback
-{
-    MKObjectCallbackReceiver *receiver = [MKObjectCallbackReceiver forObject:callback];
-    if ([self handle:receiver] == NO)
-    {
-        NSDictionary* userInfo = @{ NSLocalizedDescriptionKey :
-            [NSString stringWithFormat:@"Callback %@ could not be handled", callback]
-        };
-
-        NSError *error = [NSError errorWithDomain:MKCallbackErrorDomain
-                                             code:MKCallbackErrorCallbackNotHandled
-                                         userInfo:userInfo];
-        [receiver reject:error];
-    }
-    return receiver;
-}
-
-#pragma mark - Callback protocol support
-
-- (id)getProtocol:(Protocol *)aProtocol orDefault:(id)theDefault
-{
-    if (theDefault != nil && [theDefault conformsToProtocol:aProtocol] == NO)
-    {
-        @throw [NSException 
-                exceptionWithName: NSInvalidArgumentException
-                reason: [NSString stringWithFormat:@"The default value does not conform to protocol %@", 
-                         NSStringFromProtocol(aProtocol)]
-                userInfo: nil];         
-    }
-    MKProtocolCallbackReceiver *receiver = [MKProtocolCallbackReceiver forProtocol:aProtocol];
-    BOOL handled                         = [self handle:receiver];
-    return handled ? receiver.object : theDefault;
-    
-}
-
-- (BOOL)tryGetProtocol:(Protocol *)aProtocol into:(out id __strong *)outItem
+- (id)getProtocol:(Protocol *)aProtocol
 {
     MKProtocolCallbackReceiver *receiver = [MKProtocolCallbackReceiver forProtocol:aProtocol];
-    BOOL handled                         = [self handle:receiver];
-    *outItem                             = receiver.object;
-    return handled;    
-}
-
-- (MKPromise)getProtocolDeferred:(Protocol *)aProtocol
-{
-    MKProtocolCallbackReceiver *receiver = [MKProtocolCallbackReceiver forProtocol:aProtocol];
-    if ([self handle:receiver] == NO)
-    {
-        NSDictionary* userInfo = @{ NSLocalizedDescriptionKey :
-            [NSString stringWithFormat:@"Callback protocol %@ could not be resolved", aProtocol]
-        };
-        
-        NSError *error = [NSError errorWithDomain:MKCallbackErrorDomain
-                                             code:MKCallbackErrorCallbackProtocolNotFound
-                                         userInfo:userInfo];
-
-        [receiver reject:error];
-    }
-    return receiver;
+    return [self handle:receiver]
+         ? (receiver.object ? receiver.object : receiver)
+         : nil;
 }
 
 @end

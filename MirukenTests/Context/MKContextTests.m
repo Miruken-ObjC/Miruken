@@ -99,9 +99,8 @@ BOOL deallocCalled;
 
 - (void)testContextCanHandleItself
 {
-    MKContext *context;
-    BOOL handled = [rootContext tryGetClass:MKContext.class into:&context];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    MKContext *context = [rootContext resolve:MKContext.class];
+    XCTAssertNotNil(context, @"The callback was not handled");
     XCTAssertEqual(rootContext, context, @"contexts don't match");
 }
 
@@ -129,26 +128,21 @@ BOOL deallocCalled;
 - (void)testCanDelegateDynamicCallbacks
 {
     SomeViewController *someController = [SomeViewController newInChildContext:rootContext];
-    Configuration      *config;
-    BOOL                handled        = [someController.context tryGetClass:Configuration.class
-                                                                        into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration      *config         = [someController.context resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"www.improving.com", @"expected url www.improving.com");
 }
 
 - (void)testCanBreakDynamicDelegation
 {
     SomeViewController *someController = [SomeViewController newInChildContext:rootContext];
-    Configuration      *config;
-    BOOL                handled        = [someController.context tryGetClass:Configuration.class
-                                                                        into:&config];
-    XCTAssertTrue(handled, @"The callback was not handled");
+    Configuration      *config         = [someController.context resolve:Configuration.class];
+    XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"www.improving.com", @"expected url www.improving.com");
     
     someController.context             = nil;
-    handled                            = [someController.context tryGetClass:Configuration.class
-                                                                        into:&config];
-    XCTAssertFalse(handled, @"The callback was handled");
+    config                             = [someController.context resolve:Configuration.class];
+    XCTAssertNil(config, @"The callback was handled");
 }
 
 /* Fix Me
@@ -790,11 +784,8 @@ BOOL deallocCalled;
 - (void)testCanObtainViewControllerAssociatedWithContext
 {
     SomeViewController *contoller = [SomeViewController allocInContext:rootContext];
-    
-    SomeViewController *retrieved;
-    XCTAssertTrue([rootContext tryGetClass:SomeViewController.class into:&retrieved],
-                 @"Unable to retrieve SomeViewController");
-    
+    SomeViewController *retrieved = [rootContext resolve:SomeViewController.class];
+    XCTAssertNotNil(retrieved, @"Unable to retrieve SomeViewController");
     XCTAssertEqual(contoller, retrieved, @"Expected same SomeViewController");
 }
 

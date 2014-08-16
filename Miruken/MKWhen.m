@@ -7,21 +7,9 @@
 //
 
 #import "MKWhen.h"
-#import <objc/runtime.h>
-
-static id kProtocolClass;
-static id kBlockClass;
+#import "MKTypeOf.h"
 
 @implementation MKWhen
-
-+ (void)initialize
-{
-    if (self == MKWhen.class)
-    {
-        kProtocolClass = objc_getClass("Protocol");
-        kBlockClass    = [(id)^(id obj) { return YES; } class];
-    }
-}
 
 + (MKWhenPredicate)kindOfClass:(Class)class
 {
@@ -137,27 +125,28 @@ static id kBlockClass;
 
 + (MKWhenPredicate)tryCriteria:(id)criteria
 {
-    if (criteria == nil)
-        return nil;
-    
-    if ([criteria class] == kBlockClass)
-        return criteria;
-    
-    if ([criteria isKindOfClass:NSString.class])
-        return [self predicateFormat:criteria];
-    
-    if ([criteria isKindOfClass:NSPredicate.class])
-        return [self predicate:criteria];
-    
-    Class class = object_getClass(criteria);
-    
-    if (class_isMetaClass(class))
-        return [self kindOfClass:criteria];
-    
-    if (class == kProtocolClass)
-        return [self conformsToProtocol:criteria];
-    
-    return nil;
+    switch ([MKTypeOf id:criteria]) {
+        case MKIdTypeNil:
+            return nil;
+            
+        case MKIdTypeClass:
+            return [self kindOfClass:criteria];
+            
+        case MKIdTypeProtocol:
+            return [self conformsToProtocol:criteria];
+            
+        case MKIdTypeBlock:
+            return criteria;
+            
+        default:
+            if ([criteria isKindOfClass:NSString.class])
+                return [self predicateFormat:criteria];
+            
+            if ([criteria isKindOfClass:NSPredicate.class])
+                return [self predicate:criteria];
+            
+            return nil;
+    }
 }
 
 @end
