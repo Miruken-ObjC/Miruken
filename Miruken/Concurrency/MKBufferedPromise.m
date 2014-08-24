@@ -11,6 +11,14 @@
 #import "MKWhen.h"
 #import "EXTScope.h"
 
+@interface _MKBufferedPromise : NSObject <MKBufferedPromise>
+
++ (instancetype)bufferPromise:(MKPromise)promise;
+
+- (id)initWithPromise:(MKPromise)promise;
+
+@end
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wprotocol"
 
@@ -306,3 +314,12 @@
 @end
 
 #pragma clang diagnostic pop
+
+@implementation MKPromiseBase (Buffer)
+
+- (MKBufferedPromise)buffer
+{
+    return [_MKBufferedPromise bufferPromise:self];
+}
+
+@end

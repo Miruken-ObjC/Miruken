@@ -133,7 +133,7 @@
     _transition = [self _partialTransitionTo:viewController];
     [self _removePartialController];
     [self _addPartialController];
-    return [_transition pipe:^(NSNumber *didComplete) {
+    return [_transition then:^(NSNumber *didComplete) {
         return viewController.context;
     }];
 }

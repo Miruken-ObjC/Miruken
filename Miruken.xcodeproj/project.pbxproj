@@ -50,6 +50,7 @@
 		1459B7C5199F80EA00E5D12B /* MKTypeOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459B7C3199F80EA00E5D12B /* MKTypeOf.m */; };
 		1459B7C7199F839700E5D12B /* MKCallbackHandlerDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1459B7C6199F839700E5D12B /* MKCallbackHandlerDecorator.h */; };
 		1459B7C9199F854900E5D12B /* MKTypeOfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459B7C8199F854900E5D12B /* MKTypeOfTests.m */; };
+		1459B7CD19AA50B600E5D12B /* MKPromiseBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459B7CB19AA50B600E5D12B /* MKPromiseBase.m */; };
 		145AF318193110B400766F40 /* MKNatGeoTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF316193110B400766F40 /* MKNatGeoTransition.h */; };
 		145AF319193110B400766F40 /* MKNatGeoTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF317193110B400766F40 /* MKNatGeoTransition.m */; };
 		145AF31D193253B200766F40 /* MKPresentationOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 145AF31B193253B200766F40 /* MKPresentationOptions.h */; };
@@ -325,6 +326,7 @@
 		1459B7C3199F80EA00E5D12B /* MKTypeOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTypeOf.m; sourceTree = "<group>"; };
 		1459B7C6199F839700E5D12B /* MKCallbackHandlerDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKCallbackHandlerDecorator.h; sourceTree = "<group>"; };
 		1459B7C8199F854900E5D12B /* MKTypeOfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTypeOfTests.m; sourceTree = "<group>"; };
+		1459B7CB19AA50B600E5D12B /* MKPromiseBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPromiseBase.m; sourceTree = "<group>"; };
 		145AF316193110B400766F40 /* MKNatGeoTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKNatGeoTransition.h; sourceTree = "<group>"; };
 		145AF317193110B400766F40 /* MKNatGeoTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKNatGeoTransition.m; sourceTree = "<group>"; };
 		145AF31A193250DD00766F40 /* MKTransitionTraits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKTransitionTraits.h; sourceTree = "<group>"; };
@@ -1108,6 +1110,7 @@
 				14FD8A9918A7DBF7008077CF /* MKOperationResult.h */,
 				14FD8A9A18A7DBF7008077CF /* MKOperationResult.m */,
 				14FD8A9B18A7DBF7008077CF /* MKPromise.h */,
+				1459B7CB19AA50B600E5D12B /* MKPromiseBase.m */,
 				14FD8A9C18A7DBF7008077CF /* MKScheduledPromise.h */,
 				14FD8A9D18A7DBF7008077CF /* MKScheduledPromise.m */,
 				14FD8AA018A7DBF7008077CF /* MKThreadDelegate.h */,
@@ -1400,6 +1403,7 @@
 				14982D6E18B9245E0065EE40 /* UINavigationController_RotationMixin.m in Sources */,
 				14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */,
 				14982D2818B16C8E0065EE40 /* MKContextObserver.m in Sources */,
+				1459B7CD19AA50B600E5D12B /* MKPromiseBase.m in Sources */,
 				14FD8AB918A7DBF7008077CF /* NSObject+BuldPromise.m in Sources */,
 				1462996A18B02DCD002BCBF6 /* MKCallbackHandler+Builders.m in Sources */,
 				145AF31E193253B200766F40 /* MKPresentationOptions.m in Sources */,

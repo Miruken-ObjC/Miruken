@@ -33,7 +33,7 @@
 - (void)testWillCreateBufferedPipe
 {
     MKDeferred *deferred = [MKDeferred new];
-    id          buffer   = [[[deferred promise] pipe:^(id result) {
+    id          buffer   = [[[deferred promise] then:^(id result) {
         return [[MKDeferred new] promise];
     }] buffer];
     XCTAssertTrue([buffer conformsToProtocol:@protocol(MKBufferedPromise)], @"Not a buffered Pipe");

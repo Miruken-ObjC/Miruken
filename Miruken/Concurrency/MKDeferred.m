@@ -7,7 +7,6 @@
 //
 
 #import "MKDeferred.h"
-#import "MKBufferedPromise.h"
 #import "MKWhen.h"
 #import "EXTScope.h"
 #import <libkern/OSAtomic.h>
@@ -15,7 +14,7 @@
 
 #pragma mark - Promise
 
-@interface _MKPromise : NSObject <MKPromise>
+@interface _MKPromise : MKPromiseBase
 
 @property (readonly, strong) MKDeferred *deferred;
 
@@ -110,30 +109,20 @@
 }
 #pragma clang diagnostic pop
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter
 {
-    return [_deferred pipe:doneFilter];
+    return [_deferred then:doneFilter];
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
-    return [_deferred pipe:doneFilter failFilter:failFilter];
+    return [_deferred then:doneFilter failFilter:failFilter];
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
    progressFilter:(MKProgressFilter)progressFilter
 {
-    return [_deferred pipe:doneFilter failFilter:failFilter progressFilter:progressFilter];
-}
-
-- (MKBufferedPromise)buffer
-{
-    return [_MKBufferedPromise bufferPromise:self];
-}
-
-- (instancetype)await
-{
-    return self;
+    return [_deferred then:doneFilter failFilter:failFilter progressFilter:progressFilter];
 }
 
 - (BOOL)waitTimeInterval:(NSTimeInterval)timeInterval
@@ -160,7 +149,7 @@
 
 #pragma mark - Pipe
 
-@interface MKPipe : NSObject <MKPromise>
+@interface MKPipe : MKPromiseBase
 
 + (instancetype)filteredPromise:(MKPromise)promise doneFilter:(MKDoneFilter)doneFilter
                      failFilter:(MKFailFilter)failFilter progressFilter:(MKProgressFilter)progressFilter;
@@ -434,17 +423,8 @@
         pthread_mutex_unlock(&_mutex);
     }
 }
+
 #pragma clang diagnostic pop
-
-- (MKBufferedPromise)buffer
-{
-    return [_MKBufferedPromise bufferPromise:self];
-}
-
-- (instancetype)await
-{
-    return self;
-}
 
 - (instancetype)resolve
 {
@@ -637,17 +617,17 @@
     return self;
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter
 {
     return [MKPipe filteredPromise:self doneFilter:doneFilter failFilter:nil progressFilter:nil];
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
     return [MKPipe filteredPromise:self doneFilter:doneFilter failFilter:failFilter progressFilter:nil];
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
    progressFilter:(MKProgressFilter)progressFilter
 {
     return [MKPipe filteredPromise:self doneFilter:doneFilter failFilter:failFilter
@@ -866,7 +846,7 @@
     
     [[[[((MKPromise)object)
         done:^(id pipedResult) {
-            [_pipe resolve:pipedResult];
+           [_pipe resolve:pipedResult];
         }]
        fail:^(id reason, BOOL *handled) {
            [_pipe reject:reason handled:handled];
@@ -953,33 +933,23 @@
 }
 #pragma clang diagnostic pop
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:nil
                             progressFilter:nil];
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:failFilter
                             progressFilter:nil];
 }
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
    progressFilter:(MKProgressFilter)progressFilter
 {
     return [[MKPipe alloc] initWithPromise:self doneFilter:doneFilter failFilter:failFilter
                           progressFilter:progressFilter];
-}
-
-- (MKBufferedPromise)buffer
-{
-    return [_MKBufferedPromise bufferPromise:self];
-}
-
-- (instancetype)await
-{
-    return self;
 }
 
 - (BOOL)waitTimeInterval:(NSTimeInterval)timeInterval

@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MKPromise.h"
 
 /**
@@ -16,7 +15,7 @@
   so that only the owner can control the state of the computation.
  */
 
-@interface MKDeferred : NSObject <MKPromise>
+@interface MKDeferred : MKPromiseBase
 
 + (instancetype)resolved;
 

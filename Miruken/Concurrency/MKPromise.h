@@ -6,20 +6,10 @@
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "MKConcurrency.h"
 
-@protocol MKPromise;
-@protocol MKBufferedPromise;
-
-/**
-  NSObject<MKPromise> and NSObject<MKBufferedPromise> are useed instead of
-  MKPromise and id<MKBufferedPromise> to accomodate extension categories
-   on NSObject which are not available on id.
-     i.e Concurrency
- */
-typedef NSObject <MKPromise>         *MKPromise;
-typedef NSObject <MKBufferedPromise> *MKBufferedPromise;
+@class  MKPromiseBase;
+typedef MKPromiseBase* MKPromise;
 
 typedef void (^MKDoneCallback)(id result);
 typedef void (^MKFailCallback)(id reason, BOOL *handled);
@@ -80,14 +70,12 @@ typedef NS_ENUM(NSUInteger, MKPromiseState) {
 - (instancetype)progress:(id)when:(MKProgressCallback)progress;
 #pragma clang diagnostic pop
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter;
+- (MKPromise)then:(MKDoneFilter)doneFilter;
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter;
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter;
 
-- (MKPromise)pipe:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
+- (MKPromise)then:(MKDoneFilter)doneFilter failFilter:(MKFailFilter)failFilter
    progressFilter:(MKProgressFilter)progressFilter;
-
-- (MKBufferedPromise)buffer;
 
 - (instancetype)await;
 
@@ -99,4 +87,7 @@ typedef NS_ENUM(NSUInteger, MKPromiseState) {
 
 - (void)cancel;
 
+@end
+
+@interface MKPromiseBase : NSObject <MKPromise>
 @end

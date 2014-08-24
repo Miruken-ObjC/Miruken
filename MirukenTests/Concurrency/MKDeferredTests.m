@@ -471,7 +471,7 @@
 {
     __block NSString *message;
     MKDeferred       *deferred = [MKDeferred new];
-    [[deferred pipe:^(NSString *result) {
+    [[deferred then:^(NSString *result) {
         return [NSString stringWithFormat:@"Hello %@", result];
     }] done:^(NSString *result) {
         message = result;
@@ -484,9 +484,9 @@
 {
     __block NSString *message;
     MKDeferred       *deferred = [MKDeferred new];
-    [[[deferred pipe:^(NSString *result) {
+    [[[deferred then:^(NSString *result) {
         return [NSString stringWithFormat:@"Hello %@", result];
-    }] pipe:^(NSString *result) {
+    }] then:^(NSString *result) {
         return [result lowercaseString];
     }] done:^(NSString *result) {
         message = result;
@@ -500,7 +500,7 @@
     __block NSString *message;
     MKDeferred       *deferred1 = [MKDeferred new];
     
-    [[deferred1 pipe:^(NSString *result) {
+    [[deferred1 then:^(NSString *result) {
         return [MKDeferred resolved:[NSString stringWithFormat:@"Hello %@", result]];
     }] done:^(NSString *result) {
         message = result;
@@ -514,7 +514,7 @@
     __block NSError *rejected  = nil;
     MKDeferred      *deferred1 = [MKDeferred new];
     
-    [[deferred1 pipe:^(NSString *result) {
+    [[deferred1 then:^(NSString *result) {
         NSError *error = [NSError errorWithDomain:@"Foo" code:1 userInfo:nil];
         return [MKDeferred rejected:error];
     }] error:^(NSError *error, BOOL *handled) {
@@ -529,7 +529,7 @@
     __block BOOL  cancelled = NO;
     MKDeferred   *deferred1 = [MKDeferred new];
     
-    [[deferred1 pipe:^(NSString *result) {
+    [[deferred1 then:^(NSString *result) {
         MKDeferred *deferred2 = [MKDeferred new];
         [deferred2 cancel];
         return [deferred2 promise];
@@ -544,7 +544,7 @@
 {
     __block NSString *message;
     MKDeferred       *deferred = [MKDeferred new];
-    [[deferred pipe:nil failFilter:nil progressFilter:^(NSNumber *progress, BOOL *queued) {
+    [[deferred then:nil failFilter:nil progressFilter:^(NSNumber *progress, BOOL *queued) {
         return [NSString stringWithFormat:@"Step %@ complete", progress];
     }] progress:^(NSString *progress, BOOL queued)
      {
@@ -700,7 +700,7 @@
 - (void)testCanProjectPromiseWhenResolvedOnNewThread
 {
     MKDeferred *deferred = [[MKDeferred new] inNewThread];
-    [[deferred pipe:^(NSString *result) {
+    [[deferred then:^(NSString *result) {
         return [NSString stringWithFormat:@"Hello %@", result];
     }] done:^(NSString *result) {
         XCTAssertFalse([[NSThread currentThread] isMainThread], @"Done should not be main thread");
@@ -712,9 +712,9 @@
 - (void)testCanChainProjectionsWhenResolvedOnNewThread
 {
     MKDeferred *deferred = [[MKDeferred new] inNewThread];
-    [[[deferred pipe:^(NSString *result) {
+    [[[deferred then:^(NSString *result) {
         return [NSString stringWithFormat:@"Hello %@", result];
-    }] pipe:^(NSString *result) {
+    }] then:^(NSString *result) {
         return [result lowercaseString];
     }] done:^(NSString *result) {
         XCTAssertFalse([[NSThread currentThread] isMainThread], @"Done should not be main thread");
