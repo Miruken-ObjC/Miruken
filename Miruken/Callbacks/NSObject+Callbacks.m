@@ -9,6 +9,7 @@
 #import "NSObject+Callbacks.h"
 #import "MKObjectCallbackHandler.h"
 #import "MKCallbackHandler+Builders.h"
+#import "MKWhen.h"
 
 @implementation NSObject (NSObject_Callbacks)
 
@@ -22,14 +23,14 @@
     return [MKObjectCallbackHandler withObject:self isKindOf:isKindOf];
 }
 
-+ (MKCallbackHandler *)accept:(MKOnDemandCallbackIn)handler
++ (MKCallbackHandler *)accept:(MKAcceptingBlock)handler
 {
-    return [MKCallbackHandler acceptingClass:self handle:handler];
+    return [[MKAcceptingCallbackHandler acceptingWith:handler] whenKindOfClass:self];
 }
 
-+ (MKCallbackHandler *)provide:(MKOnDemandCallbackOut)provider
++ (MKCallbackHandler *)provide:(MKPovidingBlock)provider
 {
-    return [MKCallbackHandler providingClass:self handle:provider];
+    return [[MKProvidingCallbackHandler providingWith:provider] whenKindOfClass:self];
 }
 
 @end

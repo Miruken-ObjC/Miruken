@@ -7,6 +7,8 @@
 //
 
 #import "MKCallbackHandler.h"
+#import "MKAcceptingCallbackHandler.h"
+#import "MKProvidingCallbackHandler.h"
 #import "MKWhen.h"
 
 /**
@@ -29,13 +31,9 @@
 
 - (instancetype)thenAll:(MKCallbackHandler *)handler, ...;
 
-+ (instancetype)acceptingClass:(Class)aClass handle:(MKOnDemandCallbackIn)provider;
++ (MKAcceptingCallbackHandler *)acceptingWith:(MKAcceptingBlock)handler;
 
-+ (instancetype)acceptingProtocol:(Protocol *)aProtocol handle:(MKOnDemandCallbackIn)provider;
-
-+ (instancetype)providingClass:(Class)aClass handle:(MKOnDemandCallbackOut)provider;
-
-+ (instancetype)providingProtocol:(Protocol *)aProtocol handle:(MKOnDemandCallbackOut)provider;
++ (MKProvidingCallbackHandler *)providingWith:(MKPovidingBlock)provider;
 
 @end
 

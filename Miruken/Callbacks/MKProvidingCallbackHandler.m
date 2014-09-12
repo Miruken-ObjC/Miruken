@@ -1,32 +1,30 @@
 //
-//  MKProviderOutCallbackHandler.m
+//  MKProvidingCallbackHandler.m
 //  Miruken
 //
 //  Created by Craig Neuwirt on 10/3/12.
 //  Copyright (c) 2014 Craig Neuwirt. All rights reserved.
 //
 
-#import "MKOnDemandOutCallbackHandler.h"
+#import "MKProvidingCallbackHandler.h"
 #import "MKObjectCallbackReceiver.h"
 #import "MKProtocolCallbackReceiver.h"
 
-@implementation MKOnDemandOutCallbackHandler
+@implementation MKProvidingCallbackHandler
 {
-    MKOnDemandCallbackOut  _provider;
-    MKWhenPredicate        _condition;
+    MKPovidingBlock  _provider;
 }
 
-+ (instancetype)providedBy:(MKOnDemandCallbackOut)provider when:(MKWhenPredicate)condition
++ (instancetype)providedBy:(MKPovidingBlock)provider
 {
     if (provider == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"provider cannot be nil"
                                      userInfo:nil];
     
-    MKOnDemandOutCallbackHandler *onDemand = [self new];
-    onDemand->_provider                    = provider;
-    onDemand->_condition                   = condition;
-    return onDemand;
+    MKProvidingCallbackHandler *providing = [self new];
+    providing->_provider                  = provider;
+    return providing;
 }
 
 - (BOOL)handle:(id)callback greedy:(BOOL)greedy composition:(id<MKCallbackHandler>)composer
@@ -34,20 +32,12 @@
     if ([callback isKindOfClass:MKObjectCallbackReceiver.class])
     {
         MKObjectCallbackReceiver *receiver = (MKObjectCallbackReceiver *)callback;
-        if (_condition(receiver.forClass))
-        {
-            id callback = _provider(composer);
-            return [receiver tryResolve:callback];
-        }
+        return [receiver tryResolve:_provider(composer)];
     }
     else if ([callback isKindOfClass:MKProtocolCallbackReceiver.class])
     {
         MKProtocolCallbackReceiver *receiver = (MKProtocolCallbackReceiver *)callback;
-        if (_condition(receiver.forProtocol))
-        {
-            id callback = _provider(composer);
-            return [receiver tryResolve:callback];
-        }
+        return [receiver tryResolve:_provider(composer)];
     }
     return NO;
 }
@@ -55,7 +45,6 @@
 - (void)dealloc
 {
     _provider  = nil;
-    _condition = nil;
 }
 
 @end

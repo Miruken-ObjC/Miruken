@@ -27,11 +27,6 @@
 
 @end
 
-typedef BOOL (^MKOnDemandCallbackIn)(id callback, id<MKCallbackHandler> composer);
-
-typedef id   (^MKOnDemandCallbackOut)(id<MKCallbackHandler> composer);
-
-
 @interface MKCallbackHandler : NSObject <MKCallbackHandler>
 
 - (NSMethodSignature *)baseMethodSignatureForSelector:(SEL)aSelector;

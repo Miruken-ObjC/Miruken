@@ -54,9 +54,9 @@ static CGRect keyboardFrame;
 /**
  * alloc calls allocWithZone:nil
  */
-+ (id)swizzleDirty_allocWithZone:(NSZone *)zone
++ (id)swizzleKeyboard_allocWithZone:(NSZone *)zone
 {
-    id object = [self swizzleDirty_allocWithZone:zone];
+    id object = [self swizzleKeyboard_allocWithZone:zone];
     
     NSNotificationCenter *defaultCenter = [NSNotificationCenter defaultCenter];
     
@@ -105,10 +105,10 @@ static CGRect keyboardFrame;
     return object;
 }
 
-- (void)swizzleDirty_dealloc
+- (void)swizzleKeyboard_dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [self swizzleDirty_dealloc];
+    [self swizzleKeyboard_dealloc];
 }
 
 #pragma mark - Keyboard notifications

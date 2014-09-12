@@ -10,8 +10,8 @@
 #import "MKConditionCallbackHandler.h"
 #import "MKCascadeCallbackHandler.h"
 #import "MKCompositeCallbackHandler.h"
-#import "MKOnDemandInCallbackHandler.h"
-#import "MKOnDemandOutCallbackHandler.h"
+#import "MKAcceptingCallbackHandler.h"
+#import "MKProvidingCallbackHandler.h"
 #import "MKObjectCallbackReceiver.h"
 #import "MKProtocolCallbackReceiver.h"
 
@@ -97,40 +97,14 @@
     return composite;
 }
 
-+ (instancetype)acceptingClass:(Class)aClass handle:(MKOnDemandCallbackIn)provider
++ (MKAcceptingCallbackHandler *)acceptingWith:(MKAcceptingBlock)handler
 {
-    return [MKOnDemandInCallbackHandler
-                handledBy:provider
-                     when:^(id callback) {
-                         return [callback isKindOfClass:aClass];
-                     }];
+    return [MKAcceptingCallbackHandler handledBy:handler];
 }
 
-+ (instancetype)acceptingProtocol:(Protocol *)aProtocol handle:(MKOnDemandCallbackIn)provider
++ (MKProvidingCallbackHandler *)providingWith:(MKPovidingBlock)provider
 {
-    return [MKOnDemandInCallbackHandler
-                handledBy:provider
-                     when:^(id callback) {
-                         return [callback conformsToProtocol:aProtocol];
-                     }];
-}
-
-+ (instancetype)providingClass:(Class)aClass handle:(MKOnDemandCallbackOut)provider
-{
-    return [MKOnDemandOutCallbackHandler
-                providedBy:provider
-                      when:^(id callback) {
-                          return (BOOL)(callback == aClass);
-                      }];
-}
-
-+ (instancetype)providingProtocol:(Protocol *)aProtocol handle:(MKOnDemandCallbackOut)provider
-{
-    return [MKOnDemandOutCallbackHandler
-                providedBy:provider
-                      when:^(id callback) {
-                          return (BOOL)(callback == aProtocol);
-                      }];
+    return [MKProvidingCallbackHandler providedBy:provider];
 }
 
 @end

@@ -220,12 +220,10 @@
 {
     Configuration     *config  = [Configuration new];
     MKCallbackHandler *handler =
-    [MKCallbackHandler acceptingClass:Configuration.class
-                               handle:^(Configuration *theConfig, MKCallbackHandler *composer)
-     {
+    [[MKCallbackHandler acceptingWith:^(Configuration *theConfig, MKCallbackHandler *composer) {
          theConfig.url = @"www.rise.com";
          return YES;
-     }];
+     }] whenKindOfClass:Configuration.class];
     BOOL             handled  = [handler handle:config];
     XCTAssertTrue(handled, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"www.rise.com", @"expected url www.rise.com");
@@ -287,8 +285,7 @@
 {
     Configuration     *config  = [Configuration new];
     MKCallbackHandler *handler = [Configuration
-                                  accept:^(Configuration *theConfig, MKCallbackHandler *composer)
-                                  {
+                                  accept:^(Configuration *theConfig, MKCallbackHandler *composer) {
                                       theConfig.url = @"www.rise.com";
                                       return YES;
                                   }];
@@ -301,12 +298,10 @@
 {
     __block NSDictionary  *dict;
     MKCallbackHandler     *handler =
-    [MKCallbackHandler acceptingProtocol:@protocol(NSFastEnumeration)
-                                  handle:^(id <NSFastEnumeration> fe, MKCallbackHandler *composer)
-     {
+    [[MKCallbackHandler acceptingWith:^(id<NSFastEnumeration> fe, MKCallbackHandler *composer) {
          dict = properties;
          return YES;
-     }];
+    }] whenConformsToProtocol:@protocol(NSFastEnumeration)];
     BOOL                  handled  = [handler handle:properties];
     XCTAssertTrue(handled, @"The callback was not handled");
     XCTAssertEqual(properties, dict, @"expected same dictionary");
@@ -315,12 +310,11 @@
 - (void)testCanProvideClassCallbacksOnDemand
 {
     MKCallbackHandler  *handler =
-    [MKCallbackHandler providingClass:Configuration.class handle:^(MKCallbackHandler *composer)
-    {
+    [[MKCallbackHandler providingWith:^(MKCallbackHandler *composer) {
         Configuration *config = [Configuration new];
         config.url            = @"www.rise.com";
         return config;
-        }];
+    }] whenKindOfClass:Configuration.class];
     Configuration *config = [handler resolve:Configuration.class];
     XCTAssertNotNil(config, @"The callback was not handled");
     XCTAssertEqualObjects(config.url, @"www.rise.com", @"expected url www.rise.com");
@@ -328,8 +322,7 @@
 
 - (void)testCanProvideClassCallbacksOnDemandShortcut
 {
-    MKCallbackHandler  *handler = [Configuration provide:^(MKCallbackHandler *composer)
-                                   {
+    MKCallbackHandler  *handler = [Configuration provide:^(MKCallbackHandler *composer) {
                                        Configuration *config = [Configuration new];
                                        config.url            = @"www.rise.com";
                                        return config;
@@ -342,10 +335,9 @@
 - (void)testCanProvideProtocolCallbacksOnDemand
 {
     MKCallbackHandler *handler =
-    [MKCallbackHandler providingProtocol:@protocol(NSFastEnumeration) handle:^(MKCallbackHandler *composer)
-     {
+    [[MKCallbackHandler providingWith:^(MKCallbackHandler *composer) {
          return properties;
-     }];
+    }] whenConformsToProtocol:@protocol(NSFastEnumeration)];
     id<NSFastEnumeration> fastEnumerator = [handler resolve:@protocol(NSFastEnumeration)];
     XCTAssertNotNil(fastEnumerator, @"The callback was not handled");
     XCTAssertEqual(properties, fastEnumerator, @"expected same dictionary");
@@ -366,8 +358,7 @@
 - (void)testCanFilterCallbackWithCondition
 {
     id<MKCallbackHandler>  handler = [[ConfigurationCallbackHandler new]
-                                      when:^(Configuration *config)
-                                      {
+                                      when:^(Configuration *config) {
                                           return (BOOL)(config.tags.count > 0);
                                       }];
     

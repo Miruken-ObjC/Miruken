@@ -7,6 +7,8 @@
 //
 
 #import "MKCallbackHandler.h"
+#import "MKAcceptingCallbackHandler.h"
+#import "MKProvidingCallbackHandler.h"
 
 /**
   NSObject category for constructing CallbackHandlers based on instances or classes.
@@ -18,8 +20,8 @@
 
 - (MKCallbackHandler *)toCallbackHandler:(BOOL)isKindOf;
 
-+ (MKCallbackHandler *)accept:(MKOnDemandCallbackIn)handler;
++ (MKCallbackHandler *)accept:(MKAcceptingBlock)handler;
 
-+ (MKCallbackHandler *)provide:(MKOnDemandCallbackOut)provider;
++ (MKCallbackHandler *)provide:(MKPovidingBlock)provider;
 
 @end
