@@ -12,10 +12,10 @@
   An MKAcceptingCallbackHandler provides on-demand support for accepting callbacks.
   */
 
-typedef BOOL (^MKAcceptingBlock)(id callback, id<MKCallbackHandler> composer);
+typedef BOOL (^MKAcceptingCallbackBlock)(id callback, id<MKCallbackHandler> composer);
 
 @interface MKAcceptingCallbackHandler : MKCallbackHandler
 
-+ (instancetype)handledBy:(MKAcceptingBlock)handler;
++ (instancetype)handledBy:(MKAcceptingCallbackBlock)handler;
 
 @end

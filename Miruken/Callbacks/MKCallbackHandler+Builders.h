@@ -31,9 +31,9 @@
 
 - (instancetype)thenAll:(MKCallbackHandler *)handler, ...;
 
-+ (MKAcceptingCallbackHandler *)acceptingWith:(MKAcceptingBlock)handler;
++ (MKAcceptingCallbackHandler *)acceptingWith:(MKAcceptingCallbackBlock)handler;
 
-+ (MKProvidingCallbackHandler *)providingWith:(MKPovidingBlock)provider;
++ (MKProvidingCallbackHandler *)providingWith:(MKPovidingCallbackBlock)provider;
 
 @end
 

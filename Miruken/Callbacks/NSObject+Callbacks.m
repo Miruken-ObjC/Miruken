@@ -23,12 +23,12 @@
     return [MKObjectCallbackHandler withObject:self isKindOf:isKindOf];
 }
 
-+ (MKCallbackHandler *)accept:(MKAcceptingBlock)handler
++ (MKCallbackHandler *)accept:(MKAcceptingCallbackBlock)handler
 {
     return [[MKAcceptingCallbackHandler acceptingWith:handler] whenKindOfClass:self];
 }
 
-+ (MKCallbackHandler *)provide:(MKPovidingBlock)provider
++ (MKCallbackHandler *)provide:(MKPovidingCallbackBlock)provider
 {
     return [[MKProvidingCallbackHandler providingWith:provider] whenKindOfClass:self];
 }

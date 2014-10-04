@@ -38,13 +38,13 @@
 @protocol MKMasterDetailAware <NSObject>
 
 @optional
-- (void)masterChanged;
+- (void)masterChanged:(id)master;
 
-- (void)didSelectDetail:(id)detail;
+- (void)didSelectDetail:(id)detail master:(id)master;
 
-- (void)didDeselectDetail:(id)detail;
+- (void)didDeselectDetail:(id)detail master:(id)master;
 
-- (void)didRemoveDetail:(id)detail;
+- (void)didRemoveDetail:(id)detail master:(id)master;
 
 @end
 

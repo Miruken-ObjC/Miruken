@@ -20,8 +20,8 @@
 
 - (MKCallbackHandler *)toCallbackHandler:(BOOL)isKindOf;
 
-+ (MKCallbackHandler *)accept:(MKAcceptingBlock)handler;
++ (MKCallbackHandler *)accept:(MKAcceptingCallbackBlock)handler;
 
-+ (MKCallbackHandler *)provide:(MKPovidingBlock)provider;
++ (MKCallbackHandler *)provide:(MKPovidingCallbackBlock)provider;
 
 @end

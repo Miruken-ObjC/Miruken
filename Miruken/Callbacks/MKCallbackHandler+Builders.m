@@ -97,12 +97,12 @@
     return composite;
 }
 
-+ (MKAcceptingCallbackHandler *)acceptingWith:(MKAcceptingBlock)handler
++ (MKAcceptingCallbackHandler *)acceptingWith:(MKAcceptingCallbackBlock)handler
 {
     return [MKAcceptingCallbackHandler handledBy:handler];
 }
 
-+ (MKProvidingCallbackHandler *)providingWith:(MKPovidingBlock)provider
++ (MKProvidingCallbackHandler *)providingWith:(MKPovidingCallbackBlock)provider
 {
     return [MKProvidingCallbackHandler providedBy:provider];
 }

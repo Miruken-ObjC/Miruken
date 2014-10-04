@@ -58,10 +58,14 @@
 
 - (void)wrapView:(UIView *)view
 {
-    view.frame = self.bounds;
-    view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin
-                          | UIViewAutoresizingFlexibleRightMargin;
-    [self insertSubview:view atIndex:0];
+    [[self wrappedView] removeFromSuperview];
+    if (view)
+    {
+        view.frame = self.bounds;
+        view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin
+        | UIViewAutoresizingFlexibleRightMargin;
+        [self insertSubview:view atIndex:0];
+    }
 }
 
 - (void)didMoveToSuperview

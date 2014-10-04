@@ -12,10 +12,10 @@
   An MKProvidingtCallbackHandler provides on-demand support for providing callbacks.
  */
 
-typedef id (^MKPovidingBlock)(id<MKCallbackHandler> composer);
+typedef id (^MKPovidingCallbackBlock)(id<MKCallbackHandler> composer);
 
 @interface MKProvidingCallbackHandler : MKCallbackHandler
 
-+ (instancetype)providedBy:(MKPovidingBlock)provider;
++ (instancetype)providedBy:(MKPovidingCallbackBlock)provider;
 
 @end

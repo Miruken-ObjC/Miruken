@@ -11,10 +11,10 @@
 
 @implementation MKAcceptingCallbackHandler
 {
-    MKAcceptingBlock  _handler;
+    MKAcceptingCallbackBlock  _handler;
 }
 
-+ (instancetype)handledBy:(MKAcceptingBlock)handler
++ (instancetype)handledBy:(MKAcceptingCallbackBlock)handler
 {
     if (handler == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException

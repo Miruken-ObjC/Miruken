@@ -184,7 +184,9 @@
             handled = YES;
         }
     }
-    return handled || [super handle:callback greedy:greedy composition:composer];
+    if (!handled || greedy)
+        handled = [super handle:callback greedy:greedy composition:composer] || handled;
+    return handled;
 }
 
 - (void)dealloc

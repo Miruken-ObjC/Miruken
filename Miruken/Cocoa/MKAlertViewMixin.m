@@ -24,18 +24,18 @@
 
 #pragma mark - UIApplicationDelegate
 
-- (void)applicationWillResignActive:(UIApplication *)application
+- (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [self MKAlertView_applicationWillResignActive:application];
+    [self MKAlertView_applicationDidEnterBackground:application];
 }
 
-- (void)swizzleAlertView_applicationWillResignActive:(UIApplication *)application
+- (void)swizzleAlertView_applicationDidEnterBackground:(UIApplication *)application
 {
-    [self MKAlertView_applicationWillResignActive:application];
-    [self swizzleAlertView_applicationWillResignActive:application];
+    [self MKAlertView_applicationDidEnterBackground:application];
+    [self swizzleAlertView_applicationDidEnterBackground:application];
 }
 
-- (void)MKAlertView_applicationWillResignActive:(UIApplication *)application
+- (void)MKAlertView_applicationDidEnterBackground:(UIApplication *)application
 {
     if ([self respondsToSelector:@selector(alertView)])
     {

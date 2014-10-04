@@ -26,10 +26,12 @@
 {
     BOOL handled = greedy
        ? [_handlerA handle:callback greedy:YES composition:composer]
-           |  [_handlerB handle:callback greedy:YES composition:composer]
+          |  [_handlerB handle:callback greedy:YES composition:composer]
        : [_handlerA handle:callback greedy:NO composition:composer]
-           || [_handlerB handle:callback greedy:NO composition:composer];
-    return handled || [super handle:callback greedy:greedy composition:composer];
+          || [_handlerB handle:callback greedy:NO composition:composer];
+    if (!handled || greedy)
+        handled = [super handle:callback greedy:greedy composition:composer] || handled;
+    return handled;
 }
 
 - (void)dealloc

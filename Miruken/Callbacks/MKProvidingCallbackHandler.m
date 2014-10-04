@@ -12,10 +12,10 @@
 
 @implementation MKProvidingCallbackHandler
 {
-    MKPovidingBlock  _provider;
+    MKPovidingCallbackBlock  _provider;
 }
 
-+ (instancetype)providedBy:(MKPovidingBlock)provider
++ (instancetype)providedBy:(MKPovidingCallbackBlock)provider
 {
     if (provider == nil)
         @throw [NSException exceptionWithName:NSInvalidArgumentException
