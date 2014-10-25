@@ -9,10 +9,10 @@
 #import "MKCallbackHandler+SideEffects.h"
 #import "MKCallbackHandlerFilter.h"
 #import "MKSideEffects.h"
+#import "MKAction.h"
 #import "NSObject+Concurrency.h"
 #import "NSObject+ResolvePromise.h"
 #import "MKContext+Subscribe.h"
-#import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
 @implementation MKCallbackHandler (SideEffects)
@@ -59,6 +59,41 @@
                 if (restore)
                     restore();
             }];
+}
+
+- (instancetype)loadingFooter:(UITableView *)tableView message:(NSString *)message
+{
+    return [self loadingFooter:tableView message:message cellProvider:tableView];
+}
+
+- (instancetype)loadingFooter:(UITableView *)tableView message:(NSString *)message
+                 cellProvider:(UITableView *)cellProvider
+{
+    static NSString * const loadingCellType = @"loading.cell";
+    
+//    __block UIView                    *tableFooter;
+//    __block LoadingIndicatorTableCell *loadingCell;
+//    
+//    return [self sideEffect:^(id callback, MKCallbackHandler *composer) {
+//                [[MKAction onMainThread] do:^{
+//                    loadingCell = [cellProvider dequeueReusableCellWithIdentifier:loadingCellType];
+//                    if (loadingCell)
+//                    {
+//                        tableFooter = tableView.tableFooterView;
+//                        if (message.length > 0)
+//                            loadingCell.loadingMessage = message;
+//                        loadingCell.separatorInset = tableView.separatorInset;
+//                        tableView.tableFooterView  = loadingCell;
+//                        [loadingCell start];
+//                    }
+//            }];
+//            return YES;
+//        }
+//        after:^(id callback, MKCallbackHandler *composer) {
+//            if (loadingCell)
+//                [[tableView onMainThread] setTableFooterView:tableFooter];
+//        }];
+    return nil;
 }
 
 - (instancetype)spinToolbarItem:(UIViewController<MKContextual> *)viewController atIndex:(NSUInteger)index

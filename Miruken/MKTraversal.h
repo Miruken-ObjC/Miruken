@@ -17,4 +17,6 @@
 
 + (void)levelOrder:(id<MKTraversing>)node visitor:(MKVisitor)visitor;
 
++ (void)reverseLevelOrder:(id<MKTraversing>)node visitor:(MKVisitor)visitor;
+
 @end

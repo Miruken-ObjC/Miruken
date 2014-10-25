@@ -164,7 +164,7 @@
 
 - (void)testCanGetAsyncResultForInvocaion
 {
-    __autoreleasing id<MKAsyncResult> asyncResult;
+    id<MKAsyncResult> __autoreleasing asyncResult;
     [[(id<MKAsyncObject>)[[Calculator new] inNewThread] outAsyncResult:&asyncResult] addSimple:5 to:6];
     XCTAssertNotNil(asyncResult, @"AsyncResult nil");
     int sum;
@@ -174,7 +174,7 @@
 
 - (void)testWillGetNotifiedWhenInvocationComplete
 {
-    __autoreleasing id<MKAsyncResult> asyncResult;
+    id<MKAsyncResult> __autoreleasing asyncResult;
     [[(id<MKAsyncObject>)[[Calculator new] inNewThread] outAsyncResult:&asyncResult] addSimple:5 to:6];
     [[asyncResult promise] done:^(NSValue *result) {
         int sum;

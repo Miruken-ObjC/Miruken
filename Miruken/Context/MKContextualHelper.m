@@ -66,8 +66,14 @@
     MKContext *context = [self resolveContext:parent];
     if (context && [child respondsToSelector:@selector(setContext:)])
     {
-        childContext = [context newChildContext];
-        [child setContext:childContext];
+        while (context && context.state != MKContextStateActive)
+            context = [context parent];
+        
+        if (context)
+        {
+            childContext = [context newChildContext];
+            [child setContext:childContext];
+        }
     }
     
     return childContext;

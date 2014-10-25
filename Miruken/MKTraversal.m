@@ -65,4 +65,26 @@
     }
 }
 
++ (void)reverseLevelOrder:(id<MKTraversing>)node visitor:(MKVisitor)visitor
+{
+    BOOL            stop  = NO;
+    NSMutableArray *queue = [NSMutableArray new];
+    NSMutableArray *stack = [NSMutableArray new];
+    
+    [queue enqueue:node];
+    while (queue.count > 0)
+    {
+        id<MKTraversing> next = [queue dequeue];
+        [stack push:next];
+        NSMutableArray *level = [NSMutableArray new];
+        [next traverse:^(id<MKTraversing> child, BOOL *ignore) {
+            [level insertObject:child atIndex:0];
+        }];
+        [queue addObjectsFromArray:level];
+    }
+    
+    while (stack.count > 0 && (stop == NO))
+        visitor([stack pop], &stop);
+}
+
 @end

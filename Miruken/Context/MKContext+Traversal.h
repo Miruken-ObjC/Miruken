@@ -22,6 +22,8 @@
 
 - (instancetype)descendant;
 
+- (instancetype)descendantReverse;
+
 - (instancetype)childOrSelf;
 
 - (instancetype)siblingOrSelf;
@@ -30,6 +32,10 @@
 
 - (instancetype)descendantOrSelf;
 
+- (instancetype)descendantOrSelfReverse;
+
 - (instancetype)parentSiblingOrSelf;
+
+- (instancetype)traverseAxis:(MKTraversingAxes)axis;
 
 @end

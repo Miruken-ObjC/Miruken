@@ -17,7 +17,7 @@
 - (id)objectReturnValue
 {
     // result is __strong by default, but getReturnValue does not transfer ownership
-    __unsafe_unretained id result;
+    id __unsafe_unretained result;
     [self getReturnValue:&result];
     return result;
 }
@@ -25,7 +25,7 @@
 - (void)setObjectReturnValue:(id)returnValue
 {
     // returnValue is __strong by default, but setReturnValue does not transfer ownership
-    __autoreleasing id retained = returnValue;
+    id __autoreleasing retained = returnValue;
     [self setReturnValue:&retained];
 }
 

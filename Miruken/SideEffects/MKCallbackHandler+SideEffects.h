@@ -26,6 +26,11 @@ typedef void (^MKSideEffectAfterAction)(id callback, id<MKCallbackHandler> compo
 
 - (instancetype)loading:(id<MKLoading>)Loading;
 
+- (instancetype)loadingFooter:(UITableView *)tableView message:(NSString *)message;
+
+- (instancetype)loadingFooter:(UITableView *)tableView message:(NSString *)message
+                 cellProvider:(UITableView *)cellProvider;
+
 - (instancetype)spinToolbarItem:(UIViewController<MKContextual> *)viewController atIndex:(NSUInteger)index;
 
 - (instancetype)oneClick:(UIControl *)control;

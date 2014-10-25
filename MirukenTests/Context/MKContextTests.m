@@ -500,6 +500,43 @@ BOOL deallocCalled;
     XCTAssertEqual(child1_1,    visited[index++], @"Not in level-order");
 }
 
+- (void)testCanTraverseContextGrapthInReverseLevelOrder
+{
+    MKContext *child1   = [rootContext newChildContext];
+    MKContext *child1_1 = [child1 newChildContext];
+    
+    MKContext *child2   = [rootContext newChildContext];
+    MKContext *child2_1 = [child2 newChildContext];
+    MKContext *child2_2 = [child2 newChildContext];
+    
+    MKContext *child3   = [rootContext newChildContext];
+    MKContext *child3_1 = [child3 newChildContext];
+    MKContext *child3_2 = [child3 newChildContext];
+    MKContext *child3_3 = [child3 newChildContext];
+    
+    NSMutableArray *visited = [NSMutableArray new];
+    [MKTraversal reverseLevelOrder:rootContext visitor:^(id<MKTraversing> node, BOOL *stop) {
+        [visited addObject:node];
+    }];
+    
+    NSInteger index = 0;
+    
+    XCTAssertEqual(10U, visited.count, @"Expected 10 visited contexts");
+    
+    // The following assertions rely on the fact that child contexts are pushed
+    
+    XCTAssertEqual(child3_3,    visited[index++], @"Not in level-order");
+    XCTAssertEqual(child3_2,    visited[index++], @"Not in level-order");
+    XCTAssertEqual(child3_1,    visited[index++], @"Not in level-order");
+    XCTAssertEqual(child2_2,    visited[index++], @"Not in level-order");
+    XCTAssertEqual(child2_1,    visited[index++], @"Not in level-order");
+    XCTAssertEqual(child1_1,    visited[index++], @"Not in level-order");
+    XCTAssertEqual(child3,      visited[index++], @"Not in level-order");
+    XCTAssertEqual(child2,      visited[index++], @"Not in level-order");
+    XCTAssertEqual(child1,      visited[index++], @"Not in level-order");
+    XCTAssertEqual(rootContext, visited[index++], @"Not in level-order");
+}
+
 - (void)testCanTraverseContextSelf
 {
     MKContext *child1   = [rootContext newChildContext];
@@ -653,6 +690,31 @@ BOOL deallocCalled;
                  @"Expected all descendants");
 }
 
+- (void)testCanTraverseContextDescendantReverse
+{
+    MKContext *child1   = [rootContext newChildContext];
+    MKContext *child1_1 = [child1 newChildContext];
+    
+    MKContext *child2   = [rootContext newChildContext];
+    MKContext *child2_1 = [child2 newChildContext];
+    MKContext *child2_2 = [child2 newChildContext];
+    
+    MKContext *child3   = [rootContext newChildContext];
+    MKContext *child3_1 = [child3 newChildContext];
+    MKContext *child3_2 = [child3 newChildContext];
+    MKContext *child3_3 = [child3 newChildContext];
+    
+    NSMutableArray *nodes = [NSMutableArray new];
+    [rootContext traverse:^(id<MKTraversing> node, BOOL *stop) {
+        [nodes addObject:node];
+    } axis:MKTraversingAxisDescendantReverse];
+    
+    XCTAssertTrue(([@[child3_3, child3_2, child3_1, child2_2, child2_1,
+                      child1_1, child3, child2, child1]
+                    isEqualToArray:nodes]),
+                  @"Expected all descendants depth-first");
+}
+
 - (void)testCanTraverseContextDescendantOrSelf
 {
     MKContext *child1   = [rootContext newChildContext];
@@ -677,6 +739,31 @@ BOOL deallocCalled;
                                          child3, child3_1, child3_2, child3_3]]
                    isEqualToSet:[NSSet setWithArray:nodes]]),
                  @"Expected all descendants and self");
+}
+
+- (void)testCanTraverseContextdescendantOrSelfReverse
+{
+    MKContext *child1   = [rootContext newChildContext];
+    MKContext *child1_1 = [child1 newChildContext];
+    
+    MKContext *child2   = [rootContext newChildContext];
+    MKContext *child2_1 = [child2 newChildContext];
+    MKContext *child2_2 = [child2 newChildContext];
+    
+    MKContext *child3   = [rootContext newChildContext];
+    MKContext *child3_1 = [child3 newChildContext];
+    MKContext *child3_2 = [child3 newChildContext];
+    MKContext *child3_3 = [child3 newChildContext];
+    
+    NSMutableArray *nodes = [NSMutableArray new];
+    [rootContext traverse:^(id<MKTraversing> node, BOOL *stop) {
+        [nodes addObject:node];
+    } axis:MKTraversingAxisDescendantOrSelfReverse];
+    
+    XCTAssertTrue(([@[child3_3, child3_2, child3_1, child2_2, child2_1,
+                      child1_1, child3, child2, child1, rootContext]
+                    isEqualToArray:nodes]),
+                  @"Expected all descendants and self depth-first");
 }
 
 - (void)testCanBroadcastToContextSelf

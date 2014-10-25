@@ -48,6 +48,8 @@
 
     if (self = [super init])
     {
+        _buffer = [NSMutableArray new];
+        
         @weakify(self);
         _promise = [[[[[promise
             done:^(id result) {
@@ -70,8 +72,6 @@
                 @strongify(self);
                 [self buffer:^{ [self flushAlways]; }];
             }];
-        
-        _buffer = [NSMutableArray new];
     }
     
     return self;

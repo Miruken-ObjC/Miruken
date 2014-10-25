@@ -21,13 +21,13 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-    [self configureSelectedState:selected];
+    [self configureSelectedState:self.selected || self.highlighted];
 }
 
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     [super setHighlighted:highlighted animated:animated];
-    [self configureSelectedState:highlighted];
+    [self configureSelectedState:self.highlighted || self.selected];
 }
 
 - (void)configureSelectedState:(BOOL)selected

@@ -35,4 +35,5 @@
 #import "UIAlertView+Block.h"
 #import "UIScrollView+Motion.h"
 #import "UIStoryboard+Naming.h"
+#import "UIView+Context.h"
 #import "UIWindow+Rotation.h"

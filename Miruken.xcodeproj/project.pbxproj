@@ -191,6 +191,8 @@
 		14AB66AA18D5F609005DA41E /* MKTraversingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 14AB66A918D5F608005DA41E /* MKTraversingTests.m */; };
 		14C1544D19DF7B2B0076013D /* UIView+Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C1544B19DF7B2B0076013D /* UIView+Context.h */; };
 		14C1544E19DF7B2B0076013D /* UIView+Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1544C19DF7B2B0076013D /* UIView+Context.m */; };
+		14C1545119FBF1A90076013D /* UIImage+Helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C1544F19FBF1A90076013D /* UIImage+Helpers.h */; };
+		14C1545219FBF1A90076013D /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1545019FBF1A90076013D /* UIImage+Helpers.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
 		14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */; };
@@ -531,6 +533,8 @@
 		14AB66A918D5F608005DA41E /* MKTraversingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKTraversingTests.m; sourceTree = "<group>"; };
 		14C1544B19DF7B2B0076013D /* UIView+Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Context.h"; sourceTree = "<group>"; };
 		14C1544C19DF7B2B0076013D /* UIView+Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Context.m"; sourceTree = "<group>"; };
+		14C1544F19FBF1A90076013D /* UIImage+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helpers.h"; sourceTree = "<group>"; };
+		14C1545019FBF1A90076013D /* UIImage+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helpers.m"; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
 		14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSlide3DTransition.h; sourceTree = "<group>"; };
@@ -679,6 +683,8 @@
 			children = (
 				14C1544B19DF7B2B0076013D /* UIView+Context.h */,
 				14C1544C19DF7B2B0076013D /* UIView+Context.m */,
+				14C1544F19FBF1A90076013D /* UIImage+Helpers.h */,
+				14C1545019FBF1A90076013D /* UIImage+Helpers.m */,
 				14982E0118C394390065EE40 /* UIWebView+Extra.h */,
 				14982E0218C394390065EE40 /* UIWebView+Extra.m */,
 				14982DFD18C38EDC0065EE40 /* UIStoryboard+Naming.h */,
@@ -1216,6 +1222,7 @@
 				1405C10A19042796009F110F /* MKCocoaErrors.h in Headers */,
 				14A0F49B19153BA600A67B7C /* MKExpodeTransition.h in Headers */,
 				1404D51D1952366C002774D7 /* MKWhen.h in Headers */,
+				14C1545119FBF1A90076013D /* UIImage+Helpers.h in Headers */,
 				14982DB618BA39340065EE40 /* MKLoading.h in Headers */,
 				14C1544D19DF7B2B0076013D /* UIView+Context.h in Headers */,
 				14982DAE18BA33AC0065EE40 /* MKValidationErrors.h in Headers */,
@@ -1425,6 +1432,7 @@
 				1462996C18B02DCD002BCBF6 /* MKCallbackHandler+Invocation.m in Sources */,
 				14982D9018B92BE70065EE40 /* MKErrorCallbackHandler.m in Sources */,
 				14982D2D18B16DF20065EE40 /* MKWeakCell.m in Sources */,
+				14C1545219FBF1A90076013D /* UIImage+Helpers.m in Sources */,
 				14E9DCF318D3593E0045760D /* MKActiveCollectionViewCell.m in Sources */,
 				14FD8AA618A7DBF7008077CF /* MKAction.m in Sources */,
 				14982D2618B16C8E0065EE40 /* MKContext+Traversal.m in Sources */,

@@ -24,60 +24,70 @@
 
 - (instancetype)SELF
 {
-    return [self newContextTraversal:MKTraversingAxisSelf];
+    return [self traverseAxis:MKTraversingAxisSelf];
 }
 
 - (instancetype)root
 {
-    return [self newContextTraversal:MKTraversingAxisRoot];
+    return [self traverseAxis:MKTraversingAxisRoot];
 }
 
 - (instancetype)child
 {
-    return [self newContextTraversal:MKTraversingAxisChild];
+    return [self traverseAxis:MKTraversingAxisChild];
 }
 
 - (instancetype)sibling
 {
-    return [self newContextTraversal:MKTraversingAxisSibling];
+    return [self traverseAxis:MKTraversingAxisSibling];
 }
 
 - (instancetype)ancestor
 {
-    return [self newContextTraversal:MKTraversingAxisAncestor];
+    return [self traverseAxis:MKTraversingAxisAncestor];
 }
 
 - (instancetype)descendant
 {
-    return [self newContextTraversal:MKTraversingAxisDescendant];
+    return [self traverseAxis:MKTraversingAxisDescendant];
+}
+
+- (instancetype)descendantReverse
+{
+    return [self traverseAxis:MKTraversingAxisDescendantReverse];
 }
 
 - (instancetype)childOrSelf
 {
-    return [self newContextTraversal:MKTraversingAxisChildOrSelf];
+    return [self traverseAxis:MKTraversingAxisChildOrSelf];
 }
 
 - (instancetype)siblingOrSelf
 {
-    return [self newContextTraversal:MKTraversingAxisSiblingOrSelf];
+    return [self traverseAxis:MKTraversingAxisSiblingOrSelf];
 }
 
 - (instancetype)ancestorOrSelf
 {
-    return [self newContextTraversal:MKTraversingAxisAncestorOrSelf];
+    return [self traverseAxis:MKTraversingAxisAncestorOrSelf];
 }
 
 - (instancetype)descendantOrSelf
 {
-    return [self newContextTraversal:MKTraversingAxisDescendantOrSelf];
+    return [self traverseAxis:MKTraversingAxisDescendantOrSelf];
+}
+
+- (instancetype)descendantOrSelfReverse
+{
+    return [self traverseAxis:MKTraversingAxisDescendantOrSelfReverse];
 }
 
 - (instancetype)parentSiblingOrSelf
 {
-    return [self newContextTraversal:MKTraversingAxisParentSiblingOrSelf];
+    return [self traverseAxis:MKTraversingAxisParentSiblingOrSelf];
 }
 
-- (instancetype)newContextTraversal:(MKTraversingAxes)axis
+- (instancetype)traverseAxis:(MKTraversingAxes)axis
 {
     return (MKContext *) [[MKContextTraversalTrampoline alloc] initWithContext:self axis:axis];
 }
