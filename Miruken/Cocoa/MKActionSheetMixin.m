@@ -8,6 +8,8 @@
 
 #import "MKActionSheetMixin.h"
 
+static UIActionSheet *activeActionSheet;
+
 @interface MKActionSheetMixin() <MKActionSheetDelegate, UIApplicationDelegate>
 @end
 
@@ -37,15 +39,31 @@
 
 - (void)MKActionSheet_applicationWillResignActive:(UIApplication *)application
 {
-    if ([self respondsToSelector:@selector(actionSheet)])
-    {
-        UIActionSheet *actionSheet = self.actionSheet;
-        if (actionSheet.visible)
-            [actionSheet dismissWithClickedButtonIndex:actionSheet.cancelButtonIndex animated:NO];
-    }
+    [self MKActionSheet_dismissActionSheet];
 }
 
 #pragma mark - UIActionSheetDelegate
+
+- (UIActionSheet *)actionSheet
+{
+    return activeActionSheet;
+}
+
+- (UIActionSheet *)swizzleActionSheet_actionSheet
+{
+    return activeActionSheet ? activeActionSheet : [self swizzleActionSheet_actionSheet];
+}
+
+- (void)setActionSheet:(UIActionSheet *)actionSheet
+{
+    activeActionSheet = actionSheet;
+}
+
+- (void)swizzleActionSheet_setActionSheet:(UIActionSheet *)actionSheet
+{
+    activeActionSheet = actionSheet;
+    [self swizzleActionSheet_setActionSheet:actionSheet];
+}
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -61,8 +79,14 @@
 
 - (void)MKActionSheet_actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ([self respondsToSelector:@selector(setActionSheet:)])
-        self.actionSheet = nil;
+    self.actionSheet = nil;
+}
+
+- (void)MKActionSheet_dismissActionSheet
+{
+    UIActionSheet *actionSheet = self.actionSheet;
+    if (actionSheet.visible)
+        [actionSheet dismissWithClickedButtonIndex:actionSheet.cancelButtonIndex animated:NO];
 }
 
 @end

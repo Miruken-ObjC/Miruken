@@ -12,7 +12,11 @@
 
 - (BOOL)inMotion;
 
+- (BOOL)isAtTop;
+
 - (BOOL)isBeforeTop;
+
+- (BOOL)isAtBottom;
 
 - (BOOL)isAfterBottom;
 

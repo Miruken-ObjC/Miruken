@@ -8,6 +8,8 @@
 
 #import "MKAlertViewMixin.h"
 
+static UIAlertView *activeAlertView;
+
 @interface MKAlertViewMixin() <MKAlertViewDelegate, UIApplicationDelegate>
 @end
 
@@ -37,15 +39,32 @@
 
 - (void)MKAlertView_applicationDidEnterBackground:(UIApplication *)application
 {
-    if ([self respondsToSelector:@selector(alertView)])
-    {
-        UIAlertView *alertView = self.alertView;
-        if (alertView.visible)
-            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:NO];
-    }
+    [self MKAlertView_dismissAlertView];
 }
 
 #pragma mark - UIAlertViewDelegate
+
+
+- (UIAlertView *)alertView
+{
+    return activeAlertView;
+}
+
+- (UIAlertView *)swizzleAlertView_alertView
+{
+    return activeAlertView ? activeAlertView : [self swizzleAlertView_alertView];
+}
+
+- (void)setAlertView:(UIAlertView *)alertView
+{
+    activeAlertView = alertView;
+}
+
+- (void)swizzleAlertView_setAlertView:(UIAlertView *)alertView
+{
+    activeAlertView = alertView;
+    [self swizzleAlertView_setAlertView:alertView];
+}
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -60,8 +79,17 @@
 
 - (void)MKAlertView_alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if ([self respondsToSelector:@selector(setAlertView:)])
-        self.alertView = nil;
+    self.alertView = nil;
+}
+
+- (void)MKAlertView_dismissAlertView
+{
+    if ([self respondsToSelector:@selector(alertView)])
+    {
+        UIAlertView *alertView = self.alertView;
+        if (alertView.visible)
+            [alertView dismissWithClickedButtonIndex:alertView.cancelButtonIndex animated:NO];
+    }
 }
 
 @end

@@ -30,44 +30,51 @@ static int             kDirtyMixinContext;
 
 - (BOOL)isDirty
 {
-    return [self Dirty_isDirty];
+    return [self MKDirty_isDirty];
 }
 
 - (void)clearDirty
 {
-    [self Dirty_setDirty:NO notify:NO];
+    [self MKDirty_setDirty:NO notify:NO];
 }
 
 - (void)batchUpdates:(void (^)(void))updates
 {
     if (updates)
     {
-        BOOL suppress = [self Dirty_suppress];
+        BOOL suppress = [self MKDirty_suppress];
         @try {
-            [self setDirty_suppress:YES];
+            [self setMKDirty_suppress:YES];
             [self clearDirty];
             updates();
-            if ([self Dirty_isDirty])
+            if ([self MKDirty_isDirty])
+            {
+                // willChangeValueForKey must be called first to generate notification
+                objc_setAssociatedObject(self, @selector(isDirty), nil, OBJC_ASSOCIATION_RETAIN);
+                [self willChangeValueForKey:kIsDirtyProperty];
+                objc_setAssociatedObject(self, @selector(isDirty), @YES, OBJC_ASSOCIATION_RETAIN);
                 [self didChangeValueForKey:kIsDirtyProperty];
+            }
+
         }
         @finally {
-            [self setDirty_suppress:suppress];
+            [self setMKDirty_suppress:suppress];
         }
     }
 }
 
 #pragma mark - MKDirtyChecking mixin
 
-- (BOOL)Dirty_isDirty
+- (BOOL)MKDirty_isDirty
 {
     NSNumber *dirty = objc_getAssociatedObject(self, @selector(isDirty));
     return [dirty boolValue];
 }
 
-- (void)Dirty_setDirty:(BOOL)dirty notify:(BOOL)notify
+- (void)MKDirty_setDirty:(BOOL)dirty notify:(BOOL)notify
 {
     BOOL changed = ([self isDirty] != dirty);
-    notify       = ((notify || changed) && ([self Dirty_suppress] == NO));
+    notify       = ((notify || changed) && ([self MKDirty_suppress] == NO));
     
     if (notify)
         [self willChangeValueForKey:kIsDirtyProperty];
@@ -82,16 +89,16 @@ static int             kDirtyMixinContext;
         [self didChangeValueForKey:kIsDirtyProperty];
 }
 
-- (BOOL)Dirty_suppress
+- (BOOL)MKDirty_suppress
 {
-    NSNumber *suppress = objc_getAssociatedObject(self, @selector(Dirty_suppress));
+    NSNumber *suppress = objc_getAssociatedObject(self, @selector(MKDirty_suppress));
     return [suppress boolValue];
 }
 
-- (void)setDirty_suppress:(BOOL)suppress
+- (void)setMKDirty_suppress:(BOOL)suppress
 {
     NSNumber *suppressBool = suppress ? @YES : nil;
-    objc_setAssociatedObject(self, @selector(Dirty_suppress), suppressBool, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(MKDirty_suppress), suppressBool, OBJC_ASSOCIATION_RETAIN);
 }
 
 /**
@@ -116,7 +123,7 @@ static int             kDirtyMixinContext;
     if (context == &kDirtyMixinContext)
     {
         if ([keyPath isEqualToString:kInternalDirtyProperty])
-            [self Dirty_setDirty:YES notify:YES];
+            [self MKDirty_setDirty:YES notify:YES];
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

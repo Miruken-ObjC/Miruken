@@ -18,11 +18,6 @@
 @end
 
 @implementation MKErrorCallbackHandler
-{
-    BOOL _alertingError;
-}
-
-@synthesize alertView = _alertView;
 
 + (void)initialize
 {
@@ -63,22 +58,21 @@
 {
     MKDeferred *deferred = [MKDeferred new];
     
-    if (_alertingError)
+    if (self.alertView)
         return [[deferred resolve:[MKWellKnownErrorResults errorInProgress]] promise];
     
-    _alertView = [[UIAlertView alloc] initWithTitle:title
-                                             message:message
-                                           delegate:nil
-                                   cancelButtonTitle:@"Continue"
-                                   otherButtonTitles:nil];
+    self.alertView = [[UIAlertView alloc] initWithTitle:title
+                                                message:message
+                                               delegate:nil
+                                      cancelButtonTitle:@"Continue"
+                                      otherButtonTitles:nil];
                   
-    [_alertView showUsingBlock:^(NSInteger buttonIndex) {
-        _alertingError = NO;
-        [deferred resolve:[MKWellKnownErrorResults continue]];
-        _alertView     = nil;
+    [self.alertView showUsingBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex != -1)
+            [deferred resolve:[MKWellKnownErrorResults continue]];
+        else
+            [deferred cancel];
     }];
-    
-    _alertingError = YES;
     
     return [deferred promise];
 }
@@ -87,20 +81,19 @@
 {
     MKDeferred *deferred = [MKDeferred new];
     
-    if (_alertingError)
+    if (self.alertView)
         return [[deferred resolve:[MKWellKnownErrorResults errorInProgress]] promise];
     
-    _alertView = [[UIAlertView alloc] initWithTitle:exception.name
-                                message:exception.reason delegate:self
-                      cancelButtonTitle:@"Continue" otherButtonTitles:nil];
+    self.alertView = [[UIAlertView alloc] initWithTitle:exception.name
+                                                message:exception.reason delegate:self
+                                      cancelButtonTitle:@"Continue" otherButtonTitles:nil];
     
-    [_alertView showUsingBlock:^(NSInteger buttonIndex) {
-        _alertingError = NO;
-        [deferred resolve:[MKWellKnownErrorResults continue]];
-        _alertView     = nil;
+    [self.alertView showUsingBlock:^(NSInteger buttonIndex) {
+        if (buttonIndex != -1)
+            [deferred resolve:[MKWellKnownErrorResults continue]];
+        else
+            [deferred cancel];
     }];
-    
-    _alertingError = YES;
     
     return [deferred promise];
 }

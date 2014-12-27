@@ -12,7 +12,7 @@
 // This category enables communication to callback handlers using normal
 // objective-c calling conventions rather than the generic handle callback.
 
-typedef NS_ENUM(NSUInteger, MKCallbackHandlerCallOptions) {
+typedef NS_OPTIONS(NSUInteger, MKCallbackHandlerCallOptions) {
     MKCallbackHandlerCallOptionsNone       = 0,
     MKCallbackHandlerCallOptionsBroadcast  = 1 << 0,
     MKCallbackHandlerCallOptionsBestEffort = 1 << 1

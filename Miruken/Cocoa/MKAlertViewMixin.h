@@ -15,7 +15,9 @@
 @protocol MKAlertViewDelegate <UIAlertViewDelegate>
 
 @optional
-@property (strong, nonatomic) UIAlertView *alertView;
+- (UIAlertView *)alertView;
+
+- (void)setAlertView:(UIAlertView *)alertView;
 
 @end
 

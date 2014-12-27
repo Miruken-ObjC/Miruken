@@ -22,7 +22,7 @@
     id owner = self;
     for (UIViewController *viewController in self.viewControllers)
     {
-        [self bindChildContextAndPopOnEnd:viewController owner:owner];
+        [self bindChildContextAndPopOnEnd:viewController owner:owner animated:YES];
         owner = viewController;
     }
 }
@@ -31,7 +31,7 @@
 
 - (id)swizzleContextual_initWithRootViewController:(UIViewController *)rootViewController
 {
-    [self bindChildContextAndPopOnEnd:rootViewController owner:self];
+    [self bindChildContextAndPopOnEnd:rootViewController owner:self animated:YES];
     return [self swizzleContextual_initWithRootViewController:rootViewController];
 }
 
@@ -40,7 +40,7 @@
     id owner = self;
     for (UIViewController *viewController in viewControllers)
     {
-        [self bindChildContextAndPopOnEnd:viewController owner:owner];
+        [self bindChildContextAndPopOnEnd:viewController owner:owner animated:animated];
         owner = viewController;
     }
     [self swizzleContextual_setViewControllers:viewControllers animated:animated];
@@ -50,7 +50,7 @@
 {
     id owner = self.topViewController ? self.topViewController : self;
     
-    [self bindChildContextAndPopOnEnd:viewController owner:owner];
+    [self bindChildContextAndPopOnEnd:viewController owner:owner animated:animated];
     [self swizzleContextual_pushViewController:viewController animated:animated];
 }
 
@@ -90,6 +90,7 @@
 }
 
 - (MKContext *)bindChildContextAndPopOnEnd:(UIViewController *)viewController owner:(id)owner
+                                  animated:(BOOL)animated
 {
     // This gesture recognizer performs a pop without a push back
     
@@ -125,7 +126,7 @@
                 // returns the owning navigator instead of nil.
                 
                 NSUInteger count = [self.viewControllers count];
-                UIViewController *poppedController = [self popViewControllerAnimated:YES];
+                UIViewController *poppedController = [self popViewControllerAnimated:animated];
                 if (count == 1 && (poppedController == nil || poppedController == self))
                     [self.context end];
             }

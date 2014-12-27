@@ -103,6 +103,8 @@
     if (_done)
         for (MKDoneCallback done in _done)
             done(result);
+    if (_flushed)
+        _done = _fail = _progress = _cancel = nil;
 }
 
 - (void)flushFail:(id)reason handled:(BOOL *)handled
@@ -110,6 +112,8 @@
     if (_fail)
         for (MKFailCallback fail in _fail)
             fail(reason, handled);
+    if (_flushed)
+        _done = _fail = _progress = _cancel = nil;
 }
 
 - (void)flushCancel
@@ -117,6 +121,8 @@
     if (_cancel)
         for (MKCancelCallback cancel in _cancel)
             cancel();
+    if (_flushed)
+        _done = _fail = _progress = _cancel = nil;
 }
 
 - (void)flushProgress:(id)progress queued:(BOOL)queued
@@ -124,13 +130,17 @@
     if (_progress)
         for (MKProgressCallback notify in _progress)
             notify(progress, queued);
+    if (_flushed)
+        _progress = nil;
 }
 
 - (void)flushAlways
 {
     if (_always)
         for (MKAlwaysCallback always in _always)
-            always();    
+            always();
+    if (_flushed)
+        _always = nil;
 }
 
 - (void)buffer:(dispatch_block_t)block

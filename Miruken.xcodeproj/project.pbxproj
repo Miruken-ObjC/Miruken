@@ -193,6 +193,14 @@
 		14C1544E19DF7B2B0076013D /* UIView+Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1544C19DF7B2B0076013D /* UIView+Context.m */; };
 		14C1545119FBF1A90076013D /* UIImage+Helpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C1544F19FBF1A90076013D /* UIImage+Helpers.h */; };
 		14C1545219FBF1A90076013D /* UIImage+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1545019FBF1A90076013D /* UIImage+Helpers.m */; };
+		14C1545519FD25F50076013D /* MKPullToRefreshView.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C1545319FD25F50076013D /* MKPullToRefreshView.h */; };
+		14C1545619FD25F50076013D /* MKPullToRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1545419FD25F50076013D /* MKPullToRefreshView.m */; };
+		14C1545919FD26730076013D /* MKPullToRefreshMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C1545719FD26730076013D /* MKPullToRefreshMixin.h */; };
+		14C1545A19FD26730076013D /* MKPullToRefreshMixin.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1545819FD26730076013D /* MKPullToRefreshMixin.m */; };
+		14C1545D1A0521D20076013D /* MKLoadingIndicatorTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C1545B1A0521D20076013D /* MKLoadingIndicatorTableCell.h */; };
+		14C1545E1A0521D20076013D /* MKLoadingIndicatorTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C1545C1A0521D20076013D /* MKLoadingIndicatorTableCell.m */; };
+		14C154631A222C0C0076013D /* MKAutoLayoutLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C154611A222C0C0076013D /* MKAutoLayoutLabel.h */; };
+		14C154641A222C0C0076013D /* MKAutoLayoutLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C154621A222C0C0076013D /* MKAutoLayoutLabel.m */; };
 		14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5818F1999F001C39D5 /* MKZoomTransition.h */; };
 		14C54C5B18F1999F001C39D5 /* MKZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14C54C5918F1999F001C39D5 /* MKZoomTransition.m */; };
 		14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = 14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */; };
@@ -535,6 +543,15 @@
 		14C1544C19DF7B2B0076013D /* UIView+Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Context.m"; sourceTree = "<group>"; };
 		14C1544F19FBF1A90076013D /* UIImage+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Helpers.h"; sourceTree = "<group>"; };
 		14C1545019FBF1A90076013D /* UIImage+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Helpers.m"; sourceTree = "<group>"; };
+		14C1545319FD25F50076013D /* MKPullToRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPullToRefreshView.h; sourceTree = "<group>"; };
+		14C1545419FD25F50076013D /* MKPullToRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPullToRefreshView.m; sourceTree = "<group>"; };
+		14C1545719FD26730076013D /* MKPullToRefreshMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKPullToRefreshMixin.h; sourceTree = "<group>"; };
+		14C1545819FD26730076013D /* MKPullToRefreshMixin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKPullToRefreshMixin.m; sourceTree = "<group>"; };
+		14C1545B1A0521D20076013D /* MKLoadingIndicatorTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKLoadingIndicatorTableCell.h; sourceTree = "<group>"; };
+		14C1545C1A0521D20076013D /* MKLoadingIndicatorTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKLoadingIndicatorTableCell.m; sourceTree = "<group>"; };
+		14C154601A05247D0076013D /* MKStarting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MKStarting.h; sourceTree = "<group>"; };
+		14C154611A222C0C0076013D /* MKAutoLayoutLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKAutoLayoutLabel.h; sourceTree = "<group>"; };
+		14C154621A222C0C0076013D /* MKAutoLayoutLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKAutoLayoutLabel.m; sourceTree = "<group>"; };
 		14C54C5818F1999F001C39D5 /* MKZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKZoomTransition.h; sourceTree = "<group>"; };
 		14C54C5918F1999F001C39D5 /* MKZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKZoomTransition.m; sourceTree = "<group>"; };
 		14C54C5C18F1A8E3001C39D5 /* MKSlide3DTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKSlide3DTransition.h; sourceTree = "<group>"; };
@@ -662,6 +679,10 @@
 				14982D5A18B9245E0065EE40 /* MKAlertViewMixin.m */,
 				14982D5718B9245E0065EE40 /* MKActionSheetMixin.h */,
 				14982D5818B9245E0065EE40 /* MKActionSheetMixin.m */,
+				14C1545319FD25F50076013D /* MKPullToRefreshView.h */,
+				14C1545419FD25F50076013D /* MKPullToRefreshView.m */,
+				14C1545719FD26730076013D /* MKPullToRefreshMixin.h */,
+				14C1545819FD26730076013D /* MKPullToRefreshMixin.m */,
 				14982D6318B9245E0065EE40 /* MKUserInteractionMixin.h */,
 				14982D6418B9245E0065EE40 /* MKUserInteractionMixin.m */,
 				14982D5B18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.h */,
@@ -776,10 +797,10 @@
 		145AF31F1932565200766F40 /* Policy */ = {
 			isa = PBXGroup;
 			children = (
-				145AF31B193253B200766F40 /* MKPresentationOptions.h */,
-				145AF31C193253B200766F40 /* MKPresentationOptions.m */,
 				142FE8CE18DE415300569636 /* MKPresentationPolicy.h */,
 				142FE8CF18DE415300569636 /* MKPresentationPolicy.m */,
+				145AF31B193253B200766F40 /* MKPresentationOptions.h */,
+				145AF31C193253B200766F40 /* MKPresentationOptions.m */,
 				145AF3201932567400766F40 /* MKModalOptions.h */,
 				145AF3211932567400766F40 /* MKModalOptions.m */,
 				145AF3241932A30100766F40 /* MKTransitionOptions.h */,
@@ -919,12 +940,16 @@
 				142FE8C418DBA98200569636 /* MKPartialViewRegion.m */,
 				145AF32C1937703800766F40 /* MKViewRegionSubclassing.h */,
 				145AF32D1937703800766F40 /* MKViewRegionSubclassing.m */,
+				14C154611A222C0C0076013D /* MKAutoLayoutLabel.h */,
+				14C154621A222C0C0076013D /* MKAutoLayoutLabel.m */,
 				14E9DCF018D3593E0045760D /* MKActiveTableViewCell.h */,
 				14E9DCF118D3593E0045760D /* MKActiveTableViewCell.m */,
 				14E9DCEE18D3593E0045760D /* MKActiveCollectionViewCell.h */,
 				14E9DCEF18D3593E0045760D /* MKActiveCollectionViewCell.m */,
 				149963E9191FA9F3002FBFED /* MKViewControllerWapperView.h */,
 				149963EA191FA9F3002FBFED /* MKViewControllerWapperView.m */,
+				14C1545B1A0521D20076013D /* MKLoadingIndicatorTableCell.h */,
+				14C1545C1A0521D20076013D /* MKLoadingIndicatorTableCell.m */,
 				1405C10819042796009F110F /* MKCocoaErrors.h */,
 				1405C10919042796009F110F /* MKCocoaErrors.m */,
 			);
@@ -1160,9 +1185,10 @@
 				14E9DCEB18D355D40045760D /* MKDirtyObjectTrackingMixin.m */,
 				1462998C18B03118002BCBF6 /* MKDecorator.h */,
 				14982DB518BA39340065EE40 /* MKLoading.h */,
+				14C154601A05247D0076013D /* MKStarting.h */,
+				14982D1318B11D100065EE40 /* MKTraversing.h */,
 				14982D1118B11D100065EE40 /* MKTraversal.h */,
 				14982D1218B11D100065EE40 /* MKTraversal.m */,
-				14982D1318B11D100065EE40 /* MKTraversing.h */,
 				14982D2E18B16F160065EE40 /* MKTraversingMixin.h */,
 				14982D2F18B16F160065EE40 /* MKTraversingMixin.m */,
 				14982D1518B11DEC0065EE40 /* MKCollectionExtensions.h */,
@@ -1194,7 +1220,9 @@
 				1459B7C7199F839700E5D12B /* MKCallbackHandlerDecorator.h in Headers */,
 				14C54C5A18F1999F001C39D5 /* MKZoomTransition.h in Headers */,
 				14CC91161969F4FF00B7A649 /* MKVerticalLinesTransition.h in Headers */,
+				14C1545D1A0521D20076013D /* MKLoadingIndicatorTableCell.h in Headers */,
 				1404D515194C7E41002774D7 /* MKWindowOptions.h in Headers */,
+				14C1545519FD25F50076013D /* MKPullToRefreshView.h in Headers */,
 				14982D7118B9245E0065EE40 /* MKUserInteractionMixin.h in Headers */,
 				14CC910E19660DCB00B7A649 /* MKAsyncDelegate_Subclassing.h in Headers */,
 				14982D6718B9245E0065EE40 /* MKAlertViewMixin.h in Headers */,
@@ -1207,6 +1235,7 @@
 				145AF32E1937703800766F40 /* MKViewRegionSubclassing.h in Headers */,
 				14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
+				14C154631A222C0C0076013D /* MKAutoLayoutLabel.h in Headers */,
 				1405C11219087091009F110F /* MKGrandCentralTimerDelegate.h in Headers */,
 				142FE8ED18E84FED00569636 /* MKPresentationPolicyHandler.h in Headers */,
 				142FE8FB18ECC60200569636 /* MKPushMoveInTransition.h in Headers */,
@@ -1261,6 +1290,7 @@
 				145AF332193906B900766F40 /* MKNavigationOptions.h in Headers */,
 				14982DFF18C38EDC0065EE40 /* UIStoryboard+Naming.h in Headers */,
 				142FE8DD18DF318100569636 /* NSObject+Context.h in Headers */,
+				14C1545919FD26730076013D /* MKPullToRefreshMixin.h in Headers */,
 				14982DAA18BA33AC0065EE40 /* MKValidationResult.h in Headers */,
 				14982DA818BA33AC0065EE40 /* NSError+MKValidation.h in Headers */,
 				14CC91121969E8D500B7A649 /* MKHorizonatalLinesTransition.h in Headers */,
@@ -1467,6 +1497,7 @@
 				14FD8AD818A7E867008077CF /* NSInvocation+Objects.m in Sources */,
 				1462997818B02DCD002BCBF6 /* MKDynamicCallbackHandler+HandleMethod.m in Sources */,
 				14982D6C18B9245E0065EE40 /* MKPagingMixin.m in Sources */,
+				14C1545E1A0521D20076013D /* MKLoadingIndicatorTableCell.m in Sources */,
 				14982D3B18B1763C0065EE40 /* UIViewController_ContextualMixin.m in Sources */,
 				14982DAD18BA33AC0065EE40 /* MKValidateCallbackHandler.m in Sources */,
 				14E9DCF518D3593E0045760D /* MKActiveTableViewCell.m in Sources */,
@@ -1484,6 +1515,7 @@
 				14982D3018B16F160065EE40 /* MKTraversingMixin.m in Sources */,
 				14982D1718B11DEC0065EE40 /* MKCollectionExtensions.m in Sources */,
 				1462997C18B02DCD002BCBF6 /* NSObject+Callbacks.m in Sources */,
+				14C1545619FD25F50076013D /* MKPullToRefreshView.m in Sources */,
 				1405C11319087091009F110F /* MKGrandCentralTimerDelegate.m in Sources */,
 				142FE8E218DFB6E700569636 /* MKModalFlipHorizontalTransition.m in Sources */,
 				14982D2518B16C8E0065EE40 /* MKContext+Subscribe.m in Sources */,
@@ -1515,6 +1547,7 @@
 				14982E0418C394390065EE40 /* UIWebView+Extra.m in Sources */,
 				14CC91131969E8D500B7A649 /* MKHorizonatalLinesTransition.m in Sources */,
 				14A0F49C19153BA600A67B7C /* MKExpodeTransition.m in Sources */,
+				14C1545A19FD26730076013D /* MKPullToRefreshMixin.m in Sources */,
 				145AF333193906B900766F40 /* MKNavigationOptions.m in Sources */,
 				14FD8AAB18A7DBF7008077CF /* MKBufferedPromise.m in Sources */,
 				1462997F18B02DCD002BCBF6 /* MKObjectCallbackReceiver.m in Sources */,
@@ -1531,6 +1564,7 @@
 				1462997E18B02DCD002BCBF6 /* MKObjectCallbackHandler.m in Sources */,
 				14982D6A18B9245E0065EE40 /* MKEndContextWhenAppResignsMixin.m in Sources */,
 				142FE8C218DBA62200569636 /* MKMixingIn.m in Sources */,
+				14C154641A222C0C0076013D /* MKAutoLayoutLabel.m in Sources */,
 				14FD8AB818A7DBF7008077CF /* NSObject+Concurrency.m in Sources */,
 				1462998F18B031CA002BCBF6 /* MKCallbackErrors.m in Sources */,
 			);

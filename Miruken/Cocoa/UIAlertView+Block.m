@@ -7,8 +7,10 @@
 //
 
 #import "UIAlertView+Block.h"
+#import "MKAlertViewMixin.h"
+#import "MKMixingIn.h"
 
-@interface MKAlertViewDelegate : NSObject<UIAlertViewDelegate>
+@interface MKAlertViewDelegate : NSObject <UIAlertViewDelegate, MKAlertViewDelegate>
 
 @property (strong, atomic) MKAlertViewBlock block;
 
@@ -28,6 +30,12 @@
 
 
 @implementation MKAlertViewDelegate
+
++ (void)initialize
+{
+    if (self == MKAlertViewDelegate.class)
+        [MKAlertViewMixin mixInto:self];
+}
 
 + (void)show:(UIAlertView *)alertView withBlock:(MKAlertViewBlock)block
 {
@@ -50,6 +58,8 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
+    self.alertView = nil;
+    
     if (_block)
         _block(buttonIndex);
 }

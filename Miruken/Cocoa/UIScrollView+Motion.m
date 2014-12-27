@@ -15,14 +15,26 @@
     return self.isDragging || self.isDecelerating;
 }
 
+- (BOOL)isAtTop
+{
+    return (self.contentInset.top + self.contentOffset.y) == 0;
+}
+
 - (BOOL)isBeforeTop
 {
-    return self.contentOffset.y <= 0;
+    return (self.contentInset.top + self.contentOffset.y) < 0;
+}
+
+- (BOOL)isAtBottom
+{
+    return (self.contentOffset.y - self.contentInset.bottom) ==
+    (self.contentSize.height - self.bounds.size.height);
 }
 
 - (BOOL)isAfterBottom
 {
-    return self.contentOffset.y >= (self.contentSize.height - self.bounds.size.height);
+    return (self.contentOffset.y - self.contentInset.bottom) >
+    (self.contentSize.height - self.bounds.size.height);
 }
 
 - (void)stopScrolling

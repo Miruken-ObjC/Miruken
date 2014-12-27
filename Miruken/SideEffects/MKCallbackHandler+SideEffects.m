@@ -10,6 +10,7 @@
 #import "MKCallbackHandlerFilter.h"
 #import "MKSideEffects.h"
 #import "MKAction.h"
+#import "MKLoadingIndicatorTableCell.h"
 #import "NSObject+Concurrency.h"
 #import "NSObject+ResolvePromise.h"
 #import "MKContext+Subscribe.h"
@@ -71,28 +72,41 @@
 {
     static NSString * const loadingCellType = @"loading.cell";
     
-//    __block UIView                    *tableFooter;
-//    __block LoadingIndicatorTableCell *loadingCell;
-//    
-//    return [self sideEffect:^(id callback, MKCallbackHandler *composer) {
-//                [[MKAction onMainThread] do:^{
-//                    loadingCell = [cellProvider dequeueReusableCellWithIdentifier:loadingCellType];
-//                    if (loadingCell)
-//                    {
-//                        tableFooter = tableView.tableFooterView;
-//                        if (message.length > 0)
-//                            loadingCell.loadingMessage = message;
-//                        loadingCell.separatorInset = tableView.separatorInset;
-//                        tableView.tableFooterView  = loadingCell;
-//                        [loadingCell start];
-//                    }
-//            }];
-//            return YES;
-//        }
-//        after:^(id callback, MKCallbackHandler *composer) {
-//            if (loadingCell)
-//                [[tableView onMainThread] setTableFooterView:tableFooter];
-//        }];
+    __block UIView                      *tableFooter;
+    __block MKLoadingIndicatorTableCell *loadingCell;
+    
+    return [self sideEffect:^(id callback, MKCallbackHandler *composer) {
+                [[MKAction onMainThread] do:^{
+                    loadingCell = [cellProvider dequeueReusableCellWithIdentifier:loadingCellType];
+                    if (loadingCell)
+                    {
+                        if ([tableView.tableFooterView isKindOfClass:MKLoadingIndicatorTableCell.class] == NO)
+                            tableFooter = tableView.tableFooterView;
+                        if (message.length > 0)
+                            loadingCell.loadingMessage = message;
+                        loadingCell.separatorInset = tableView.separatorInset;
+                        // Setting a table footer changes contentOffset
+                        id<UITableViewDelegate> delegate = tableView.delegate;
+                        tableView.delegate               = nil;
+                        tableView.tableFooterView        = loadingCell;
+                        tableView.delegate               = delegate;
+                        [loadingCell start];
+                    }
+            }];
+            return YES;
+        }
+        after:^(id callback, MKCallbackHandler *composer) {
+            if (loadingCell)
+                [[MKAction onMainThread] do:^{
+                    if (tableView.tableFooterView == loadingCell)
+                    {
+                        id<UITableViewDelegate> delegate = tableView.delegate;
+                        tableView.delegate               = nil;
+                        tableView.tableFooterView        = tableFooter;
+                        tableView.delegate               = delegate;
+                    }
+                }];
+        }];
     return nil;
 }
 

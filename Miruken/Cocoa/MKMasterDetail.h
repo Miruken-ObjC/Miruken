@@ -29,6 +29,8 @@
 
 - (MKPromise)addDetail:(id)detail;
 
+- (MKPromise)updateDetail:(id)detail;
+
 - (MKPromise)removeDetail:(id)detail delete:(BOOL)delete;
 
 @end

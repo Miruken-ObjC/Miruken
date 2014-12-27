@@ -15,7 +15,9 @@
 @protocol MKActionSheetDelegate <UIActionSheetDelegate>
 
 @optional
-@property (strong, nonatomic) UIActionSheet *actionSheet;
+- (UIActionSheet *)actionSheet;
+
+- (void)setActionSheet:(UIActionSheet *)actionSheet;
 
 @end
 

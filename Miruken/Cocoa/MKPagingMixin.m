@@ -44,18 +44,6 @@ typedef NS_ENUM(NSUInteger, MKPagingMixinState) {
     objc_setAssociatedObject(self, @selector(scrollState), @(scrollState), OBJC_ASSOCIATION_RETAIN);
 }
 
-- (CGPoint)scrollOffset
-{
-    NSValue *offset = objc_getAssociatedObject(self, @selector(scrollOffset));
-    return [offset CGPointValue];
-}
-
-- (void)setScrollOffset:(CGPoint)scrollOffset
-{
-    NSValue *offset = [NSValue valueWithCGPoint:scrollOffset];
-    objc_setAssociatedObject(self, @selector(scrollOffset), offset, OBJC_ASSOCIATION_RETAIN);
-}
-
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -72,10 +60,7 @@ typedef NS_ENUM(NSUInteger, MKPagingMixinState) {
 - (void)MKPaging_scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if ([self scrollState] != MKPagingMixinStateScrollBeginDecelerate)
-    {
-        [self setScrollOffset:scrollView.contentOffset];
         [self setScrollState:MKPagingMixinStateScrollStarted];
-    }
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
@@ -168,11 +153,12 @@ typedef NS_ENUM(NSUInteger, MKPagingMixinState) {
 {
     // Ignore scroll bounces at top and bottom
     
-    if (scrollView.decelerating && (scrollView.isBeforeTop || scrollView.isAfterBottom))
+    if (scrollView.superview == nil ||
+        (scrollView.decelerating && (scrollView.isBeforeTop || scrollView.isAfterBottom)))
         return;
     
     MKPagingDirection direction
-                    = scrollView.contentOffset.y < [self scrollOffset].y
+                    = [scrollView.panGestureRecognizer translationInView:scrollView.superview].y > 0
                     ? MKPagingDirectionDown
                     : MKPagingDirectionUp;
     
@@ -214,6 +200,5 @@ typedef NS_ENUM(NSUInteger, MKPagingMixinState) {
 {
      [self MKPaging_scrollViewDidScroll:scrollView direction:direction complete:YES];
 }
-
 
 @end

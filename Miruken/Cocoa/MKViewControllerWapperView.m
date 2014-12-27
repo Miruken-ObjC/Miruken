@@ -63,7 +63,7 @@
     {
         view.frame = self.bounds;
         view.autoresizingMask = UIViewAutoresizingFlexibleRightMargin
-        | UIViewAutoresizingFlexibleRightMargin;
+                              | UIViewAutoresizingFlexibleRightMargin;
         [self insertSubview:view atIndex:0];
     }
 }

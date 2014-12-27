@@ -26,5 +26,6 @@ extern NSString * const MKValidationErrorSourceUserInfoKey;
 
 typedef NS_ENUM(NSUInteger, ValidationErrors) {
     MKValidationErrorEmpty    = 3000,
-    MKValidationErrorInvalidEmailAddress
+    MKValidationErrorInvalidEmailAddress,
+    MKValidationErrorCustom   = 5000
 };
