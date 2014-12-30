@@ -21,7 +21,7 @@ static IMP NSObject_methodSignatureForSelectorIMP;
 
 + (void)load
 {
-    unknownMethod = [NSMethodSignature signatureWithObjCTypes:"v@"];
+    unknownMethod = [NSMethodSignature signatureWithObjCTypes:"v@:"];
     NSObject_methodSignatureForSelectorSelctor = @selector(methodSignatureForSelector:);
     NSObject_methodSignatureForSelectorIMP     = class_getMethodImplementation
         (NSObject.class, NSObject_methodSignatureForSelectorSelctor);
@@ -58,7 +58,9 @@ static IMP NSObject_methodSignatureForSelectorIMP;
 - (BOOL)dispatchInvocation:(NSInvocation*)anInvocation
 {
     MKHandleMethod *invokeMethod = [MKHandleMethod withInvocation:anInvocation];
-    return [self handle:invokeMethod];
+    return invokeMethod.invocation.methodSignature != unknownMethod
+         ? [self handle:invokeMethod]
+         : NO;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector

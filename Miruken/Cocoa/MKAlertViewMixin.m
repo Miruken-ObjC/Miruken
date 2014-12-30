@@ -44,7 +44,6 @@ static UIAlertView *activeAlertView;
 
 #pragma mark - UIAlertViewDelegate
 
-
 - (UIAlertView *)alertView
 {
     return activeAlertView;
