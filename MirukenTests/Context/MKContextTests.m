@@ -768,7 +768,7 @@ BOOL deallocCalled;
 
 - (void)testCanBroadcastToContextSelf
 {
-    [SomeViewController allocInContext:rootContext];
+    id __unused controller = [SomeViewController allocInContext:rootContext];
     XCTAssertEqual(8, [(id)[rootContext SELF] add:5 to:3], @"5 + 3 = 8");
     
     MKContext *childContext = [[rootContext newChildContext] bestEffort];
@@ -777,40 +777,40 @@ BOOL deallocCalled;
 
 - (void)testCanBroadcastToContextChildren
 {
-    MKContext *childContext = [rootContext newChildContext];
-    [SomeViewController allocInContext:childContext];
+    MKContext   *childContext = [rootContext newChildContext];
+    id __unused  controller   = [SomeViewController allocInContext:childContext];
     XCTAssertEqual(30, [(id)[rootContext child] add:8 to:22], @"8 + 22 = 30");
 }
 
 - (void)testCanBroadcastToContextChildrenOrSelf
 {
-    [SomeViewController allocInContext:rootContext];
+    id __unused controller = [SomeViewController allocInContext:rootContext];
     XCTAssertEqual(22, [(id)[rootContext childOrSelf] add:12 to:10], @"12 + 10 = 22");
 }
 
 - (void)testCanBroadcastToContextAncestors
 {
-    [SomeViewController allocInContext:rootContext];
-    MKContext *grandchildContext = [[rootContext newChildContext] newChildContext];
+    id __unused  controller        = [SomeViewController allocInContext:rootContext];
+    MKContext   *grandchildContext = [[rootContext newChildContext] newChildContext];
     XCTAssertEqual(38, [(id)[grandchildContext ancestor] add:9 to:29], @"9 + 29 = 38");
 }
 
 - (void)testCanBroadcastToContextDescendants
 {
-    MKContext *grandchildContext = [[rootContext newChildContext] newChildContext];
-    [SomeViewController allocInContext:grandchildContext];
+    MKContext   *grandchildContext = [[rootContext newChildContext] newChildContext];
+    id __unused  controller        = [SomeViewController allocInContext:grandchildContext];
     XCTAssertEqual(53, [(id)[rootContext descendant] add:19 to:34], @"19 + 34 = 53");
 }
 
 - (void)testCanBroadcastToContextAncestorsOrSelf
 {
-    [SomeViewController allocInContext:rootContext];
+    id __unused  controller = [SomeViewController allocInContext:rootContext];
     XCTAssertEqual(30, [(id)[rootContext ancestorOrSelf] add:1 to:29], @"1 + 29 = 30");
 }
 
 - (void)testCanBroadcastToContextDescendantsOrSelf
 {
-    [SomeViewController allocInContext:rootContext];
+    id __unused  controller = [SomeViewController allocInContext:rootContext];
     XCTAssertEqual(20, [(id)[rootContext descendantOrSelf] add:6 to:14], @"6 + 14 = 20");
 }
 
@@ -821,18 +821,18 @@ BOOL deallocCalled;
 
 - (void)testCanNotifyContextDescendants
 {
-    MKContext *child1   = [rootContext newChildContext];
+    MKContext   *child1     = [rootContext newChildContext];
     [child1 newChildContext];
     
-    MKContext *child2   = [rootContext newChildContext];
+    MKContext   *child2     = [rootContext newChildContext];
     [child2 newChildContext];
     [child2 newChildContext];
     
-    MKContext *child3   = [rootContext newChildContext];
+    MKContext   *child3     = [rootContext newChildContext];
     [child3 newChildContext];
     [child3 newChildContext];
-    MKContext *child3_3 = [child3 newChildContext];
-    [SomeViewController allocInContext:child3_3];
+    MKContext   *child3_3   = [child3 newChildContext];
+    id __unused  controller = [SomeViewController allocInContext:child3_3];
     
     XCTAssertEqual(41, [[(id)[rootContext descendant] notify] add:22 to:19], @"22 + 19 = 41");
 }

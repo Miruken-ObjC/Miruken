@@ -225,7 +225,6 @@
 		14CC912919841DB800B7A649 /* MKCallbackHandler+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC912719841DB800B7A649 /* MKCallbackHandler+Storyboard.m */; };
 		14DBBF041A57352A000A989A /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DBBF031A57352A000A989A /* metamacros.h */; };
 		14DBBF061A573598000A989A /* MKScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DBBF051A573598000A989A /* MKScope.h */; };
-		14DBBF081A5735A0000A989A /* MKScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DBBF071A5735A0000A989A /* MKScope.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -579,7 +578,6 @@
 		14CC912719841DB800B7A649 /* MKCallbackHandler+Storyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Storyboard.m"; sourceTree = "<group>"; };
 		14DBBF031A57352A000A989A /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
 		14DBBF051A573598000A989A /* MKScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKScope.h; sourceTree = "<group>"; };
-		14DBBF071A5735A0000A989A /* MKScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKScope.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -1211,7 +1209,6 @@
 				1459B7C2199F80EA00E5D12B /* MKTypeOf.h */,
 				1459B7C3199F80EA00E5D12B /* MKTypeOf.m */,
 				14DBBF051A573598000A989A /* MKScope.h */,
-				14DBBF071A5735A0000A989A /* MKScope.m */,
 				14DBBF031A57352A000A989A /* metamacros.h */,
 			);
 			name = Core;
@@ -1549,7 +1546,6 @@
 				14982E0018C38EDC0065EE40 /* UIStoryboard+Naming.m in Sources */,
 				1405C10F1905CBA5009F110F /* MKPageFlipTransition.m in Sources */,
 				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
-				14DBBF081A5735A0000A989A /* MKScope.m in Sources */,
 				14982D7218B9245E0065EE40 /* MKUserInteractionMixin.m in Sources */,
 				1462998018B02DCD002BCBF6 /* MKAcceptingCallbackHandler.m in Sources */,
 				1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */,
