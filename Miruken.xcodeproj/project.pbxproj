@@ -223,6 +223,9 @@
 		14CC911F197C054900B7A649 /* MKHoverTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC911D197C054900B7A649 /* MKHoverTransition.m */; };
 		14CC912819841DB800B7A649 /* MKCallbackHandler+Storyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 14CC912619841DB800B7A649 /* MKCallbackHandler+Storyboard.h */; };
 		14CC912919841DB800B7A649 /* MKCallbackHandler+Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CC912719841DB800B7A649 /* MKCallbackHandler+Storyboard.m */; };
+		14DBBF041A57352A000A989A /* metamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DBBF031A57352A000A989A /* metamacros.h */; };
+		14DBBF061A573598000A989A /* MKScope.h in Headers */ = {isa = PBXBuildFile; fileRef = 14DBBF051A573598000A989A /* MKScope.h */; };
+		14DBBF081A5735A0000A989A /* MKScope.m in Sources */ = {isa = PBXBuildFile; fileRef = 14DBBF071A5735A0000A989A /* MKScope.m */; };
 		14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */; };
 		14E9DCD118CCB3290045760D /* MKDefaultViewRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */; };
 		14E9DCEC18D355D40045760D /* MKDirtyObjectTrackingMixin.h in Headers */ = {isa = PBXBuildFile; fileRef = 14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */; };
@@ -574,6 +577,9 @@
 		14CC911D197C054900B7A649 /* MKHoverTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKHoverTransition.m; sourceTree = "<group>"; };
 		14CC912619841DB800B7A649 /* MKCallbackHandler+Storyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKCallbackHandler+Storyboard.h"; sourceTree = "<group>"; };
 		14CC912719841DB800B7A649 /* MKCallbackHandler+Storyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKCallbackHandler+Storyboard.m"; sourceTree = "<group>"; };
+		14DBBF031A57352A000A989A /* metamacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = metamacros.h; sourceTree = "<group>"; };
+		14DBBF051A573598000A989A /* MKScope.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKScope.h; sourceTree = "<group>"; };
+		14DBBF071A5735A0000A989A /* MKScope.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKScope.m; sourceTree = "<group>"; };
 		14E9DCCE18CCB3290045760D /* MKDefaultViewRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDefaultViewRegion.h; sourceTree = "<group>"; };
 		14E9DCCF18CCB3290045760D /* MKDefaultViewRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKDefaultViewRegion.m; sourceTree = "<group>"; };
 		14E9DCEA18D355D40045760D /* MKDirtyObjectTrackingMixin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKDirtyObjectTrackingMixin.h; sourceTree = "<group>"; };
@@ -641,7 +647,8 @@
 		14FD8AD618A7E867008077CF /* NSInvocation+Objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSInvocation+Objects.h"; sourceTree = "<group>"; };
 		14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSInvocation+Objects.m"; sourceTree = "<group>"; };
 		14FD8ADA18A7E88B008077CF /* MKConcurrencyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKConcurrencyTests.m; sourceTree = "<group>"; };
-		483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miruken.xcconfig"; path = "Pods/Pods-Miruken.xcconfig"; sourceTree = "<group>"; };
+		26385A055EE3BBFF325B34CC /* Pods-Miruken.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miruken.release.xcconfig"; path = "Pods/Target Support Files/Pods-Miruken/Pods-Miruken.release.xcconfig"; sourceTree = "<group>"; };
+		42BBF855977D91DD57BEF410 /* Pods-Miruken.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Miruken.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Miruken/Pods-Miruken.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1035,7 +1042,7 @@
 				14FD8A6B18A7CB18008077CF /* MirukenTests */,
 				14FD8A5418A7CB18008077CF /* Frameworks */,
 				14FD8A5318A7CB18008077CF /* Products */,
-				483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */,
+				6CDA9417B0F408450DE036E9 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1203,8 +1210,20 @@
 				14FD8AD718A7E867008077CF /* NSInvocation+Objects.m */,
 				1459B7C2199F80EA00E5D12B /* MKTypeOf.h */,
 				1459B7C3199F80EA00E5D12B /* MKTypeOf.m */,
+				14DBBF051A573598000A989A /* MKScope.h */,
+				14DBBF071A5735A0000A989A /* MKScope.m */,
+				14DBBF031A57352A000A989A /* metamacros.h */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		6CDA9417B0F408450DE036E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				42BBF855977D91DD57BEF410 /* Pods-Miruken.debug.xcconfig */,
+				26385A055EE3BBFF325B34CC /* Pods-Miruken.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1232,6 +1251,7 @@
 				142FE90318F0855300569636 /* MKTransitionContext.h in Headers */,
 				14C54C6218F4A24E001C39D5 /* MKShuffle3DTransition.h in Headers */,
 				14982E0718C394BF0065EE40 /* MKInhibitInputAccessoryView.h in Headers */,
+				14DBBF041A57352A000A989A /* metamacros.h in Headers */,
 				145AF32E1937703800766F40 /* MKViewRegionSubclassing.h in Headers */,
 				14E9DCF418D3593E0045760D /* MKActiveTableViewCell.h in Headers */,
 				14982D8B18B92BE70065EE40 /* MKCallbackHandler+Recoverable.h in Headers */,
@@ -1243,6 +1263,7 @@
 				142FE8F118E856A500569636 /* MKTransitionScope.h in Headers */,
 				14A0F4971915304000A67B7C /* MKPageFoldTransition.h in Headers */,
 				142FE8C518DBA98200569636 /* MKPartialViewRegion.h in Headers */,
+				14DBBF061A573598000A989A /* MKScope.h in Headers */,
 				14E9DCD018CCB3290045760D /* MKDefaultViewRegion.h in Headers */,
 				14CC911A196A028A00B7A649 /* MKSquishTransition.h in Headers */,
 				14C54C5E18F1A8E3001C39D5 /* MKSlide3DTransition.h in Headers */,
@@ -1413,7 +1434,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-Miruken-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Miruken/Pods-Miruken-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1528,6 +1549,7 @@
 				14982E0018C38EDC0065EE40 /* UIStoryboard+Naming.m in Sources */,
 				1405C10F1905CBA5009F110F /* MKPageFlipTransition.m in Sources */,
 				14FD8AAE18A7DBF7008077CF /* MKDelayedDelegate.m in Sources */,
+				14DBBF081A5735A0000A989A /* MKScope.m in Sources */,
 				14982D7218B9245E0065EE40 /* MKUserInteractionMixin.m in Sources */,
 				1462998018B02DCD002BCBF6 /* MKAcceptingCallbackHandler.m in Sources */,
 				1462996E18B02DCD002BCBF6 /* MKCallbackHandler+Resolvers.m in Sources */,
@@ -1650,7 +1672,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1682,7 +1704,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1690,12 +1712,12 @@
 		};
 		14FD8A7618A7CB18008077CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */;
+			baseConfigurationReference = 42BBF855977D91DD57BEF410 /* Pods-Miruken.debug.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Miruken.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Miruken/Miruken-Prefix.pch";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1703,12 +1725,12 @@
 		};
 		14FD8A7718A7CB18008077CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 483F78DE848A48A69E26E684 /* Pods-Miruken.xcconfig */;
+			baseConfigurationReference = 26385A055EE3BBFF325B34CC /* Pods-Miruken.release.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/Miruken.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Miruken/Miruken-Prefix.pch";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

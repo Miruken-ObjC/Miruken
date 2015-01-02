@@ -5,24 +5,20 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A170BC11-95EC-4454-B667-C8E2A8667DA4</string>
+	<string>65B2F398-081B-4C05-8D28-3ABEA5B57790</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Miruken</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3990A20D-F481-4B7D-BBA6-7556D1FD0C87</key>
-		<string>ssh://github.com/cneuwirt/MirukenCocoa.git</string>
 		<key>E24C5973DF7E496006E9F96F5F1060666777D369</key>
 		<string>github.com:cneuwirt/MirukenCocoa.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Miruken.xcworkspace</string>
+	<string>Miruken.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3990A20D-F481-4B7D-BBA6-7556D1FD0C87</key>
-		<string>../../Miruken</string>
 		<key>E24C5973DF7E496006E9F96F5F1060666777D369</key>
-		<string>..</string>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>github.com:cneuwirt/MirukenCocoa.git</string>
@@ -32,14 +28,6 @@
 	<string>E24C5973DF7E496006E9F96F5F1060666777D369</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
-		<dict>
-			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
-			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3990A20D-F481-4B7D-BBA6-7556D1FD0C87</string>
-			<key>IDESourceControlWCCName</key>
-			<string>Miruken</string>
-		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

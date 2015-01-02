@@ -7,7 +7,7 @@
 //
 
 #import "MKCADisplayLinkDelegate.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 #import <UIKit/UIKit.h>
 
 @implementation MKCADisplayLinkDelegate

@@ -3,7 +3,8 @@
 
 target "Miruken" do
 
-pod'libextobjc','0.3'
+#pod'libextobjc','0.3'
+pod 'NSDate-Additions'
 
 end
 

@@ -11,7 +11,7 @@
 #import "MKAsyncResult_Subclassing.h"
 #import "NSInvocation+Objects.h"
 #import "MKDeferred+Await.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 
 @implementation MKAsyncProxyResult
 {

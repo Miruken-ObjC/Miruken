@@ -17,7 +17,7 @@
 #import "NSObject+Context.h"
 #import "MKCocoaErrors.h"
 #import "MKMixin.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 
 @interface MKPartialViewRegion()
 @property (weak, nonatomic) MKTransitionContext *transition;

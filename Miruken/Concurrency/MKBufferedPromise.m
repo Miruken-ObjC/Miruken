@@ -9,7 +9,7 @@
 #import "MKBufferedPromise.h"
 #import "NSInvocation+Objects.h"
 #import "MKWhen.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 
 @interface _MKBufferedPromise : NSObject <MKBufferedPromise>
 

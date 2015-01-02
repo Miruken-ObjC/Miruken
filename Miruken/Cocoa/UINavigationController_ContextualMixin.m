@@ -10,7 +10,7 @@
 #import "UIViewController_ContextualMixin.h"
 #import "MKContextualHelper.h"
 #import "MKContextObserver.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 
 @implementation UINavigationController_ContextualMixin
 

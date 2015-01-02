@@ -8,7 +8,7 @@
 
 #import "MKDeferred.h"
 #import "MKWhen.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 #import <libkern/OSAtomic.h>
 #import <pthread.h>
 

@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BB7B335439E1B8213C82AD3B"
-               BuildableName = "libPods-Miruken.a"
-               BlueprintName = "Pods-Miruken"
+               BlueprintIdentifier = "333FF2C21F4196F6428B183E"
+               BuildableName = "libPods-Miruken-NSDate-Additions.a"
+               BlueprintName = "Pods-Miruken-NSDate-Additions"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -8,7 +8,7 @@
 
 #import "MKDirtyObjectTrackingMixin.h"
 #import "MKDirtyMixin.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 #import <objc/runtime.h>
 
 static int             kDirtyObjectTrackingContext;

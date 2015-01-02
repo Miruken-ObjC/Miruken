@@ -13,7 +13,7 @@
 #import "MKWeakCell.h"
 #import "MirukenCallbacks.h"
 #import "MKMixingIn.h"
-#import "EXTScope.h"
+#import "MKScope.h"
 
 @interface MKContext() <MKTraversingDelegate>
 @end

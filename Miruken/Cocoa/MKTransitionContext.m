@@ -106,6 +106,15 @@
     return nil;
 }
 
+- (UIView *)viewForKey:(NSString *)key
+{
+    if ([key isEqualToString:UITransitionContextToViewKey])
+        return _toViewController.view;
+    else if ([key isEqualToString:UITransitionContextFromViewKey])
+        return _fromViewController.view;
+    return nil;
+}
+
 - (CGRect)initialFrameForViewController:(UIViewController *)vc
 {
     return vc == _toViewController ? CGRectZero : _fromViewController.view.frame;
@@ -114,6 +123,11 @@
 - (CGRect)finalFrameForViewController:(UIViewController *)vc
 {
     return vc == _toViewController ? _toViewController.view.frame : CGRectZero;
+}
+
+- (CGAffineTransform)targetTransform
+{
+    return CGAffineTransformIdentity;
 }
 
 @end
