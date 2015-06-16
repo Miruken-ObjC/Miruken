@@ -163,7 +163,7 @@
 
 - (void)unwind
 {
-    for (id<MKContext> child in self.children)
+    for (id<MKContext> child in [_children array])
         [child end];
 }
 

@@ -60,6 +60,16 @@
     return cell;
 }
 
+- (NSArray *)array
+{
+    NSMutableArray *array = [NSMutableArray new];
+    
+    for (id object in self)
+        [array addObject:object];
+    
+    return [array copy];
+}
+
 #pragma mark - NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len;

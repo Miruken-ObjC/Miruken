@@ -10,7 +10,8 @@
 
 @implementation MKTransitionContext
 {
-    UIView *_containerView;
+    UIView                                           *_containerView;
+    __weak id<UIViewControllerAnimatedTransitioning>  _transitionController;
 }
 
 + (instancetype)transitionContainerView:(UIView *)containerView
@@ -63,6 +64,7 @@
            animationControllerForDismissedController:_fromViewController];
     
     [transitionController animateTransition:self];
+    _transitionController = transitionController;
 }
 
 - (BOOL)transitionWasCancelled
@@ -93,6 +95,8 @@
 - (void)completeTransition:(BOOL)didComplete
 {
     [_fromViewController.view removeFromSuperview];
+    if ([_transitionController respondsToSelector:@selector(animationEnded:)])
+        [_transitionController animationEnded:didComplete];
     if (self.state == MKPromiseStatePending)
         [self resolve:@(didComplete)];
 }

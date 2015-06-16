@@ -42,7 +42,7 @@ typedef void (^MKContextAction)(id<MKContext> context);
 
 /**
   A MKContext represents the scope at a give point in time.  It has a beginning and
-  and end (lifecycle).  It can handle callbacks as well as notify consumers if its
+  and end (lifecycle).  It can handle callbacks as well as notify consumers of its
   lifecycle changes.  In addition, it has a parent-child relationship and thus can
   participate in a hierarchy.
  */

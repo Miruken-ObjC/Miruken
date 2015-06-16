@@ -22,4 +22,6 @@
 
 - (MKWeakCell *)remove:(id)object;
 
+- (NSArray *)array;
+
 @end

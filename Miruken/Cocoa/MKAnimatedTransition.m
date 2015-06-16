@@ -33,7 +33,7 @@
     return self;
 }
 
-- (id <UIViewControllerAnimatedTransitioning>)
+- (id<UIViewControllerAnimatedTransitioning>)
     animationControllerForDismissedController:(UIViewController *)dismissed
 {
     _isPresenting = NO;
