@@ -81,7 +81,7 @@
             view.frame      = CGRectOffset(view.frame, xOffset, yOffset);
             view.alpha      = 0.0;
             CGFloat angle   = [self randomFloatBetween:-10.0 and:10.0];
-            view.transform  = CGAffineTransformScale(CGAffineTransformMakeRotation(angle), 0.0, 0.0);
+            view.transform  = CGAffineTransformScale(CGAffineTransformMakeRotation(angle), 0.01, 0.01);
         }
     } completion:^(BOOL finished) {
         for (UIView *view in snapshots)

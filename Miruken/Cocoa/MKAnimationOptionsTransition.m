@@ -38,14 +38,16 @@
     {
         [containerView addSubview:fromView];
         [containerView addSubview:toView];
-        [UIView transitionFromView:fromView
-                            toView:toView
-                          duration:[self transitionDuration:transitionContext]
-                           options:animationOptions
-                        completion:^(BOOL finished) {
-                            BOOL cancelled = [transitionContext transitionWasCancelled];
-                            [transitionContext completeTransition:!cancelled];
-                        }];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView transitionFromView:fromView
+                                toView:toView
+                              duration:[self transitionDuration:transitionContext]
+                               options:animationOptions
+                            completion:^(BOOL finished) {
+                                BOOL cancelled = [transitionContext transitionWasCancelled];
+                                [transitionContext completeTransition:!cancelled];
+                            }];
+        });
     }
     else if ([self _shouldPerformTransitionWithOptions:animationOptions])
     {

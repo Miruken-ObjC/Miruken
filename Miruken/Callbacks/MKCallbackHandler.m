@@ -87,9 +87,9 @@ static IMP NSObject_methodSignatureForSelectorIMP;
 
 - (NSMethodSignature *)baseMethodSignatureForSelector:(SEL)aSelector
 {
-    return NSObject_methodSignatureForSelectorIMP
+    NSMethodSignature *signature = NSObject_methodSignatureForSelectorIMP
         (self, NSObject_methodSignatureForSelectorSelctor, aSelector);
-}
+    return signature;}
 
 + (BOOL)isUnknownMethod:(NSMethodSignature *)methodSignature;
 {

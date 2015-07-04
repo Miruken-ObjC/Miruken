@@ -34,7 +34,7 @@
     
     if (self.isPresenting)
     {
-        toView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+        toView.transform = CGAffineTransformMakeScale(0.01, 0.01);
         if (fromView)
             [containerView insertSubview:toView aboveSubview:fromView];
         else
@@ -55,7 +55,7 @@
         
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             [self fade:_fadeStyle fromView:fromView toView:toView initial:NO];
-            fromView.transform = CGAffineTransformMakeScale(0.0, 0.0);
+            fromView.transform = CGAffineTransformMakeScale(0.01, 0.01);
         } completion:^(BOOL finished) {
             BOOL cancelled = [transitionContext transitionWasCancelled];
             [transitionContext completeTransition:!cancelled];

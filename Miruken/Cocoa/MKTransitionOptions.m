@@ -7,6 +7,7 @@
 //
 
 #import "MKTransitionOptions.h"
+#import <objc/runtime.h>
 
 @implementation MKTransitionOptions
 {
@@ -69,6 +70,13 @@
             [(id)_transitionDelegate setClipToBounds:_clipToBounds];
 
         viewController.transitioningDelegate = _transitionDelegate;
+        
+        if (_transitionDelegate != (id)viewController)
+        {
+            // Keep transition delegate alive if not viewController
+            objc_setAssociatedObject(viewController, _cmd, _transitionDelegate, OBJC_ASSOCIATION_RETAIN);
+            
+        }
     }
 }
 
