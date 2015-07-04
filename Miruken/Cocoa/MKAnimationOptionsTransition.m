@@ -37,7 +37,7 @@
     if (fromView && toView)
     {
         [containerView addSubview:fromView];
-        [containerView addSubview:toView];
+        [containerView insertSubview:toView belowSubview:fromView];
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView transitionFromView:fromView
                                 toView:toView
